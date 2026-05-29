@@ -1,0 +1,203 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import { salons } from "~data/salons";
+import { stylists } from "~data/stylists";
+import StylistCard from "~components/StylistCard.astro";
+import {
+  localBusinessSchema,
+  breadcrumbSchema,
+  jsonLd,
+} from "~lib/schema";
+
+export async function getStaticPaths() {
+  return salons.map((salon) => ({
+    params: { slug: salon.slug },
+    props: { salon },
+  }));
+}
+
+const { salon } = Astro.props;
+const salonStylists = stylists.filter((s) => s.salonSlug === salon.slug);
+
+const pageSchemas = [
+  localBusinessSchema(salon),
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Salons", url: "/salons" },
+    { name: salon.nameLatin, url: `/salons/${salon.slug}` },
+  ]),
+];
+---
+
+<BaseLayout
+  title={salon.nameLatin}
+  description={salon.description}
+>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero
+    eyebrow={`— Salon ${salon.number}`}
+    title={salon.nameLatin.toUpperCase()}
+    italicTitle="iLe"
+  />
+
+  <section class="salon-detail">
+    <div class="salon-detail__inner">
+      <div class="salon-detail__lead">
+        <p class="salon-detail__badge">{salon.badge}</p>
+        <h2 class="salon-detail__name">{salon.name}</h2>
+        <p class="salon-detail__city">{salon.city}</p>
+        <p class="salon-detail__desc">{salon.description}</p>
+      </div>
+
+      <dl class="salon-detail__specs">
+        <div><dt>Address</dt><dd>{salon.address}</dd></div>
+        <div><dt>Opened</dt><dd><em>est.</em> {salon.openedAt.replace(/-/g, ".")}</dd></div>
+        {salon.renamedAt && (
+          <div><dt>Renamed</dt><dd>{salon.renamedAt.replace(/-/g, ".")} (旧 {salon.formerName})</dd></div>
+        )}
+        <div><dt>Hours</dt><dd>{salon.hours}</dd></div>
+        {salon.holidays && <div><dt>Closed</dt><dd>{salon.holidays}</dd></div>}
+        {salon.phone && <div><dt>Phone</dt><dd>{salon.phone}</dd></div>}
+        {salon.hotPepperUrl && (
+          <div>
+            <dt>Booking</dt>
+            <dd>
+              <a href={salon.hotPepperUrl} target="_blank" rel="noopener">
+                Hot Pepper Beauty →
+              </a>
+            </dd>
+          </div>
+        )}
+      </dl>
+    </div>
+  </section>
+
+  {salonStylists.length > 0 && (
+    <section class="salon-stylists">
+      <h2 class="salon-stylists__h">Stylists at {salon.nameLatin}</h2>
+      <div class="salon-stylists__grid">
+        {salonStylists.map((s, i) => (
+          <StylistCard stylist={s} index={i} />
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .salon-detail {
+    padding: 110px 32px;
+    background: var(--color-snow);
+    position: relative;
+    z-index: 1;
+  }
+  .salon-detail__inner {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    gap: 56px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) {
+    .salon-detail__inner {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+  .salon-detail__badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 12px;
+  }
+  .salon-detail__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+  }
+  .salon-detail__city {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 28px;
+  }
+  .salon-detail__desc {
+    font-size: 16px;
+    line-height: 1.95;
+    color: var(--color-fg);
+    max-width: 480px;
+  }
+
+  .salon-detail__specs {
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .salon-detail__specs > div {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--color-border);
+    align-items: baseline;
+    margin: 0;
+  }
+  .salon-detail__specs dt {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0;
+  }
+  .salon-detail__specs dd {
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .salon-detail__specs dd em {
+    font-family: var(--font-display);
+    font-style: italic;
+  }
+  .salon-detail__specs a {
+    border-bottom: 1px solid var(--color-fg);
+    padding-bottom: 1px;
+  }
+
+  .salon-stylists {
+    padding: 110px 32px;
+    background: var(--color-pearl);
+    position: relative;
+    z-index: 1;
+  }
+  .salon-stylists__h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 56px;
+  }
+  .salon-stylists__grid {
+    display: grid;
+    gap: 32px 24px;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  @media (min-width: 700px) {
+    .salon-stylists__grid { grid-template-columns: repeat(4, 1fr); }
+  }
+</style>

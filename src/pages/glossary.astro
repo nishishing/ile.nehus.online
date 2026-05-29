@@ -1,0 +1,162 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import {
+  definedTermSchema,
+  breadcrumbSchema,
+  jsonLd,
+} from "~lib/schema";
+import { glossaryTerms } from "~data/glossary";
+
+const description =
+  "iLe（イル）、nehus（ネハス）、「船から、島へ」など、iLe ブランドに関する用語の定義集。";
+
+const pageSchemas = [
+  ...glossaryTerms.map(definedTermSchema),
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Glossary", url: "/glossary" },
+  ]),
+];
+---
+
+<BaseLayout title="Glossary" description={description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero
+    eyebrow="— Defined Terms"
+    title="GLOSSARY"
+  />
+
+  <section class="glossary-section">
+    <p class="glossary-lede">
+      iLe ブランド、株式会社ing に関連する用語の一次定義集。<br />
+      <em>The canonical definitions of terms used across the iLe brand.</em>
+    </p>
+
+    <dl class="glossary-list">
+      {glossaryTerms.map((t, idx) => (
+        <div class="glossary-item">
+          <dt class="glossary-item__term">
+            <span class="glossary-item__num">{String(idx + 1).padStart(2, "0")}</span>
+            <span class="glossary-item__name">{t.term}</span>
+            {t.pronunciation && (
+              <span class="glossary-item__pron">— {t.pronunciation}</span>
+            )}
+          </dt>
+          <dd class="glossary-item__def">
+            <p>{t.definition}</p>
+            {t.etymology && (
+              <p class="glossary-item__etym">
+                <span class="glossary-item__etym-label">Etymology:</span> {t.etymology}
+              </p>
+            )}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+</BaseLayout>
+
+<style>
+  .glossary-section {
+    padding: 110px 32px 140px;
+    max-width: 980px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .glossary-lede {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(16px, 1.6vw, 20px);
+    line-height: 1.7;
+    text-align: center;
+    color: var(--color-fg-muted);
+    margin: 0 0 80px;
+  }
+  .glossary-lede em {
+    font-style: italic;
+    color: var(--color-fg-subtle);
+    display: block;
+    margin-top: 0.4em;
+    font-size: 0.85em;
+  }
+
+  .glossary-list {
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .glossary-item {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--color-border);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    align-items: baseline;
+  }
+  @media (max-width: 800px) {
+    .glossary-item {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+  }
+  .glossary-item__term {
+    margin: 0;
+  }
+  .glossary-item__num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    color: var(--color-fg-muted);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .glossary-item__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1;
+    display: block;
+    text-transform: uppercase;
+  }
+  .glossary-item__pron {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--color-fg-muted);
+    display: block;
+    margin-top: 8px;
+  }
+  .glossary-item__def {
+    margin: 0;
+    font-size: 15px;
+    line-height: 2;
+    color: var(--color-fg);
+  }
+  .glossary-item__def p {
+    margin: 0 0 1em;
+  }
+  .glossary-item__etym {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--color-fg-muted);
+    border-top: 1px solid var(--color-border);
+    padding-top: 12px;
+    margin-top: 16px !important;
+  }
+  .glossary-item__etym-label {
+    font-family: var(--font-mono);
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-fg-subtle);
+    margin-right: 8px;
+  }
+</style>

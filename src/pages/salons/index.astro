@@ -1,0 +1,49 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import SalonRow from "~components/SalonRow.astro";
+import { salons } from "~data/salons";
+import {
+  localBusinessSchema,
+  breadcrumbSchema,
+  jsonLd,
+} from "~lib/schema";
+
+const description =
+  "iLe（イル）が運営する4店舗の美容室一覧。原宿×2、名古屋、長岡。それぞれの街に根を張った、独立した4つの島。";
+
+const pageSchemas = [
+  ...salons.map(localBusinessSchema),
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Salons", url: "/salons" },
+  ]),
+];
+---
+
+<BaseLayout title="Salons" description={description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero
+    eyebrow="— The Four Islands"
+    title="SALONS"
+  />
+
+  <section class="salons-list">
+    {salons.map((salon, i) => (
+      <SalonRow salon={salon} reverse={i % 2 === 1} />
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .salons-list {
+    padding: 110px 0;
+    position: relative;
+    z-index: 1;
+  }
+</style>

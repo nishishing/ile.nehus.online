@@ -1,5 +1,5 @@
 ---
-import { site, navFooter } from "~data/site";
+import { site, navFooter, navLegal } from "~data/site";
 const year = new Date().getFullYear();
 ---
 
@@ -21,6 +21,11 @@ const year = new Date().getFullYear();
   </div>
   <div class="footer__bottom">
     <span>© {year} {site.companyName} — {site.companyNameLatin}</span>
+    <nav class="footer__legal" aria-label="Legal">
+      {navLegal.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
     <span>{site.domain}</span>
   </div>
 </footer>
@@ -97,5 +102,15 @@ const year = new Date().getFullYear();
     opacity: 0.6;
     gap: 16px;
     flex-wrap: wrap;
+  }
+  .footer__legal {
+    display: flex;
+    gap: 18px;
+  }
+  .footer__legal a {
+    opacity: 0.85;
+  }
+  .footer__legal a:hover {
+    opacity: 1;
   }
 </style>

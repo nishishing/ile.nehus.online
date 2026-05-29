@@ -30,14 +30,22 @@ export const navPrimary = [
 
 export const navFooter = [
   { label: "SALONS", href: "/salons" },
+  { label: "STYLISTS", href: "/stylists" },
   { label: "STORY", href: "/story" },
   { label: "MESSAGE", href: "/message" },
-  { label: "STYLISTS", href: "/stylists" },
   { label: "JOURNAL", href: "/journal" },
   { label: "RECRUIT", href: "/recruit" },
-  { label: "CONTACT", href: "/contact" },
+  { label: "FAQ", href: "/faq" },
+  { label: "GLOSSARY", href: "/glossary" },
   { label: "COMPANY", href: "/company" },
+  { label: "CONTACT", href: "/contact" },
+  { label: "iLe.ONLINE", href: "/ile-online" },
   { label: "INSTAGRAM", href: "https://instagram.com/ile_official" },
+] as const;
+
+export const navLegal = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
 ] as const;
 
 export const languages = [

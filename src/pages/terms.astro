@@ -1,0 +1,101 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import { breadcrumbSchema, jsonLd } from "~lib/schema";
+import { site } from "~data/site";
+
+const description = `${site.companyName} のウェブサイト利用規約。`;
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Terms of Use", url: "/terms" },
+  ]),
+];
+---
+
+<BaseLayout title="Terms of Use" description={description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero
+    eyebrow="— Legal"
+    title="TERMS OF USE"
+  />
+
+  <article class="legal-article">
+    <h2>1. 適用範囲</h2>
+    <p>
+      本利用規約は、{site.companyName}（以下「当社」といいます）が運営する本ウェブサイト（{site.url}）の利用に関する条件を定めるものです。
+    </p>
+
+    <h2>2. 著作権</h2>
+    <p>
+      本ウェブサイトに掲載される文章、写真、ロゴ、デザインその他一切のコンテンツの著作権は、当社または正当な権利者に帰属します。無断での複製・転載・改変を禁じます。
+    </p>
+
+    <h2>3. 禁止事項</h2>
+    <p>
+      利用者は、本ウェブサイトの利用にあたり、以下の行為を行ってはなりません：法令または公序良俗に違反する行為、当社または第三者の権利を侵害する行為、当社のサーバーまたはネットワークの機能を破壊・妨害する行為、その他当社が不適切と判断する行為。
+    </p>
+
+    <h2>4. 免責事項</h2>
+    <p>
+      当社は、本ウェブサイトに掲載された情報の正確性・有用性等について万全を期しておりますが、その内容について保証するものではありません。利用者は自己の責任において本ウェブサイトを利用するものとします。
+    </p>
+
+    <h2>5. 規約の改定</h2>
+    <p>
+      本規約は、予告なく改定されることがあります。最新版は本ページにて公開いたします。
+    </p>
+
+    <h2>6. 準拠法・管轄裁判所</h2>
+    <p>
+      本規約の解釈には日本法を適用し、本ウェブサイトに関する紛争については、当社本店所在地を管轄する裁判所を専属的合意管轄裁判所とします。
+    </p>
+
+    <p class="legal-article__meta">
+      制定日：2026年8月1日<br />
+      {site.companyName}（{site.companyNameLatin}）
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .legal-article {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 110px 32px 140px;
+    position: relative;
+    z-index: 1;
+    font-size: 15px;
+    line-height: 2;
+    color: var(--color-fg);
+  }
+  .legal-article h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.4;
+    margin: 2.4em 0 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+  .legal-article p {
+    margin: 1em 0;
+    color: var(--color-fg-muted);
+  }
+  .legal-article__meta {
+    margin-top: 4em;
+    padding-top: 2em;
+    border-top: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-fg-subtle);
+  }
+</style>

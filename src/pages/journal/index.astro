@@ -1,0 +1,62 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import JournalCard from "~components/JournalCard.astro";
+import { journalPosts } from "~data/journal";
+import { breadcrumbSchema, jsonLd } from "~lib/schema";
+
+const description =
+  "iLe（イル）からのお知らせ、プレスリリース、ストーリー、メディア掲載情報。";
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Journal", url: "/journal" },
+  ]),
+];
+
+const sorted = [...journalPosts].sort((a, b) =>
+  b.publishedAt.localeCompare(a.publishedAt),
+);
+---
+
+<BaseLayout title="Journal" description={description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero
+    eyebrow="— Updates &amp; Press"
+    title="JOURNAL"
+  />
+
+  <section class="journal-list">
+    <div class="journal-list__grid">
+      {sorted.map((post, i) => (
+        <JournalCard post={post} index={i} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .journal-list {
+    padding: 110px 32px 140px;
+    position: relative;
+    z-index: 1;
+  }
+  .journal-list__grid {
+    display: grid;
+    gap: 48px;
+    grid-template-columns: 1fr;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  @media (min-width: 900px) {
+    .journal-list__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

@@ -1,0 +1,223 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import { stylists } from "~data/stylists";
+import { getSalon } from "~data/salons";
+import { breadcrumbSchema, jsonLd } from "~lib/schema";
+import { site } from "~data/site";
+
+export async function getStaticPaths() {
+  return stylists.map((stylist) => ({
+    params: { slug: stylist.slug },
+    props: { stylist },
+  }));
+}
+
+const { stylist } = Astro.props;
+const salon = getSalon(stylist.salonSlug);
+
+const description = stylist.profile
+  ?? `${stylist.name}（${stylist.nameJa ?? ""}）— iLe ${salon?.cityShort ?? ""} のスタイリスト${stylist.position ? `／${stylist.position}` : ""}。`;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: stylist.name,
+  alternateName: stylist.nameJa,
+  jobTitle: stylist.position ?? "Hair Stylist",
+  worksFor: salon
+    ? { "@id": `${site.url}/salons/${salon.slug}/#salon` }
+    : { "@id": `${site.url}/#organization` },
+  url: `${site.url}/stylists/${stylist.slug}`,
+};
+
+const pageSchemas = [
+  personSchema,
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Stylists", url: "/stylists" },
+    { name: stylist.name, url: `/stylists/${stylist.slug}` },
+  ]),
+];
+---
+
+<BaseLayout title={stylist.name} description={description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero
+    eyebrow={`— Stylist / ${salon?.nameLatin ?? ""}`}
+    title={stylist.name.toUpperCase()}
+  />
+
+  <section class="stylist-detail">
+    <div class="stylist-detail__inner">
+      <div class={`stylist-detail__portrait stylist-detail__portrait--${(stylists.indexOf(stylist) % 6) + 1}`}></div>
+      <div class="stylist-detail__body">
+        <p class="stylist-detail__role">
+          {stylist.position ?? "Hair Stylist"}
+        </p>
+        <h2 class="stylist-detail__name">
+          {stylist.name}
+          {stylist.nameJa && <span class="stylist-detail__ja">（{stylist.nameJa}）</span>}
+        </h2>
+        {salon && (
+          <p class="stylist-detail__salon">
+            <a href={`/salons/${salon.slug}`}>{salon.nameLatin} / {salon.cityShort}</a>
+          </p>
+        )}
+        {stylist.profile && (
+          <p class="stylist-detail__profile">{stylist.profile}</p>
+        )}
+        {stylist.specialties && stylist.specialties.length > 0 && (
+          <div class="stylist-detail__specs">
+            <p class="stylist-detail__specs-label">Specialties</p>
+            <ul>
+              {stylist.specialties.map((sp) => <li>{sp}</li>)}
+            </ul>
+          </div>
+        )}
+        <div class="stylist-detail__links">
+          {stylist.instagram && (
+            <a href={`https://instagram.com/${stylist.instagram}`} target="_blank" rel="noopener">
+              Instagram →
+            </a>
+          )}
+          {stylist.hotPepperUrl && (
+            <a href={stylist.hotPepperUrl} target="_blank" rel="noopener">
+              Hot Pepper →
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .stylist-detail {
+    padding: 110px 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .stylist-detail__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    gap: 56px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 800px) {
+    .stylist-detail__inner {
+      grid-template-columns: 1fr 1.2fr;
+      align-items: start;
+    }
+  }
+  .stylist-detail__portrait {
+    aspect-ratio: 3 / 4;
+    position: relative;
+    overflow: hidden;
+  }
+  .stylist-detail__portrait::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.30 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.45;
+  }
+  .stylist-detail__portrait--1 { background: linear-gradient(180deg, #888b90 0%, #3a3d42 100%); }
+  .stylist-detail__portrait--2 { background: linear-gradient(180deg, #7f8388 0%, #34373b 100%); }
+  .stylist-detail__portrait--3 { background: linear-gradient(180deg, #6f7378 0%, #2d2f33 100%); }
+  .stylist-detail__portrait--4 { background: linear-gradient(180deg, #828690 0%, #34373b 100%); }
+  .stylist-detail__portrait--5 { background: linear-gradient(180deg, #6e7176 0%, #2a2c30 100%); }
+  .stylist-detail__portrait--6 { background: linear-gradient(180deg, #757980 0%, #2f3236 100%); }
+
+  .stylist-detail__role {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 18px;
+  }
+  .stylist-detail__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(36px, 4.5vw, 56px);
+    line-height: 1;
+    text-transform: uppercase;
+    margin: 0 0 14px;
+  }
+  .stylist-detail__ja {
+    font-family: var(--font-display);
+    font-style: italic;
+    text-transform: none;
+    font-size: 0.5em;
+    color: var(--color-fg-muted);
+    margin-left: 12px;
+  }
+  .stylist-detail__salon {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 32px;
+  }
+  .stylist-detail__salon a {
+    border-bottom: 1px solid var(--color-fg-muted);
+    padding-bottom: 1px;
+  }
+  .stylist-detail__profile {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--color-fg);
+    margin: 0 0 32px;
+  }
+  .stylist-detail__specs {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
+  }
+  .stylist-detail__specs-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 14px;
+  }
+  .stylist-detail__specs ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .stylist-detail__specs li {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--color-border-strong);
+  }
+  .stylist-detail__links {
+    margin-top: 40px;
+    display: flex;
+    gap: 28px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .stylist-detail__links a {
+    border-bottom: 1px solid var(--color-fg);
+    padding-bottom: 1px;
+  }
+</style>

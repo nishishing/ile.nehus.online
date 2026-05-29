@@ -1,0 +1,90 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import { breadcrumbSchema, jsonLd } from "~lib/schema";
+
+const description =
+  "iLe.online — iLe が運営するオンラインサロン。美容師・美容学生・お客様が繋がる場。";
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "iLe.online", url: "/ile-online" },
+  ]),
+];
+---
+
+<BaseLayout title="iLe.online" description={description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero
+    eyebrow="— Related Service"
+    title="iLe.ONLINE"
+    italicTitle="online"
+  />
+
+  <section class="online-section">
+    <div class="online-inner">
+      <p class="online-lede">
+        iLe が運営する <em>オンラインサロン</em>。
+      </p>
+      <p class="online-text">
+        iLe.online は、iLe（株式会社ing）が運営するオンラインサロンサービスです。
+        美容師・美容学生・お客様が繋がり、学び合い、共に成長していくコミュニティを目指しています。
+      </p>
+      <p class="online-text">
+        美容業界の最新トレンド、技術的な学び、ライフスタイル、そして iLe ブランドの内側を、
+        オンラインの場で共有しています。
+      </p>
+
+      <a class="online-cta" href="https://ile.online" target="_blank" rel="noopener">
+        Visit iLe.online →
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .online-section {
+    padding: 110px 32px 140px;
+    position: relative;
+    z-index: 1;
+  }
+  .online-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .online-lede {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.3;
+    margin: 0 0 48px;
+    text-transform: uppercase;
+  }
+  .online-lede em {
+    font-style: italic;
+  }
+  .online-text {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-fg-muted);
+    margin: 0 0 1.6em;
+    text-align: left;
+  }
+  .online-cta {
+    display: inline-block;
+    margin-top: 48px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 18px 36px;
+    border: 1px solid var(--color-ink);
+  }
+</style>
