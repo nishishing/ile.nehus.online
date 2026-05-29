@@ -1,0 +1,184 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import SectionHead from "~components/SectionHead.astro";
+import Timeline from "~components/Timeline.astro";
+import type { TimelineEntry } from "~components/Timeline.astro";
+import { breadcrumbSchema, jsonLd } from "~lib/schema";
+import { site } from "~data/site";
+
+const description = `${site.companyName}（${site.companyNameLatin}） — 美容室 iLe を運営する会社の概要。${site.foundedAtLabel} 創業、代表取締役 ${site.founderName}。`;
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Company", url: "/company" },
+  ]),
+];
+
+const history: TimelineEntry[] = [
+  {
+    date: "2020.08",
+    title: "株式会社ing を設立。原宿に美容室「iLe」を開業。",
+    body: "創業の地。原宿の小さな一店舗としてスタート。",
+    highlight: true,
+  },
+  {
+    date: "2022",
+    title: "原宿に2号店「nehus」を開業。",
+    body: "新天地に挑む店舗群として「nehus（船）」ブランドを立ち上げる。",
+  },
+  {
+    date: "2023",
+    title: "名古屋に「nehus 名古屋」を開業。",
+    body: "中部圏へ進出。地域に根を張ったコミュニティを育む。",
+  },
+  {
+    date: "2024",
+    title: "長岡に「nehus 長岡」を開業。",
+    body: "雪の街への進出。北信越エリアでのコミュニティを築く。",
+  },
+  {
+    date: "2026.08.01",
+    title: "創業7周年。全4店舗を iLe ブランドに統一。",
+    body: "「船から、島へ」。各地で確かな島となった店舗群を、ひとつの名前で誇る。",
+    highlight: true,
+  },
+];
+
+const overviewRows: Array<{ label: string; value: string }> = [
+  { label: "Company", value: `${site.companyName} (${site.companyNameLatin})` },
+  { label: "Founded", value: site.foundedAtLabel },
+  { label: "CEO", value: `${site.founderName} — ${site.founderNameLatin}` },
+  { label: "Address", value: site.headOffice },
+  { label: "Business", value: "美容室の運営 / Hair atelier" },
+  { label: "Salons", value: "4 — iLe 原宿 ×2, iLe 名古屋, iLe 長岡" },
+  { label: "Related", value: "iLe.online（オンラインサロン）" },
+  { label: "Contact", value: site.contactEmail },
+];
+---
+
+<BaseLayout
+  title="Company"
+  description={description}
+>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero
+    eyebrow="— Corporate Profile"
+    title="COMPANY"
+  />
+
+  <section class="company-section company-overview" aria-labelledby="overview-h">
+    <div id="overview-h">
+      <SectionHead small="— At a Glance" title="Overview" />
+    </div>
+    <dl class="overview">
+      {overviewRows.map((row) => (
+        <div class="overview__row">
+          <dt>{row.label}</dt>
+          <dd>{row.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="company-section company-history" aria-labelledby="history-h">
+    <div id="history-h">
+      <SectionHead small="— Seven Years" title="History" />
+    </div>
+    <Timeline entries={history} />
+  </section>
+
+  <section class="company-section company-contact" aria-labelledby="contact-h">
+    <div id="contact-h">
+      <SectionHead small="— Get in Touch" title="Contact" />
+    </div>
+    <div class="contact-block">
+      <p class="contact-block__lead">
+        ご取材・採用・サロン運営に関するお問い合わせは、下記メールアドレスまで。
+      </p>
+      <a class="contact-block__email" href={`mailto:${site.contactEmail}`}>
+        {site.contactEmail}
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .company-section {
+    padding: 110px 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .company-overview {
+    background: var(--color-snow);
+  }
+  .company-history {
+    background: var(--color-pearl);
+  }
+  .company-contact {
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+
+  .overview {
+    max-width: 900px;
+    margin: 0 auto;
+    border-top: 1px solid var(--color-border);
+  }
+  .overview__row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--color-border);
+    align-items: baseline;
+  }
+  .overview__row dt {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0;
+  }
+  .overview__row dd {
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0;
+  }
+  @media (max-width: 640px) {
+    .overview__row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+  }
+
+  .contact-block {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .contact-block__lead {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.7;
+    opacity: 0.7;
+    margin: 0 0 32px;
+  }
+  .contact-block__email {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.5vw, 44px);
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid var(--color-white);
+    padding-bottom: 6px;
+    word-break: break-all;
+  }
+</style>

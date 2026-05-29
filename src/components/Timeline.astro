@@ -1,0 +1,79 @@
+---
+/**
+ * Editorial timeline (沿革).
+ * Each entry: year + month, title, optional description.
+ */
+export interface TimelineEntry {
+  date: string;     // "2020.08" or "2020.08.01"
+  dateLabel?: string; // optional display override
+  title: string;
+  body?: string;
+  highlight?: boolean;
+}
+interface Props {
+  entries: TimelineEntry[];
+}
+const { entries } = Astro.props;
+---
+
+<ol class="timeline">
+  {entries.map((entry) => (
+    <li class:list={["timeline__row", entry.highlight && "timeline__row--highlight"]}>
+      <span class="timeline__date">{entry.dateLabel ?? entry.date}</span>
+      <div class="timeline__body">
+        <h3 class="timeline__title">{entry.title}</h3>
+        {entry.body && <p class="timeline__text">{entry.body}</p>}
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .timeline {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 900px;
+    border-top: 1px solid var(--color-border);
+  }
+  .timeline__row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--color-border);
+    align-items: baseline;
+  }
+  .timeline__row--highlight .timeline__title {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
+  }
+  .timeline__date {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+  }
+  .timeline__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.4;
+    margin: 0;
+  }
+  .timeline__text {
+    margin: 0.6em 0 0;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--color-fg-muted);
+  }
+
+  @media (max-width: 640px) {
+    .timeline__row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  }
+</style>

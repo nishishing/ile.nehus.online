@@ -31,12 +31,12 @@ export const navPrimary = [
 export const navFooter = [
   { label: "SALONS", href: "/salons" },
   { label: "STORY", href: "/story" },
+  { label: "MESSAGE", href: "/message" },
   { label: "STYLISTS", href: "/stylists" },
   { label: "JOURNAL", href: "/journal" },
   { label: "RECRUIT", href: "/recruit" },
   { label: "CONTACT", href: "/contact" },
-  { label: "ABOUT", href: "/company" },
-  { label: "PRESS", href: "/journal/category/press" },
+  { label: "COMPANY", href: "/company" },
   { label: "INSTAGRAM", href: "https://instagram.com/ile_official" },
 ] as const;
 

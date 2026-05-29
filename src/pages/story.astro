@@ -1,0 +1,141 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import Prose from "~components/Prose.astro";
+import Ticker from "~components/Ticker.astro";
+import {
+  standaloneArticleSchema,
+  breadcrumbSchema,
+  jsonLd,
+} from "~lib/schema";
+
+const description =
+  "iLe（イル）— フランス語で「島」を意味する。2020年、原宿の小さな一軒のサロンとして始まった iLe。新天地に挑む店舗群を「nehus（船）」と名付け、原宿・名古屋・長岡へと船を出してきました。それから7年、船はそれぞれの地に着岸し、根を張り、確かな島になりました。2026年8月1日、すべてを iLe に統一します。";
+
+const pageSchemas = [
+  standaloneArticleSchema({
+    url: "/story",
+    headline: "船から、島へ。— iLe Story",
+    description,
+    datePublished: "2026-07-01",
+  }),
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Story", url: "/story" },
+  ]),
+];
+---
+
+<BaseLayout
+  title="船から、島へ。— Story"
+  description={description}
+  ogType="article"
+>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero
+    eyebrow="— iLe Story / Chapter I"
+    title="FROM A SHIP, TO AN ISLAND"
+    italicTitle="island"
+  />
+
+  <article class="story-article">
+    <Prose>
+      <p class="lead">
+        2020年8月、原宿に小さな一軒のサロンを開きました。
+        名前は「iLe（イル）」。フランス語で <em>島</em> を意味する言葉です。
+      </p>
+
+      <h2>I. <em>島</em> から、はじまった</h2>
+
+      <p>
+        美容師として、いつか自分の店を持ちたい — そう願って働いてきた数年の先に、原宿の一角に小さな
+        <em>島</em> ができました。お客様一人ひとりと丁寧に向き合える、人の温度が伝わる場所。
+        そう思って名付けた「iLe」が、私たちの原点です。
+      </p>
+
+      <p>
+        最初の数年は、ただ目の前のお客様と向き合うことに必死でした。
+        その間に、少しずつ店を支えてくれる仲間が増え、お客様の輪が広がり、
+        小さな <em>島</em> には少しずつ、確かな地面ができていきました。
+      </p>
+
+      <h2>II. <em>船</em> を出した</h2>
+
+      <p>
+        やがて、新しい街でも美容室を開いてみたいという声が、社内から上がるようになりました。
+        原宿の <em>島</em> をそのまま持ち運ぶのではなく、新しい土地で、新しい空気を呼吸する
+        — そう願って、新天地に挑む店舗群を <em>「nehus（ネハス）」</em> と名付けました。
+      </p>
+
+      <p>
+        nehus は <em>船</em>。私たちにとって、新しい街へ漕ぎ出していくための乗り物でした。
+        原宿に nehus を、名古屋に nehus を、長岡に nehus を。
+        それぞれの船は、それぞれの航路を持って、それぞれの土地に向かいました。
+      </p>
+
+      <h2>III. <em>船</em> が、<em>島</em> になった</h2>
+
+      <p>
+        2022年、2023年、2024年。一つひとつの船が、それぞれの土地で錨を下ろしました。
+        nehus 原宿には原宿の常連が、nehus 名古屋には名古屋の常連が、
+        nehus 長岡には長岡の常連が — それぞれの街に、それぞれの空気を持った
+        <em>島</em> が育っていきました。
+      </p>
+
+      <p>
+        気がつけば、nehus たちはもう新天地に漕ぎ出していく <em>船</em> ではありませんでした。
+        それぞれの街に根を張り、それぞれの常連と、それぞれのスタッフと、
+        それぞれの物語を持った、確かな <em>島</em> になっていたのです。
+      </p>
+
+      <blockquote>
+        もう、私たちは <em>船</em> ではない。<br />
+        各地で確かな <em>島</em> になった。<br />
+        だから今、すべてを iLe にする。
+        <cite>— Nishimura Ryo, Founder</cite>
+      </blockquote>
+
+      <h2>IV. <em>すべて</em> を iLe にする</h2>
+
+      <p>
+        2026年8月1日、創業から7周年を迎えるこの日に、私たちは決断しました。
+        運営する4店舗 — iLe（原宿）、nehus（原宿）、nehus 名古屋、nehus 長岡 — の
+        すべてを「iLe」ブランドに統一します。
+      </p>
+
+      <p>
+        統一されるのは名前だけです。それぞれの <em>島</em> の空気、それぞれのスタッフ、
+        それぞれのお客様との関係は、これまでと何一つ変わりません。むしろ、
+        確かな <em>島</em> となったことを誇りとして、ひとつの名前を分かち合いたい。
+        それが私たちの願いです。
+      </p>
+
+      <hr />
+
+      <p>
+        7年で、船が島になった。<br />
+        これからは、ひとつひとつの <em>島</em> として、それぞれの街に在り続けます。
+      </p>
+
+      <div class="signature">
+        — 西村 涼<br />
+        <small>Founder, iLe / 株式会社ing</small>
+      </div>
+    </Prose>
+  </article>
+
+  <Ticker />
+</BaseLayout>
+
+<style>
+  .story-article {
+    padding: 110px 32px;
+    position: relative;
+    z-index: 1;
+  }
+</style>

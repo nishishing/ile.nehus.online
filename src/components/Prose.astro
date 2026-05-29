@@ -1,0 +1,117 @@
+---
+/**
+ * Editorial long-form content wrapper.
+ * Drop rich text inside; typography is taken care of.
+ *
+ * Use `.lead` on the first paragraph for emphasis.
+ * Use <blockquote> for pull-quotes.
+ */
+---
+
+<div class="prose">
+  <slot />
+</div>
+
+<style>
+  .prose {
+    max-width: 720px;
+    margin: 0 auto;
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 2;
+    color: var(--color-fg);
+  }
+  .prose :global(h2) {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1.2;
+    margin: 3em 0 0.8em;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+  .prose :global(h2 em) {
+    font-style: italic;
+  }
+  .prose :global(h3) {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.35;
+    margin: 2.2em 0 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .prose :global(p) {
+    margin: 1.4em 0;
+  }
+  .prose :global(.lead) {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.6;
+    color: var(--color-fg);
+    margin: 0 0 1.6em;
+    letter-spacing: 0.01em;
+  }
+  .prose :global(em) {
+    font-family: var(--font-display);
+    font-style: italic;
+  }
+  .prose :global(strong) {
+    font-weight: 500;
+  }
+  .prose :global(blockquote) {
+    margin: 2.4em -32px;
+    padding: 36px 32px;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.45;
+    text-align: center;
+    letter-spacing: 0.01em;
+  }
+  .prose :global(blockquote em) {
+    font-style: normal;
+    border-bottom: 1px solid var(--color-fg);
+    padding-bottom: 2px;
+  }
+  .prose :global(blockquote cite) {
+    display: block;
+    margin-top: 1em;
+    font-family: var(--font-mono);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+  }
+  .prose :global(hr) {
+    border: none;
+    width: 56px;
+    height: 1px;
+    background: var(--color-fg);
+    margin: 3em auto;
+  }
+  .prose :global(.signature) {
+    margin-top: 3em;
+    text-align: right;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--color-fg);
+  }
+  .prose :global(.signature small) {
+    display: block;
+    font-family: var(--font-mono);
+    font-style: normal;
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin-top: 6px;
+  }
+</style>
