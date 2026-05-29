@@ -9,9 +9,7 @@ import InfoStrip from "~components/InfoStrip.astro";
 import JournalCard from "~components/JournalCard.astro";
 import Ticker from "~components/Ticker.astro";
 
-import { salons } from "~data/salons";
-import { stylists } from "~data/stylists";
-import { journalPosts } from "~data/journal";
+import { getSalons, getStylists, getJournalPosts } from "~lib/content";
 
 import {
   personFounderSchema,
@@ -19,6 +17,10 @@ import {
   breadcrumbSchema,
   jsonLd,
 } from "~lib/schema";
+
+const salons = await getSalons();
+const stylists = await getStylists();
+const journalPosts = await getJournalPosts();
 
 // LLMO: page-specific JSON-LD
 const pageSchemas = [

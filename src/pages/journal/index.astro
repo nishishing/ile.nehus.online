@@ -2,7 +2,7 @@
 import BaseLayout from "~layouts/BaseLayout.astro";
 import PageHero from "~components/PageHero.astro";
 import JournalCard from "~components/JournalCard.astro";
-import { journalPosts } from "~data/journal";
+import { getJournalPosts } from "~lib/content";
 import { breadcrumbSchema, jsonLd } from "~lib/schema";
 
 const description =
@@ -15,6 +15,7 @@ const pageSchemas = [
   ]),
 ];
 
+const journalPosts = await getJournalPosts();
 const sorted = [...journalPosts].sort((a, b) =>
   b.publishedAt.localeCompare(a.publishedAt),
 );

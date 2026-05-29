@@ -1,20 +1,20 @@
 ---
 import BaseLayout from "~layouts/BaseLayout.astro";
 import PageHero from "~components/PageHero.astro";
-import { stylists } from "~data/stylists";
-import { getSalon } from "~data/salons";
+import { getStylists, getSalonBySlug } from "~lib/content";
 import { breadcrumbSchema, jsonLd } from "~lib/schema";
 import { site } from "~data/site";
 
 export async function getStaticPaths() {
-  return stylists.map((stylist) => ({
+  const stylists = await getStylists();
+  return stylists.map((stylist, index) => ({
     params: { slug: stylist.slug },
-    props: { stylist },
+    props: { stylist, index },
   }));
 }
 
-const { stylist } = Astro.props;
-const salon = getSalon(stylist.salonSlug);
+const { stylist, index } = Astro.props;
+const salon = await getSalonBySlug(stylist.salonSlug);
 
 const description = stylist.profile
   ?? `${stylist.name}（${stylist.nameJa ?? ""}）— iLe ${salon?.cityShort ?? ""} のスタイリスト${stylist.position ? `／${stylist.position}` : ""}。`;
@@ -55,7 +55,7 @@ const pageSchemas = [
 
   <section class="stylist-detail">
     <div class="stylist-detail__inner">
-      <div class={`stylist-detail__portrait stylist-detail__portrait--${(stylists.indexOf(stylist) % 6) + 1}`}></div>
+      <div class={`stylist-detail__portrait stylist-detail__portrait--${(index % 6) + 1}`}></div>
       <div class="stylist-detail__body">
         <p class="stylist-detail__role">
           {stylist.position ?? "Hair Stylist"}

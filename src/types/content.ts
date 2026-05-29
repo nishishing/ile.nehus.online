@@ -1,7 +1,16 @@
 /**
  * Content type definitions for iLe site.
- * Will be 1:1 with microCMS schema once CMS is connected.
+ * 1:1 with the microCMS schema (see docs/microcms-schema.md).
+ * Pages consume these via the loaders in src/lib/content.ts, which
+ * fetch from microCMS when configured and fall back to src/data/*.
  */
+
+/** Image field as returned by the microCMS media API. */
+export interface MicroCMSImage {
+  url: string;
+  width?: number;
+  height?: number;
+}
 
 export type SalonSlug = "harajuku-a" | "harajuku-b" | "nagoya" | "nagaoka";
 
@@ -25,6 +34,8 @@ export interface Salon {
   description: string;
   badge: string; // "— origin", "— formerly nehus"
   stylistCount: number;
+  heroImage?: MicroCMSImage;
+  gallery?: MicroCMSImage[];
 }
 
 export interface Stylist {
@@ -37,6 +48,7 @@ export interface Stylist {
   instagram?: string;
   hotPepperUrl?: string;
   specialties?: string[];
+  portrait?: MicroCMSImage;
 }
 
 export type JournalCategory = "press" | "story" | "news" | "media";
@@ -52,12 +64,15 @@ export interface JournalPost {
   body?: string;
   summary?: string;
   eyecatchAlt?: string;
+  eyecatch?: MicroCMSImage;
+  ogImage?: MicroCMSImage;
 }
 
 export interface FaqItem {
   question: string;
   answer: string;
   category?: string;
+  order?: number;
 }
 
 export interface SiteConfig {

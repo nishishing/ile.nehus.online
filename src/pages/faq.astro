@@ -6,10 +6,12 @@ import {
   breadcrumbSchema,
   jsonLd,
 } from "~lib/schema";
-import { faqItems } from "~data/faq";
+import { getFaqItems } from "~lib/content";
 
 const description =
   "iLe（イル）と株式会社ing についてのよくある質問。ブランド、サロン、採用に関するご質問にお答えします。";
+
+const faqItems = await getFaqItems();
 
 const pageSchemas = [
   faqPageSchema([...faqItems]),
