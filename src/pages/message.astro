@@ -1,0 +1,122 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import Prose from "~components/Prose.astro";
+import {
+  standaloneArticleSchema,
+  breadcrumbSchema,
+  jsonLd,
+} from "~lib/schema";
+import { site } from "~data/site";
+
+const description =
+  "iLe創業者・西村涼からのメッセージ。2026年8月1日、創業7周年を迎え、運営する4店舗すべてを iLe ブランドに統一します。船から、島へ。";
+
+const pageSchemas = [
+  standaloneArticleSchema({
+    url: "/message",
+    headline: `代表メッセージ — ${site.founderName}`,
+    description,
+    datePublished: "2026-08-01",
+    authorAsFounder: true,
+  }),
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Message", url: "/message" },
+  ]),
+];
+---
+
+<BaseLayout
+  title={`Message from ${site.founderNameLatin}`}
+  description={description}
+  ogType="article"
+>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero
+    eyebrow={`— Founder's Message / ${site.founderNameLatin}`}
+    title="A WORD FROM THE FOUNDER"
+    italicTitle="word"
+  />
+
+  <article class="message-article">
+    <Prose>
+      <p class="lead">
+        いつも iLe・nehus をご愛顧いただき、誠にありがとうございます。
+        2020年8月に原宿に小さな店を開いてから、まもなく7年が経とうとしています。
+      </p>
+
+      <p>
+        この7年間、お客様の支え、スタッフの努力、業界関係者の皆様のご協力に
+        ただただ感謝するばかりです。原宿の小さな <em>島</em> から始まった iLe は、
+        各地に <em>船</em> を出し、原宿に2店舗、名古屋、長岡と4つの店舗を運営するに至りました。
+      </p>
+
+      <p>
+        この間、私たちが大切にしてきたのは「お客様一人ひとりとの確かな対話」と
+        「働く一人ひとりの可能性を信じること」でした。技術と感性、そして人と人との
+        繋がりこそが、私たちの仕事の根幹であり続けています。
+      </p>
+
+      <h2>船は、もう <em>島</em> です</h2>
+
+      <p>
+        新天地に挑む店舗群として立ち上げた「nehus（船）」は、それぞれの地で
+        独立した空気と常連を持ち、地域に深く根を張りました。原宿で、名古屋で、
+        長岡で — それぞれの街に、確かな <em>島</em> が育ちました。
+      </p>
+
+      <p>
+        「もう、私たちは <em>船</em> ではない。各地で確かな <em>島</em> になった」
+        — そう実感したとき、私はひとつの決断をしました。
+      </p>
+
+      <h2>2026年8月1日、すべてを iLe にします</h2>
+
+      <p>
+        創業7周年を迎えるこの日に、運営する4店舗の名前を、すべて「iLe」に統一します。
+        統一されるのは名前だけです。それぞれの店舗の空気も、スタッフも、お客様との関係も、
+        これまでと何一つ変わりません。
+      </p>
+
+      <p>
+        ただ、私たちが歩んできた7年間の航海と着岸を、ひとつの名前で誇りたい。
+        それが私たちの願いです。
+      </p>
+
+      <h2>これから</h2>
+
+      <p>
+        4つの <em>島</em> は、これからも、それぞれの街でお客様をお迎えします。
+        ひとつの名前 — iLe を分かち合いながらも、ひとつひとつの場所が持つ独自の空気と
+        物語を、これまで以上に大切にしていきます。
+      </p>
+
+      <p>
+        引き続き、iLe をどうぞよろしくお願いいたします。
+      </p>
+
+      <hr />
+
+      <div class="signature">
+        2026年8月1日<br />
+        — 西村 涼<br />
+        <small>Founder & CEO, iLe / 株式会社ing</small>
+      </div>
+    </Prose>
+  </article>
+</BaseLayout>
+
+<style>
+  .message-article {
+    padding: 110px 32px;
+    background: var(--color-snow);
+    position: relative;
+    z-index: 1;
+  }
+</style>

@@ -101,6 +101,59 @@ export function articleSchema(post: JournalPost) {
   };
 }
 
+/**
+ * Standalone Article schema for pages like /story, /message
+ * where the page itself is the article (not a journal post).
+ */
+export interface StandaloneArticle {
+  url: string;        // absolute or relative path
+  headline: string;
+  description: string;
+  datePublished: string;
+  authorAsFounder?: boolean;
+}
+export function standaloneArticleSchema(article: StandaloneArticle) {
+  const url = article.url.startsWith("http")
+    ? article.url
+    : `${site.url}${article.url}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.headline,
+    description: article.description,
+    datePublished: article.datePublished,
+    author: {
+      "@id": article.authorAsFounder
+        ? `${site.url}/#founder`
+        : `${site.url}/#organization`,
+    },
+    publisher: { "@id": `${site.url}/#organization` },
+    inLanguage: "ja-JP",
+    url,
+  };
+}
+
+/**
+ * DefinedTerm — used by /glossary entries.
+ * Helps LLMs cite the canonical definition of "iLe", "nehus", "船から島へ".
+ */
+export interface GlossaryTerm {
+  term: string;
+  pronunciation?: string;
+  definition: string;
+  etymology?: string;
+}
+export function definedTermSchema(t: GlossaryTerm) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    name: t.term,
+    alternateName: t.pronunciation,
+    description: t.definition,
+    inDefinedTermSet: { "@id": `${site.url}/glossary` },
+  };
+}
+
 export function breadcrumbSchema(
   items: Array<{ name: string; url: string }>,
 ) {
