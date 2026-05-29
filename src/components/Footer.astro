@@ -1,0 +1,101 @@
+---
+import { site, navFooter } from "~data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <div class="footer__logo">iLe</div>
+      <p class="footer__desc">
+        Four salons. Four islands. <br />One name, since 2026.
+      </p>
+    </div>
+    <nav class="footer__nav" aria-label="Footer">
+      <ul>
+        {navFooter.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+  <div class="footer__bottom">
+    <span>© {year} {site.companyName} — {site.companyNameLatin}</span>
+    <span>{site.domain}</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-charcoal);
+    color: var(--color-white);
+    padding: 80px 32px 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .footer__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    gap: 48px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) {
+    .footer__inner {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+  .footer__logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
+    margin-bottom: 16px;
+  }
+  .footer__desc {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 13.5px;
+    line-height: 1.7;
+    opacity: 0.6;
+    max-width: 320px;
+  }
+  .footer__nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  @media (min-width: 700px) {
+    .footer__nav ul {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .footer__nav a {
+    opacity: 0.8;
+    transition: opacity 0.15s;
+  }
+  .footer__nav a:hover {
+    opacity: 1;
+  }
+  .footer__bottom {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border-on-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    opacity: 0.6;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+</style>

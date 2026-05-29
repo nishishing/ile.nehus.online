@@ -1,0 +1,174 @@
+---
+import type { Salon } from "~types/content";
+
+interface Props {
+  salon: Salon;
+  reverse?: boolean;
+}
+const { salon, reverse = false } = Astro.props;
+const placeholderClass = `salon-row__img salon-row__img--${salon.slug}`;
+---
+
+<article class:list={["salon-row", reverse && "salon-row--reverse"]}>
+  <div class={placeholderClass}>
+    <span class="salon-row__badge">No. {salon.number}</span>
+    <span class="salon-row__plate">{salon.badge}</span>
+  </div>
+  <div class="salon-row__detail">
+    <h3 class="salon-row__name">
+      <em>iLe</em>&nbsp;{salon.name.replace(/^iLe\s*/, "")}
+    </h3>
+    <p class="salon-row__city">{salon.cityShort} / {salon.city.split(" / ")[1]}</p>
+    <p class="salon-row__desc">{salon.description}</p>
+    <dl class="salon-row__specs">
+      <div class="salon-row__spec">
+        <dt>Address</dt>
+        <dd>{salon.address}</dd>
+      </div>
+      <div class="salon-row__spec">
+        <dt>Opened</dt>
+        <dd>
+          <em>est.</em> {salon.openedAt.replace(/-/g, ".")}
+          {salon.renamedAt && (
+            <>
+              {" — "}
+              <em>renamed</em> {salon.renamedAt.replace(/-/g, ".")}
+            </>
+          )}
+        </dd>
+      </div>
+      <div class="salon-row__spec">
+        <dt>Hours</dt>
+        <dd>{salon.hours}</dd>
+      </div>
+      <div class="salon-row__spec">
+        <dt>Stylists</dt>
+        <dd>{salon.stylistCount}</dd>
+      </div>
+    </dl>
+  </div>
+</article>
+
+<style>
+  .salon-row {
+    max-width: 1400px;
+    margin: 0 auto 120px;
+    padding: 0 32px;
+    display: grid;
+    gap: 60px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) {
+    .salon-row {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+    .salon-row--reverse > :first-child {
+      order: 2;
+    }
+  }
+  .salon-row__img {
+    aspect-ratio: 4 / 5;
+    position: relative;
+    overflow: hidden;
+  }
+  .salon-row__img--harajuku-a {
+    background: linear-gradient(180deg, #6f7378 0%, #2e3035 100%);
+  }
+  .salon-row__img--harajuku-b {
+    background: linear-gradient(180deg, #82868b 0%, #3a3d42 100%);
+  }
+  .salon-row__img--nagoya {
+    background: linear-gradient(180deg, #7a7e83 0%, #34373b 100%);
+  }
+  .salon-row__img--nagaoka {
+    background: linear-gradient(180deg, #5f6368 0%, #28292d 100%);
+  }
+  .salon-row__img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.30 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.45;
+  }
+  .salon-row__badge {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    color: var(--color-white);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.28em;
+  }
+  .salon-row__plate {
+    position: absolute;
+    bottom: 22px;
+    left: 22px;
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  .salon-row__detail {
+    padding: 0 12px;
+  }
+  .salon-row__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(40px, 4.5vw, 60px);
+    line-height: 1;
+    text-transform: uppercase;
+    margin: 0 0 18px;
+  }
+  .salon-row__name em {
+    font-style: italic;
+  }
+  .salon-row__city {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 28px;
+  }
+  .salon-row__desc {
+    margin: 28px 0 0;
+    font-size: 14px;
+    line-height: 1.95;
+    color: var(--color-fg-muted);
+    max-width: 420px;
+  }
+  .salon-row__specs {
+    border-top: 1px solid var(--color-border);
+    margin: 28px 0 0;
+  }
+  .salon-row__spec {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-border);
+    align-items: baseline;
+    margin: 0;
+  }
+  .salon-row__spec dt {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0;
+  }
+  .salon-row__spec dd {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-fg);
+    line-height: 1.7;
+    margin: 0;
+  }
+  .salon-row__spec dd em {
+    font-family: var(--font-display);
+    font-style: italic;
+  }
+</style>

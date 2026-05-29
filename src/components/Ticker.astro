@@ -1,0 +1,59 @@
+---
+interface Props {
+  text?: string;
+  outline?: string;
+}
+const { text = "Be Proud of", outline = "Each Island" } = Astro.props;
+const phrases = Array.from({ length: 4 });
+---
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    {Array.from({ length: 2 }).map(() => (
+      <p class="ticker__line">
+        {phrases.map(() => (
+          <>
+            <span>{text}</span>{" "}
+            <span class="ticker__o">{outline}</span>{" "}
+          </>
+        ))}
+      </p>
+    ))}
+  </div>
+</div>
+
+<style>
+  .ticker {
+    overflow: hidden;
+    padding: 80px 0;
+    background: var(--color-snow);
+    position: relative;
+    z-index: 1;
+  }
+  .ticker__track {
+    display: flex;
+    gap: 60px;
+    white-space: nowrap;
+    animation: ile-ticker 40s linear infinite;
+    will-change: transform;
+  }
+  .ticker__line {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(60px, 9vw, 130px);
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--color-mist);
+    margin: 0;
+  }
+  .ticker__o {
+    -webkit-text-stroke: 1px var(--color-ash);
+    color: transparent;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker__track {
+      animation: none;
+    }
+  }
+</style>

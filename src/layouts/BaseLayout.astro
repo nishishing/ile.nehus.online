@@ -1,0 +1,50 @@
+---
+import BaseHead from "~components/BaseHead.astro";
+import LanguageStrip from "~components/LanguageStrip.astro";
+import Header from "~components/Header.astro";
+import Footer from "~components/Footer.astro";
+import Floating from "~components/Floating.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: "website" | "article";
+  noindex?: boolean;
+  hideFloating?: boolean;
+}
+
+const {
+  title,
+  description,
+  ogImage,
+  ogType,
+  noindex,
+  hideFloating = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      ogType={ogType}
+      noindex={noindex}
+    />
+    <slot name="head" />
+  </head>
+  <body>
+    <LanguageStrip />
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    {!hideFloating && (
+      <Floating href="/story" label="Visit the Story Page" />
+    )}
+  </body>
+</html>

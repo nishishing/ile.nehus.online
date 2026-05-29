@@ -1,0 +1,41 @@
+---
+import { languages } from "~data/site";
+---
+
+<div class="lang-strip">
+  {languages.map((lang) =>
+    lang.current ? (
+      <span class="lang-strip__current">{lang.code}</span>
+    ) : (
+      <a class="lang-strip__link" href={lang.href} aria-label={`Switch to ${lang.code}`}>
+        {lang.code}
+      </a>
+    ),
+  )}
+</div>
+
+<style>
+  .lang-strip {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 60;
+    padding: 16px 22px;
+    display: flex;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--color-fg-on-dark-muted);
+  }
+  .lang-strip__current {
+    color: var(--color-white);
+  }
+  .lang-strip__link {
+    color: var(--color-fg-on-dark-muted);
+    transition: color 0.15s;
+  }
+  .lang-strip__link:hover {
+    color: var(--color-white);
+  }
+</style>

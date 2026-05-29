@@ -1,0 +1,71 @@
+---
+import type { Stylist } from "~types/content";
+import { getSalon } from "~data/salons";
+
+interface Props {
+  stylist: Stylist;
+  index: number;
+}
+const { stylist, index } = Astro.props;
+const salon = getSalon(stylist.salonSlug);
+const salonLabel = salon ? salon.nameLatin : stylist.salonSlug;
+const areaLabel = stylist.position
+  ? `( ${stylist.position} )`
+  : `( ${salon?.cityShort ?? ""} )`;
+---
+
+<article class="stylist" data-stylist-index={index}>
+  <div class={`stylist__img stylist__img--${(index % 6) + 1}`}></div>
+  <h3 class="stylist__name">{stylist.name}</h3>
+  <p class="stylist__salon">{salonLabel}</p>
+  <p class="stylist__area">{areaLabel}</p>
+</article>
+
+<style>
+  .stylist {
+    text-align: center;
+  }
+  .stylist__img {
+    aspect-ratio: 3 / 4;
+    margin-bottom: 18px;
+    overflow: hidden;
+    position: relative;
+  }
+  .stylist__img--1 { background: linear-gradient(180deg, #888b90 0%, #3a3d42 100%); }
+  .stylist__img--2 { background: linear-gradient(180deg, #7f8388 0%, #34373b 100%); }
+  .stylist__img--3 { background: linear-gradient(180deg, #6f7378 0%, #2d2f33 100%); }
+  .stylist__img--4 { background: linear-gradient(180deg, #828690 0%, #34373b 100%); }
+  .stylist__img--5 { background: linear-gradient(180deg, #6e7176 0%, #2a2c30 100%); }
+  .stylist__img--6 { background: linear-gradient(180deg, #757980 0%, #2f3236 100%); }
+  .stylist__img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.30 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.4;
+  }
+  .stylist__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 0 0 6px;
+  }
+  .stylist__salon {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.26em;
+    color: var(--color-fg-muted);
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .stylist__area {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--color-fg-subtle);
+    margin: 6px 0 0;
+  }
+</style>

@@ -1,0 +1,98 @@
+---
+import { site } from "~data/site";
+---
+
+<section class="info-strip" aria-labelledby="info-strip-h">
+  <div class="info-strip__inner">
+    <h2 id="info-strip-h" class="info-strip__h">
+      An archive of <em>seven years</em>.
+    </h2>
+    <dl class="info-strip__list">
+      <div>
+        <dt>Founded</dt>
+        <dd><em>August 1,</em> 2020</dd>
+      </div>
+      <div>
+        <dt>Founder</dt>
+        <dd>{site.founderNameLatin} — {site.founderName}</dd>
+      </div>
+      <div>
+        <dt>Salons</dt>
+        <dd>4 — Harajuku × 2, Nagoya, Nagaoka</dd>
+      </div>
+      <div>
+        <dt>Unified</dt>
+        <dd><em>August 1,</em> 2026</dd>
+      </div>
+      <div>
+        <dt>Company</dt>
+        <dd>{site.companyName} — {site.companyNameLatin}</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<style>
+  .info-strip {
+    background: var(--color-ink);
+    color: var(--color-white);
+    padding: 90px 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .info-strip__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    gap: 48px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) {
+    .info-strip__inner {
+      grid-template-columns: 1fr 1fr;
+      align-items: baseline;
+    }
+  }
+  .info-strip__h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .info-strip__h em {
+    font-style: italic;
+  }
+  .info-strip__list {
+    margin: 0;
+  }
+  .info-strip__list > div {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    padding: 14px 0;
+    border-top: 1px solid var(--color-border-on-dark);
+    align-items: baseline;
+  }
+  .info-strip__list > div:last-child {
+    border-bottom: 1px solid var(--color-border-on-dark);
+  }
+  .info-strip__list dt {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin: 0;
+  }
+  .info-strip__list dd {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .info-strip__list dd em {
+    font-family: var(--font-display);
+    font-style: italic;
+  }
+</style>

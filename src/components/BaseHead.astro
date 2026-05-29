@@ -1,0 +1,79 @@
+---
+/**
+ * BaseHead: all <head> tags shared across every page.
+ * Includes title, meta description, canonical, OGP, Twitter card,
+ * favicon, fonts, and global stylesheet.
+ *
+ * LLMO-critical: site-wide JSON-LD (Organization + WebSite) is
+ * always emitted so AI crawlers see the same identity on every page.
+ */
+import { site } from "~data/site";
+import { buildPageTitle, buildCanonical, buildOgImageUrl } from "~lib/seo";
+import {
+  organizationSchema,
+  websiteSchema,
+  jsonLd,
+} from "~lib/schema";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: "website" | "article";
+  noindex?: boolean;
+  canonical?: string;
+}
+
+const {
+  title,
+  description = site.description,
+  ogImage,
+  ogType = "website",
+  noindex = false,
+  canonical,
+} = Astro.props;
+
+const pageTitle = buildPageTitle(title);
+const canonicalUrl = canonical ?? buildCanonical(Astro.url.pathname);
+const ogImageUrl = buildOgImageUrl(ogImage);
+
+import "~/styles/global.css";
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+{noindex && <meta name="robots" content="noindex,nofollow" />}
+
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={site.siteName} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:locale" content="ja_JP" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate" type="application/rss+xml" title={site.siteName} href="/feed.xml" />
+
+<!-- Fonts: Libre Caslon Text (display) + Instrument Sans (body) + Questrial (mono) + Noto Sans JP (jp) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Questrial&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- LLMO: site-wide Organization + WebSite -->
+<script type="application/ld+json" set:html={jsonLd(organizationSchema())} is:inline />
+<script type="application/ld+json" set:html={jsonLd(websiteSchema())} is:inline />

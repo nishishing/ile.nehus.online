@@ -1,0 +1,91 @@
+---
+import type { JournalPost } from "~types/content";
+
+interface Props {
+  post: JournalPost;
+  index: number;
+}
+const { post, index } = Astro.props;
+---
+
+<article class={`journal-card journal-card--${(index % 2) + 1}`}>
+  <a href={`/journal/${post.slug}`} class="journal-card__link">
+    <div class="journal-card__img" aria-hidden="true"></div>
+    <p class="journal-card__cat">{post.categoryLabel}</p>
+    <h3 class="journal-card__title">
+      {post.title}
+      {post.subtitle && <><br />{post.subtitle}</>}
+    </h3>
+    <p class="journal-card__date">{post.publishedAtLabel}</p>
+    <p class="journal-card__read">Read more</p>
+  </a>
+</article>
+
+<style>
+  .journal-card {
+    /* spacing handled by parent grid */
+  }
+  .journal-card__link {
+    display: block;
+    color: inherit;
+  }
+  .journal-card__img {
+    aspect-ratio: 16 / 11;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .journal-card--1 .journal-card__img {
+    background: linear-gradient(180deg, #6e7277 0%, #2a2c30 100%);
+  }
+  .journal-card--2 .journal-card__img {
+    background: linear-gradient(180deg, #7f8389 0%, #34363a 100%);
+  }
+  .journal-card__img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.70' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.32 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.45;
+  }
+  .journal-card__cat {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 14px;
+  }
+  .journal-card__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 36px);
+    line-height: 1.25;
+    margin: 0 0 16px;
+  }
+  .journal-card__date {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--color-fg-muted);
+    margin: 0 0 16px;
+  }
+  .journal-card__read {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    margin: 0;
+  }
+  .journal-card__read::after {
+    content: "";
+    display: inline-block;
+    width: 60px;
+    height: 1px;
+    background: var(--color-fg);
+  }
+</style>

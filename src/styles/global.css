@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+/* =========================================================
+   iLe — Design Tokens (v8: Cool Mono Editorial)
+   Pure cool grayscale. No warm tones.
+========================================================= */
+
+@theme {
+  /* Color palette — cool grayscale only */
+  --color-ink: #16171a;
+  --color-charcoal: #2a2c30;
+  --color-slate: #5b5e64;
+  --color-ash: #9ca0a6;
+  --color-mist: #dcdee2;
+  --color-pearl: #ecedef;
+  --color-snow: #f4f5f6;
+  --color-white: #ffffff;
+
+  /* Semantic tokens */
+  --color-bg: var(--color-snow);
+  --color-bg-alt: var(--color-pearl);
+  --color-bg-dark: var(--color-ink);
+  --color-bg-dark-alt: var(--color-charcoal);
+  --color-fg: var(--color-ink);
+  --color-fg-muted: rgba(22, 23, 26, 0.6);
+  --color-fg-subtle: rgba(22, 23, 26, 0.4);
+  --color-fg-on-dark: var(--color-white);
+  --color-fg-on-dark-muted: rgba(255, 255, 255, 0.65);
+  --color-border: rgba(22, 23, 26, 0.12);
+  --color-border-strong: rgba(22, 23, 26, 0.22);
+  --color-border-on-dark: rgba(255, 255, 255, 0.15);
+
+  /* Typography */
+  --font-display: "Libre Caslon Text", "Noto Serif JP", Georgia, serif;
+  --font-body: "Instrument Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --font-mono: "Questrial", "Noto Sans JP", system-ui, sans-serif;
+  --font-jp: "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing rhythm */
+  --spacing-section: 110px;
+  --spacing-section-lg: 160px;
+
+  /* Tracking presets */
+  --tracking-wide: 0.22em;
+  --tracking-wider: 0.28em;
+  --tracking-widest: 0.32em;
+}
+
+/* =========================================================
+   Base layer
+========================================================= */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* very faint cool noise — paper-like depth without warmth */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.10 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply;
+    opacity: 0.5;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+}
+
+/* =========================================================
+   Utility shortcuts
+========================================================= */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem; /* 11px */
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+@utility mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+@utility caslon-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* grain overlay helper — applied via a class, not @utility,
+   because @utility cannot define pseudo-elements directly. */
+.grain-overlay {
+  position: relative;
+}
+.grain-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.30 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+  opacity: 0.45;
+}
+
+/* keyframes for ticker */
+@keyframes ile-ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,36 @@
+---
+interface Props {
+  small: string;
+  title: string;
+}
+const { small, title } = Astro.props;
+---
+
+<div class="section-head">
+  <p class="section-head__small">{small}</p>
+  <h2 class="section-head__title">{title}</h2>
+</div>
+
+<style>
+  .section-head {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .section-head__small {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 14px;
+  }
+  .section-head__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(40px, 5.5vw, 72px);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+</style>

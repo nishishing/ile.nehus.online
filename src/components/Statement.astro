@@ -1,0 +1,97 @@
+---
+/**
+ * Statement: large mono headline section (LOA-style).
+ * Renders the brand's signature phrase as oversized typography.
+ */
+---
+
+<section class="statement" aria-labelledby="statement-h">
+  <div class="statement__inner">
+    <p class="statement__eyebrow">— Volume I &nbsp;·&nbsp; iLe Year One</p>
+    <h2 id="statement-h" class="statement__h">
+      FROM A <em>ship</em>,<br />
+      TO AN <em>island</em>.
+    </h2>
+    <p class="statement__lede">
+      原宿の小さな <em>島</em> から始まった私たちは、<br />
+      各地に <em>船</em> を出し、根を張り、<br />
+      それぞれの <em>島</em> になりました。<br />
+      <span class="statement__date">— 2026.08.01 / all salons unite as iLe.</span>
+    </p>
+  </div>
+</section>
+
+<style>
+  .statement {
+    background: var(--color-ink);
+    color: var(--color-white);
+    padding: 160px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .statement::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.70' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.40 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.25;
+  }
+  .statement__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .statement__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-fg-on-dark-muted);
+    margin: 0 0 32px;
+  }
+  .statement__h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(72px, 14vw, 220px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .statement__h em {
+    font-style: italic;
+    font-weight: 400;
+  }
+  .statement__lede {
+    margin: 50px auto 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(15px, 1.4vw, 18px);
+    line-height: 2;
+    letter-spacing: 0.02em;
+    max-width: 520px;
+    color: var(--color-fg-on-dark-muted);
+  }
+  .statement__lede em {
+    color: var(--color-white);
+    font-style: normal;
+  }
+  .statement__date {
+    display: block;
+    margin-top: 1.2em;
+    font-family: var(--font-mono);
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+  }
+
+  @media (max-width: 640px) {
+    .statement {
+      padding: 100px 24px;
+    }
+  }
+</style>
