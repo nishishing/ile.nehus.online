@@ -1,13 +1,13 @@
 ---
 import type { Stylist } from "~types/content";
-import { getSalon } from "~data/salons";
+import { getSalonBySlug } from "~lib/content";
 
 interface Props {
   stylist: Stylist;
   index: number;
 }
 const { stylist, index } = Astro.props;
-const salon = getSalon(stylist.salonSlug);
+const salon = await getSalonBySlug(stylist.salonSlug);
 const salonLabel = salon ? salon.nameLatin : stylist.salonSlug;
 const areaLabel = stylist.position
   ? `( ${stylist.position} )`

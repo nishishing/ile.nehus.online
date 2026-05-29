@@ -6,10 +6,12 @@ import {
   breadcrumbSchema,
   jsonLd,
 } from "~lib/schema";
-import { glossaryTerms } from "~data/glossary";
+import { getGlossaryTerms } from "~lib/content";
 
 const description =
   "iLe（イル）、nehus（ネハス）、「船から、島へ」など、iLe ブランドに関する用語の定義集。";
+
+const glossaryTerms = await getGlossaryTerms();
 
 const pageSchemas = [
   ...glossaryTerms.map(definedTermSchema),

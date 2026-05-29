@@ -2,7 +2,7 @@
 import BaseLayout from "~layouts/BaseLayout.astro";
 import PageHero from "~components/PageHero.astro";
 import Prose from "~components/Prose.astro";
-import { journalPosts } from "~data/journal";
+import { getJournalPosts } from "~lib/content";
 import {
   articleSchema,
   breadcrumbSchema,
@@ -10,6 +10,7 @@ import {
 } from "~lib/schema";
 
 export async function getStaticPaths() {
+  const journalPosts = await getJournalPosts();
   return journalPosts.map((post) => ({
     params: { slug: post.slug },
     props: { post },

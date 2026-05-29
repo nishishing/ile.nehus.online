@@ -100,13 +100,32 @@
 
 ---
 
-## 移行手順（Claude が手伝います）
+## 移行手順
+
+コード側の連携はすでに実装済みです（`src/lib/content.ts`）。各ページは
+`getSalons()` / `getStylists()` / `getJournalPosts()` / `getFaqItems()` /
+`getGlossaryTerms()` 経由でコンテンツを取得し、**環境変数が設定されていれば
+microCMS から、未設定なら `src/data/*.ts` の静的データから**自動で読み込みます。
+したがって運営側の作業は基本的に「API 作成 + 環境変数の設定」だけです。
 
 1. microCMS アカウント作成 → サービス作成
-2. 上記の API を順番に作成（settings → salons → stylists → journal → faq → glossary）
+2. 上記の API を**この通りの API ID / フィールドID**で作成
+   （`salons` → `stylists` → `journal` → `faq` → `glossary` の順。
+   `stylists.salonRef` は `salons` へのコンテンツ参照にする）
 3. API キー（Read専用）を取得
-4. リポの `.env` に `MICROCMS_SERVICE_DOMAIN` と `MICROCMS_API_KEY` を設定
-5. `src/lib/microcms.ts` のクライアントを各データソースで使用
-6. `src/data/*.ts` の静的データを削除（または `src/data/*.fallback.ts` にリネーム）
+4. 環境変数に `MICROCMS_SERVICE_DOMAIN` と `MICROCMS_API_KEY` を設定
+   - ローカル: リポジトリ直下の `.env`（`.env.example` 参照）
+   - 本番: Cloudflare の環境変数
+5. ビルド（`npm run build`）すると自動で microCMS から取得される
+   - 切り戻したいときは環境変数を空にするだけで静的データに戻る
+
+> **注意**: フィールドID・API ID が仕様とズレると取得結果が `undefined` に
+> なります。表（フィールドID 列）の通りに作成してください。
+> 日付フィールド（`openedAt` 等）と公開日（`publishedAt`）は microCMS の
+> 日付型でOKです（コード側で表示用に整形します）。
+
+なお `settings`（サイト共通設定）API はスキーマとしては定義していますが、
+現状コードは `src/data/site.ts` の静的値を使用しています（サイト名・会社情報・
+ナビ等は構造的でほぼ不変のため）。CMS 管理に切り替えたい場合は別途対応します。
 
 不明点があれば Claude セッションで質問してください。
