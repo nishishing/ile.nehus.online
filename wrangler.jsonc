@@ -1,0 +1,23 @@
+/**
+ * Cloudflare Workers configuration — Static Assets only.
+ *
+ * The Astro build emits a fully static site into ./dist, which is
+ * served by Cloudflare Workers' built-in static assets pipeline.
+ * No worker script is needed; this config is what tells `wrangler
+ * deploy` to upload the dist/ directory and route requests to it.
+ *
+ * See: https://developers.cloudflare.com/workers/static-assets/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ile",
+  "compatibility_date": "2026-05-29",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
