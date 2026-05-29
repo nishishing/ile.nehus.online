@@ -2,7 +2,7 @@
 import BaseLayout from "~layouts/BaseLayout.astro";
 import PageHero from "~components/PageHero.astro";
 import SalonRow from "~components/SalonRow.astro";
-import { salons } from "~data/salons";
+import { getSalons } from "~lib/content";
 import {
   localBusinessSchema,
   breadcrumbSchema,
@@ -11,6 +11,8 @@ import {
 
 const description =
   "iLe（イル）が運営する4店舗の美容室一覧。原宿×2、名古屋、長岡。それぞれの街に根を張った、独立した4つの島。";
+
+const salons = await getSalons();
 
 const pageSchemas = [
   ...salons.map(localBusinessSchema),
