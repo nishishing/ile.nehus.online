@@ -1,0 +1,101 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import StylistCard from "~components/StylistCard.astro";
+import { stylists } from "~data/stylists";
+import { salons } from "~data/salons";
+import { breadcrumbSchema, jsonLd } from "~lib/schema";
+
+const description =
+  "iLe（イル）に所属するスタイリスト一覧。原宿・名古屋・長岡の4店舗で、それぞれの島の空気を作る美容師たち。";
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Stylists", url: "/stylists" },
+  ]),
+];
+
+const groups = salons.map((salon) => ({
+  salon,
+  members: stylists.filter((s) => s.salonSlug === salon.slug),
+}));
+---
+
+<BaseLayout title="Stylists" description={description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero
+    eyebrow="— The Hands Behind"
+    title="STYLISTS"
+  />
+
+  <section class="stylists-page">
+    {groups.map(({ salon, members }, gi) => members.length > 0 && (
+      <div class="stylists-group">
+        <h2 class="stylists-group__h">
+          <span class="stylists-group__num">/ {salon.number}</span>
+          {salon.nameLatin}
+          <span class="stylists-group__city">— {salon.cityShort}</span>
+        </h2>
+        <div class="stylists-group__grid">
+          {members.map((stylist, i) => (
+            <StylistCard stylist={stylist} index={gi * 6 + i} />
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .stylists-page {
+    padding: 110px 32px 140px;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .stylists-group {
+    margin-bottom: 110px;
+  }
+  .stylists-group:last-child {
+    margin-bottom: 0;
+  }
+  .stylists-group__h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin: 0 0 56px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .stylists-group__num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: var(--color-fg-muted);
+  }
+  .stylists-group__city {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: var(--color-fg-muted);
+  }
+  .stylists-group__grid {
+    display: grid;
+    gap: 32px 24px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 700px) { .stylists-group__grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1100px) { .stylists-group__grid { grid-template-columns: repeat(6, 1fr); } }
+</style>

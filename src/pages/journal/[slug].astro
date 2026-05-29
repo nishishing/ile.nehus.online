@@ -1,0 +1,65 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import Prose from "~components/Prose.astro";
+import { journalPosts } from "~data/journal";
+import {
+  articleSchema,
+  breadcrumbSchema,
+  jsonLd,
+} from "~lib/schema";
+
+export async function getStaticPaths() {
+  return journalPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+const description =
+  post.summary ?? `${post.title}｜iLe Journal — ${post.publishedAtLabel}`;
+
+const pageSchemas = [
+  articleSchema(post),
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Journal", url: "/journal" },
+    { name: post.title, url: `/journal/${post.slug}` },
+  ]),
+];
+---
+
+<BaseLayout
+  title={post.title}
+  description={description}
+  ogType="article"
+>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero
+    eyebrow={`— ${post.categoryLabel} / ${post.publishedAtLabel}`}
+    title={post.title.toUpperCase()}
+  />
+
+  <article class="journal-article">
+    <Prose>
+      {post.subtitle && <p class="lead">{post.subtitle}</p>}
+      {post.summary && <p>{post.summary}</p>}
+      {post.body && <div set:html={post.body} />}
+    </Prose>
+  </article>
+</BaseLayout>
+
+<style>
+  .journal-article {
+    padding: 110px 32px 140px;
+    position: relative;
+    z-index: 1;
+  }
+</style>
