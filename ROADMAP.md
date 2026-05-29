@@ -2,10 +2,9 @@
 
 Milestones leading up to the **2026-08-01 unification launch**.
 
-## ✅ W1 — Foundation (6/1 – 6/7)
+## ✅ W1 — Foundation (6/1 – 6/7) — **DONE**
 
 Astro project scaffold, design tokens, base layout, top page, LLMO basis.
-See PR #1.
 
 - [x] Astro 5 + TS strict + Tailwind v4 + sitemap
 - [x] Design tokens (v8 Cool Mono Editorial)
@@ -15,44 +14,45 @@ See PR #1.
 - [x] robots.txt with explicit AI crawler allow
 - [x] microCMS schema spec (`docs/microcms-schema.md`)
 - [x] Cloudflare Pages deploy notes (`docs/deploy.md`)
+- [x] GitHub Actions CI
 
-## 🟡 W2 — Story & Founder (6/8 – 6/14)
+## ✅ W2 — Story & Founder (6/8 – 6/14) — **DONE**
 
-- [ ] `/story` — 「船から、島へ」フルストーリーページ
-- [ ] `/message` — 代表メッセージ（西村涼 署名）
-- [ ] `/company` — 会社概要 / 沿革年表
-- [ ] Schema.org `Article` for `/story`, `/message`
-- [ ] Cloudflare Pages 接続（this PRが本番にデプロイされる状態に）
+- [x] `/story` — 「船から、島へ」フルストーリー（4章構成）
+- [x] `/message` — 代表メッセージ（西村涼 署名）
+- [x] `/company` — 会社概要 / 沿革年表
+- [x] Schema.org `Article` for `/story`, `/message`（author=Person/Organization の出し分け）
+- [ ] Cloudflare Pages 接続（ユーザー側作業）
 
-## 🟡 W3 — Salons & Stylists (6/15 – 6/21)
+## ✅ W3 — Salons & Stylists (6/15 – 6/21) — **DONE**
 
-- [ ] `/salons/[slug]` — 4店舗の個別ページ
-- [ ] `/stylists/[slug]` — スタイリスト個別ページ
-- [ ] `/salons` — 一覧
-- [ ] `/stylists` — 一覧
-- [ ] microCMS 連携（site / salons / stylists API）
-- [ ] 写真投入
+- [x] `/salons` 一覧
+- [x] `/salons/[slug]` 4店舗の個別ページ
+- [x] `/stylists` 一覧（店舗別グループ）
+- [x] `/stylists/[slug]` スタイリスト個別ページ
+- [ ] microCMS 連携（コード準備済み、API設定はユーザー側）
+- [ ] 写真投入（ユーザー側）
 
-## 🟡 W4 — Journal / FAQ / Glossary (6/22 – 6/28)
+## ✅ W4 — Journal / FAQ / Glossary (6/22 – 6/28) — **DONE**
 
-- [ ] `/journal` 一覧 + `/journal/[slug]` 詳細
-- [ ] `/journal/category/press` プレスリリースアーカイブ
-- [ ] `/faq` — LLMO最重要ページ
-- [ ] `/glossary` — 用語集（iLe / nehus / 船から島へ）
-- [ ] Schema.org `FAQPage`, `DefinedTerm`
-- [ ] microCMS 連携（journal / faq / glossary）
+- [x] `/journal` 一覧
+- [x] `/journal/[slug]` 詳細
+- [x] `/faq` — LLMO最重要ページ（9問seed）
+- [x] `/glossary` — 用語集（iLe / nehus / 船から島へ等6項目）
+- [x] Schema.org `FAQPage`, `DefinedTerm`
+- [ ] microCMS 連携（コード準備済み、API設定はユーザー側）
 
-## 🟡 W5 — Contact / Recruit / iLe.online (6/29 – 7/5)
+## ✅ W5 — Contact / Recruit / iLe.online (6/29 – 7/5) — **DONE**
 
-- [ ] `/contact` フォーム（Cloudflare Workers + 通知）
-- [ ] `/recruit` 採用情報
-- [ ] `/recruit/stylist`, `/recruit/assistant`, `/recruit/newgrad`
-- [ ] `/ile-online` 関連サービス紹介
-- [ ] `/privacy`, `/terms`
+- [x] `/contact` — 3チャネル（General / Recruit / Partnership）
+- [x] `/recruit` — Stylist / Assistant / New Grad
+- [x] `/ile-online` 関連サービス紹介
+- [x] `/privacy`, `/terms`
+- [ ] Contact フォーム（Workers連携、現在は mailto のみ）
 
 ## 🟡 W6 — Content Fill (7/6 – 7/12)
 
-- [ ] プレスリリース原稿を投入
+- [ ] プレスリリース原稿を投入（別セッション成果物）
 - [ ] note 代表記事を投入
 - [ ] 全ページの画像差し替え（実写真へ）
 - [ ] 画像最適化（WebP / AVIF）
@@ -61,7 +61,7 @@ See PR #1.
 
 - [ ] Google Rich Results Test 全ページ
 - [ ] Schema.org Validator 全ページ
-- [ ] ChatGPT / Claude / Perplexity に質問テスト
+- [ ] ChatGPT / Claude / Perplexity に質問テスト（"iLe って何？"）
 - [ ] Lighthouse 全項目 90+
 - [ ] axe a11y チェック
 
@@ -86,3 +86,32 @@ See PR #1.
 - [ ] LLM 再学習プッシュ
 - [ ] Google Business Profile × 4店舗の名称・住所統一
 - [ ] Hot Pepper Beauty からの導線
+
+---
+
+## 🚧 Pending — User-side work
+
+Claude が完了させた以降の、運営側でやってもらう必要があるタスク：
+
+### microCMS（コードは準備済み）
+- [ ] microCMS アカウント作成
+- [ ] `docs/microcms-schema.md` の仕様で API 作成
+- [ ] API キー発行（Read 専用）
+- [ ] Cloudflare Pages の環境変数に `MICROCMS_SERVICE_DOMAIN`, `MICROCMS_API_KEY` を登録
+
+### Cloudflare Pages（接続）
+- [ ] Cloudflare アカウント（無料）
+- [ ] GitHub リポジトリと接続
+- [ ] `docs/deploy.md` 通りにビルド設定
+- [ ] カスタムドメイン `ile-hair-harajuku.com` の DNS 設定
+
+### 素材
+- [ ] iLe 公式ロゴ SVG（2026/8/1 統一版）
+- [ ] 各店舗のヒーロー写真（フィルム調モノクロ推奨）
+- [ ] スタイリスト個別ポートレート
+- [ ] OGP デフォルト画像（1200×630）
+
+### コンテンツ確定
+- [ ] 各店舗の正確な住所・電話・営業時間・休業日
+- [ ] スタイリスト氏名・役職・Instagram ID
+- [ ] プレスリリース確定原稿（別セッション成果物）
