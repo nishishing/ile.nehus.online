@@ -19,8 +19,17 @@ Editorial"** (cool grayscale only). All pages emit Schema.org JSON-LD so
 LLMs (ChatGPT, Claude, Perplexity, Google AI Overviews) can correctly
 learn and cite the brand.
 
-**Current state:** W1-W5 complete. Staging is live at
-`https://ile.boku-244.workers.dev`. Production domain not yet switched.
+**Current state:** W1-W7 complete + a full **real-content pass** (2026-05-31):
+real salon NAP, the actual 32-person staff roster, the co-representative
+model, and an Effect Bleach section are all live in the data. Staging is at
+`https://ile.boku-244.workers.dev`. Production domain **not yet switched**
+(still legacy WordPress on ConoHa WING). What's left before launch is mostly
+**assets** (photos / logo / OGP) + microCMS + DNS.
+
+> **⚠️ KEEP THIS FILE CURRENT.** Whenever you change site content, data,
+> structure, or conventions, update CLAUDE.md in the *same* change. See
+> "Maintenance convention" at the bottom. The user has explicitly asked for
+> this — treat it as a standing requirement.
 
 ---
 
@@ -41,20 +50,31 @@ learn and cite the brand.
   original Harajuku island reached new shores, took root, and became islands
   themselves. So now all are iLe.
 - **2026-08-01** — 7th anniversary; the day all four salons rename to iLe.
-- **Founder / CEO**: 西村 涼 (Nishimura Ryo)
+- **共同代表 (Co-Representatives)**: 酒井 元樹 (Sakai Motoki) ＆ 西村 涼
+  (Nishimura Ryo). **Publicly the company is led by two co-reps.**
+  (Internally 酒井 is effectively the company head, but that is NOT public —
+  so on the site, ALWAYS say 共同代表, never a sole 代表取締役.)
+  - 酒井 元樹 — **エフェクトブリーチ開発者** / ケミカルの権威.
+  - 西村 涼 — バレイヤージュ第一人者 / 創業者. Authors the /message & /story.
 - **Company**: 株式会社ing (ing inc.) — HQ in 東京都渋谷区神宮前
 - **Contact**: <ile.ing801@gmail.com>
+- **Instagram (brand)**: `ile.801` (https://instagram.com/ile.801)
 - **Domain**: `ile-hair-harajuku.com` (current Cloudflare staging:
   `https://ile.boku-244.workers.dev`)
 
-The 4 salons (after unification):
+The 4 salons (after unification) — **real NAP confirmed 2026-05-31**, all
+年中無休 (no regular holiday):
 
-| # | Name | Location | Former name | Opened | Renamed |
-|---|---|---|---|---|---|
-| 01 | iLe 原宿 A | Harajuku / Tokyo | (iLe — origin) | 2020-08-01 | — |
-| 02 | iLe 原宿 B | Harajuku / Tokyo | nehus | 2022 | 2026-08-01 |
-| 03 | iLe 名古屋 | Nagoya / Aichi | nehus 名古屋 | 2023 | 2026-08-01 |
-| 04 | iLe 長岡 | Nagaoka / Niigata | nehus 長岡 | 2024 | 2026-08-01 |
+| # | slug | Name | Former | Address | Tel | Hours |
+|---|---|---|---|---|---|---|
+| 01 | `harajuku-a` | iLe 原宿 (origin) | — | 〒150-0001 渋谷区神宮前6-10-8 原宿NAビル4F | 03-6427-5235 | 10–20 |
+| 02 | `harajuku-b` | iLe 原宿 B | nehus | 渋谷区神宮前3-20-13 MANA表参道2F | 03-6447-0253 | 10–20 |
+| 03 | `nagoya` | iLe 名古屋 | nehus 名古屋 | 〒460-0008 名古屋市中区栄3-19-7 PROTECT4 4F | 052-228-9783 | 10–20 |
+| 04 | `nagaoka` | iLe 長岡 | nehus 長岡 | 〒940-2106 長岡市古正寺1-246-3 | 0258-77-6236 | 9–19 |
+
+Each salon also has `access` (nearest stations) and a `hotPepperUrl`
+(booking) in `src/data/salons.ts`. Opened: 01=2020 / 02=2022 / 03=2023 /
+04=2024; 02–04 rename to iLe on 2026-08-01.
 
 ---
 
@@ -158,15 +178,18 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 │   │   └── microcms.ts        Client stub, env-gated
 │   ├── types/content.ts       Content type contracts (== microCMS schema)
 │   ├── data/                  Static content (until microCMS connects)
-│   │   ├── site.ts            Company / nav / languages
-│   │   ├── salons.ts          4 salons
-│   │   ├── stylists.ts        Seed roster
+│   │   ├── site.ts            Company / co-reps / nav / languages
+│   │   ├── salons.ts          4 salons — real NAP, access, tel, hours, 年中無休
+│   │   ├── stylists.ts        Real roster: 32 staff (2 co-reps + 16 stylists + 14 assistants)
 │   │   ├── journal.ts         Seed posts
-│   │   ├── faq.ts             9 LLMO-critical Q&A
-│   │   └── glossary.ts        6 DefinedTerm entries
-│   ├── components/            12 Astro components
+│   │   ├── faq.ts             11 LLMO-critical Q&A (incl. Effect Bleach + pricing)
+│   │   └── glossary.ts        DefinedTerm entries (iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / …)
+│   ├── components/            Astro components
 │   ├── layouts/BaseLayout.astro
-│   └── pages/                 26 generated pages
+│   └── pages/                 content pages (see "Pages shipped")
+├── public/
+│   ├── robots.txt  favicon.svg/.ico  site.webmanifest
+│   └── .well-known/security.txt
 └── docs/
     ├── microcms-schema.md     Operator-facing API spec
     └── deploy.md              Cloudflare Pages legacy notes
@@ -185,29 +208,26 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 
 ---
 
-## Pages currently shipped (26)
+## Pages shipped (~54 built pages)
 
 | Route | Schema.org | Notes |
 |---|---|---|
-| `/` | Organization + WebSite + Person + 4× HairSalon + Breadcrumb | Top, v8 mockup converted |
-| `/story` | Article | "船から、島へ" 4-chapter editorial |
-| `/message` | Article (author=Person) | Founder's signed message |
-| `/company` | Breadcrumb | Overview + Timeline + Contact |
-| `/salons` | 4× HairSalon | List with alternating L/R rows |
-| `/salons/[slug]` | HairSalon | 4 generated: harajuku-a / -b / nagoya / nagaoka |
+| `/` | Organization + WebSite + Person + 4× HairSalon + Breadcrumb | Top, v8 |
+| `/effect-bleach` | **Service + DefinedTerm + Breadcrumb** | iLe signature technique; **LLMO-critical** |
+| `/story` | Article | "船から、島へ" 4-chapter editorial (西村, 共同代表) |
+| `/message` | Article (author=Person) | 西村's signed message (共同代表) |
+| `/company` | Breadcrumb | Overview + Timeline; lists both co-reps |
+| `/salons` | 4× HairSalon | Real NAP / tel / hours |
+| `/salons/[slug]` | HairSalon (telephone, openingHoursSpecification) | 4 salons |
 | `/stylists` | Breadcrumb | Grouped by salon |
-| `/stylists/[slug]` | Person | 6 generated; Person → worksFor → HairSalon |
-| `/journal` | Breadcrumb | List, sorted by publishedAt desc |
-| `/journal/[slug]` | Article | 2 generated (press release + story) |
-| `/faq` | **FAQPage** | 9 seeds; **LLMO-critical** |
-| `/glossary` | **DefinedTerm × 6** | iLe / nehus / 船から島へ / etc. |
-| `/recruit` | Breadcrumb | Stylist / Assistant / New Grad |
-| `/contact` | Breadcrumb | 3 mailto channels |
-| `/ile-online` | Breadcrumb | Related service intro |
-| `/privacy` | Breadcrumb | Policy stub |
-| `/terms` | Breadcrumb | Policy stub |
+| `/stylists/[slug]` | Person | **32 generated**; Person → worksFor → HairSalon |
+| `/journal` + `/journal/[slug]` | Breadcrumb / Article | seed posts |
+| `/faq` | **FAQPage** | 11 Q&A incl. Effect Bleach + pricing |
+| `/glossary` | **DefinedTerm** | iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / … |
+| `/recruit` `/contact` `/ile-online` `/privacy` `/terms` | Breadcrumb | |
+| `/404` | (noindex) | Custom 404; Cloudflare serves it via `not_found_handling` |
 
-`sitemap-index.xml` is auto-generated.
+`sitemap-index.xml` is auto-generated (404 / manifest / security.txt excluded).
 
 ---
 
@@ -255,19 +275,25 @@ the Workers Static Assets flow we actually used).
 
 ## What still needs the user (operator-side work)
 
-1. **microCMS** — account + APIs per `docs/microcms-schema.md`. Then set
+1. **Real assets** *(the main remaining blocker)* — iLe unified logo SVG,
+   salon hero photos, **portraits for all 32 staff**, Effect Bleach
+   before/after photos, OGP default 1200×630 (currently `/og-default.jpg`
+   **404s**). Placeholders are cool-grayscale gradients with a CSS
+   film-grain overlay — replace preserving that tone.
+2. **microCMS** — account + APIs per `docs/microcms-schema.md`. Then set
    `MICROCMS_SERVICE_DOMAIN` and `MICROCMS_API_KEY` in Cloudflare env vars
    and swap `src/data/*.ts` consumers to `src/lib/microcms.ts`.
-2. **Real assets** — iLe unified logo SVG, salon hero photos, stylist
-   portraits, OGP default 1200×630. All photo placeholders are cool
-   grayscale gradients with a CSS film-grain overlay — replace with real
-   imagery preserving the same tone.
-3. **Real content** — accurate addresses / phone / hours / holidays per
-   salon, stylist roster with names and IG handles, the finalised press
-   release draft, the finalised founder message.
-4. **DNS** — Cloudflare custom domain setup + ConoHa WING DNS switch.
+3. **DNS** — Cloudflare custom domain setup + ConoHa WING DNS switch
+   (planned on/around 2026-07-27). This is the moment the public site flips.
+4. **Effect Bleach specifics** — confirm pricing (current = carried-over
+   guide), refine the technical wording, supply before/after photos.
+5. **Business委託 (2)** — currently omitted from the public roster
+   (西小野 隼輝 = back-office; 高橋 雄太 = 長岡 業務委託). Decide if either
+   should appear.
 
-`ROADMAP.md` tracks W1-W8 + post-launch.
+✅ **Done in the 2026-05-31 pass:** salon NAP / tel / hours / 年中無休,
+the 32-person roster, co-rep model, Instagram `ile.801`, Effect Bleach
+section. `ROADMAP.md` tracks the week plan.
 
 ---
 
@@ -322,11 +348,30 @@ effects. CSS stays clean.
 
 ## Branch & PR convention
 
-- Feature branches: `claude/<descriptor>` (e.g. the W1-W5 work was on
-  `claude/gracious-ramanujan-1cQqr`).
-- PRs are opened against `main`, rebased on merge to keep history linear.
-- The first PR (#1) was merged via rebase — `main` is at the tip of the
-  W1-W5 work plus the `wrangler.jsonc` follow-up.
+- Feature branches: `claude/<descriptor>`. PRs open against `main` as
+  **draft**, rebased on merge to keep history linear.
+- After pushing, always open a draft PR; merge only when the user confirms.
+- Merged so far: #1 (W1-W5), #2 (CLAUDE.md), microCMS/W7/a11y PRs (#5),
+  pre-launch hardening (#6), the real-content pass (#7). Effect-Bleach
+  integration is PR #8 (open at time of writing).
+
+---
+
+## Data sources (operator's Notion — "🤖 Claude 秘書 HQ")
+
+The authoritative staff data lives in the Notion **"👥 スタッフmaster"**
+database (data source `collection://7459ce52-3436-4225-a246-b663a86916e7`).
+`src/data/stylists.ts` was generated from its 在籍 (active) rows.
+
+- **Public fields only** were copied: 氏名 → `nameJa`, ローマ字 (from フリガナ)
+  → `name`, 所属店舗 → `salonSlug` (iLe原宿→harajuku-a, nehus原宿→harajuku-b,
+  名古屋→nagoya, 長岡→nagaoka), 職位/役割 → `position` (現場責任者→「店長」),
+  得意分野 → `specialties`, Instagram ID → `instagram`.
+- **NEVER publish** the master's sensitive fields: 売上・面談・生年・歩合率・
+  課題・備考 (備考 can contain health notes). These must not reach the repo/site.
+- Effect Bleach copy was sourced from the **legacy site**
+  (`/effect-bleach`, `/ile-technology`, `/menu`, `/reviews`) + public refs
+  (co-authored book 『複雑履歴のブリーチ大全』). Pricing is a carried-over guide.
 
 ---
 
@@ -361,3 +406,36 @@ npm run deploy   # or: npx wrangler deploy
 3. Ask the user what they want next, or pick up the most recent
    `ROADMAP.md` open item.
 4. Stay quiet, stay scoped, ship.
+
+---
+
+## Maintenance convention (KEEP CLAUDE.md CURRENT)
+
+The user has asked that this file be kept up to date whenever things change.
+**This is a standing requirement, not a one-off.**
+
+- When you change site **content, data, structure, pages, conventions, or
+  brand facts**, update the relevant section of CLAUDE.md *in the same
+  commit/PR* as the change. Don't leave it for "later".
+- Add a one-line entry to the **Changelog** below for any notable change
+  (newest first), with the date.
+- Keep it accurate over comprehensive: fix anything that has become wrong
+  (e.g. stale counts, names, or "still pending" items that are now done).
+
+> Note: this is a model-followed working practice, not an automated hook
+> (a shell hook can't meaningfully rewrite prose). It persists because it
+> lives here and every session reads this file first.
+
+### Changelog
+
+- **2026-05-31** — Effect Bleach section integrated from legacy site + web
+  (Three Principles, the Logic, voices, menu, iLe Academy); glossary + FAQ
+  enriched, pricing FAQ added. (PR #8)
+- **2026-05-31** — Real-content pass (PR #7): real salon NAP / tel / hours /
+  年中無休 / access / Hot Pepper; **co-representative model** (酒井元樹・西村涼,
+  replacing the old sole-代表取締役 framing); **32-person roster** from the
+  Notion staff master; Instagram fixed to `ile.801`.
+- **2026-05-31** — Pre-launch hardening (PR #6): custom `/404`,
+  `site.webmanifest`, `/.well-known/security.txt`, favicon.ico + theme-color.
+- **2026-05-31** — microCMS env-gated content layer, W7 structured-data /
+  a11y fixes, site-wide 404 language-link fix, a11y deep pass (PR #5).
