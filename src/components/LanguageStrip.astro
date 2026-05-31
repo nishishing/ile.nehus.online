@@ -5,11 +5,19 @@ import { languages } from "~data/site";
 <div class="lang-strip">
   {languages.map((lang) =>
     lang.current ? (
-      <span class="lang-strip__current">{lang.code}</span>
-    ) : (
+      <span class="lang-strip__current" aria-current="true">{lang.code}</span>
+    ) : lang.available ? (
       <a class="lang-strip__link" href={lang.href} aria-label={`Switch to ${lang.code}`}>
         {lang.code}
       </a>
+    ) : (
+      <span
+        class="lang-strip__soon"
+        aria-disabled="true"
+        title={`${lang.code} — coming soon`}
+      >
+        {lang.code}
+      </span>
     ),
   )}
 </div>
@@ -37,5 +45,10 @@ import { languages } from "~data/site";
   }
   .lang-strip__link:hover {
     color: var(--color-white);
+  }
+  .lang-strip__soon {
+    color: var(--color-fg-on-dark-muted);
+    opacity: 0.45;
+    cursor: not-allowed;
   }
 </style>

@@ -48,9 +48,17 @@ export const navLegal = [
   { label: "Terms", href: "/terms" },
 ] as const;
 
-export const languages = [
-  { code: "JP", href: "/", current: true },
-  { code: "EN", href: "/en/", current: false },
-  { code: "ZH", href: "/zh/", current: false },
-  { code: "KR", href: "/kr/", current: false },
-] as const;
+// `available` flips to true once a localized version actually ships.
+// Until then the code is shown but not linked (avoids site-wide 404s).
+export interface Language {
+  code: string;
+  href: string;
+  current: boolean;
+  available: boolean;
+}
+export const languages: readonly Language[] = [
+  { code: "JP", href: "/", current: true, available: true },
+  { code: "EN", href: "/en/", current: false, available: false },
+  { code: "ZH", href: "/zh/", current: false, available: false },
+  { code: "KR", href: "/kr/", current: false, available: false },
+];
