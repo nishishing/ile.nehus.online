@@ -3,8 +3,9 @@ import type { Salon } from "~types/content";
 /**
  * 4 salons under the unified iLe brand (as of 2026.08.01).
  *
- * Address / access / phone / hours / Hot Pepper booking URLs are the real,
- * operator-confirmed values. STILL PENDING: holidays (定休日) per salon.
+ * Address / access / phone / hours / holidays / Hot Pepper booking URLs are
+ * the real, operator-confirmed values. All four salons are open year-round
+ * (年中無休).
  */
 export const salons: readonly Salon[] = [
   {
@@ -17,6 +18,7 @@ export const salons: readonly Salon[] = [
     address: "〒150-0001 東京都渋谷区神宮前6-10-8 原宿NAビル 4F",
     access: "原宿駅 徒歩7分 / 明治神宮前駅 徒歩2分",
     phone: "03-6427-5235",
+    holidays: "年中無休",
     hotPepperUrl: "https://beauty.hotpepper.jp/slnH000499134/",
     openedAt: "2020-08-01",
     hours: "10:00 — 20:00",
@@ -35,6 +37,7 @@ export const salons: readonly Salon[] = [
     address: "東京都渋谷区神宮前3-20-13 MANA表参道 2F",
     access: "原宿駅 徒歩7分 / 明治神宮前駅 徒歩5分",
     phone: "03-6447-0253",
+    holidays: "年中無休",
     hotPepperUrl: "https://beauty.hotpepper.jp/slnH000635691/",
     openedAt: "2022-01-01",
     renamedAt: "2026-08-01",
@@ -54,6 +57,7 @@ export const salons: readonly Salon[] = [
     address: "〒460-0008 愛知県名古屋市中区栄3-19-7 PROTECT4 4F",
     access: "栄駅 徒歩9分 / 矢場町駅 徒歩6分",
     phone: "052-228-9783",
+    holidays: "年中無休",
     hotPepperUrl: "https://beauty.hotpepper.jp/slnH000776236/",
     openedAt: "2023-01-01",
     renamedAt: "2026-08-01",
@@ -73,6 +77,7 @@ export const salons: readonly Salon[] = [
     address: "〒940-2106 新潟県長岡市古正寺1-246-3",
     access: "イオン長岡店 裏（古正寺・千秋方面）",
     phone: "0258-77-6236",
+    holidays: "年中無休",
     hotPepperUrl: "https://beauty.hotpepper.jp/slnH000742471/",
     openedAt: "2024-01-01",
     renamedAt: "2026-08-01",
