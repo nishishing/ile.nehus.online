@@ -22,12 +22,13 @@ export function organizationSchema() {
     url: site.url,
     logo: `${site.url}/logo.svg`,
     foundingDate: site.foundedAt,
-    founder: {
+    founder: site.representatives.map((r) => ({
       "@type": "Person",
-      "@id": `${site.url}/#founder`,
-      name: site.founderName,
-      jobTitle: "代表取締役 / Founder",
-    },
+      "@id": `${site.url}/${r.id}`,
+      name: r.name,
+      alternateName: r.nameLatin,
+      jobTitle: `${r.title} / ${r.titleEn}`,
+    })),
     address: {
       "@type": "PostalAddress",
       addressCountry: "JP",
@@ -62,7 +63,7 @@ export function personFounderSchema() {
     "@id": `${site.url}/#founder`,
     name: site.founderName,
     alternateName: site.founderNameLatin,
-    jobTitle: "代表取締役 / Founder",
+    jobTitle: "共同代表 / Co-Representative",
     worksFor: { "@id": `${site.url}/#organization` },
   };
 }

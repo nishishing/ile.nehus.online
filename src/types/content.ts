@@ -34,7 +34,7 @@ export interface Salon {
   mapLng?: number;
   description: string;
   badge: string; // "— origin", "— formerly nehus"
-  stylistCount: number;
+  stylistCount?: number;
   heroImage?: MicroCMSImage;
   gallery?: MicroCMSImage[];
 }
@@ -76,12 +76,23 @@ export interface FaqItem {
   order?: number;
 }
 
+export interface Representative {
+  name: string; // "酒井 元樹"
+  nameLatin: string; // "Motoki Sakai"
+  title: string; // "共同代表"
+  titleEn: string; // "Co-Representative"
+  id: string; // JSON-LD @id fragment, e.g. "#founder"
+}
+
 export interface SiteConfig {
   domain: string;
   url: string;
   siteName: string;
   companyName: string;
   companyNameLatin: string;
+  /** Public co-representatives of the company. */
+  representatives: Representative[];
+  /** Identity used for author-signed pages (/message, /story). */
   founderName: string;
   founderNameLatin: string;
   foundedAt: string;

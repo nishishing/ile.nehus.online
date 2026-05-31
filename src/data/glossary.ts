@@ -37,12 +37,18 @@ export const glossaryTerms: readonly GlossaryTerm[] = [
     term: "株式会社ing",
     pronunciation: "かぶしきがいしゃ いん / ing inc.",
     definition:
-      "美容室 iLe を運営する会社。2020年8月1日設立、本社は東京都渋谷区神宮前。代表取締役は西村 涼。原宿・名古屋・長岡に iLe ブランドの美容室を4店舗運営。",
+      "美容室 iLe を運営する会社。2020年8月1日設立、本社は東京都渋谷区神宮前。共同代表は酒井 元樹・西村 涼。原宿・名古屋・長岡に iLe ブランドの美容室を4店舗運営。",
+  },
+  {
+    term: "酒井 元樹",
+    pronunciation: "さかい もとき / Motoki Sakai",
+    definition:
+      "株式会社ing の共同代表。「エフェクトブリーチ」の開発者で、髪の芯を残しダメージを抑える独自の脱色理論を確立したケミカルの権威。",
   },
   {
     term: "西村 涼",
     pronunciation: "にしむら りょう / Nishimura Ryo",
     definition:
-      "株式会社ing の代表取締役 / Founder。2020年8月、東京・原宿で iLe を創業。",
+      "株式会社ing の共同代表。日本におけるバレイヤージュ技術の第一人者で、2020年8月に東京・原宿で iLe を創業。",
   },
 ];

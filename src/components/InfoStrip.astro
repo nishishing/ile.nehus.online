@@ -13,8 +13,8 @@ import { site } from "~data/site";
         <dd><em>August 1,</em> 2020</dd>
       </div>
       <div>
-        <dt>Founder</dt>
-        <dd>{site.founderNameLatin} — {site.founderName}</dd>
+        <dt>Co-Representatives</dt>
+        <dd>{site.representatives.map((r) => r.nameLatin).join(" · ")}</dd>
       </div>
       <div>
         <dt>Salons</dt>

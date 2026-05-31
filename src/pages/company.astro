@@ -7,7 +7,7 @@ import type { TimelineEntry } from "~components/Timeline.astro";
 import { breadcrumbSchema, jsonLd } from "~lib/schema";
 import { site } from "~data/site";
 
-const description = `${site.companyName}（${site.companyNameLatin}） — 美容室 iLe を運営する会社の概要。${site.foundedAtLabel} 創業、代表取締役 ${site.founderName}。`;
+const description = `${site.companyName}（${site.companyNameLatin}） — 美容室 iLe を運営する会社の概要。${site.foundedAtLabel} 創業、共同代表 ${site.representatives.map((r) => r.name).join("・")}。`;
 
 const pageSchemas = [
   breadcrumbSchema([
@@ -49,7 +49,12 @@ const history: TimelineEntry[] = [
 const overviewRows: Array<{ label: string; value: string }> = [
   { label: "Company", value: `${site.companyName} (${site.companyNameLatin})` },
   { label: "Founded", value: site.foundedAtLabel },
-  { label: "CEO", value: `${site.founderName} — ${site.founderNameLatin}` },
+  {
+    label: "Co-Reps",
+    value: site.representatives
+      .map((r) => `${r.name}（${r.nameLatin}）`)
+      .join(" / "),
+  },
   { label: "Address", value: site.headOffice },
   { label: "Business", value: "美容室の運営 / Hair atelier" },
   { label: "Salons", value: "4 — iLe 原宿 ×2, iLe 名古屋, iLe 長岡" },
