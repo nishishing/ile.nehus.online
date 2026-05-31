@@ -67,6 +67,32 @@ export function personFounderSchema() {
   };
 }
 
+const ALL_DAYS = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
+/**
+ * Parse a human hours label ("10:00 — 21:00" / "10:00-21:00") into a
+ * schema.org OpeningHoursSpecification. Returns undefined if unparseable
+ * so we never emit an invalid `openingHours` string.
+ */
+function openingHoursSpec(hours: string) {
+  const m = hours.match(/(\d{1,2}:\d{2})\s*[—–-]\s*(\d{1,2}:\d{2})/);
+  if (!m) return undefined;
+  return {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ALL_DAYS,
+    opens: m[1],
+    closes: m[2],
+  };
+}
+
 export function localBusinessSchema(salon: Salon) {
   return {
     "@context": "https://schema.org",
@@ -75,12 +101,22 @@ export function localBusinessSchema(salon: Salon) {
     name: salon.name,
     alternateName: salon.nameLatin,
     url: `${site.url}/salons/${salon.slug}`,
+    image: salon.heroImage?.url,
+    telephone: salon.phone,
     address: {
       "@type": "PostalAddress",
       streetAddress: salon.address,
       addressCountry: "JP",
     },
-    openingHours: salon.hours,
+    geo:
+      salon.mapLat != null && salon.mapLng != null
+        ? {
+            "@type": "GeoCoordinates",
+            latitude: salon.mapLat,
+            longitude: salon.mapLng,
+          }
+        : undefined,
+    openingHoursSpecification: openingHoursSpec(salon.hours),
     parentOrganization: { "@id": `${site.url}/#organization` },
     foundingDate: salon.openedAt,
     description: salon.description,
@@ -88,15 +124,19 @@ export function localBusinessSchema(salon: Salon) {
 }
 
 export function articleSchema(post: JournalPost) {
+  const image = post.ogImage?.url ?? post.eyecatch?.url;
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.summary,
+    image,
     datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
     author: { "@id": `${site.url}/#organization` },
     publisher: { "@id": `${site.url}/#organization` },
     inLanguage: "ja-JP",
+    mainEntityOfPage: `${site.url}/journal/${post.slug}`,
     url: `${site.url}/journal/${post.slug}`,
   };
 }
@@ -110,6 +150,7 @@ export interface StandaloneArticle {
   headline: string;
   description: string;
   datePublished: string;
+  dateModified?: string;
   authorAsFounder?: boolean;
 }
 export function standaloneArticleSchema(article: StandaloneArticle) {
@@ -122,6 +163,7 @@ export function standaloneArticleSchema(article: StandaloneArticle) {
     headline: article.headline,
     description: article.description,
     datePublished: article.datePublished,
+    dateModified: article.dateModified ?? article.datePublished,
     author: {
       "@id": article.authorAsFounder
         ? `${site.url}/#founder`
@@ -129,6 +171,7 @@ export function standaloneArticleSchema(article: StandaloneArticle) {
     },
     publisher: { "@id": `${site.url}/#organization` },
     inLanguage: "ja-JP",
+    mainEntityOfPage: url,
     url,
   };
 }
