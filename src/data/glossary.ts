@@ -40,6 +40,13 @@ export const glossaryTerms: readonly GlossaryTerm[] = [
       "美容室 iLe を運営する会社。2020年8月1日設立、本社は東京都渋谷区神宮前。共同代表は酒井 元樹・西村 涼。原宿・名古屋・長岡に iLe ブランドの美容室を4店舗運営。",
   },
   {
+    term: "エフェクトブリーチ",
+    pronunciation: "エフェクトブリーチ / Effect Bleach",
+    definition:
+      "iLe 共同代表・酒井 元樹が開発した独自のブリーチ技術。髪の芯を残し、ダメージを極限まで抑えながら透明感のあるハイトーンを実現することを目的とした、再現性のある脱色理論。",
+    etymology: "髪に与える“効果（effect）”を設計するブリーチ、の意。",
+  },
+  {
     term: "酒井 元樹",
     pronunciation: "さかい もとき / Motoki Sakai",
     definition:
