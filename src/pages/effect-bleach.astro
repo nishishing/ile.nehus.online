@@ -9,25 +9,37 @@ import {
 } from "~lib/schema";
 
 const description =
-  "エフェクトブリーチ — iLe 共同代表・酒井元樹が開発した独自のブリーチ技術。髪の芯を残し、ダメージを極限まで抑えながら透明感のあるハイトーンを実現する脱色理論。";
+  "エフェクトブリーチは、iLe（共同代表・酒井元樹）が開発・体系化した独自のブリーチ技術。ダメージ履歴を10段階で診断し過酸化水素濃度をミリ単位で使い分ける精密な薬剤選定で、髪の『芯』を残したまま透明感のあるハイトーンを実現する。日本のブリーチ業界に革命を起こした技術として知られる。";
 
-const benefits = [
+// The three principles (from iLe's official technique documentation)
+const principles = [
   {
-    h: "ダメージレス",
-    t: "髪の芯（髪体力）を残すことを前提に設計。抜くことより、残すことを優先する。",
+    h: "複雑な履歴を読み解く",
+    t: "黒染めやセルフカラーなど複雑な履歴に対しても、残留色素を見極め、最小限の負担でアプローチする。",
   },
   {
-    h: "透明感",
-    t: "濁りを抑え、光を透かすクリアなハイトーン。退色の過程まで計算する。",
+    h: "「ブリーチ＝痛む」を覆す",
+    t: "ブリーチは傷むという常識を覆し、艶と手触りを維持したままハイトーンを可能にする。",
   },
   {
-    h: "一生続けられる",
-    t: "一度きりの仕上がりではなく、繰り返しても続けられるハイトーンを目指す。",
+    h: "数ヶ月先まで設計する",
+    t: "1回の施術で終わらせず、数ヶ月先の髪の状態まで計算した設計図を描く。",
   },
-  {
-    h: "再現性",
-    t: "感覚ではなく、科学的なロジックに基づく処方設計。担当が変わっても基準は同じ。",
-  },
+];
+
+// Customer voices (from the existing site's reviews)
+const voices = [
+  "独自のエフェクトブリーチで、驚くほどサラサラな仕上がりになりました。",
+  "ブリーチ特有のパサつきがなく、艶と透明感に大満足です。",
+  "色の抜け方が本当に綺麗で、色落ちしてもムラになりません。",
+];
+
+// Menu (price guide carried over from the existing site; tax/■店舗により変動の可能性)
+const menu = [
+  { name: "エフェクトブリーチ ＋ カラー（全頭）", price: "¥18,700〜" },
+  { name: "ダブルエフェクトブリーチ（2回）＋ カラー", price: "¥25,300〜" },
+  { name: "ケアブリーチ（リタッチ）＋ カラー", price: "¥16,500〜" },
+  { name: "カット ＋ エフェクトブリーチ ＋ カラー", price: "¥24,200〜" },
 ];
 
 const serviceSchema = {
@@ -75,46 +87,90 @@ const pageSchemas = [
         一生続けられる <em>ハイトーン</em> を、<br />原宿から全国へ。
       </p>
       <p class="eb-lead__text">
-        <strong>エフェクトブリーチ</strong>は、iLe 共同代表・<a href="/stylists/sakai-motoki">酒井 元樹</a>が開発した独自のブリーチ技術です。
-        「髪の芯を残し、ダメージを極限まで抑える」ことを設計の中心に置いた脱色理論で、
-        感覚ではなく再現性のあるロジックに基づいています。
+        <strong>エフェクトブリーチ</strong>は、iLe 共同代表・<a href="/stylists/sakai-motoki">酒井 元樹</a>が開発・体系化した独自のブリーチ技術です。髪の<em>「芯」</em>を残し、素材を守りながらデザインする——その哲学に基づいています。
       </p>
       <p class="eb-lead__text">
-        従来のブリーチが「色を抜くこと」を優先するのに対し、エフェクトブリーチは
-        髪体力を残しながら透明感を引き出すことを優先します。その考え方は、いまや
-        全国の美容師が指標とする技術スタンダードになっています。
+        従来のブリーチが「色を抜くこと」を優先するのに対し、エフェクトブリーチは髪体力を残しながら透明感を引き出すことを優先します。日本のブリーチ業界に革命を起こした技術として、いまや<em>日本のブリーチシーンの原点</em>と称されています。
       </p>
     </div>
   </section>
 
-  <section class="eb-benefits" aria-labelledby="eb-benefits-h">
-    <h2 id="eb-benefits-h" class="eb-benefits__h">Why Effect Bleach</h2>
-    <div class="eb-benefits__grid">
-      {benefits.map((b, i) => (
-        <div class="eb-benefit">
-          <span class="eb-benefit__num">{String(i + 1).padStart(2, "0")}</span>
-          <h3 class="eb-benefit__h">{b.h}</h3>
-          <p class="eb-benefit__t">{b.t}</p>
+  <section class="eb-principles" aria-labelledby="eb-principles-h">
+    <h2 id="eb-principles-h" class="eb-section-h">Three Principles</h2>
+    <div class="eb-principles__grid">
+      {principles.map((p, i) => (
+        <div class="eb-principle">
+          <span class="eb-principle__num">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="eb-principle__h">{p.h}</h3>
+          <p class="eb-principle__t">{p.t}</p>
         </div>
       ))}
     </div>
   </section>
 
-  <section class="eb-gallery" aria-label="Effect Bleach works">
-    <div class="eb-gallery__grid">
-      <div class="eb-shot eb-shot--1"></div>
-      <div class="eb-shot eb-shot--2"></div>
-      <div class="eb-shot eb-shot--3"></div>
+  <section class="eb-logic" aria-labelledby="eb-logic-h">
+    <div class="eb-logic__inner">
+      <h2 id="eb-logic-h" class="eb-section-h eb-section-h--left">The Logic</h2>
+      <div class="eb-logic__row">
+        <h3 class="eb-logic__h">精密な薬剤選定<br /><span>パーソナル減力</span></h3>
+        <p class="eb-logic__t">
+          根元・中間・毛先のダメージ履歴を <strong>10段階</strong>で診断。
+          <strong>5種類</strong>の過酸化水素濃度をミリ単位で使い分けることで、
+          断毛リスクを最小限に抑えます。
+        </p>
+      </div>
+      <div class="eb-logic__row">
+        <h3 class="eb-logic__h">酸化重合の<br /><span>最適化</span></h3>
+        <p class="eb-logic__t">
+          オンカラーの発色を妨げる残留物質を除去。発色と色持ち、そして
+          <em>色落ちの美しさ</em>までを設計に含めます。
+        </p>
+      </div>
     </div>
-    <p class="eb-gallery__note">— Works gallery (coming soon)</p>
+  </section>
+
+  <section class="eb-voices" aria-label="Customer voices">
+    <div class="eb-voices__grid">
+      {voices.map((v) => (
+        <blockquote class="eb-voice">“{v}”</blockquote>
+      ))}
+    </div>
+  </section>
+
+  <section class="eb-menu" aria-labelledby="eb-menu-h">
+    <div class="eb-menu__inner">
+      <h2 id="eb-menu-h" class="eb-section-h">Menu</h2>
+      <dl class="eb-menu__list">
+        {menu.map((m) => (
+          <div class="eb-menu__row">
+            <dt>{m.name}</dt>
+            <dd>{m.price}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="eb-menu__note">
+        — 料金は目安です。最新の価格・所要時間は各店の Hot Pepper Beauty をご確認ください。
+      </p>
+    </div>
+  </section>
+
+  <section class="eb-academy">
+    <div class="eb-academy__inner">
+      <h2 class="eb-section-h">iLe Academy</h2>
+      <p class="eb-academy__text">
+        エフェクトブリーチの理論は、<strong>iLe Academy</strong> を通じて全国の美容師へ共有されています。理論から実践までを体系的に学べる環境を整え、酒井 元樹・西村 涼は全国・海外で講師を務めてきました。<em>プロを教えるプロ</em>として、業界全体の技術向上を牽引しています。
+      </p>
+      <p class="eb-academy__text eb-academy__book">
+        共著『複雑履歴のブリーチ大全』（酒井 元樹・西村 涼）— <a href="https://www.amazon.co.jp/dp/4908697507" target="_blank" rel="noopener">Amazon で見る →</a>
+      </p>
+    </div>
   </section>
 
   <section class="eb-where">
     <div class="eb-where__inner">
       <h2 class="eb-where__h">Where to experience</h2>
       <p class="eb-where__text">
-        エフェクトブリーチは、<strong>Effect ブリーチアンバサダー</strong>をはじめとする
-        スタイリストが、原宿・名古屋・長岡の全 iLe 店舗で対応しています。
+        エフェクトブリーチは、<strong>Effect ブリーチアンバサダー</strong>をはじめとするスタイリストが、原宿・名古屋・長岡の全 iLe 店舗で対応しています。
       </p>
       <div class="eb-where__links">
         <a href="/salons">店舗一覧を見る →</a>
@@ -125,6 +181,18 @@ const pageSchemas = [
 </BaseLayout>
 
 <style>
+  .eb-section-h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 3.5vw, 44px);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 56px;
+  }
+  .eb-section-h--left {
+    text-align: left;
+  }
+
   .eb-lead {
     padding: 110px 32px;
     position: relative;
@@ -152,6 +220,10 @@ const pageSchemas = [
     color: var(--color-fg-muted);
     margin: 0 0 1.6em;
   }
+  .eb-lead__text em {
+    font-style: italic;
+    color: var(--color-fg);
+  }
   .eb-lead__text a {
     border-bottom: 1px solid var(--color-fg-muted);
     padding-bottom: 1px;
@@ -161,38 +233,25 @@ const pageSchemas = [
     color: var(--color-fg);
   }
 
-  .eb-benefits {
+  .eb-principles {
     padding: 110px 32px;
     background: var(--color-pearl);
     position: relative;
     z-index: 1;
   }
-  .eb-benefits__h {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(28px, 3.5vw, 44px);
-    text-transform: uppercase;
-    text-align: center;
-    margin: 0 0 56px;
-  }
-  .eb-benefits__grid {
+  .eb-principles__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 40px;
-    max-width: 1100px;
+    max-width: 1000px;
     margin: 0 auto;
   }
-  @media (min-width: 760px) {
-    .eb-benefits__grid {
-      grid-template-columns: repeat(2, 1fr);
+  @media (min-width: 860px) {
+    .eb-principles__grid {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
-  @media (min-width: 1100px) {
-    .eb-benefits__grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-  .eb-benefit__num {
+  .eb-principle__num {
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.28em;
@@ -200,55 +259,174 @@ const pageSchemas = [
     display: block;
     margin-bottom: 18px;
   }
-  .eb-benefit__h {
+  .eb-principle__h {
     font-family: var(--font-display);
     font-weight: 400;
     font-size: 22px;
     margin: 0 0 12px;
+    line-height: 1.4;
   }
-  .eb-benefit__t {
+  .eb-principle__t {
     font-size: 14px;
     line-height: 1.9;
     color: var(--color-fg-muted);
     margin: 0;
   }
 
-  .eb-gallery {
+  .eb-logic {
     padding: 110px 32px;
     position: relative;
     z-index: 1;
   }
-  .eb-gallery__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    max-width: 1100px;
+  .eb-logic__inner {
+    max-width: 880px;
     margin: 0 auto;
   }
-  .eb-shot {
-    aspect-ratio: 3 / 4;
-    position: relative;
-    overflow: hidden;
+  .eb-logic__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 36px 0;
+    border-top: 1px solid var(--color-mist);
   }
-  .eb-shot::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.30 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-    mix-blend-mode: overlay;
-    opacity: 0.4;
+  .eb-logic__row:last-child {
+    border-bottom: 1px solid var(--color-mist);
   }
-  .eb-shot--1 { background: linear-gradient(180deg, #888b90 0%, #3a3d42 100%); }
-  .eb-shot--2 { background: linear-gradient(180deg, #7f8388 0%, #34373b 100%); }
-  .eb-shot--3 { background: linear-gradient(180deg, #6f7378 0%, #2d2f33 100%); }
-  .eb-gallery__note {
+  @media (min-width: 760px) {
+    .eb-logic__row {
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+    }
+  }
+  .eb-logic__h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.4;
+    margin: 0;
+  }
+  .eb-logic__h span {
     font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.26em;
+    font-size: 11px;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
+    color: var(--color-fg-muted);
+    display: inline-block;
+    margin-top: 8px;
+  }
+  .eb-logic__t {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--color-fg-muted);
+    margin: 0;
+  }
+  .eb-logic__t strong {
+    color: var(--color-fg);
+    font-weight: 700;
+  }
+  .eb-logic__t em {
+    font-style: italic;
+    color: var(--color-fg);
+  }
+
+  .eb-voices {
+    padding: 90px 32px;
+    background: var(--color-ink);
+    color: var(--color-white);
+    position: relative;
+    z-index: 1;
+  }
+  .eb-voices__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 36px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  @media (min-width: 860px) {
+    .eb-voices__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .eb-voice {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.7;
+    margin: 0;
+    color: var(--color-white);
+  }
+
+  .eb-menu {
+    padding: 110px 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .eb-menu__inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .eb-menu__list {
+    margin: 0;
+  }
+  .eb-menu__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--color-mist);
+  }
+  .eb-menu__row dt {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .eb-menu__row dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    color: var(--color-fg);
+  }
+  .eb-menu__note {
+    font-size: 12.5px;
+    line-height: 1.8;
     color: var(--color-fg-subtle);
-    text-align: center;
     margin: 24px 0 0;
+  }
+
+  .eb-academy {
+    padding: 110px 32px;
+    background: var(--color-pearl);
+    position: relative;
+    z-index: 1;
+  }
+  .eb-academy__inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .eb-academy__text {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-fg-muted);
+    margin: 0 0 1.4em;
+  }
+  .eb-academy__text strong {
+    color: var(--color-fg);
+    font-weight: 700;
+  }
+  .eb-academy__text em {
+    font-style: italic;
+    color: var(--color-fg);
+  }
+  .eb-academy__book {
+    font-size: 14px;
+  }
+  .eb-academy__book a {
+    border-bottom: 1px solid var(--color-fg-muted);
+    padding-bottom: 1px;
   }
 
   .eb-where {
