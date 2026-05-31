@@ -71,6 +71,7 @@ interface RawSalon {
   cityShort: string;
   formerName?: string;
   address: string;
+  access?: string;
   openedAt: string;
   renamedAt?: string;
   hours: string;
@@ -81,7 +82,7 @@ interface RawSalon {
   mapLng?: number;
   description: string;
   badge: string;
-  stylistCount: number;
+  stylistCount?: number;
   heroImage?: MicroCMSImage | null;
   gallery?: MicroCMSImage[] | null;
 }
@@ -140,6 +141,7 @@ function mapSalon(r: RawSalon): Salon {
     cityShort: r.cityShort,
     formerName: r.formerName,
     address: r.address,
+    access: r.access,
     openedAt: dateOnly(r.openedAt) ?? r.openedAt,
     renamedAt: dateOnly(r.renamedAt),
     hours: r.hours,

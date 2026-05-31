@@ -6,6 +6,22 @@ export const site: SiteConfig = {
   siteName: "iLe",
   companyName: "株式会社ing",
   companyNameLatin: "ing inc.",
+  representatives: [
+    {
+      name: "酒井 元樹",
+      nameLatin: "Motoki Sakai",
+      title: "共同代表",
+      titleEn: "Co-Representative",
+      id: "#rep-sakai",
+    },
+    {
+      name: "西村 涼",
+      nameLatin: "Nishimura Ryo",
+      title: "共同代表",
+      titleEn: "Co-Representative",
+      id: "#founder",
+    },
+  ],
   founderName: "西村 涼",
   founderNameLatin: "Nishimura Ryo",
   foundedAt: "2020-08-01",

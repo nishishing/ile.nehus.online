@@ -24,7 +24,6 @@ export const salons: readonly Salon[] = [
     description:
       "創業の地。2020年8月、ここから iLe は始まった。原宿の小さな島として、すべての始まりとなった一店舗。",
     badge: "— origin",
-    stylistCount: 8,
   },
   {
     slug: "harajuku-b",
@@ -43,7 +42,6 @@ export const salons: readonly Salon[] = [
     description:
       "同じ街の、もう一つの島。独立した空気と常連を持つ、原宿のもう一つの拠点。",
     badge: "— formerly nehus",
-    stylistCount: 6,
   },
   {
     slug: "nagoya",
@@ -62,7 +60,6 @@ export const salons: readonly Salon[] = [
     description:
       "中部の島。名古屋に根を張った独立したコミュニティとともに歩む店舗。",
     badge: "— formerly nehus 名古屋",
-    stylistCount: 5,
   },
   {
     slug: "nagaoka",
@@ -81,7 +78,6 @@ export const salons: readonly Salon[] = [
     description:
       "雪の街の島。地域に深く根づいた、人と人の繋がりを大切にする店舗。",
     badge: "— formerly nehus 長岡",
-    stylistCount: 4,
   },
 ];
 

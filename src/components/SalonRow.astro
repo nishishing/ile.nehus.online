@@ -41,10 +41,12 @@ const placeholderClass = `salon-row__img salon-row__img--${salon.slug}`;
         <dt>Hours</dt>
         <dd>{salon.hours}</dd>
       </div>
-      <div class="salon-row__spec">
-        <dt>Stylists</dt>
-        <dd>{salon.stylistCount}</dd>
-      </div>
+      {salon.stylistCount != null && (
+        <div class="salon-row__spec">
+          <dt>Stylists</dt>
+          <dd>{salon.stylistCount}</dd>
+        </div>
+      )}
     </dl>
   </div>
 </article>
