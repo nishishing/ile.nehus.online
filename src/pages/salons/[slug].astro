@@ -64,7 +64,7 @@ const pageSchemas = [
           <div><dt>Renamed</dt><dd>{salon.renamedAt.replace(/-/g, ".")} (旧 {salon.formerName})</dd></div>
         )}
         <div><dt>Hours</dt><dd>{salon.hours}</dd></div>
-        {salon.holidays && <div><dt>Closed</dt><dd>{salon.holidays}</dd></div>}
+        {salon.holidays && <div><dt>Holidays</dt><dd>{salon.holidays}</dd></div>}
         {salon.phone && <div><dt>Phone</dt><dd>{salon.phone}</dd></div>}
         {salon.hotPepperUrl && (
           <div>
