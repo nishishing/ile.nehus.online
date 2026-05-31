@@ -3,8 +3,10 @@ import type { Salon } from "~types/content";
 /**
  * 4 salons under the unified iLe brand (as of 2026.08.01).
  *
- * NOTE: Address / phone / hours are placeholders pending confirmation
- * from the client. Real values will be filled before launch.
+ * Address / access / Hot Pepper booking URLs are the real values carried
+ * over from the existing site. STILL PENDING from the operator: phone,
+ * hours, and holidays per salon (the legacy site did not list them) — the
+ * `hours` values below are provisional placeholders until confirmed.
  */
 export const salons: readonly Salon[] = [
   {
@@ -14,7 +16,9 @@ export const salons: readonly Salon[] = [
     nameLatin: "iLe Harajuku A",
     city: "Harajuku / Tokyo",
     cityShort: "HARAJUKU A",
-    address: "東京都渋谷区神宮前 X-XX-XX",
+    address: "〒150-0001 東京都渋谷区神宮前6-10-8 原宿NAビル 4F",
+    access: "原宿駅 徒歩7分 / 明治神宮前駅 徒歩2分",
+    hotPepperUrl: "https://beauty.hotpepper.jp/slnH000499134/",
     openedAt: "2020-08-01",
     hours: "10:00 — 21:00",
     description:
@@ -30,7 +34,9 @@ export const salons: readonly Salon[] = [
     city: "Harajuku / Tokyo",
     cityShort: "HARAJUKU B",
     formerName: "nehus",
-    address: "東京都渋谷区神宮前 X-XX-XX",
+    address: "東京都渋谷区神宮前3-20-13 MANA表参道 2F",
+    access: "原宿駅 徒歩7分 / 明治神宮前駅 徒歩5分",
+    hotPepperUrl: "https://beauty.hotpepper.jp/slnH000635691/",
     openedAt: "2022-01-01",
     renamedAt: "2026-08-01",
     hours: "10:00 — 21:00",
@@ -47,7 +53,9 @@ export const salons: readonly Salon[] = [
     city: "Nagoya / Aichi",
     cityShort: "NAGOYA",
     formerName: "nehus 名古屋",
-    address: "愛知県名古屋市 X-XX-XX",
+    address: "愛知県名古屋市中区栄3-19-7 PROTECT4 4F",
+    access: "栄駅 徒歩9分 / 矢場町駅 徒歩6分",
+    hotPepperUrl: "https://beauty.hotpepper.jp/slnH000776236/",
     openedAt: "2023-01-01",
     renamedAt: "2026-08-01",
     hours: "10:00 — 20:00",
@@ -64,7 +72,9 @@ export const salons: readonly Salon[] = [
     city: "Nagaoka / Niigata",
     cityShort: "NAGAOKA",
     formerName: "nehus 長岡",
-    address: "新潟県長岡市 X-XX-XX",
+    address: "新潟県長岡市古正寺1-246-3",
+    access: "イオン長岡店 裏（古正寺・千秋方面）",
+    hotPepperUrl: "https://beauty.hotpepper.jp/slnH000742471/",
     openedAt: "2024-01-01",
     renamedAt: "2026-08-01",
     hours: "10:00 — 19:00",

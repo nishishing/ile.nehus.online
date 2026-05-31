@@ -17,7 +17,7 @@ export const site: SiteConfig = {
   description:
     "iLe｜美容室 — 原宿・名古屋・長岡。船から、島へ。2026年8月1日、4店舗すべてを iLe に統一。",
   ogImage: "/og-default.jpg",
-  instagramHandle: "ile_official",
+  instagramHandle: "ile.801",
 };
 
 export const navPrimary = [
@@ -40,7 +40,7 @@ export const navFooter = [
   { label: "COMPANY", href: "/company" },
   { label: "CONTACT", href: "/contact" },
   { label: "iLe.ONLINE", href: "/ile-online" },
-  { label: "INSTAGRAM", href: "https://instagram.com/ile_official" },
+  { label: "INSTAGRAM", href: "https://instagram.com/ile.801" },
 ] as const;
 
 export const navLegal = [

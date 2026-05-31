@@ -23,6 +23,7 @@ export interface Salon {
   cityShort: string; // "HARAJUKU A"
   formerName?: string; // "nehus", "nehus 名古屋", etc.
   address: string;
+  access?: string; // nearest stations, e.g. "原宿駅7分 / 明治神宮前駅2分"
   openedAt: string; // "2020.08.01"
   renamedAt?: string;
   hours: string;
