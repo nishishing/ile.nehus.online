@@ -1,31 +1,172 @@
 import type { Stylist } from "~types/content";
 
 /**
- * Director roster.
+ * Director & stylist roster.
  *
- * The two co-representatives are carried over from the existing site with
- * their real profiles. The wider stylist roster (names, salons, IG handles,
- * portraits) is still pending from the operator.
+ * Source of truth: the operator’s staff master (Notion). Only public-
+ * facing fields are carried here (name, salon, role, specialties, Instagram).
+ * Co-representatives first, then stylists grouped by salon. Assistants and
+ * business-委託 members are intentionally not listed publicly yet.
  */
 export const stylists: readonly Stylist[] = [
-  {
-    slug: "sakai-motoki",
-    name: "Motoki Sakai",
-    nameJa: "酒井 元樹",
-    salonSlug: "harajuku-a",
-    position: "共同代表 / エフェクトブリーチ開発者",
-    profile:
-      "独自開発の「エフェクトブリーチ」により、髪の芯を残したまま透明感を引き出すケミカルロジックの権威。感覚ではなく科学に基づいたダメージレスなベース作りは、全国の美容師が指標とする技術スタンダード。",
-    specialties: ["エフェクトブリーチ", "ケミカル", "ベースメイク"],
-  },
   {
     slug: "nishimura-ryo",
     name: "Nishimura Ryo",
     nameJa: "西村 涼",
     salonSlug: "harajuku-a",
-    position: "共同代表 / バレイヤージュ",
+    position: "共同代表",
     profile:
       "日本におけるバレイヤージュ技術の第一人者。圧倒的なデザインセンスと緻密な塗り分けにより、立体感と透け感を両立させるスペシャリスト。",
-    specialties: ["バレイヤージュ", "レイヤーカット", "ハイトーンデザイン"],
+    specialties: ["ブリーチ", "ハイトーン", "メンズ"],
+    instagram: "nishishing",
+  },
+  {
+    slug: "sakai-motoki",
+    name: "Sakai Motoki",
+    nameJa: "酒井 元樹",
+    salonSlug: "harajuku-a",
+    position: "共同代表",
+    profile:
+      "独自開発の「エフェクトブリーチ」により、髪の芯を残したまま透明感を引き出すケミカルロジックの権威。感覚ではなく科学に基づいたダメージレスなベース作りは、全国の美容師が指標とする技術スタンダード。",
+    specialties: ["ブリーチ", "ハイトーン"],
+    instagram: "sakaimotoki",
+  },
+  {
+    slug: "watanabe-rina",
+    name: "Watanabe Rina",
+    nameJa: "渡邊 琳南",
+    salonSlug: "harajuku-a",
+    position: "スタイリスト",
+    instagram: "li.n__l.i",
+  },
+  {
+    slug: "oka-yushin",
+    name: "Oka Yushin",
+    nameJa: "岡 勇心",
+    salonSlug: "harajuku-a",
+    position: "店長 / スタイリスト",
+    specialties: ["ベージュ系カラー", "カラー"],
+    instagram: "yushin.__00",
+  },
+  {
+    slug: "yamazaki-ai",
+    name: "Yamazaki Ai",
+    nameJa: "山崎 愛",
+    salonSlug: "harajuku-a",
+    position: "スタイリスト",
+    specialties: ["ブリーチ", "ハイトーン"],
+    instagram: "ai_._ile",
+  },
+  {
+    slug: "kanehara-sangi",
+    name: "Kanehara Sangi",
+    nameJa: "金原 祥貴",
+    salonSlug: "harajuku-a",
+    position: "店長 / スタイリスト",
+    specialties: ["ムラ修正", "ブリーチ", "ハイトーン"],
+    instagram: "sangi_kanehara",
+  },
+  {
+    slug: "miho-haruki",
+    name: "Miho Haruki",
+    nameJa: "美保 春賜",
+    salonSlug: "harajuku-b",
+    position: "店長 / スタイリスト",
+    specialties: ["ブリーチ", "バレイヤージュ"],
+    instagram: "mihoharukiii",
+  },
+  {
+    slug: "ohara-ryuga",
+    name: "Ohara Ryuga",
+    nameJa: "大原 龍我",
+    salonSlug: "harajuku-b",
+    position: "スタイリスト",
+    instagram: "ryuga.o_o",
+  },
+  {
+    slug: "takahashi-rena",
+    name: "Takahashi Rena",
+    nameJa: "髙橋 玲渚",
+    salonSlug: "harajuku-b",
+    position: "店長 / スタイリスト",
+    specialties: ["ブリーチ", "ハイトーン"],
+    instagram: "_ile.07",
+  },
+  {
+    slug: "kashiwazaki-yusuke",
+    name: "Kashiwazaki Yusuke",
+    nameJa: "柏崎 雄介",
+    salonSlug: "harajuku-b",
+    position: "スタイリスト",
+    specialties: ["ブリーチ", "バレイヤージュ"],
+    instagram: "ile.ka4wa3",
+  },
+  {
+    slug: "sonoki-kyotaro",
+    name: "Sonoki Kyotaro",
+    nameJa: "園木 京太朗",
+    salonSlug: "harajuku-b",
+    position: "スタイリスト",
+    specialties: ["ブリーチ", "バレイヤージュ"],
+    instagram: "sonoki.kyotaro",
+  },
+  {
+    slug: "kuwamoto-atsushi",
+    name: "Kuwamoto Atsushi",
+    nameJa: "鍬本 篤志",
+    salonSlug: "nagoya",
+    position: "店長 / スタイリスト",
+    specialties: ["ブリーチ", "ハイトーン"],
+    instagram: "k_u_w_a_nehus",
+  },
+  {
+    slug: "ono-shoki",
+    name: "Ono Shoki",
+    nameJa: "大野 翔輝",
+    salonSlug: "nagoya",
+    position: "スタイリスト",
+    instagram: "shoki.nehus",
+  },
+  {
+    slug: "nishimura-ryuto",
+    name: "Nishimura Ryuto",
+    nameJa: "西村 竜人",
+    salonSlug: "nagoya",
+    position: "スタイリスト",
+    instagram: "nehus_ryuto",
+  },
+  {
+    slug: "shindo-kanawa",
+    name: "Shindo Kanawa",
+    nameJa: "進藤 叶羽",
+    salonSlug: "nagaoka",
+    position: "スタイリスト",
+    instagram: "nehus_kanau",
+  },
+  {
+    slug: "takizawa-yoshinori",
+    name: "Takizawa Yoshinori",
+    nameJa: "滝澤 良紀",
+    salonSlug: "nagaoka",
+    position: "店長 / スタイリスト",
+    specialties: ["ブリーチ", "ハイトーン"],
+    instagram: "nehus_ta.kkey",
+  },
+  {
+    slug: "oginezawa-kyohei",
+    name: "Oginezawa Kyohei",
+    nameJa: "荻根澤 享平",
+    salonSlug: "nagaoka",
+    position: "スタイリスト",
+    specialties: ["ブリーチ"],
+    instagram: "ogi_short.nehus",
+  },
+  {
+    slug: "shimizu-mizuki",
+    name: "Shimizu Mizuki",
+    nameJa: "清水 瑞希",
+    salonSlug: "nagaoka",
+    position: "スタイリスト",
+    instagram: "nehus_mii",
   },
 ];
