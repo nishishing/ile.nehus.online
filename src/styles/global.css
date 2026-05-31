@@ -98,6 +98,44 @@
     background: var(--color-ink);
     color: var(--color-white);
   }
+
+  /* Keyboard focus indicator — uses currentColor so it stays
+     legible on both light and dark sections. */
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  /* Skip link — hidden until focused, then pinned top-left. */
+  .skip-link {
+    position: absolute;
+    left: 8px;
+    top: -64px;
+    z-index: 200;
+    padding: 10px 16px;
+    background: var(--color-ink);
+    color: var(--color-white);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus {
+    top: 8px;
+  }
+
+  /* Respect reduced-motion globally (ticker, transitions, smooth scroll). */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 /* =========================================================
