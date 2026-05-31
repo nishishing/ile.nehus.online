@@ -3,10 +3,11 @@ import type { Stylist } from "~types/content";
 /**
  * Director & stylist roster.
  *
- * Source of truth: the operator’s staff master (Notion). Only public-
- * facing fields are carried here (name, salon, role, specialties, Instagram).
- * Co-representatives first, then stylists grouped by salon. Assistants and
- * business-委託 members are intentionally not listed publicly yet.
+ * Source of truth: the operator’s staff master (Notion). Public-facing fields
+ * only (name, salon, role, specialties, Instagram); internal data (sales,
+ * reviews, DOB, commission, notes) is never included. Members are grouped by
+ * salon, with co-representatives and stylists ahead of assistants. Only 在籍
+ * (active) staff are listed. Business-委託 (back-office) members are omitted.
  */
 export const stylists: readonly Stylist[] = [
   {
@@ -67,6 +68,38 @@ export const stylists: readonly Stylist[] = [
     instagram: "sangi_kanehara",
   },
   {
+    slug: "inoe-mizuki",
+    name: "Inoe Mizuki",
+    nameJa: "井上 心月",
+    salonSlug: "harajuku-a",
+    position: "アシスタント",
+    instagram: "ile._._.puq",
+  },
+  {
+    slug: "horibe-mihana",
+    name: "Horibe Mihana",
+    nameJa: "堀部 心花",
+    salonSlug: "harajuku-a",
+    position: "アシスタント",
+    instagram: "ile.mh38",
+  },
+  {
+    slug: "karino-yuri",
+    name: "Karino Yuri",
+    nameJa: "狩野 揺",
+    salonSlug: "harajuku-a",
+    position: "アシスタント",
+    instagram: "y_ri_arin_",
+  },
+  {
+    slug: "ishiyama-hazuki",
+    name: "Ishiyama Hazuki",
+    nameJa: "石山 葉月",
+    salonSlug: "harajuku-a",
+    position: "アシスタント",
+    instagram: "ile__kaeru",
+  },
+  {
     slug: "miho-haruki",
     name: "Miho Haruki",
     nameJa: "美保 春賜",
@@ -111,6 +144,46 @@ export const stylists: readonly Stylist[] = [
     instagram: "sonoki.kyotaro",
   },
   {
+    slug: "fukutani-amane",
+    name: "Fukutani Amane",
+    nameJa: "福谷 天祢",
+    salonSlug: "harajuku-b",
+    position: "アシスタント",
+    instagram: "ile.amn_",
+  },
+  {
+    slug: "kawahara-ichika",
+    name: "Kawahara Ichika",
+    nameJa: "川原 一夏",
+    salonSlug: "harajuku-b",
+    position: "アシスタント",
+    instagram: "ile.chik333",
+  },
+  {
+    slug: "yukimatsu-hisa",
+    name: "Yukimatsu Hisa",
+    nameJa: "幸松 緋紗",
+    salonSlug: "harajuku-b",
+    position: "アシスタント",
+    instagram: "ile._.hisa",
+  },
+  {
+    slug: "nakauchi-hanae",
+    name: "Nakauchi Hanae",
+    nameJa: "中内 花咲",
+    salonSlug: "harajuku-b",
+    position: "アシスタント",
+    instagram: "_718hne",
+  },
+  {
+    slug: "sugita-konomu",
+    name: "Sugita Konomu",
+    nameJa: "杉田 好",
+    salonSlug: "harajuku-b",
+    position: "アシスタント",
+    instagram: "s_konomu128",
+  },
+  {
     slug: "kuwamoto-atsushi",
     name: "Kuwamoto Atsushi",
     nameJa: "鍬本 篤志",
@@ -134,6 +207,30 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagoya",
     position: "スタイリスト",
     instagram: "nehus_ryuto",
+  },
+  {
+    slug: "arimori-misato",
+    name: "Arimori Misato",
+    nameJa: "有森 美里",
+    salonSlug: "nagoya",
+    position: "アシスタント",
+    instagram: "misato__nehus",
+  },
+  {
+    slug: "tanogami-yoshiho",
+    name: "Tanogami Yoshiho",
+    nameJa: "田野上 佳歩",
+    salonSlug: "nagoya",
+    position: "アシスタント",
+    instagram: "kaho_nehus",
+  },
+  {
+    slug: "watanabe-shika",
+    name: "Watanabe Shika",
+    nameJa: "渡邉 紫花",
+    salonSlug: "nagoya",
+    position: "アシスタント",
+    instagram: "__4iiika._",
   },
   {
     slug: "shindo-kanawa",
@@ -168,5 +265,21 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagaoka",
     position: "スタイリスト",
     instagram: "nehus_mii",
+  },
+  {
+    slug: "yokoyama-ichika",
+    name: "Yokoyama Ichika",
+    nameJa: "横山 莓珂",
+    salonSlug: "nagaoka",
+    position: "アシスタント",
+    instagram: "nehus_ichika",
+  },
+  {
+    slug: "watanabe-miyu",
+    name: "Watanabe Miyu",
+    nameJa: "渡辺 美憂",
+    salonSlug: "nagaoka",
+    position: "アシスタント",
+    instagram: "nehus_miyuu",
   },
 ];
