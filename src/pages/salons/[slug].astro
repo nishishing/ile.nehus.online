@@ -58,6 +58,7 @@ const pageSchemas = [
 
       <dl class="salon-detail__specs">
         <div><dt>Address</dt><dd>{salon.address}</dd></div>
+        {salon.access && <div><dt>Access</dt><dd>{salon.access}</dd></div>}
         <div><dt>Opened</dt><dd><em>est.</em> {salon.openedAt.replace(/-/g, ".")}</dd></div>
         {salon.renamedAt && (
           <div><dt>Renamed</dt><dd>{salon.renamedAt.replace(/-/g, ".")} (旧 {salon.formerName})</dd></div>
