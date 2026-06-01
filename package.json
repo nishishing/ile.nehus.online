@@ -13,7 +13,14 @@
     "preview": "astro preview",
     "check": "astro check",
     "deploy": "wrangler deploy",
-    "astro": "astro"
+    "astro": "astro",
+    "prebuild": "node scripts/optimize-images.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "validate:jsonld": "node scripts/validate-jsonld.mjs",
+    "validate:a11y": "node scripts/validate-a11y.mjs",
+    "validate:seo": "node scripts/validate-seo.mjs",
+    "validate": "npm run validate:jsonld && npm run validate:a11y && npm run validate:seo && npm run validate:links",
+    "validate:links": "node scripts/validate-links.mjs"
   },
   "dependencies": {
     "astro": "^5.13.0",

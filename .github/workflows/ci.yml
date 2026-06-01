@@ -39,6 +39,9 @@ jobs:
         env:
           PUBLIC_SITE_URL: https://ile-hair-harajuku.com
 
+      - name: Validate structured data, a11y, SEO & links
+        run: npm run validate
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:

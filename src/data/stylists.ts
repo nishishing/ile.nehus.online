@@ -4,10 +4,11 @@ import type { Stylist } from "~types/content";
  * Director & stylist roster.
  *
  * Source of truth: the operator’s staff master (Notion). Public-facing fields
- * only (name, salon, role, specialties, Instagram); internal data (sales,
- * reviews, DOB, commission, notes) is never included. Members are grouped by
- * salon, with co-representatives and stylists ahead of assistants. Only 在籍
- * (active) staff are listed. Business-委託 (back-office) members are omitted.
+ * only (name, salon, role, specialties, Instagram, portrait); internal data
+ * (sales, reviews, DOB, commission, notes) is never included. Members are
+ * grouped by salon, co-reps and stylists ahead of assistants; 在籍 only.
+ * Portraits are the salon’s own Hot Pepper photos, self-hosted + desaturated
+ * to fit the cool-mono design (placeholders until real shoots land).
  */
 export const stylists: readonly Stylist[] = [
   {
@@ -20,6 +21,7 @@ export const stylists: readonly Stylist[] = [
       "日本におけるバレイヤージュ技術の第一人者。圧倒的なデザインセンスと緻密な塗り分けにより、立体感と透け感を両立させるスペシャリスト。",
     specialties: ["ブリーチ", "ハイトーン", "メンズ"],
     instagram: "nishishing",
+    portrait: { url: "/staff/nishimura-ryo.jpg", width: 600, height: 750 },
   },
   {
     slug: "sakai-motoki",
@@ -31,6 +33,7 @@ export const stylists: readonly Stylist[] = [
       "独自開発の「エフェクトブリーチ」により、髪の芯を残したまま透明感を引き出すケミカルロジックの権威。感覚ではなく科学に基づいたダメージレスなベース作りは、全国の美容師が指標とする技術スタンダード。",
     specialties: ["ブリーチ", "ハイトーン"],
     instagram: "sakaimotoki",
+    portrait: { url: "/staff/sakai-motoki.jpg", width: 600, height: 750 },
   },
   {
     slug: "watanabe-rina",
@@ -39,6 +42,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-a",
     position: "スタイリスト",
     instagram: "li.n__l.i",
+    portrait: { url: "/staff/watanabe-rina.jpg", width: 600, height: 750 },
   },
   {
     slug: "oka-yushin",
@@ -48,6 +52,7 @@ export const stylists: readonly Stylist[] = [
     position: "店長 / スタイリスト",
     specialties: ["ベージュ系カラー", "カラー"],
     instagram: "yushin.__00",
+    portrait: { url: "/staff/oka-yushin.jpg", width: 600, height: 750 },
   },
   {
     slug: "yamazaki-ai",
@@ -57,6 +62,7 @@ export const stylists: readonly Stylist[] = [
     position: "スタイリスト",
     specialties: ["ブリーチ", "ハイトーン"],
     instagram: "ai_._ile",
+    portrait: { url: "/staff/yamazaki-ai.jpg", width: 600, height: 750 },
   },
   {
     slug: "kanehara-sangi",
@@ -66,6 +72,7 @@ export const stylists: readonly Stylist[] = [
     position: "店長 / スタイリスト",
     specialties: ["ムラ修正", "ブリーチ", "ハイトーン"],
     instagram: "sangi_kanehara",
+    portrait: { url: "/staff/kanehara-sangi.jpg", width: 600, height: 750 },
   },
   {
     slug: "inoe-mizuki",
@@ -90,6 +97,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-a",
     position: "アシスタント",
     instagram: "y_ri_arin_",
+    portrait: { url: "/staff/karino-yuri.jpg", width: 600, height: 750 },
   },
   {
     slug: "ishiyama-hazuki",
@@ -98,6 +106,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-a",
     position: "アシスタント",
     instagram: "ile__kaeru",
+    portrait: { url: "/staff/ishiyama-hazuki.jpg", width: 600, height: 750 },
   },
   {
     slug: "miho-haruki",
@@ -107,6 +116,7 @@ export const stylists: readonly Stylist[] = [
     position: "店長 / スタイリスト",
     specialties: ["ブリーチ", "バレイヤージュ"],
     instagram: "mihoharukiii",
+    portrait: { url: "/staff/miho-haruki.jpg", width: 600, height: 750 },
   },
   {
     slug: "ohara-ryuga",
@@ -115,6 +125,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-b",
     position: "スタイリスト",
     instagram: "ryuga.o_o",
+    portrait: { url: "/staff/ohara-ryuga.jpg", width: 600, height: 750 },
   },
   {
     slug: "takahashi-rena",
@@ -124,6 +135,7 @@ export const stylists: readonly Stylist[] = [
     position: "店長 / スタイリスト",
     specialties: ["ブリーチ", "ハイトーン"],
     instagram: "_ile.07",
+    portrait: { url: "/staff/takahashi-rena.jpg", width: 600, height: 750 },
   },
   {
     slug: "kashiwazaki-yusuke",
@@ -133,6 +145,7 @@ export const stylists: readonly Stylist[] = [
     position: "スタイリスト",
     specialties: ["ブリーチ", "バレイヤージュ"],
     instagram: "ile.ka4wa3",
+    portrait: { url: "/staff/kashiwazaki-yusuke.jpg", width: 600, height: 750 },
   },
   {
     slug: "sonoki-kyotaro",
@@ -142,6 +155,7 @@ export const stylists: readonly Stylist[] = [
     position: "スタイリスト",
     specialties: ["ブリーチ", "バレイヤージュ"],
     instagram: "sonoki.kyotaro",
+    portrait: { url: "/staff/sonoki-kyotaro.jpg", width: 600, height: 750 },
   },
   {
     slug: "fukutani-amane",
@@ -174,6 +188,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-b",
     position: "アシスタント",
     instagram: "_718hne",
+    portrait: { url: "/staff/nakauchi-hanae.jpg", width: 600, height: 750 },
   },
   {
     slug: "sugita-konomu",
@@ -182,6 +197,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-b",
     position: "アシスタント",
     instagram: "s_konomu128",
+    portrait: { url: "/staff/sugita-konomu.jpg", width: 600, height: 750 },
   },
   {
     slug: "kuwamoto-atsushi",
@@ -191,6 +207,7 @@ export const stylists: readonly Stylist[] = [
     position: "店長 / スタイリスト",
     specialties: ["ブリーチ", "ハイトーン"],
     instagram: "k_u_w_a_nehus",
+    portrait: { url: "/staff/kuwamoto-atsushi.jpg", width: 600, height: 750 },
   },
   {
     slug: "ono-shoki",
@@ -199,6 +216,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagoya",
     position: "スタイリスト",
     instagram: "shoki.nehus",
+    portrait: { url: "/staff/ono-shoki.jpg", width: 600, height: 750 },
   },
   {
     slug: "nishimura-ryuto",
@@ -207,6 +225,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagoya",
     position: "スタイリスト",
     instagram: "nehus_ryuto",
+    portrait: { url: "/staff/nishimura-ryuto.jpg", width: 600, height: 750 },
   },
   {
     slug: "arimori-misato",
@@ -215,6 +234,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagoya",
     position: "アシスタント",
     instagram: "misato__nehus",
+    portrait: { url: "/staff/arimori-misato.jpg", width: 600, height: 750 },
   },
   {
     slug: "tanogami-yoshiho",
@@ -231,6 +251,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagoya",
     position: "アシスタント",
     instagram: "__4iiika._",
+    portrait: { url: "/staff/watanabe-shika.jpg", width: 600, height: 750 },
   },
   {
     slug: "shindo-kanawa",
@@ -239,6 +260,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagaoka",
     position: "スタイリスト",
     instagram: "nehus_kanau",
+    portrait: { url: "/staff/shindo-kanawa.jpg", width: 600, height: 750 },
   },
   {
     slug: "takizawa-yoshinori",
@@ -248,6 +270,7 @@ export const stylists: readonly Stylist[] = [
     position: "店長 / スタイリスト",
     specialties: ["ブリーチ", "ハイトーン"],
     instagram: "nehus_ta.kkey",
+    portrait: { url: "/staff/takizawa-yoshinori.jpg", width: 600, height: 750 },
   },
   {
     slug: "oginezawa-kyohei",
@@ -257,6 +280,7 @@ export const stylists: readonly Stylist[] = [
     position: "スタイリスト",
     specialties: ["ブリーチ"],
     instagram: "ogi_short.nehus",
+    portrait: { url: "/staff/oginezawa-kyohei.jpg", width: 600, height: 750 },
   },
   {
     slug: "shimizu-mizuki",
@@ -265,6 +289,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagaoka",
     position: "スタイリスト",
     instagram: "nehus_mii",
+    portrait: { url: "/staff/shimizu-mizuki.jpg", width: 600, height: 750 },
   },
   {
     slug: "yokoyama-ichika",
@@ -281,5 +306,6 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagaoka",
     position: "アシスタント",
     instagram: "nehus_miyuu",
+    portrait: { url: "/staff/watanabe-miyu.jpg", width: 600, height: 750 },
   },
 ];

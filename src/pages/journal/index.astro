@@ -6,7 +6,7 @@ import { getJournalPosts } from "~lib/content";
 import { breadcrumbSchema, jsonLd } from "~lib/schema";
 
 const description =
-  "iLe（イル）からのお知らせ、プレスリリース、ストーリー、メディア掲載情報。";
+  "iLe（イル）からのお知らせ、プレスリリース、ブランドストーリー、メディア掲載情報をお届けする公式ジャーナル。原宿・名古屋・長岡の4店舗を iLe ブランドに統一する歩みを綴ります。";
 
 const pageSchemas = [
   breadcrumbSchema([
@@ -33,7 +33,8 @@ const sorted = [...journalPosts].sort((a, b) =>
     title="JOURNAL"
   />
 
-  <section class="journal-list">
+  <section class="journal-list" aria-labelledby="journal-list-h">
+    <h2 id="journal-list-h" class="sr-only">記事一覧</h2>
     <div class="journal-list__grid">
       {sorted.map((post, i) => (
         <JournalCard post={post} index={i} />

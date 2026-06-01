@@ -1,6 +1,7 @@
 ---
 import type { Stylist } from "~types/content";
 import { getSalonBySlug } from "~lib/content";
+import Picture from "~components/Picture.astro";
 
 interface Props {
   stylist: Stylist;
@@ -15,7 +16,18 @@ const areaLabel = stylist.position
 ---
 
 <article class="stylist" data-stylist-index={index}>
-  <div class={`stylist__img stylist__img--${(index % 6) + 1}`}></div>
+  <div class={`stylist__img stylist__img--${(index % 6) + 1}`}>
+    {stylist.portrait && (
+      <Picture
+        class="stylist__photo"
+        src={stylist.portrait.url}
+        width={stylist.portrait.width}
+        height={stylist.portrait.height}
+        alt={`${stylist.name}（${stylist.nameJa ?? ""}）`}
+        loading="lazy"
+      />
+    )}
+  </div>
   <h3 class="stylist__name">{stylist.name}</h3>
   <p class="stylist__salon">{salonLabel}</p>
   <p class="stylist__area">{areaLabel}</p>
@@ -30,6 +42,16 @@ const areaLabel = stylist.position
     margin-bottom: 18px;
     overflow: hidden;
     position: relative;
+  }
+  .stylist__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    filter: grayscale(100%) contrast(1.02);
+    z-index: 0;
   }
   .stylist__img--1 { background: linear-gradient(180deg, #888b90 0%, #3a3d42 100%); }
   .stylist__img--2 { background: linear-gradient(180deg, #7f8388 0%, #34373b 100%); }

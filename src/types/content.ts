@@ -33,6 +33,10 @@ export interface Salon {
   mapLat?: number;
   mapLng?: number;
   description: string;
+  /** Richer, factual meta description for SEO/LLMO (area, access, services,
+   *  hours). Falls back to `description` when absent. The displayed brand
+   *  tagline (`description`) stays untouched. */
+  seoDescription?: string;
   badge: string; // "— origin", "— formerly nehus"
   stylistCount?: number;
   heroImage?: MicroCMSImage;

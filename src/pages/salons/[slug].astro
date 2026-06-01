@@ -3,6 +3,7 @@ import BaseLayout from "~layouts/BaseLayout.astro";
 import PageHero from "~components/PageHero.astro";
 import { getSalons, getStylists } from "~lib/content";
 import StylistCard from "~components/StylistCard.astro";
+import Picture from "~components/Picture.astro";
 import {
   localBusinessSchema,
   breadcrumbSchema,
@@ -33,7 +34,7 @@ const pageSchemas = [
 
 <BaseLayout
   title={salon.nameLatin}
-  description={salon.description}
+  description={salon.seoDescription ?? salon.description}
 >
   <Fragment slot="head">
     {pageSchemas.map((schema) => (
@@ -46,6 +47,19 @@ const pageSchemas = [
     title={salon.nameLatin.toUpperCase()}
     italicTitle="iLe"
   />
+
+  {salon.heroImage && (
+    <figure class="salon-atmos">
+      <Picture
+        class="salon-atmos__img"
+        src={salon.heroImage.url}
+        width={salon.heroImage.width}
+        height={salon.heroImage.height}
+        alt={`${salon.name}（${salon.nameLatin}）の店内`}
+        loading="eager"
+      />
+    </figure>
+  )}
 
   <section class="salon-detail">
     <div class="salon-detail__inner">
@@ -93,6 +107,23 @@ const pageSchemas = [
 </BaseLayout>
 
 <style>
+  .salon-atmos {
+    margin: 0;
+    width: 100%;
+    aspect-ratio: 1600 / 680;
+    max-height: 64vh;
+    overflow: hidden;
+    background: var(--color-ink);
+    position: relative;
+    z-index: 1;
+  }
+  .salon-atmos__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.02);
+    display: block;
+  }
   .salon-detail {
     padding: 110px 32px;
     background: var(--color-snow);

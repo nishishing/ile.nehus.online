@@ -55,19 +55,32 @@ Astro project scaffold, design tokens, base layout, top page, LLMO basis.
 - [ ] プレスリリース原稿を投入（別セッション成果物）
 - [ ] note 代表記事を投入
 - [ ] 全ページの画像差し替え（実写真へ）
-- [ ] 画像最適化（WebP / AVIF）
+- [x] 画像最適化（WebP / AVIF）— `<Picture>` + `scripts/optimize-images.mjs`
+      が public/ の自前JPEGに AVIF/WebP 兄弟を prebuild 生成
 
 ## 🟡 W7 — LLMO 検証 & A11y (7/13 – 7/19)
 
-- [ ] Google Rich Results Test 全ページ
-- [ ] Schema.org Validator 全ページ
+- [ ] Google Rich Results Test 全ページ（外部ツール／ユーザー側）
+- [x] SEO/OGP メタ内部検証 — `scripts/validate-seo.mjs`
+      (`npm run validate:seo`) を CI に組込。title/description/canonical/OGP/
+      twitter card/参照アセット実在/title・canonical重複を検証。0 errors
+      （警告=サロン/法務ページの短い説明文＝意図的ブランドコピー、要件次第）
+- [x] Schema.org 内部整合チェック 全ページ — `scripts/validate-jsonld.mjs`
+      (`npm run validate:jsonld`) を CI に組込。@id参照解決・絶対URL・画像実在・
+      日付/パンくず整合・型別必須を検証。現状 0 errors（警告=写真未提供2店）
 - [ ] ChatGPT / Claude / Perplexity に質問テスト（"iLe って何？"）
-- [ ] Lighthouse 全項目 90+
-- [ ] axe a11y チェック
+- [ ] Lighthouse 全項目 90+（外部ツール／ユーザー側）
+- [x] 静的 a11y チェック — `scripts/validate-a11y.mjs`
+      (`npm run validate:a11y`) を CI に組込。lang/title/landmark/見出し階層/
+      alt/リンク・ボタンの名前/重複id/aria参照/zoom無効化/skip link を検証。
+      0 errors（コントラスト・可視フォーカスは視覚チェックのため対象外）
 
 ## 🟡 W8 — Final & Soft Launch (7/20 – 7/26)
 
-- [ ] 最終調整
+- [x] 内部リンク／アセット死活チェック — `scripts/validate-links.mjs`
+      (`npm run validate:links`) を CI に組込。href/src/srcset を全解決検証。
+      0 broken。ヘッダーの死んだ CTA を修正（BOOK→/salons、アカウント◯削除）
+- [ ] 最終調整（その他）
 - [ ] 本番ドメイン切替（DNS）
 - [ ] WordPress 退避
 - [ ] Search Console 登録 + sitemap 送信

@@ -278,13 +278,48 @@ the Workers Static Assets flow we actually used).
 
 ## What still needs the user (operator-side work)
 
+> **📌 TODO — awaiting operator photos (add when supplied; per owner, "later").**
+> These couldn't be auto-sourced: HPB had no clean shot and Instagram is
+> login-walled / rate-limited from CI. Drop the files in and wire as noted —
+> reuse the same `sharp` pipeline (see Changelog commits) so the cool-mono
+> treatment stays consistent.
+> - **Salon interiors — harajuku-a (iLe origin) + nagoya.** Grayscale band,
+>   1600×680, save `public/salons/{harajuku-a,nagoya}.jpg`, then add
+>   `heroImage: { url, width: 1600, height: 680 }` to those entries in
+>   `src/data/salons.ts` (LocalBusiness `image` + the atmosphere band pick it
+>   up automatically).
+> - **Staff portraits — 7 missing** (`inoe-mizuki`, `horibe-mihana`,
+>   `fukutani-amane`, `kawahara-ichika`, `yukimatsu-hisa`, `tanogami-yoshiho`,
+>   `yokoyama-ichika`). Grayscale, 600×750 top-anchored, save
+>   `public/staff/<slug>.jpg`, then add
+>   `portrait: { url, width: 600, height: 750 }` to each in
+>   `src/data/stylists.ts`.
+> - **Effect Bleach before/after + real OGP + iLe logo SVG** — still open.
+
 1. **Real assets** *(the main remaining blocker)* — iLe unified logo SVG,
-   salon hero photos, **portraits for all 32 staff**, Effect Bleach
-   before/after photos. A **provisional** OGP image exists at
-   `public/og-default.jpg` (cool-mono, generated with `sharp` from an SVG)
-   — replace with a real one when available. In-page photo placeholders are
-   cool-grayscale gradients with a CSS film-grain overlay — replace
-   preserving that tone.
+   salon interiors for **harajuku-a + nagoya** (HPB only had clean interiors
+   for the other two; these two need operator-supplied photos), Effect Bleach
+   before/after photos, and a real OGP.
+   **Provisional assets already in place** (replace when real ones land):
+   - **Salon interiors**: 2/4 (`harajuku-b`, `nagaoka`) use the salon's own
+     HPB interior photo, self-hosted in `public/salons/<slug>.jpg`, grayscaled,
+     shown as a full-bleed band under the salon hero + fed to LocalBusiness
+     `image`. harajuku-a / nagoya have no clean HPB interior (only style
+     collages) — left text-only until real photos arrive.
+   - **Staff portraits**: 25/32 staff have photos pulled from the salon's
+     own **Hot Pepper Beauty** pages, self-hosted in `public/staff/<slug>.jpg`,
+     downsampled + **grayscaled** (`sharp`) to fit cool-mono. 7 have no HPB
+     photo yet (nehus-原宿/iLe-原宿/名古屋 assistants without an HPB photo) —
+     left as gradient placeholder. (`shimizu-mizuki` appears on HPB as「今井
+     瑞希」— confirmed same person.)
+   - **Style gallery**: `/effect-bleach` Works section shows 12 real colour
+     works from the salons' HPB style galleries, self-hosted in
+     `public/gallery/`, given a **low-saturation cool grade** (cool-mono *lean*
+     that keeps the colour legible — colour is the product) + ImageGallery
+     JSON-LD. Swap freely; the grade is one `modulate` param.
+   - **OGP**: `public/og-default.jpg` (cool-mono, `sharp` from an SVG).
+   - In-page photo placeholders (salons, gallery) are cool-grayscale
+     gradients with a CSS film-grain overlay — replace preserving that tone.
 2. **microCMS** — account + APIs per `docs/microcms-schema.md`. Then set
    `MICROCMS_SERVICE_DOMAIN` and `MICROCMS_API_KEY` in Cloudflare env vars
    and swap `src/data/*.ts` consumers to `src/lib/microcms.ts`.
@@ -315,6 +350,9 @@ section. `ROADMAP.md` tracks the week plan.
   no design notes, no TODO lists unless asked).
 - **Do not** revisit settled design decisions (palette, fonts, structure)
   without explicit user approval.
+- **Use `~components/Picture.astro`** (not a bare `<img>`) for self-hosted
+  photos, so they get AVIF/WebP. Add the source `.jpg` under
+  `public/{staff,salons,gallery}` — derivatives are generated automatically.
 - **Always** verify with `npm run check` + `npm run build` before committing.
 - **Always** commit messages should be specific and scoped (see existing
   history for the style).
@@ -433,6 +471,70 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-01** — Salon interior photos in list cards + Picture sizing fix:
+  `SalonRow` (homepage + `/salons`) now shows the real interior photo for
+  salons that have one (harajuku-b, nagaoka), with a legibility scrim behind
+  the corner labels; the two photo-less salons keep their gradient. Doing this
+  surfaced a latent regression from the W6 `<Picture>` refactor: parent scoped
+  styles can't reach the `<img>` inside a child component, so `object-fit`/
+  sizing silently fell back to `fill` everywhere (the other 4 usages only
+  *looked* right because the image ratio matched the container). Fixed at the
+  source — `Picture.astro` now owns the base `width/height:100%; object-fit:
+  cover` style; the gallery hover-zoom/filter was restored via `:global()`.
+- **2026-06-01** — Link integrity + header CTA fix (W8): added
+  `scripts/validate-links.mjs` (`npm run validate:links`; now part of
+  `npm run validate` + CI) — resolves every internal href/src/srcset against
+  `dist/` and checks in-page `#anchor` targets. 0 broken links/assets. It
+  surfaced the only real issue: the header's `BOOK` and account `◯` pointed at
+  dead `#book`/`#account` anchors on all 57 pages. `BOOK` now links to
+  `/salons` (booking is per-salon via Hot Pepper); the account icon was
+  removed (no account feature exists).
+- **2026-06-01** — Meta description enrichment: gave the short-description
+  pages factual SEO/LLMO meta text. Salons got a new optional `seoDescription`
+  field (area + station walk-times + Effect Bleach service + hours) used only
+  for the `<meta>` — the displayed poetic `description` tagline is untouched.
+  Privacy / Terms / Journal-list descriptions expanded inline. validate:seo
+  now 0 warnings.
+- **2026-06-01** — SEO/OGP validation (W7): `scripts/validate-seo.mjs`
+  (`npm run validate:seo`; `npm run validate` runs all three) checks `dist/`
+  for `<title>`/description/canonical (self-referential, absolute, exists),
+  the full OGP + Twitter card set, og:image existence, referenced head assets,
+  and cross-page `<title>`/canonical uniqueness. Fixed the duplicate `<title>`
+  (homepage tagline collided with the press-release journal post — journal
+  page titles now append the subtitle). Remaining warnings = a few short brand
+  descriptions (salons / legal), left as intentional copy.
+- **2026-06-01** — Static a11y checks (W7): `scripts/validate-a11y.mjs`
+  (`npm run validate:a11y`, in CI) checks `dist/` for lang, `<title>`,
+  landmarks, one-`<h1>`/no-skipped-heading-levels, `<img>` alt, accessible
+  names on links/buttons, duplicate ids, aria idref targets, disabled zoom,
+  positive tabindex, and a working skip link. Fixed the only finding: h1→h3
+  jumps on `/salons` and `/journal` (added `sr-only` `<h2>` section headings).
+  Contrast & visible-focus are visual, out of static scope. 0 errors.
+- **2026-06-01** — JSON-LD validation (W7): `scripts/validate-jsonld.mjs`
+  (`npm run validate:jsonld`, wired into CI) parses every JSON-LD block in
+  `dist/` and checks @id reference resolution, absolute URLs, referenced
+  asset/page existence, ISO dates, breadcrumb ordering, and per-type required
+  shape. Fixed what it caught: created `public/logo.svg` (was a dead
+  Organization `logo` ref on all 57 pages); made `HairSalon`/`Article` images
+  absolute via an `absUrl()` helper; resolved two dangling `@id` refs
+  (gallery `about` → `#service`; `inDefinedTermSet` → inline `DefinedTermSet`).
+  Now 0 errors; 4 warnings = the 2 photo-less salons (expected).
+- **2026-06-01** — Image optimization (W6): `src/components/Picture.astro`
+  serves AVIF/WebP with a JPEG fallback (`<picture>`, `display:contents` so
+  layout is unchanged); `scripts/optimize-images.mjs` generates the siblings
+  for `public/{staff,salons,gallery}` and runs as `prebuild` (derivatives
+  gitignored). Remote URLs (microCMS) fall back to plain `<img>`. ~50% smaller
+  (AVIF). All 4 `<img>` sites migrated.
+- **2026-06-01** — Style gallery (Phase 3): added a Works section to
+  `/effect-bleach` with 12 real colour works from HPB (self-hosted in
+  `public/gallery/`, low-saturation cool grade) + ImageGallery JSON-LD.
+- **2026-06-01** — Salon interiors (Phase 2): added HPB interior photos for
+  harajuku-b + nagaoka (grayscaled, self-hosted in `public/salons/`), shown as
+  a full-bleed atmosphere band on the salon page + LocalBusiness `image`.
+  harajuku-a / nagoya have no clean HPB interior — pending operator photos.
+- **2026-06-01** — Staff portraits (Phase 1): pulled 24/32 staff photos from
+  the salons' Hot Pepper pages, self-hosted + grayscaled in `public/staff/`,
+  wired into StylistCard / stylist detail / Person JSON-LD (image + sameAs).
 - **2026-05-31** — Added `/menu` (price guide), `/technology` (3 technique
   pillars), `/reviews` (お客様の声); provisional cool-mono OGP image
   (`public/og-default.jpg` via sharp). Footer nav extended.

@@ -4,6 +4,7 @@ import PageHero from "~components/PageHero.astro";
 import { getStylists, getSalonBySlug } from "~lib/content";
 import { breadcrumbSchema, jsonLd } from "~lib/schema";
 import { site } from "~data/site";
+import Picture from "~components/Picture.astro";
 
 export async function getStaticPaths() {
   const stylists = await getStylists();
@@ -29,6 +30,10 @@ const personSchema = {
     ? { "@id": `${site.url}/salons/${salon.slug}/#salon` }
     : { "@id": `${site.url}/#organization` },
   url: `${site.url}/stylists/${stylist.slug}`,
+  ...(stylist.portrait ? { image: `${site.url}${stylist.portrait.url}` } : {}),
+  ...(stylist.instagram
+    ? { sameAs: [`https://instagram.com/${stylist.instagram}`] }
+    : {}),
 };
 
 const pageSchemas = [
@@ -55,7 +60,18 @@ const pageSchemas = [
 
   <section class="stylist-detail">
     <div class="stylist-detail__inner">
-      <div class={`stylist-detail__portrait stylist-detail__portrait--${(index % 6) + 1}`}></div>
+      <div class={`stylist-detail__portrait stylist-detail__portrait--${(index % 6) + 1}`}>
+        {stylist.portrait && (
+          <Picture
+            class="stylist-detail__photo"
+            src={stylist.portrait.url}
+            width={stylist.portrait.width}
+            height={stylist.portrait.height}
+            alt={`${stylist.name}（${stylist.nameJa ?? ""}）`}
+            loading="eager"
+          />
+        )}
+      </div>
       <div class="stylist-detail__body">
         <p class="stylist-detail__role">
           {stylist.position ?? "Hair Stylist"}
@@ -120,6 +136,16 @@ const pageSchemas = [
     aspect-ratio: 3 / 4;
     position: relative;
     overflow: hidden;
+  }
+  .stylist-detail__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    filter: grayscale(100%) contrast(1.02);
+    z-index: 0;
   }
   .stylist-detail__portrait::after {
     content: "";

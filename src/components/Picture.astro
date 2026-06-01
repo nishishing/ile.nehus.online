@@ -1,0 +1,65 @@
+---
+/**
+ * Picture — serves AVIF/WebP with a JPEG fallback for self-hosted images.
+ *
+ * Local images under `public/` (path starting with "/") get `.avif` + `.webp`
+ * siblings, generated at build time by `scripts/optimize-images.mjs`. Remote
+ * URLs (e.g. a future microCMS CDN) are rendered as a plain <img>, since the
+ * CDN handles format negotiation via its own query params — so this stays
+ * compatible with the `{ url, width, height }` data shape used everywhere.
+ *
+ * The <picture> uses `display: contents`, so it does not introduce a box and
+ * the <img> keeps participating in the parent's layout (grids, object-fit …).
+ */
+interface Props {
+  src: string;
+  alt: string;
+  width?: number | string;
+  height?: number | string;
+  class?: string;
+  loading?: "lazy" | "eager";
+  decoding?: "async" | "sync" | "auto";
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: className,
+  loading,
+  decoding = "async",
+  sizes,
+} = Astro.props;
+
+const isLocal = src.startsWith("/");
+const base = isLocal ? src.replace(/\.[a-zA-Z0-9]+$/, "") : "";
+---
+
+<picture style="display: contents">
+  {isLocal && <source srcset={`${base}.avif`} type="image/avif" />}
+  {isLocal && <source srcset={`${base}.webp`} type="image/webp" />}
+  <img
+    class={className}
+    src={src}
+    width={width}
+    height={height}
+    alt={alt}
+    loading={loading}
+    decoding={decoding}
+    sizes={sizes}
+  />
+</picture>
+
+<style>
+  /* Base fill behaviour for the rendered <img>. Parent scoped styles can't
+     reach into this component, so the photo's sizing lives here: it fills its
+     container (which sets the aspect-ratio) and crops with object-fit: cover. */
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

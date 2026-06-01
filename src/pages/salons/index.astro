@@ -35,7 +35,8 @@ const pageSchemas = [
     title="SALONS"
   />
 
-  <section class="salons-list">
+  <section class="salons-list" aria-labelledby="salons-list-h">
+    <h2 id="salons-list-h" class="sr-only">店舗一覧</h2>
     {salons.map((salon, i) => (
       <SalonRow salon={salon} reverse={i % 2 === 1} />
     ))}

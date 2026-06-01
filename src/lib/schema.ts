@@ -12,6 +12,13 @@
 import { site } from "~data/site";
 import type { Salon, JournalPost, FaqItem } from "~types/content";
 
+/** Make a `{ url, ... }`-shaped image absolute (local paths get the site
+ *  origin; already-absolute CDN URLs — e.g. microCMS — pass through). */
+function absUrl(url: string | undefined): string | undefined {
+  if (!url) return undefined;
+  return url.startsWith("http") ? url : `${site.url}${url}`;
+}
+
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
@@ -102,7 +109,7 @@ export function localBusinessSchema(salon: Salon) {
     name: salon.name,
     alternateName: salon.nameLatin,
     url: `${site.url}/salons/${salon.slug}`,
-    image: salon.heroImage?.url,
+    image: absUrl(salon.heroImage?.url),
     telephone: salon.phone,
     address: {
       "@type": "PostalAddress",
@@ -125,7 +132,7 @@ export function localBusinessSchema(salon: Salon) {
 }
 
 export function articleSchema(post: JournalPost) {
-  const image = post.ogImage?.url ?? post.eyecatch?.url;
+  const image = absUrl(post.ogImage?.url ?? post.eyecatch?.url);
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -194,7 +201,11 @@ export function definedTermSchema(t: GlossaryTerm) {
     name: t.term,
     alternateName: t.pronunciation,
     description: t.definition,
-    inDefinedTermSet: { "@id": `${site.url}/glossary` },
+    inDefinedTermSet: {
+      "@type": "DefinedTermSet",
+      name: "iLe 用語集",
+      url: `${site.url}/glossary`,
+    },
   };
 }
 
