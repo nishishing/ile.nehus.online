@@ -54,6 +54,8 @@ Astro project scaffold, design tokens, base layout, top page, LLMO basis.
 
 - [ ] プレスリリース原稿を投入（別セッション成果物）
 - [ ] note 代表記事を投入
+- [x] LLMによるSEOコラム自動生成・自動公開（`auto-blog` ワークフロー、
+      `scripts/generate-post.mjs`／要 `ANTHROPIC_API_KEY` シークレット）
 - [ ] 全ページの画像差し替え（実写真へ）
 - [x] 画像最適化（WebP / AVIF）— `<Picture>` + `scripts/optimize-images.mjs`
       が public/ の自前JPEGに AVIF/WebP 兄弟を prebuild 生成

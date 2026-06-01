@@ -56,7 +56,7 @@ export interface Stylist {
   portrait?: MicroCMSImage;
 }
 
-export type JournalCategory = "press" | "story" | "news" | "media";
+export type JournalCategory = "press" | "story" | "news" | "media" | "column";
 
 export interface JournalPost {
   slug: string;
@@ -71,6 +71,10 @@ export interface JournalPost {
   eyecatchAlt?: string;
   eyecatch?: MicroCMSImage;
   ogImage?: MicroCMSImage;
+  /** Set on auto-generated "column" posts: the source SEO topic + keywords.
+   *  Used to dedupe topics across runs; not rendered. */
+  topic?: string;
+  keywords?: readonly string[];
 }
 
 export interface FaqItem {
