@@ -34,7 +34,7 @@ const pageSchemas = [
 
 <BaseLayout
   title={salon.nameLatin}
-  description={salon.description}
+  description={salon.seoDescription ?? salon.description}
 >
   <Fragment slot="head">
     {pageSchemas.map((schema) => (

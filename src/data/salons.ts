@@ -24,6 +24,8 @@ export const salons: readonly Salon[] = [
     hours: "10:00 — 20:00",
     description:
       "創業の地。2020年8月、ここから iLe は始まった。原宿の小さな島として、すべての始まりとなった一店舗。",
+    seoDescription:
+      "iLe 原宿（iLe Harajuku A）｜明治神宮前駅 徒歩2分・原宿駅 徒歩7分。2020年創業、iLe ブランド発祥の店。独自技術「エフェクトブリーチ」による透明感のあるハイトーンカラー・ブリーチが得意。年中無休、10:00–20:00。",
     badge: "— origin",
   },
   {
@@ -44,6 +46,8 @@ export const salons: readonly Salon[] = [
     hours: "10:00 — 20:00",
     description:
       "同じ街の、もう一つの島。独立した空気と常連を持つ、原宿のもう一つの拠点。",
+    seoDescription:
+      "iLe 原宿 B（旧 nehus／iLe Harajuku B）｜明治神宮前駅 徒歩5分・原宿駅 徒歩7分、表参道 MANA。独自技術「エフェクトブリーチ」によるダメージレスなハイトーン・デザインカラーが強み。年中無休、10:00–20:00。",
     badge: "— formerly nehus",
     heroImage: { url: "/salons/harajuku-b.jpg", width: 1600, height: 680 },
   },
@@ -65,6 +69,8 @@ export const salons: readonly Salon[] = [
     hours: "10:00 — 20:00",
     description:
       "中部の島。名古屋に根を張った独立したコミュニティとともに歩む店舗。",
+    seoDescription:
+      "iLe 名古屋（旧 nehus 名古屋／iLe Nagoya）｜栄駅 徒歩9分・矢場町駅 徒歩6分、名古屋市中区栄。独自技術「エフェクトブリーチ」で透明感のあるハイトーンカラー・ブリーチを提案。年中無休、10:00–20:00。",
     badge: "— formerly nehus 名古屋",
   },
   {
@@ -85,6 +91,8 @@ export const salons: readonly Salon[] = [
     hours: "9:00 — 19:00",
     description:
       "雪の街の島。地域に深く根づいた、人と人の繋がりを大切にする店舗。",
+    seoDescription:
+      "iLe 長岡（旧 nehus 長岡／iLe Nagaoka）｜新潟県長岡市古正寺、イオン長岡店すぐ近く。地域に根ざしたサロンで、独自技術「エフェクトブリーチ」によるダメージレスなハイトーンカラーが人気。年中無休、9:00–19:00。",
     badge: "— formerly nehus 長岡",
     heroImage: { url: "/salons/nagaoka.jpg", width: 1600, height: 680 },
   },

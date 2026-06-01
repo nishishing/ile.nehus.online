@@ -471,6 +471,12 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-01** — Meta description enrichment: gave the short-description
+  pages factual SEO/LLMO meta text. Salons got a new optional `seoDescription`
+  field (area + station walk-times + Effect Bleach service + hours) used only
+  for the `<meta>` — the displayed poetic `description` tagline is untouched.
+  Privacy / Terms / Journal-list descriptions expanded inline. validate:seo
+  now 0 warnings.
 - **2026-06-01** — SEO/OGP validation (W7): `scripts/validate-seo.mjs`
   (`npm run validate:seo`; `npm run validate` runs all three) checks `dist/`
   for `<title>`/description/canonical (self-referential, absolute, exists),
