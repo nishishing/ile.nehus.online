@@ -294,6 +294,11 @@ the Workers Static Assets flow we actually used).
      photo yet (nehus-原宿/iLe-原宿/名古屋 assistants without an HPB photo) —
      left as gradient placeholder. (`shimizu-mizuki` appears on HPB as「今井
      瑞希」— confirmed same person.)
+   - **Style gallery**: `/effect-bleach` Works section shows 12 real colour
+     works from the salons' HPB style galleries, self-hosted in
+     `public/gallery/`, given a **low-saturation cool grade** (cool-mono *lean*
+     that keeps the colour legible — colour is the product) + ImageGallery
+     JSON-LD. Swap freely; the grade is one `modulate` param.
    - **OGP**: `public/og-default.jpg` (cool-mono, `sharp` from an SVG).
    - In-page photo placeholders (salons, gallery) are cool-grayscale
      gradients with a CSS film-grain overlay — replace preserving that tone.
@@ -445,6 +450,9 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-01** — Style gallery (Phase 3): added a Works section to
+  `/effect-bleach` with 12 real colour works from HPB (self-hosted in
+  `public/gallery/`, low-saturation cool grade) + ImageGallery JSON-LD.
 - **2026-06-01** — Salon interiors (Phase 2): added HPB interior photos for
   harajuku-b + nagaoka (grayscaled, self-hosted in `public/salons/`), shown as
   a full-bleed atmosphere band on the salon page + LocalBusiness `image`.
