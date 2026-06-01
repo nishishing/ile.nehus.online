@@ -1,0 +1,121 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import { breadcrumbSchema, jsonLd } from "~lib/schema";
+
+const description =
+  "iLe（イル）に寄せられたお客様の声。エフェクトブリーチの仕上がり、艶と透明感、ダメージレスなハイトーンへの感想。";
+
+// Voices carried over from the existing site's reviews.
+const voices = [
+  {
+    body: "独自のエフェクトブリーチで、驚くほどサラサラな仕上がりになりました。ブリーチをしたとは思えない手触りです。",
+    meta: "ハイトーンカラー / 原宿",
+  },
+  {
+    body: "名古屋店でも、全く変わらない艶と透明感に大満足です。ブリーチ特有のパサつきがありません。",
+    meta: "エフェクトブリーチ / 名古屋",
+  },
+  {
+    body: "初めてのエフェクトブリーチでしたが、色の抜け方が本当に綺麗で、色落ちしてもムラになりませんでした。",
+    meta: "ダブルカラー / 原宿",
+  },
+  {
+    body: "他店で「これ以上は切れる」と言われたハイダメージ毛でしたが、相談しながら理想のトーンに近づけてもらえました。",
+    meta: "ケアブリーチ / 長岡",
+  },
+];
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Voice", url: "/reviews" },
+  ]),
+];
+---
+
+<BaseLayout title="Voice — お客様の声" description={description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero eyebrow="— Customer Voice" title="VOICE" italicTitle="Voice" />
+
+  <section class="voice-section">
+    <div class="voice-grid">
+      {voices.map((v) => (
+        <figure class="voice-card">
+          <blockquote class="voice-card__body">“{v.body}”</blockquote>
+          <figcaption class="voice-card__meta">— {v.meta}</figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <p class="voice-note">
+      ※ お客様からいただいた感想を編集してご紹介しています。最新の口コミは各店の Hot Pepper Beauty ページでもご覧いただけます。
+    </p>
+    <a class="voice-cta" href="/salons">ご予約はこちら →</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .voice-section {
+    padding: 100px 32px 140px;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 760px) {
+    .voice-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .voice-card {
+    margin: 0;
+    padding: 40px 32px;
+    background: var(--color-pearl);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .voice-card__body {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.75;
+    margin: 0;
+    color: var(--color-fg);
+  }
+  .voice-card__meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin-top: auto;
+  }
+  .voice-note {
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: var(--color-fg-subtle);
+    margin: 40px 0 0;
+  }
+  .voice-cta {
+    display: inline-block;
+    margin-top: 32px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    border: 1px solid var(--color-ink);
+  }
+</style>

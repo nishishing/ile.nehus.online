@@ -1,0 +1,139 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import { breadcrumbSchema, jsonLd } from "~lib/schema";
+
+const description =
+  "iLe（イル）のメニュー・料金目安。エフェクトブリーチ＋カラー、ダブルエフェクトブリーチ、ケアブリーチ、デザインカットなど。原宿・名古屋・長岡。";
+
+const groups = [
+  {
+    label: "Cut",
+    items: [
+      { name: "デザインカット（シャンプー・ブロー込）", price: "¥7,700〜" },
+    ],
+  },
+  {
+    label: "Bleach & Color",
+    items: [
+      { name: "エフェクトブリーチ ＋ カラー（全頭）", price: "¥18,700〜" },
+      { name: "ダブルエフェクトブリーチ（2回）＋ カラー", price: "¥25,300〜" },
+      { name: "ケアブリーチ（リタッチ）＋ カラー", price: "¥16,500〜" },
+    ],
+  },
+  {
+    label: "Cut + Color Set",
+    items: [
+      { name: "カット ＋ エフェクトブリーチ ＋ カラー", price: "¥24,200〜" },
+    ],
+  },
+];
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Menu", url: "/menu" },
+  ]),
+];
+---
+
+<BaseLayout title="Menu — メニュー・料金" description={description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero eyebrow="— Price Guide" title="MENU" italicTitle="Menu" />
+
+  <section class="menu-section">
+    <div class="menu-inner">
+      {groups.map((g) => (
+        <div class="menu-group">
+          <h2 class="menu-group__h">{g.label}</h2>
+          <dl class="menu-list">
+            {g.items.map((m) => (
+              <div class="menu-row">
+                <dt>{m.name}</dt>
+                <dd>{m.price}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      ))}
+
+      <p class="menu-note">
+        料金は目安です（税込）。髪の長さ・状態により変動します。
+        最新の価格・所要時間・クーポンは、各店の <strong>Hot Pepper Beauty</strong> ページをご確認ください。
+      </p>
+      <a class="menu-cta" href="/salons">店舗別の予約はこちら →</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .menu-section {
+    padding: 100px 32px 140px;
+    position: relative;
+    z-index: 1;
+  }
+  .menu-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .menu-group {
+    margin-bottom: 56px;
+  }
+  .menu-group__h {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-ink);
+  }
+  .menu-list {
+    margin: 0;
+  }
+  .menu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--color-mist);
+  }
+  .menu-row dt {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .menu-row dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    color: var(--color-fg);
+  }
+  .menu-note {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--color-fg-subtle);
+    margin: 40px 0 0;
+  }
+  .menu-note strong {
+    color: var(--color-fg-muted);
+  }
+  .menu-cta {
+    display: inline-block;
+    margin-top: 36px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    border: 1px solid var(--color-ink);
+  }
+</style>

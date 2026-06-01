@@ -47,7 +47,10 @@ export const navPrimary = [
 export const navFooter = [
   { label: "SALONS", href: "/salons" },
   { label: "STYLISTS", href: "/stylists" },
+  { label: "MENU", href: "/menu" },
   { label: "EFFECT BLEACH", href: "/effect-bleach" },
+  { label: "TECHNOLOGY", href: "/technology" },
+  { label: "VOICE", href: "/reviews" },
   { label: "STORY", href: "/story" },
   { label: "MESSAGE", href: "/message" },
   { label: "JOURNAL", href: "/journal" },
