@@ -214,6 +214,9 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 |---|---|---|
 | `/` | Organization + WebSite + Person + 4× HairSalon + Breadcrumb | Top, v8 |
 | `/effect-bleach` | **Service + DefinedTerm + Breadcrumb** | iLe signature technique; **LLMO-critical** |
+| `/menu` | Breadcrumb | Price guide (cut / bleach&color); real prices |
+| `/technology` | Breadcrumb | 3 pillars: Effect Bleach / Layer Cut / Hair Esthe |
+| `/reviews` | Breadcrumb | お客様の声 (carried-over testimonials) |
 | `/story` | Article | "船から、島へ" 4-chapter editorial (西村, 共同代表) |
 | `/message` | Article (author=Person) | 西村's signed message (共同代表) |
 | `/company` | Breadcrumb | Overview + Timeline; lists both co-reps |
@@ -277,9 +280,11 @@ the Workers Static Assets flow we actually used).
 
 1. **Real assets** *(the main remaining blocker)* — iLe unified logo SVG,
    salon hero photos, **portraits for all 32 staff**, Effect Bleach
-   before/after photos, OGP default 1200×630 (currently `/og-default.jpg`
-   **404s**). Placeholders are cool-grayscale gradients with a CSS
-   film-grain overlay — replace preserving that tone.
+   before/after photos. A **provisional** OGP image exists at
+   `public/og-default.jpg` (cool-mono, generated with `sharp` from an SVG)
+   — replace with a real one when available. In-page photo placeholders are
+   cool-grayscale gradients with a CSS film-grain overlay — replace
+   preserving that tone.
 2. **microCMS** — account + APIs per `docs/microcms-schema.md`. Then set
    `MICROCMS_SERVICE_DOMAIN` and `MICROCMS_API_KEY` in Cloudflare env vars
    and swap `src/data/*.ts` consumers to `src/lib/microcms.ts`.
@@ -428,6 +433,9 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-05-31** — Added `/menu` (price guide), `/technology` (3 technique
+  pillars), `/reviews` (お客様の声); provisional cool-mono OGP image
+  (`public/og-default.jpg` via sharp). Footer nav extended.
 - **2026-05-31** — Effect Bleach section integrated from legacy site + web
   (Three Principles, the Logic, voices, menu, iLe Academy); glossary + FAQ
   enriched, pricing FAQ added. (PR #8)
