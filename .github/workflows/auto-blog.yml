@@ -5,7 +5,7 @@ name: Auto Blog
 # ANTHROPIC_API_KEY. Runs weekly + on-demand.
 on:
   schedule:
-    - cron: "0 0 * * 1" # Mondays 00:00 UTC
+    - cron: "0 0 * * 1,3,5" # Mon/Wed/Fri 00:00 UTC (~週3回)
   workflow_dispatch:
     inputs:
       topic:
