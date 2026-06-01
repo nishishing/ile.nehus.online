@@ -60,8 +60,10 @@ Astro project scaffold, design tokens, base layout, top page, LLMO basis.
 
 ## 🟡 W7 — LLMO 検証 & A11y (7/13 – 7/19)
 
-- [ ] Google Rich Results Test 全ページ
-- [ ] Schema.org Validator 全ページ
+- [ ] Google Rich Results Test 全ページ（外部ツール／ユーザー側）
+- [x] Schema.org 内部整合チェック 全ページ — `scripts/validate-jsonld.mjs`
+      (`npm run validate:jsonld`) を CI に組込。@id参照解決・絶対URL・画像実在・
+      日付/パンくず整合・型別必須を検証。現状 0 errors（警告=写真未提供2店）
 - [ ] ChatGPT / Claude / Perplexity に質問テスト（"iLe って何？"）
 - [ ] Lighthouse 全項目 90+
 - [ ] axe a11y チェック

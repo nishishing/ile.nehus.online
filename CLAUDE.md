@@ -471,6 +471,15 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-01** — JSON-LD validation (W7): `scripts/validate-jsonld.mjs`
+  (`npm run validate:jsonld`, wired into CI) parses every JSON-LD block in
+  `dist/` and checks @id reference resolution, absolute URLs, referenced
+  asset/page existence, ISO dates, breadcrumb ordering, and per-type required
+  shape. Fixed what it caught: created `public/logo.svg` (was a dead
+  Organization `logo` ref on all 57 pages); made `HairSalon`/`Article` images
+  absolute via an `absUrl()` helper; resolved two dangling `@id` refs
+  (gallery `about` → `#service`; `inDefinedTermSet` → inline `DefinedTermSet`).
+  Now 0 errors; 4 warnings = the 2 photo-less salons (expected).
 - **2026-06-01** — Image optimization (W6): `src/components/Picture.astro`
   serves AVIF/WebP with a JPEG fallback (`<picture>`, `display:contents` so
   layout is unchanged); `scripts/optimize-images.mjs` generates the siblings

@@ -64,6 +64,7 @@ const gallery = [
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": `${site.url}/effect-bleach#service`,
   name: "エフェクトブリーチ",
   alternateName: "Effect Bleach",
   serviceType: "ヘアブリーチ / ハイトーンカラー",
@@ -77,7 +78,7 @@ const gallerySchema = {
   "@context": "https://schema.org",
   "@type": "ImageGallery",
   name: "Effect Bleach — Works",
-  about: { "@id": `${site.url}/effect-bleach` },
+  about: { "@id": `${site.url}/effect-bleach#service` },
   associatedMedia: gallery.map((g) => ({
     "@type": "ImageObject",
     contentUrl: `${site.url}${g.src}`,
