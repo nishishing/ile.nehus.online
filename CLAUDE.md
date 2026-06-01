@@ -473,6 +473,9 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-01** — `public/llms.txt` (llmstxt.org): curated brand summary +
+  links for LLMs (ChatGPT/Claude/Perplexity), grounded in confirmed facts.
+  Complements the AI-crawler-allow `robots.txt` and the auto-blog for LLMO.
 - **2026-06-01** — Auto-blog pipeline: Claude-generated SEO/LLMO "column"
   articles, auto-published. `scripts/generate-post.mjs` (Anthropic TS SDK,
   `claude-opus-4-8`, structured `json_schema` output, brand brief cached) picks
