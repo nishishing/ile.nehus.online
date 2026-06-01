@@ -45,6 +45,7 @@ export const salons: readonly Salon[] = [
     description:
       "同じ街の、もう一つの島。独立した空気と常連を持つ、原宿のもう一つの拠点。",
     badge: "— formerly nehus",
+    heroImage: { url: "/salons/harajuku-b.jpg", width: 1600, height: 680 },
   },
   {
     slug: "nagoya",
@@ -85,6 +86,7 @@ export const salons: readonly Salon[] = [
     description:
       "雪の街の島。地域に深く根づいた、人と人の繋がりを大切にする店舗。",
     badge: "— formerly nehus 長岡",
+    heroImage: { url: "/salons/nagaoka.jpg", width: 1600, height: 680 },
   },
 ];
 

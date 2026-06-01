@@ -279,8 +279,15 @@ the Workers Static Assets flow we actually used).
 ## What still needs the user (operator-side work)
 
 1. **Real assets** *(the main remaining blocker)* — iLe unified logo SVG,
-   salon hero photos, Effect Bleach before/after photos, and a real OGP.
+   salon interiors for **harajuku-a + nagoya** (HPB only had clean interiors
+   for the other two; these two need operator-supplied photos), Effect Bleach
+   before/after photos, and a real OGP.
    **Provisional assets already in place** (replace when real ones land):
+   - **Salon interiors**: 2/4 (`harajuku-b`, `nagaoka`) use the salon's own
+     HPB interior photo, self-hosted in `public/salons/<slug>.jpg`, grayscaled,
+     shown as a full-bleed band under the salon hero + fed to LocalBusiness
+     `image`. harajuku-a / nagoya have no clean HPB interior (only style
+     collages) — left text-only until real photos arrive.
    - **Staff portraits**: 25/32 staff have photos pulled from the salon's
      own **Hot Pepper Beauty** pages, self-hosted in `public/staff/<slug>.jpg`,
      downsampled + **grayscaled** (`sharp`) to fit cool-mono. 7 have no HPB
@@ -438,6 +445,10 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-01** — Salon interiors (Phase 2): added HPB interior photos for
+  harajuku-b + nagaoka (grayscaled, self-hosted in `public/salons/`), shown as
+  a full-bleed atmosphere band on the salon page + LocalBusiness `image`.
+  harajuku-a / nagoya have no clean HPB interior — pending operator photos.
 - **2026-06-01** — Staff portraits (Phase 1): pulled 24/32 staff photos from
   the salons' Hot Pepper pages, self-hosted + grayscaled in `public/staff/`,
   wired into StylistCard / stylist detail / Person JSON-LD (image + sameAs).
