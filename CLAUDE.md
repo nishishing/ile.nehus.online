@@ -281,12 +281,12 @@ the Workers Static Assets flow we actually used).
 1. **Real assets** *(the main remaining blocker)* — iLe unified logo SVG,
    salon hero photos, Effect Bleach before/after photos, and a real OGP.
    **Provisional assets already in place** (replace when real ones land):
-   - **Staff portraits**: 24/32 staff have photos pulled from the salon's
+   - **Staff portraits**: 25/32 staff have photos pulled from the salon's
      own **Hot Pepper Beauty** pages, self-hosted in `public/staff/<slug>.jpg`,
-     downsampled + **grayscaled** (`sharp`) to fit cool-mono. 8 have no HPB
-     photo yet (most nehus-原宿/iLe-原宿 assistants + `shimizu-mizuki` whose
-     HPB surname differed — left as gradient placeholder). Regenerate via the
-     stylists.ts generator + the portrait set.
+     downsampled + **grayscaled** (`sharp`) to fit cool-mono. 7 have no HPB
+     photo yet (nehus-原宿/iLe-原宿/名古屋 assistants without an HPB photo) —
+     left as gradient placeholder. (`shimizu-mizuki` appears on HPB as「今井
+     瑞希」— confirmed same person.)
    - **OGP**: `public/og-default.jpg` (cool-mono, `sharp` from an SVG).
    - In-page photo placeholders (salons, gallery) are cool-grayscale
      gradients with a CSS film-grain overlay — replace preserving that tone.

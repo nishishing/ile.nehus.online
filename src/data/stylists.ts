@@ -289,6 +289,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagaoka",
     position: "スタイリスト",
     instagram: "nehus_mii",
+    portrait: { url: "/staff/shimizu-mizuki.jpg", width: 600, height: 750 },
   },
   {
     slug: "yokoyama-ichika",
