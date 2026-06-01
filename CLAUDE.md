@@ -279,12 +279,17 @@ the Workers Static Assets flow we actually used).
 ## What still needs the user (operator-side work)
 
 1. **Real assets** *(the main remaining blocker)* — iLe unified logo SVG,
-   salon hero photos, **portraits for all 32 staff**, Effect Bleach
-   before/after photos. A **provisional** OGP image exists at
-   `public/og-default.jpg` (cool-mono, generated with `sharp` from an SVG)
-   — replace with a real one when available. In-page photo placeholders are
-   cool-grayscale gradients with a CSS film-grain overlay — replace
-   preserving that tone.
+   salon hero photos, Effect Bleach before/after photos, and a real OGP.
+   **Provisional assets already in place** (replace when real ones land):
+   - **Staff portraits**: 24/32 staff have photos pulled from the salon's
+     own **Hot Pepper Beauty** pages, self-hosted in `public/staff/<slug>.jpg`,
+     downsampled + **grayscaled** (`sharp`) to fit cool-mono. 8 have no HPB
+     photo yet (most nehus-原宿/iLe-原宿 assistants + `shimizu-mizuki` whose
+     HPB surname differed — left as gradient placeholder). Regenerate via the
+     stylists.ts generator + the portrait set.
+   - **OGP**: `public/og-default.jpg` (cool-mono, `sharp` from an SVG).
+   - In-page photo placeholders (salons, gallery) are cool-grayscale
+     gradients with a CSS film-grain overlay — replace preserving that tone.
 2. **microCMS** — account + APIs per `docs/microcms-schema.md`. Then set
    `MICROCMS_SERVICE_DOMAIN` and `MICROCMS_API_KEY` in Cloudflare env vars
    and swap `src/data/*.ts` consumers to `src/lib/microcms.ts`.
@@ -433,6 +438,9 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-01** — Staff portraits (Phase 1): pulled 24/32 staff photos from
+  the salons' Hot Pepper pages, self-hosted + grayscaled in `public/staff/`,
+  wired into StylistCard / stylist detail / Person JSON-LD (image + sameAs).
 - **2026-05-31** — Added `/menu` (price guide), `/technology` (3 technique
   pillars), `/reviews` (お客様の声); provisional cool-mono OGP image
   (`public/og-default.jpg` via sharp). Footer nav extended.
