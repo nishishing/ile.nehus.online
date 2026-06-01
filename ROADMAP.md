@@ -77,7 +77,10 @@ Astro project scaffold, design tokens, base layout, top page, LLMO basis.
 
 ## 🟡 W8 — Final & Soft Launch (7/20 – 7/26)
 
-- [ ] 最終調整
+- [x] 内部リンク／アセット死活チェック — `scripts/validate-links.mjs`
+      (`npm run validate:links`) を CI に組込。href/src/srcset を全解決検証。
+      0 broken。ヘッダーの死んだ CTA を修正（BOOK→/salons、アカウント◯削除）
+- [ ] 最終調整（その他）
 - [ ] 本番ドメイン切替（DNS）
 - [ ] WordPress 退避
 - [ ] Search Console 登録 + sitemap 送信

@@ -471,6 +471,14 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-01** — Link integrity + header CTA fix (W8): added
+  `scripts/validate-links.mjs` (`npm run validate:links`; now part of
+  `npm run validate` + CI) — resolves every internal href/src/srcset against
+  `dist/` and checks in-page `#anchor` targets. 0 broken links/assets. It
+  surfaced the only real issue: the header's `BOOK` and account `◯` pointed at
+  dead `#book`/`#account` anchors on all 57 pages. `BOOK` now links to
+  `/salons` (booking is per-salon via Hot Pepper); the account icon was
+  removed (no account feature exists).
 - **2026-06-01** — Meta description enrichment: gave the short-description
   pages factual SEO/LLMO meta text. Salons got a new optional `seoDescription`
   field (area + station walk-times + Effect Bleach service + hours) used only
