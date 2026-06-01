@@ -1,6 +1,7 @@
 ---
 import type { Stylist } from "~types/content";
 import { getSalonBySlug } from "~lib/content";
+import Picture from "~components/Picture.astro";
 
 interface Props {
   stylist: Stylist;
@@ -17,14 +18,13 @@ const areaLabel = stylist.position
 <article class="stylist" data-stylist-index={index}>
   <div class={`stylist__img stylist__img--${(index % 6) + 1}`}>
     {stylist.portrait && (
-      <img
+      <Picture
         class="stylist__photo"
         src={stylist.portrait.url}
         width={stylist.portrait.width}
         height={stylist.portrait.height}
         alt={`${stylist.name}（${stylist.nameJa ?? ""}）`}
         loading="lazy"
-        decoding="async"
       />
     )}
   </div>

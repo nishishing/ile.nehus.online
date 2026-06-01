@@ -350,6 +350,9 @@ section. `ROADMAP.md` tracks the week plan.
   no design notes, no TODO lists unless asked).
 - **Do not** revisit settled design decisions (palette, fonts, structure)
   without explicit user approval.
+- **Use `~components/Picture.astro`** (not a bare `<img>`) for self-hosted
+  photos, so they get AVIF/WebP. Add the source `.jpg` under
+  `public/{staff,salons,gallery}` — derivatives are generated automatically.
 - **Always** verify with `npm run check` + `npm run build` before committing.
 - **Always** commit messages should be specific and scoped (see existing
   history for the style).
@@ -468,6 +471,12 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-01** — Image optimization (W6): `src/components/Picture.astro`
+  serves AVIF/WebP with a JPEG fallback (`<picture>`, `display:contents` so
+  layout is unchanged); `scripts/optimize-images.mjs` generates the siblings
+  for `public/{staff,salons,gallery}` and runs as `prebuild` (derivatives
+  gitignored). Remote URLs (microCMS) fall back to plain `<img>`. ~50% smaller
+  (AVIF). All 4 `<img>` sites migrated.
 - **2026-06-01** — Style gallery (Phase 3): added a Works section to
   `/effect-bleach` with 12 real colour works from HPB (self-hosted in
   `public/gallery/`, low-saturation cool grade) + ImageGallery JSON-LD.

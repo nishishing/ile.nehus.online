@@ -55,7 +55,8 @@ Astro project scaffold, design tokens, base layout, top page, LLMO basis.
 - [ ] プレスリリース原稿を投入（別セッション成果物）
 - [ ] note 代表記事を投入
 - [ ] 全ページの画像差し替え（実写真へ）
-- [ ] 画像最適化（WebP / AVIF）
+- [x] 画像最適化（WebP / AVIF）— `<Picture>` + `scripts/optimize-images.mjs`
+      が public/ の自前JPEGに AVIF/WebP 兄弟を prebuild 生成
 
 ## 🟡 W7 — LLMO 検証 & A11y (7/13 – 7/19)
 

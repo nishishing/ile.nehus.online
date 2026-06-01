@@ -3,6 +3,7 @@ import BaseLayout from "~layouts/BaseLayout.astro";
 import PageHero from "~components/PageHero.astro";
 import { getSalons, getStylists } from "~lib/content";
 import StylistCard from "~components/StylistCard.astro";
+import Picture from "~components/Picture.astro";
 import {
   localBusinessSchema,
   breadcrumbSchema,
@@ -49,14 +50,13 @@ const pageSchemas = [
 
   {salon.heroImage && (
     <figure class="salon-atmos">
-      <img
+      <Picture
         class="salon-atmos__img"
         src={salon.heroImage.url}
         width={salon.heroImage.width}
         height={salon.heroImage.height}
         alt={`${salon.name}（${salon.nameLatin}）の店内`}
         loading="eager"
-        decoding="async"
       />
     </figure>
   )}

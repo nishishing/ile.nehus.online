@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "~layouts/BaseLayout.astro";
 import PageHero from "~components/PageHero.astro";
+import Picture from "~components/Picture.astro";
 import { site } from "~data/site";
 import {
   breadcrumbSchema,
@@ -177,14 +178,13 @@ const pageSchemas = [
       <div class="eb-gallery__grid">
         {gallery.map((g) => (
           <figure class="eb-shot">
-            <img
+            <Picture
               class="eb-shot__img"
               src={g.src}
               width="600"
               height="800"
               alt={`エフェクトブリーチの作例 — ${g.tag}`}
               loading="lazy"
-              decoding="async"
             />
             <figcaption class="eb-shot__cap">{g.tag}</figcaption>
           </figure>

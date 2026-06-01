@@ -13,7 +13,9 @@
     "preview": "astro preview",
     "check": "astro check",
     "deploy": "wrangler deploy",
-    "astro": "astro"
+    "astro": "astro",
+    "prebuild": "node scripts/optimize-images.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "astro": "^5.13.0",
