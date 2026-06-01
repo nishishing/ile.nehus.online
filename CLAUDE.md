@@ -471,6 +471,16 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-01** — Salon interior photos in list cards + Picture sizing fix:
+  `SalonRow` (homepage + `/salons`) now shows the real interior photo for
+  salons that have one (harajuku-b, nagaoka), with a legibility scrim behind
+  the corner labels; the two photo-less salons keep their gradient. Doing this
+  surfaced a latent regression from the W6 `<Picture>` refactor: parent scoped
+  styles can't reach the `<img>` inside a child component, so `object-fit`/
+  sizing silently fell back to `fill` everywhere (the other 4 usages only
+  *looked* right because the image ratio matched the container). Fixed at the
+  source — `Picture.astro` now owns the base `width/height:100%; object-fit:
+  cover` style; the gallery hover-zoom/filter was restored via `:global()`.
 - **2026-06-01** — Link integrity + header CTA fix (W8): added
   `scripts/validate-links.mjs` (`npm run validate:links`; now part of
   `npm run validate` + CI) — resolves every internal href/src/srcset against

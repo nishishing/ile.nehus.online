@@ -1,5 +1,6 @@
 ---
 import type { Salon } from "~types/content";
+import Picture from "~components/Picture.astro";
 
 interface Props {
   salon: Salon;
@@ -10,7 +11,17 @@ const placeholderClass = `salon-row__img salon-row__img--${salon.slug}`;
 ---
 
 <article class:list={["salon-row", reverse && "salon-row--reverse"]}>
-  <div class={placeholderClass}>
+  <div class:list={[placeholderClass, salon.heroImage && "salon-row__img--has-photo"]}>
+    {salon.heroImage && (
+      <Picture
+        class="salon-row__photo"
+        src={salon.heroImage.url}
+        width={salon.heroImage.width}
+        height={salon.heroImage.height}
+        alt={`${salon.name}（${salon.nameLatin}）の店内`}
+        loading="lazy"
+      />
+    )}
     <span class="salon-row__badge">No. {salon.number}</span>
     <span class="salon-row__plate">{salon.badge}</span>
   </div>
@@ -90,11 +101,27 @@ const placeholderClass = `salon-row__img salon-row__img--${salon.slug}`;
     content: "";
     position: absolute;
     inset: 0;
+    z-index: 1;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.30 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
     mix-blend-mode: overlay;
     opacity: 0.45;
   }
+  /* Real interior photo (sizing handled by Picture): swap the grain for a
+     scrim that keeps the corner labels legible over the image. */
+  .salon-row__img--has-photo::after {
+    background-image: none;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      transparent 24%,
+      transparent 72%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+    mix-blend-mode: normal;
+    opacity: 1;
+  }
   .salon-row__badge {
+    z-index: 2;
     position: absolute;
     top: 22px;
     left: 22px;
@@ -105,6 +132,7 @@ const placeholderClass = `salon-row__img salon-row__img--${salon.slug}`;
   }
   .salon-row__plate {
     position: absolute;
+    z-index: 2;
     bottom: 22px;
     left: 22px;
     color: var(--color-white);
