@@ -29,6 +29,7 @@ import type { GlossaryTerm } from "~lib/schema";
 import { salons as staticSalons } from "~data/salons";
 import { stylists as staticStylists } from "~data/stylists";
 import { journalPosts as staticJournal } from "~data/journal";
+import blogGenerated from "~data/blog-generated.json";
 import { faqItems as staticFaq } from "~data/faq";
 import { glossaryTerms as staticGlossary } from "~data/glossary";
 
@@ -241,7 +242,10 @@ export function getStylists(): Promise<readonly Stylist[]> {
 
 export function getJournalPosts(): Promise<readonly JournalPost[]> {
   return load("journal", async () => {
-    if (!microcmsEnabled || !microcms) return staticJournal;
+    // Hand-written seed posts + auto-generated "column" articles. Pages sort
+    // by publishedAt, so order here doesn't matter.
+    const seeded = [...staticJournal, ...(blogGenerated as JournalPost[])];
+    if (!microcmsEnabled || !microcms) return seeded;
     const items = await microcms.getAllContents<RawJournal>({
       endpoint: "journal",
       queries: { orders: "-publishedAt" },

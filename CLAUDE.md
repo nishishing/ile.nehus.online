@@ -345,7 +345,9 @@ section. `ROADMAP.md` tracks the week plan.
   features. Pure SSG.
 - **Do not add** CSS effects like scanlines, chromatic aberration,
   VT323-style pixel fonts. They were tried in v5 and rejected.
-- **Do not** push directly to `main`. Use a feature branch + PR.
+- **Do not** push directly to `main`. Use a feature branch + PR. (The sole
+  exception is the `auto-blog` workflow, which the owner chose to auto-publish
+  to `main` — gated behind a passing build + `npm run validate`.)
 - **Do not** create files without a clear reason (no scratchpad docs,
   no design notes, no TODO lists unless asked).
 - **Do not** revisit settled design decisions (palette, fonts, structure)
@@ -471,6 +473,17 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-01** — Auto-blog pipeline: Claude-generated SEO/LLMO "column"
+  articles, auto-published. `scripts/generate-post.mjs` (Anthropic TS SDK,
+  `claude-opus-4-8`, structured `json_schema` output, brand brief cached) picks
+  the next unused topic from `src/data/seo-topics.json`, grounds the article in
+  `scripts/brand-brief.md` (confirmed facts + hard "do not invent" rules),
+  validates it, and appends to `src/data/blog-generated.json` (merged into
+  `getJournalPosts()` as `category:"column"`). `.github/workflows/auto-blog.yml`
+  runs it weekly + on-demand and **only commits to main if `npm run build` +
+  `npm run validate` pass** — so a hallucinated/broken article can't reach the
+  live site. New `JournalCategory` value `"column"`; deps `@anthropic-ai/sdk`,
+  `marked`. ⚠️ Needs repo secret **`ANTHROPIC_API_KEY`** (operator).
 - **2026-06-01** — Salon interior photos in list cards + Picture sizing fix:
   `SalonRow` (homepage + `/salons`) now shows the real interior photo for
   salons that have one (harajuku-b, nagaoka), with a legibility scrim behind

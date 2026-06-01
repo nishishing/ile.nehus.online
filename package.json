@@ -20,18 +20,21 @@
     "validate:a11y": "node scripts/validate-a11y.mjs",
     "validate:seo": "node scripts/validate-seo.mjs",
     "validate": "npm run validate:jsonld && npm run validate:a11y && npm run validate:seo && npm run validate:links",
-    "validate:links": "node scripts/validate-links.mjs"
+    "validate:links": "node scripts/validate-links.mjs",
+    "generate:post": "node scripts/generate-post.mjs"
   },
   "dependencies": {
-    "astro": "^5.13.0",
-    "@astrojs/sitemap": "^3.5.0",
     "@astrojs/check": "^0.9.4",
+    "@astrojs/sitemap": "^3.5.0",
     "@tailwindcss/vite": "^4.1.16",
-    "tailwindcss": "^4.1.16",
+    "astro": "^5.13.0",
     "microcms-js-sdk": "^3.2.0",
+    "tailwindcss": "^4.1.16",
     "typescript": "^5.6.0"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.100.1",
+    "marked": "^18.0.4",
     "wrangler": "^4.0.0"
   }
 }
