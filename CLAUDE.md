@@ -278,6 +278,24 @@ the Workers Static Assets flow we actually used).
 
 ## What still needs the user (operator-side work)
 
+> **📌 TODO — awaiting operator photos (add when supplied; per owner, "later").**
+> These couldn't be auto-sourced: HPB had no clean shot and Instagram is
+> login-walled / rate-limited from CI. Drop the files in and wire as noted —
+> reuse the same `sharp` pipeline (see Changelog commits) so the cool-mono
+> treatment stays consistent.
+> - **Salon interiors — harajuku-a (iLe origin) + nagoya.** Grayscale band,
+>   1600×680, save `public/salons/{harajuku-a,nagoya}.jpg`, then add
+>   `heroImage: { url, width: 1600, height: 680 }` to those entries in
+>   `src/data/salons.ts` (LocalBusiness `image` + the atmosphere band pick it
+>   up automatically).
+> - **Staff portraits — 7 missing** (`inoe-mizuki`, `horibe-mihana`,
+>   `fukutani-amane`, `kawahara-ichika`, `yukimatsu-hisa`, `tanogami-yoshiho`,
+>   `yokoyama-ichika`). Grayscale, 600×750 top-anchored, save
+>   `public/staff/<slug>.jpg`, then add
+>   `portrait: { url, width: 600, height: 750 }` to each in
+>   `src/data/stylists.ts`.
+> - **Effect Bleach before/after + real OGP + iLe logo SVG** — still open.
+
 1. **Real assets** *(the main remaining blocker)* — iLe unified logo SVG,
    salon interiors for **harajuku-a + nagoya** (HPB only had clean interiors
    for the other two; these two need operator-supplied photos), Effect Bleach
