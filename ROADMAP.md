@@ -65,8 +65,11 @@ Astro project scaffold, design tokens, base layout, top page, LLMO basis.
       (`npm run validate:jsonld`) を CI に組込。@id参照解決・絶対URL・画像実在・
       日付/パンくず整合・型別必須を検証。現状 0 errors（警告=写真未提供2店）
 - [ ] ChatGPT / Claude / Perplexity に質問テスト（"iLe って何？"）
-- [ ] Lighthouse 全項目 90+
-- [ ] axe a11y チェック
+- [ ] Lighthouse 全項目 90+（外部ツール／ユーザー側）
+- [x] 静的 a11y チェック — `scripts/validate-a11y.mjs`
+      (`npm run validate:a11y`) を CI に組込。lang/title/landmark/見出し階層/
+      alt/リンク・ボタンの名前/重複id/aria参照/zoom無効化/skip link を検証。
+      0 errors（コントラスト・可視フォーカスは視覚チェックのため対象外）
 
 ## 🟡 W8 — Final & Soft Launch (7/20 – 7/26)
 

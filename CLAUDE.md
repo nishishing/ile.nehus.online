@@ -471,6 +471,13 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-01** — Static a11y checks (W7): `scripts/validate-a11y.mjs`
+  (`npm run validate:a11y`, in CI) checks `dist/` for lang, `<title>`,
+  landmarks, one-`<h1>`/no-skipped-heading-levels, `<img>` alt, accessible
+  names on links/buttons, duplicate ids, aria idref targets, disabled zoom,
+  positive tabindex, and a working skip link. Fixed the only finding: h1→h3
+  jumps on `/salons` and `/journal` (added `sr-only` `<h2>` section headings).
+  Contrast & visible-focus are visual, out of static scope. 0 errors.
 - **2026-06-01** — JSON-LD validation (W7): `scripts/validate-jsonld.mjs`
   (`npm run validate:jsonld`, wired into CI) parses every JSON-LD block in
   `dist/` and checks @id reference resolution, absolute URLs, referenced
