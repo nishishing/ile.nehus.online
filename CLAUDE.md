@@ -471,6 +471,14 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-01** — SEO/OGP validation (W7): `scripts/validate-seo.mjs`
+  (`npm run validate:seo`; `npm run validate` runs all three) checks `dist/`
+  for `<title>`/description/canonical (self-referential, absolute, exists),
+  the full OGP + Twitter card set, og:image existence, referenced head assets,
+  and cross-page `<title>`/canonical uniqueness. Fixed the duplicate `<title>`
+  (homepage tagline collided with the press-release journal post — journal
+  page titles now append the subtitle). Remaining warnings = a few short brand
+  descriptions (salons / legal), left as intentional copy.
 - **2026-06-01** — Static a11y checks (W7): `scripts/validate-a11y.mjs`
   (`npm run validate:a11y`, in CI) checks `dist/` for lang, `<title>`,
   landmarks, one-`<h1>`/no-skipped-heading-levels, `<img>` alt, accessible

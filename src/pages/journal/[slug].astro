@@ -33,7 +33,7 @@ const pageSchemas = [
 ---
 
 <BaseLayout
-  title={post.title}
+  title={post.subtitle ? `${post.title} — ${post.subtitle}` : post.title}
   description={description}
   ogType="article"
 >
