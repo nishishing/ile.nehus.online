@@ -135,7 +135,8 @@ export function articleSchema(post: JournalPost) {
   const image = absUrl(post.ogImage?.url ?? post.eyecatch?.url);
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    // Auto-generated SEO columns are blog posts; everything else is an Article.
+    "@type": post.category === "column" ? "BlogPosting" : "Article",
     headline: post.title,
     description: post.summary,
     image,
@@ -144,6 +145,8 @@ export function articleSchema(post: JournalPost) {
     author: { "@id": `${site.url}/#organization` },
     publisher: { "@id": `${site.url}/#organization` },
     inLanguage: "ja-JP",
+    articleSection: post.categoryLabel,
+    keywords: post.keywords?.length ? post.keywords.join(", ") : undefined,
     mainEntityOfPage: `${site.url}/journal/${post.slug}`,
     url: `${site.url}/journal/${post.slug}`,
   };

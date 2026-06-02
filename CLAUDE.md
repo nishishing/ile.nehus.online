@@ -473,9 +473,17 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
-- **2026-06-01** — `public/llms.txt` (llmstxt.org): curated brand summary +
+- **2026-06-01** — Self-updating LLMO/structured-data pass: (1) `articleSchema`
+  now emits `BlogPosting` (not `Article`) for `category:"column"` posts, with
+  `keywords` + `articleSection` — auto-applies to every current/future auto-blog
+  article. (2) `llms.txt` moved from a static file to a build-time endpoint
+  (`src/pages/llms.txt.ts`) that auto-lists the latest journal posts from
+  `getJournalPosts()`, so new auto-blog articles surface to LLMs with no manual
+  edit. Both verified: build green, all 4 validators 0 errors.
+- **2026-06-01** — `llms.txt` (llmstxt.org): curated brand summary +
   links for LLMs (ChatGPT/Claude/Perplexity), grounded in confirmed facts.
   Complements the AI-crawler-allow `robots.txt` and the auto-blog for LLMO.
+  (Now generated dynamically — see entry above.)
 - **2026-06-01** — Auto-blog pipeline: Claude-generated SEO/LLMO "column"
   articles, auto-published. `scripts/generate-post.mjs` (Anthropic TS SDK,
   `claude-opus-4-8`, structured `json_schema` output, brand brief cached) picks
