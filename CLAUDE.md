@@ -208,7 +208,7 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 
 ---
 
-## Pages shipped (~54 built pages)
+## Pages shipped (57 built pages)
 
 | Route | Schema.org | Notes |
 |---|---|---|
@@ -397,8 +397,10 @@ effects. CSS stays clean.
   **draft**, rebased on merge to keep history linear.
 - After pushing, always open a draft PR; merge only when the user confirms.
 - Merged so far: #1 (W1-W5), #2 (CLAUDE.md), microCMS/W7/a11y PRs (#5),
-  pre-launch hardening (#6), the real-content pass (#7). Effect-Bleach
-  integration is PR #8 (open at time of writing).
+  pre-launch hardening (#6), the real-content pass (#7), Effect-Bleach
+  integration (#8). Subsequent work (image optimization W6, JSON-LD/SEO/a11y/
+  link validators W7-W8, auto-blog pipeline, llms.txt) landed via later feature
+  branches — see the Changelog below for the authoritative per-change record.
 
 ---
 
