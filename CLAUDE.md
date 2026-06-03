@@ -4,6 +4,8 @@
 > It captures the full design and implementation context built up over the
 > previous session, so you can continue without re-litigating decisions.
 
+> 🧭 **横断的な「決まったこと」は `claude-config` の決定ログ + Notion「🧭 決定ログ」DB（data_source `3a312a42-37b7-447b-9bac-456d8e63bc2f`）を参照。** このリポ固有の設計判断は本ファイルに残す。
+
 ---
 
 ## TL;DR
