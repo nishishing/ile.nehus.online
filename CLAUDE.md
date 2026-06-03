@@ -4,6 +4,8 @@
 > It captures the full design and implementation context built up over the
 > previous session, so you can continue without re-litigating decisions.
 
+> 🧭 **横断的な「決まったこと」は `claude-config` の決定ログ + Notion「🧭 決定ログ」DB（data_source `3a312a42-37b7-447b-9bac-456d8e63bc2f`）を参照。** このリポ固有の設計判断は本ファイルに残す。
+
 ---
 
 ## TL;DR
@@ -208,7 +210,7 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 
 ---
 
-## Pages shipped (~54 built pages)
+## Pages shipped (57 built pages)
 
 | Route | Schema.org | Notes |
 |---|---|---|
@@ -397,8 +399,10 @@ effects. CSS stays clean.
   **draft**, rebased on merge to keep history linear.
 - After pushing, always open a draft PR; merge only when the user confirms.
 - Merged so far: #1 (W1-W5), #2 (CLAUDE.md), microCMS/W7/a11y PRs (#5),
-  pre-launch hardening (#6), the real-content pass (#7). Effect-Bleach
-  integration is PR #8 (open at time of writing).
+  pre-launch hardening (#6), the real-content pass (#7), Effect-Bleach
+  integration (#8). Subsequent work (image optimization W6, JSON-LD/SEO/a11y/
+  link validators W7-W8, auto-blog pipeline, llms.txt) landed via later feature
+  branches — see the Changelog below for the authoritative per-change record.
 
 ---
 
