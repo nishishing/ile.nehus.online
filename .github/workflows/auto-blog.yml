@@ -2,7 +2,8 @@ name: Auto Blog
 
 # Generates one SEO/LLMO "column" article with Claude, then publishes it to
 # main ONLY if the build and all validators pass. Requires repository secret
-# ANTHROPIC_API_KEY. Runs weekly + on-demand.
+# ANTHROPIC_API_KEY. Runs ~3x/week + on-demand. Sends a LINE notification on
+# every run (success / no-op / failure) when LINE_* secrets are set.
 on:
   schedule:
     - cron: "0 0 * * 1,3,5" # Mon/Wed/Fri 00:00 UTC (~週3回)
@@ -26,9 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: "22"
           cache: "npm"
@@ -53,14 +54,53 @@ jobs:
         run: npm run validate
 
       - name: Commit & push if a new article was generated
+        id: publish
         run: |
           if git diff --quiet -- src/data/blog-generated.json; then
             echo "No new article — nothing to publish."
+            echo "published=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git config user.name "ile-bot"
           git config user.email "bot@users.noreply.github.com"
           git add src/data/blog-generated.json
           TITLE=$(node -e "const a=require('./src/data/blog-generated.json');console.log(a[a.length-1].title)")
+          SLUG=$(node -e "const a=require('./src/data/blog-generated.json');console.log(a[a.length-1].slug)")
           git commit -m "content(blog): auto-publish column — ${TITLE}"
           git push origin HEAD:main
+          {
+            echo "published=true"
+            echo "title=${TITLE}"
+            echo "slug=${SLUG}"
+          } >> "$GITHUB_OUTPUT"
+
+      # Notify LINE on every run. Skips silently if the LINE_* secrets are not
+      # set, so the pipeline still works without them.
+      - name: Notify LINE
+        if: always()
+        env:
+          LINE_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_TO: ${{ secrets.LINE_TO }}
+          JOB_STATUS: ${{ job.status }}
+          PUBLISHED: ${{ steps.publish.outputs.published }}
+          TITLE: ${{ steps.publish.outputs.title }}
+          SLUG: ${{ steps.publish.outputs.slug }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ -z "$LINE_TOKEN" ] || [ -z "$LINE_TO" ]; then
+            echo "LINE secrets not set — skipping notification."
+            exit 0
+          fi
+          if [ "$JOB_STATUS" != "success" ]; then
+            MSG=$'❌ iLe自動ブログ：投稿に失敗しました（'"$JOB_STATUS"$'）。\nクレジット残高や設定をご確認ください。\n'"$RUN_URL"
+          elif [ "$PUBLISHED" = "true" ]; then
+            MSG=$'✅ iLe自動ブログ：新しい記事を公開しました。\n'"$TITLE"$'\nhttps://ile-hair-harajuku.com/journal/'"$SLUG"
+          else
+            MSG=$'ℹ️ iLe自動ブログ：実行しましたが新規投稿はありませんでした（トピック切れの可能性）。\nsrc/data/seo-topics.json をご確認ください。'
+          fi
+          curl -sS -X POST https://api.line.me/v2/bot/message/push \
+            -H "Authorization: Bearer ${LINE_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -nc --arg to "$LINE_TO" --arg text "$MSG" \
+                  '{to:$to, messages:[{type:"text", text:$text}]}')" \
+            || echo "LINE push failed (non-fatal)."

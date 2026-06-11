@@ -477,6 +477,16 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-11** — Auto-blog: LINE notification on every run + Actions bump.
+  `auto-blog.yml` now sends a LINE push (✅ published w/ title+URL / ℹ️ no-op /
+  ❌ failure w/ run URL) via the LINE Messaging API push endpoint on every run
+  (`if: always()`), gated on optional secrets `LINE_CHANNEL_ACCESS_TOKEN` +
+  `LINE_TO` (skips silently if unset). The commit step now exposes
+  `published/title/slug` outputs. Also bumped `actions/checkout`,
+  `setup-node`, `upload-artifact` to v5 in both workflows (clears the Node20
+  deprecation). Context: the 2026-06-10 run failed because the Anthropic
+  credit balance hit zero — failures are loud by design (no broken article
+  published); operator must keep credits topped up (Auto Reload recommended).
 - **2026-06-01** — Self-updating LLMO/structured-data pass: (1) `articleSchema`
   now emits `BlogPosting` (not `Article`) for `category:"column"` posts, with
   `keywords` + `articleSection` — auto-applies to every current/future auto-blog
