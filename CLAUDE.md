@@ -75,8 +75,10 @@ The 4 salons (after unification) — **real NAP confirmed 2026-05-31**, all
 | 04 | `nagaoka` | iLe 長岡 | nehus 長岡 | 〒940-2106 長岡市古正寺1-246-3 | 0258-77-6236 | 9–19 |
 
 Each salon also has `access` (nearest stations) and a `hotPepperUrl`
-(booking) in `src/data/salons.ts`. Opened: 01=2020 / 02=2022 / 03=2023 /
-04=2024; 02–04 rename to iLe on 2026-08-01.
+(booking) in `src/data/salons.ts`. Opened: 01=2020-08 / 02=2022 /
+03=**2025-11** / 04=**2025-03** (長岡 opened *before* 名古屋 — corrected by
+owner 2026-06-12; the old 2023/2024 values were wrong); 02–04 rename to iLe
+on 2026-08-01.
 
 ---
 
@@ -477,6 +479,10 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-12** — 開店年の訂正（オーナー指摘）: 長岡＝**2025年3月**・名古屋＝
+  **2025年11月**（旧データの 2023/2024 は誤り。開店順も 長岡→名古屋 に逆転）。
+  `salons.ts` `openedAt`（JSON-LD foundingDate / est. 表示）、`/company`
+  タイムライン、`/story` III章、glossary「nehus」定義を修正。
 - **2026-06-12** — E-E-A-T 外部裏付け（Web検証済みURLを反映）: 共著
   『複雑履歴のブリーチ大全 iLe's BLEACH METHOD』の書誌を確定（**髪書房**刊・
   2022-04-08発売・ISBN 4908697507・出版社ページ + Amazon URL）→ `site.book` に
