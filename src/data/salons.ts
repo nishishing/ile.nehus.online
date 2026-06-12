@@ -64,7 +64,7 @@ export const salons: readonly Salon[] = [
     phone: "052-228-9783",
     holidays: "年中無休",
     hotPepperUrl: "https://beauty.hotpepper.jp/slnH000776236/",
-    openedAt: "2023-01-01",
+    openedAt: "2025-11-01",
     renamedAt: "2026-08-01",
     hours: "10:00 — 20:00",
     description:
@@ -86,7 +86,7 @@ export const salons: readonly Salon[] = [
     phone: "0258-77-6236",
     holidays: "年中無休",
     hotPepperUrl: "https://beauty.hotpepper.jp/slnH000742471/",
-    openedAt: "2024-01-01",
+    openedAt: "2025-03-01",
     renamedAt: "2026-08-01",
     hours: "9:00 — 19:00",
     description:

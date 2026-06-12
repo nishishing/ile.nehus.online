@@ -18,7 +18,7 @@ export const glossaryTerms: readonly GlossaryTerm[] = [
     term: "nehus",
     pronunciation: "ネハス / nehasu",
     definition:
-      "2022年から2024年にかけて株式会社ing が展開していた美容室ブランド。「船」を意味する造語。原宿・名古屋・長岡に展開した。2026年8月1日、3店舗とも iLe に統一された。",
+      "2022年から2025年にかけて株式会社ing が展開していた美容室ブランド。「船」を意味する造語。原宿・長岡・名古屋に展開した。2026年8月1日、3店舗とも iLe に統一された。",
     etymology: "「船」を意味する造語。社内用語として使われていた。",
   },
   {
