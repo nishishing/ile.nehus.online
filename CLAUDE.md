@@ -477,6 +477,18 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-12** — E-E-A-T 外部裏付け（Web検証済みURLを反映）: 共著
+  『複雑履歴のブリーチ大全 iLe's BLEACH METHOD』の書誌を確定（**髪書房**刊・
+  2022-04-08発売・ISBN 4908697507・出版社ページ + Amazon URL）→ `site.book` に
+  集約し `authoredBooksSchema()` が publisher/datePublished/isbn/url/sameAs ＋
+  両代表を author に出力（西村にも `authoredBook` 追加）。各代表 Person に
+  `sameAs`（Instagram: @sakaimotoki / @nishishing ＋ HPB スタイリストページ）と
+  `subjectOf`（QJナビ・inborn・HAIRCAMP・b-ex palette 等の第三者記事/登壇）を
+  追加（organizationSchema 経由で全ページ展開）。`/expertise` に 共著書セクション
+  （出版社/Amazonリンク）・メディア掲載セクション・各人のプロフィール/掲載リンクを
+  追加。⚠️ `nishishing.xyz` は売出し中のパークドメインと判明 — リンク禁止。
+  受賞歴は検証可能なソースが見つからず未掲載（盛らない方針）。check/build/
+  4バリデータ 0エラー。
 - **2026-06-12** — E-E-A-T 専門性ページ + Person/Organization 権威付け: 新規
   `/expertise`（共同代表＝酒井元樹『エフェクトブリーチ開発者・ケミカル』／
   西村涼『創業者・バレイヤージュ』、共著『複雑履歴のブリーチ大全』、技術の体系）。

@@ -84,6 +84,12 @@ export interface FaqItem {
   order?: number;
 }
 
+/** A verified external link (third-party page about the brand/person). */
+export interface ExternalLink {
+  label: string; // "リクエストQJ SALON REPORT"
+  url: string;
+}
+
 export interface Representative {
   name: string; // "酒井 元樹"
   nameLatin: string; // "Motoki Sakai"
@@ -96,6 +102,25 @@ export interface Representative {
   knowsAbout?: string[];
   /** E-E-A-T: authored/co-authored work title (→ Person.subjectOf Book). */
   authoredBook?: string;
+  /** E-E-A-T: identity profiles (Instagram, Hot Pepper Beauty) → Person.sameAs. */
+  sameAs?: string[];
+  /** E-E-A-T: third-party interviews / seminar pages → Person.subjectOf. */
+  press?: ExternalLink[];
+}
+
+/** Co-authored book — an external authority signal (→ Book JSON-LD). */
+export interface AuthoredBook {
+  title: string; // full title incl. subtitle
+  publisher: string;
+  publisherUrl?: string;
+  datePublished: string; // ISO yyyy-mm-dd
+  isbn?: string;
+  /** Canonical external page (publisher's book page). */
+  url?: string;
+  /** Other listings (Amazon etc.). */
+  sameAs?: string[];
+  /** JSON-LD @id fragments of the representative authors. */
+  authorIds: string[];
 }
 
 export interface SiteConfig {
@@ -106,6 +131,10 @@ export interface SiteConfig {
   companyNameLatin: string;
   /** Public co-representatives of the company. */
   representatives: Representative[];
+  /** E-E-A-T: the co-authored book (verified facts only). */
+  book?: AuthoredBook;
+  /** E-E-A-T: brand-level third-party media coverage. */
+  press?: ExternalLink[];
   /** Identity used for author-signed pages (/message, /story). */
   founderName: string;
   founderNameLatin: string;

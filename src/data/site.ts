@@ -13,7 +13,7 @@ export const site: SiteConfig = {
       title: "共同代表",
       titleEn: "Co-Representative",
       id: "#rep-sakai",
-      bio: "iLe の独自ブリーチ技術「エフェクトブリーチ」の開発者。ケミカル（薬剤設計）に精通し、ダメージ履歴を10段階で診断して過酸化水素の濃度をミリ単位で調整する「パーソナル減力」を体系化した。複雑な履歴を持つ髪のブリーチ設計を専門とする。",
+      bio: "iLe の独自ブリーチ技術「エフェクトブリーチ」の開発者。ケミカル（薬剤設計）に精通し、ダメージ履歴を10段階で診断して過酸化水素の濃度をミリ単位で調整する「パーソナル減力」を体系化した。複雑な履歴を持つ髪のブリーチ設計を専門とし、美容師向けのカラーセミナーにも多数登壇している。",
       knowsAbout: [
         "エフェクトブリーチ",
         "ブリーチ",
@@ -23,6 +23,24 @@ export const site: SiteConfig = {
         "複雑履歴のブリーチ",
       ],
       authoredBook: "複雑履歴のブリーチ大全",
+      sameAs: [
+        "https://www.instagram.com/sakaimotoki/",
+        "https://beauty.hotpepper.jp/slnH000499134/stylist/T000652297/",
+      ],
+      press: [
+        {
+          label: "HAIRCAMP 講師ページ（美容師向けオンライン学習）",
+          url: "https://haircamp.jp/sakaimotoki/",
+        },
+        {
+          label: "b-ex palette セミナー「ブリーチロングリタッチ パーフェクトテクニック」",
+          url: "https://bexpalette.beautyexperience.com/contents/307",
+        },
+        {
+          label: "inborn インタビュー（株式会社スタイラーズ）",
+          url: "https://stylers-inborn.com/ile-sakaisan_st2nd/",
+        },
+      ],
     },
     {
       name: "西村 涼",
@@ -38,6 +56,42 @@ export const site: SiteConfig = {
         "ハイトーンカラー",
         "ブリーチ",
       ],
+      authoredBook: "複雑履歴のブリーチ大全",
+      sameAs: [
+        "https://www.instagram.com/nishishing/",
+        "https://beauty.hotpepper.jp/slnH000499134/stylist/T000652296/",
+      ],
+      press: [
+        {
+          label: "inborn インタビュー（株式会社スタイラーズ）",
+          url: "https://stylers-inborn.com/%E2%91%A8-ile-interview/",
+        },
+      ],
+    },
+  ],
+  // Co-authored book — verified against the publisher's page (髪書房) 2026-06-12.
+  book: {
+    title: "複雑履歴のブリーチ大全 iLe's BLEACH METHOD",
+    publisher: "髪書房",
+    publisherUrl: "https://www.kamishobo.co.jp/",
+    datePublished: "2022-04-08",
+    isbn: "4908697507",
+    url: "https://www.kamishobo.co.jp/archives/book/%E8%A4%87%E9%9B%91%E5%B1%A5%E6%AD%B4%E3%81%AE%E3%83%96%E3%83%AA%E3%83%BC%E3%83%81%E5%A4%A7%E5%85%A8%E3%80%80iles-bleach-method",
+    sameAs: ["https://www.amazon.co.jp/dp/4908697507"],
+    authorIds: ["#rep-sakai", "#founder"],
+  },
+  press: [
+    {
+      label: "リクエストQJ SALON REPORT — 酒井元樹／西村涼「フリーからの転身。新しい価値観が繋いだ共同経営の道」",
+      url: "https://www.qjnavi.jp/special/trend/ile_sakainishimura/",
+    },
+    {
+      label: "inborn — iLe. 酒井元樹・西村涼 代表2名によるインタビュー",
+      url: "https://stylers-inborn.com/inborn-system-treatment-by-ile/",
+    },
+    {
+      label: "バングス — iLe.を代表する美容師たちが織りなすカラーマジック【前編】",
+      url: "https://bangs.jp/special_contents/article.php?id=43",
     },
   ],
   founderName: "西村 涼",

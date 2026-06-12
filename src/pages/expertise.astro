@@ -8,6 +8,13 @@ import { site } from "~data/site";
 const description =
   "iLe の専門性と権威。エフェクトブリーチ開発者・酒井元樹（ケミカルの権威）と、バレイヤージュを得意とする創業者・西村涼。実名の専門家が、ブリーチとデザインカラーの技術を体系化しています。";
 
+// Human-readable label for an identity-profile URL.
+function profileLabel(url: string): string {
+  if (url.includes("instagram.com")) return "Instagram";
+  if (url.includes("hotpepper.jp")) return "Hot Pepper Beauty";
+  return new URL(url).hostname;
+}
+
 const pageSchemas = [
   breadcrumbSchema([
     { name: "Home", url: "/" },
@@ -58,12 +65,72 @@ const pageSchemas = [
           )}
           {r.authoredBook && (
             <p class="person__book">
-              共著 — <cite>『{r.authoredBook}』</cite>
+              共著 — {site.book?.url ? (
+                <a href={site.book.url} target="_blank" rel="noopener">
+                  <cite>『{r.authoredBook}』</cite>
+                </a>
+              ) : (
+                <cite>『{r.authoredBook}』</cite>
+              )}
             </p>
+          )}
+          {r.sameAs?.length && (
+            <p class="person__profiles">
+              {r.sameAs.map((url) => (
+                <a href={url} target="_blank" rel="noopener">{profileLabel(url)} ↗</a>
+              ))}
+            </p>
+          )}
+          {r.press?.length && (
+            <ul class="person__press" aria-label={`${r.name}のメディア掲載・登壇`}>
+              {r.press.map((p) => (
+                <li>
+                  <a href={p.url} target="_blank" rel="noopener">{p.label} ↗</a>
+                </li>
+              ))}
+            </ul>
           )}
         </article>
       ))}
     </div>
+  </section>
+
+  <section class="ex-section ex-book" aria-labelledby="book-h">
+    <div id="book-h">
+      <SectionHead small="— Publication" title="共著書" />
+    </div>
+    {site.book && (
+      <div class="book">
+        <p class="book__title">
+          <cite>『{site.book.title}』</cite>
+        </p>
+        <p class="book__meta">
+          酒井元樹・西村涼 共著／{site.book.publisher}刊（2022年4月8日発売）。
+          複雑化したヘアカラーの施術履歴に対応するための、ブリーチとオンカラーの専門書。
+        </p>
+        <p class="book__links">
+          {site.book.url && (
+            <a href={site.book.url} target="_blank" rel="noopener">出版社の書籍ページ ↗</a>
+          )}
+          {site.book.sameAs?.map((url) => (
+            <a href={url} target="_blank" rel="noopener">Amazon ↗</a>
+          ))}
+        </p>
+      </div>
+    )}
+  </section>
+
+  <section class="ex-section ex-media" aria-labelledby="media-h">
+    <div id="media-h">
+      <SectionHead small="— Media" title="メディア掲載" />
+    </div>
+    <ul class="media-list" aria-label="第三者メディアの掲載記事">
+      {site.press?.map((p) => (
+        <li>
+          <a href={p.url} target="_blank" rel="noopener">{p.label} ↗</a>
+        </li>
+      ))}
+    </ul>
   </section>
 
   <section class="ex-section ex-tech" aria-labelledby="tech-h">
@@ -158,9 +225,69 @@ const pageSchemas = [
   }
   .person__book {
     font-size: 14px;
-    margin: 0;
+    margin: 0 0 14px;
   }
   .person__book cite { font-style: normal; }
+  .person__book a { border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+
+  .person__profiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 0 0 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+  .person__profiles a { border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+
+  .person__press {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .person__press a { border-bottom: 1px solid var(--color-border); padding-bottom: 1px; }
+
+  .ex-book { background: var(--color-snow); }
+  .book { max-width: 760px; margin: 0 auto; }
+  .book__title {
+    font-size: 19px;
+    margin: 0 0 14px;
+  }
+  .book__title cite { font-style: normal; }
+  .book__meta {
+    font-size: 14px;
+    line-height: 1.9;
+    margin: 0 0 18px;
+    color: var(--color-fg-muted);
+  }
+  .book__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+  .book__links a { border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+
+  .ex-media { background: var(--color-pearl); }
+  .media-list {
+    list-style: none;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .media-list a { border-bottom: 1px solid var(--color-border); padding-bottom: 1px; }
 
   .ex-links {
     max-width: 760px;
