@@ -90,6 +90,12 @@ export interface Representative {
   title: string; // "共同代表"
   titleEn: string; // "Co-Representative"
   id: string; // JSON-LD @id fragment, e.g. "#founder"
+  /** E-E-A-T: short public bio surfacing expertise. */
+  bio?: string;
+  /** E-E-A-T: areas of expertise → Person.knowsAbout. */
+  knowsAbout?: string[];
+  /** E-E-A-T: authored/co-authored work title (→ Person.subjectOf Book). */
+  authoredBook?: string;
 }
 
 export interface SiteConfig {
