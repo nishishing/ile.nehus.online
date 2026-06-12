@@ -29,12 +29,26 @@ export function organizationSchema() {
     url: site.url,
     logo: `${site.url}/logo.svg`,
     foundingDate: site.foundedAt,
+    // E-E-A-T: the brand's authority comes from its named experts.
+    knowsAbout: [
+      "エフェクトブリーチ",
+      "ブリーチ",
+      "ハイトーンカラー",
+      "バレイヤージュ",
+      "ハイライト",
+      "デザインカラー",
+      "ダメージレスブリーチ",
+      "複雑履歴のブリーチ",
+    ],
     founder: site.representatives.map((r) => ({
       "@type": "Person",
       "@id": `${site.url}/${r.id}`,
       name: r.name,
       alternateName: r.nameLatin,
       jobTitle: `${r.title} / ${r.titleEn}`,
+      description: r.bio,
+      knowsAbout: r.knowsAbout,
+      worksFor: { "@id": `${site.url}/#organization` },
     })),
     address: {
       "@type": "PostalAddress",
@@ -48,6 +62,24 @@ export function organizationSchema() {
       : [],
     description: site.description,
   };
+}
+
+/**
+ * Book(s) authored/co-authored by a representative — an external authority
+ * signal. `author` references the Person @id defined by organizationSchema
+ * (emitted site-wide), so it resolves on any page that also carries it.
+ */
+export function authoredBooksSchema() {
+  return site.representatives
+    .filter((r) => r.authoredBook)
+    .map((r) => ({
+      "@context": "https://schema.org",
+      "@type": "Book",
+      name: r.authoredBook,
+      author: { "@id": `${site.url}/${r.id}`, name: r.name },
+      inLanguage: "ja-JP",
+      about: "ブリーチ・ヘアカラー",
+    }));
 }
 
 export function websiteSchema() {

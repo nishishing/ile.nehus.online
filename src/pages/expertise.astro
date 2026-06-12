@@ -1,0 +1,183 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import SectionHead from "~components/SectionHead.astro";
+import { breadcrumbSchema, authoredBooksSchema, jsonLd } from "~lib/schema";
+import { site } from "~data/site";
+
+const description =
+  "iLe の専門性と権威。エフェクトブリーチ開発者・酒井元樹（ケミカルの権威）と、バレイヤージュを得意とする創業者・西村涼。実名の専門家が、ブリーチとデザインカラーの技術を体系化しています。";
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Expertise", url: "/expertise" },
+  ]),
+  ...authoredBooksSchema(),
+];
+---
+
+<BaseLayout title="Expertise" description={description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero eyebrow="— 専門性と権威" title="EXPERTISE" />
+
+  <section class="ex-section ex-intro" aria-labelledby="intro-h">
+    <div id="intro-h">
+      <SectionHead small="— なぜ iLe なのか" title="技術を、実名の専門家が支える" />
+    </div>
+    <p class="ex-lead">
+      iLe の強みは、特定の個人の技術と理論に裏打ちされています。独自ブリーチ技術
+      「エフェクトブリーチ」の開発者と、デザインカラーを追求する創業者。
+      二人の共同代表が、ブリーチとカラーの設計を体系化し、現場で磨き続けています。
+    </p>
+  </section>
+
+  <section class="ex-section ex-people" aria-labelledby="people-h">
+    <div id="people-h">
+      <SectionHead small="— Co-Representatives" title="二人の専門家" />
+    </div>
+    <div class="people">
+      {site.representatives.map((r) => (
+        <article class="person">
+          <header class="person__head">
+            <p class="person__role">{r.title} / {r.titleEn}</p>
+            <h3 class="person__name">
+              {r.name}<span class="person__latin">{r.nameLatin}</span>
+            </h3>
+          </header>
+          {r.bio && <p class="person__bio">{r.bio}</p>}
+          {r.knowsAbout && (
+            <ul class="chips" aria-label="専門分野">
+              {r.knowsAbout.map((k) => <li class="chip">{k}</li>)}
+            </ul>
+          )}
+          {r.authoredBook && (
+            <p class="person__book">
+              共著 — <cite>『{r.authoredBook}』</cite>
+            </p>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="ex-section ex-tech" aria-labelledby="tech-h">
+    <div id="tech-h">
+      <SectionHead small="— Signature Technique" title="エフェクトブリーチ" />
+    </div>
+    <p class="ex-lead">
+      ダメージ履歴を10段階で診断し、過酸化水素の濃度をミリ単位で調整する
+      「パーソナル減力」。髪の芯を残しながら透明感のあるハイトーンを実現し、
+      褪色していく過程の美しさまで設計します。黒染めやセルフカラーといった複雑な
+      履歴を持つ髪にも対応する、iLe のシグネチャー技術です。
+    </p>
+    <p class="ex-links">
+      <a href="/effect-bleach">エフェクトブリーチ →</a>
+      <a href="/technology">3つの技術の柱 →</a>
+      <a href="/story">ブランドストーリー →</a>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .ex-section {
+    padding: 110px 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .ex-intro { background: var(--color-snow); }
+  .ex-people { background: var(--color-pearl); }
+  .ex-tech { background: var(--color-ink); color: var(--color-white); }
+
+  .ex-lead {
+    max-width: 760px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 2;
+  }
+
+  .people {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .person {
+    border-top: 1px solid var(--color-border);
+    padding-top: 24px;
+  }
+  .person__role {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 8px;
+  }
+  .person__name {
+    font-size: 22px;
+    margin: 0 0 16px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .person__latin {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: var(--color-fg-muted);
+  }
+  .person__bio {
+    font-size: 14px;
+    line-height: 1.9;
+    margin: 0 0 18px;
+  }
+  .chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 0 0 16px;
+  }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 5px 12px;
+    color: var(--color-fg-muted);
+  }
+  .person__book {
+    font-size: 14px;
+    margin: 0;
+  }
+  .person__book cite { font-style: normal; }
+
+  .ex-links {
+    max-width: 760px;
+    margin: 28px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .ex-links a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 3px;
+  }
+
+  @media (max-width: 720px) {
+    .people { grid-template-columns: 1fr; gap: 36px; }
+  }
+</style>

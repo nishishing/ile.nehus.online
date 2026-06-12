@@ -477,6 +477,14 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-12** — E-E-A-T 専門性ページ + Person/Organization 権威付け: 新規
+  `/expertise`（共同代表＝酒井元樹『エフェクトブリーチ開発者・ケミカル』／
+  西村涼『創業者・バレイヤージュ』、共著『複雑履歴のブリーチ大全』、技術の体系）。
+  `organizationSchema` に組織 `knowsAbout` と各 founder Person の `description`/
+  `knowsAbout`/`worksFor` を追加（全ページに展開）。`authoredBooksSchema()` で
+  Book→author(@id #rep-sakai) を /expertise に出力。`site.representatives` に
+  `bio`/`knowsAbout`/`authoredBook` を追加、footer に EXPERTISE。AIに「ブリーチ／
+  バレイヤージュの権威」として認識させる土台。check/build/4バリデータ 0エラー。
 - **2026-06-11** — Auto-blog cadence → 平日毎日 (5x/week): cron `0 0 * * 1,3,5`
   → `0 0 * * 1-5` (Mon–Fri). Balanced SEO×LLMO point — daily-ish freshness
   without "thin mass content" risk (≤1/day). `seo-topics.json` expanded 20 → 56
