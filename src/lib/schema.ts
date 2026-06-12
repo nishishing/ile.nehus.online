@@ -49,6 +49,15 @@ export function organizationSchema() {
       description: r.bio,
       knowsAbout: r.knowsAbout,
       worksFor: { "@id": `${site.url}/#organization` },
+      // E-E-A-T: verified identity profiles + third-party coverage.
+      sameAs: r.sameAs?.length ? r.sameAs : undefined,
+      subjectOf: r.press?.length
+        ? r.press.map((p) => ({
+            "@type": "WebPage",
+            name: p.label,
+            url: p.url,
+          }))
+        : undefined,
     })),
     address: {
       "@type": "PostalAddress",
@@ -65,21 +74,36 @@ export function organizationSchema() {
 }
 
 /**
- * Book(s) authored/co-authored by a representative — an external authority
- * signal. `author` references the Person @id defined by organizationSchema
- * (emitted site-wide), so it resolves on any page that also carries it.
+ * Book(s) authored/co-authored by the representatives — an external authority
+ * signal. `author` references the Person @ids defined by organizationSchema
+ * (emitted site-wide), so they resolve on any page that also carries it.
+ * Bibliographic facts (publisher, date, ISBN, URLs) live in `site.book`.
  */
 export function authoredBooksSchema() {
-  return site.representatives
-    .filter((r) => r.authoredBook)
-    .map((r) => ({
+  const book = site.book;
+  if (!book) return [];
+  return [
+    {
       "@context": "https://schema.org",
       "@type": "Book",
-      name: r.authoredBook,
-      author: { "@id": `${site.url}/${r.id}`, name: r.name },
+      name: book.title,
+      author: book.authorIds.map((id) => ({
+        "@id": `${site.url}/${id}`,
+        name: site.representatives.find((r) => r.id === id)?.name,
+      })),
+      publisher: {
+        "@type": "Organization",
+        name: book.publisher,
+        url: book.publisherUrl,
+      },
+      datePublished: book.datePublished,
+      isbn: book.isbn,
+      url: book.url,
+      sameAs: book.sameAs,
       inLanguage: "ja-JP",
       about: "ブリーチ・ヘアカラー",
-    }));
+    },
+  ];
 }
 
 export function websiteSchema() {
