@@ -477,6 +477,12 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-11** — Auto-blog cadence → 平日毎日 (5x/week): cron `0 0 * * 1,3,5`
+  → `0 0 * * 1-5` (Mon–Fri). Balanced SEO×LLMO point — daily-ish freshness
+  without "thin mass content" risk (≤1/day). `seo-topics.json` expanded 20 → 56
+  brand-relevant topics (~11 weeks of runway at 5/week). Context: Cloudflare's
+  production branch was also corrected to `main` this day, so the backlog of
+  auto-blog commits finally went live.
 - **2026-06-11** — Auto-blog: LINE notification on every run + Actions bump.
   `auto-blog.yml` now sends a LINE push (✅ published w/ title+URL / ℹ️ no-op /
   ❌ failure w/ run URL) via the LINE Messaging API push endpoint on every run

@@ -6,7 +6,7 @@ name: Auto Blog
 # every run (success / no-op / failure) when LINE_* secrets are set.
 on:
   schedule:
-    - cron: "0 0 * * 1,3,5" # Mon/Wed/Fri 00:00 UTC (~週3回)
+    - cron: "0 0 * * 1-5" # Mon–Fri 00:00 UTC (平日毎日・5本/週)
   workflow_dispatch:
     inputs:
       topic:
