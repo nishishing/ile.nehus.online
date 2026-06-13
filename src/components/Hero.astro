@@ -2,17 +2,24 @@
 /**
  * Hero: full-bleed 100vh brand opening.
  *
- * Currently a designed grainy cool-mono gradient. When real video is
- * supplied, swap the .hero__stand-in for
- * <video autoplay muted loop playsinline poster="...">.
- *
- * Keep the .hero__grain overlay — it adds the film texture
- * that gives the photo Y2K warmth without warm colors.
+ * Full-bleed cool-mono film photograph + grain overlay (the grain keeps
+ * the Y2K film texture). When real video is supplied, swap the
+ * <Picture> for <video autoplay muted loop playsinline poster="...">.
  */
+import Picture from "~components/Picture.astro";
 ---
 
 <section class="hero" aria-label="Hero">
-  <div class="hero__stand-in" aria-hidden="true"></div>
+  <Picture
+    class="hero__photo"
+    src="/hero/harajuku.jpg"
+    width={1298}
+    height={738}
+    alt="夜の原宿の交差点を、ハイトーンの髪で歩く人物。iLe のデザインカラー。"
+    loading="eager"
+    decoding="sync"
+  />
+  <div class="hero__scrim" aria-hidden="true"></div>
   <div class="hero__grain" aria-hidden="true"></div>
 
   <p class="hero__corner-l"><em>est.</em> 2020 — Harajuku, Tokyo</p>
@@ -30,14 +37,33 @@
     overflow: hidden;
     background: var(--color-charcoal);
   }
-  .hero__stand-in {
+  .hero :global(.hero__photo) {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(70% 80% at 50% 45%, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0) 60%),
-      linear-gradient(180deg, #3a3d43 0%, #232529 60%, #131418 100%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 38%;
+    filter: grayscale(100%) contrast(1.02);
+    z-index: 0;
+  }
+  /* Legibility scrim: darken top & bottom so the white corner labels and
+     overlaid header nav stay readable over the photo. */
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0) 26%,
+      rgba(0, 0, 0, 0) 64%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
   }
   .hero__grain {
+    z-index: 1;
     position: absolute;
     inset: 0;
     pointer-events: none;

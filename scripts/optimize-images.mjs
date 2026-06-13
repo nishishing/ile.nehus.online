@@ -8,7 +8,7 @@ import { existsSync, statSync } from "node:fs";
 import { join, extname } from "node:path";
 import sharp from "sharp";
 
-const DIRS = ["staff", "salons", "gallery"].map((d) => join("public", d));
+const DIRS = ["staff", "salons", "gallery", "hero"].map((d) => join("public", d));
 const AVIF = { quality: 50, effort: 4 };
 const WEBP = { quality: 72 };
 
