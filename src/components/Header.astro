@@ -1,9 +1,12 @@
 ---
 import { navPrimary } from "~data/site";
+import BrandMark from "~components/BrandMark.astro";
 ---
 
 <header class="header">
-  <a class="header__logo" href="/" aria-label="iLe — home">iLe</a>
+  <a class="header__logo" href="/" aria-label="iLe — home">
+    <BrandMark size={46} />
+  </a>
   <nav class="header__nav" aria-label="Primary">
     <ul>
       {navPrimary.map((item) => (
@@ -31,12 +34,8 @@ import { navPrimary } from "~data/site";
     color: var(--color-white);
   }
   .header__logo {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: 22px;
-    letter-spacing: 0.06em;
-    line-height: 1;
-    text-transform: lowercase;
+    display: inline-flex;
+    line-height: 0;
   }
   .header__nav ul {
     list-style: none;
