@@ -27,6 +27,7 @@ export const salons: readonly Salon[] = [
     seoDescription:
       "iLe 原宿（iLe Harajuku A）｜明治神宮前駅 徒歩2分・原宿駅 徒歩7分。2020年創業、iLe ブランド発祥の店。独自技術「エフェクトブリーチ」による透明感のあるハイトーンカラー・ブリーチが得意。年中無休、10:00–20:00。",
     badge: "— origin",
+    heroImage: { url: "/salons/harajuku-a.jpg", width: 1600, height: 680 },
   },
   {
     slug: "harajuku-b",
@@ -72,6 +73,7 @@ export const salons: readonly Salon[] = [
     seoDescription:
       "iLe 名古屋（旧 nehus 名古屋／iLe Nagoya）｜栄駅 徒歩9分・矢場町駅 徒歩6分、名古屋市中区栄。独自技術「エフェクトブリーチ」で透明感のあるハイトーンカラー・ブリーチを提案。年中無休、10:00–20:00。",
     badge: "— formerly nehus 名古屋",
+    heroImage: { url: "/salons/nagoya.jpg", width: 1600, height: 680 },
   },
   {
     slug: "nagaoka",

@@ -287,29 +287,26 @@ the Workers Static Assets flow we actually used).
 > login-walled / rate-limited from CI. Drop the files in and wire as noted —
 > reuse the same `sharp` pipeline (see Changelog commits) so the cool-mono
 > treatment stays consistent.
-> - **Salon interiors — harajuku-a (iLe origin) + nagoya.** Grayscale band,
->   1600×680, save `public/salons/{harajuku-a,nagoya}.jpg`, then add
->   `heroImage: { url, width: 1600, height: 680 }` to those entries in
->   `src/data/salons.ts` (LocalBusiness `image` + the atmosphere band pick it
->   up automatically).
+> - ~~**Salon interiors — harajuku-a + nagoya.**~~ ✅ DONE 2026-06-13 — all 4
+>   salons now have owner-supplied interiors (`public/salons/*.jpg`, 1600×680
+>   grayscale). harajuku-b / nagaoka were also replaced with the owner's photos.
 > - **Staff portraits — 7 missing** (`inoe-mizuki`, `horibe-mihana`,
 >   `fukutani-amane`, `kawahara-ichika`, `yukimatsu-hisa`, `tanogami-yoshiho`,
 >   `yokoyama-ichika`). Grayscale, 600×750 top-anchored, save
 >   `public/staff/<slug>.jpg`, then add
 >   `portrait: { url, width: 600, height: 750 }` to each in
 >   `src/data/stylists.ts`.
-> - **Effect Bleach before/after + real OGP + iLe logo SVG** — still open.
+> - **Effect Bleach before/after + real OGP** — still open. (iLe logo ✅ done
+>   2026-06-13 — boxed "iLe." mark, see `BrandMark.astro`; hero photo ✅ done.)
 
-1. **Real assets** *(the main remaining blocker)* — iLe unified logo SVG,
-   salon interiors for **harajuku-a + nagoya** (HPB only had clean interiors
-   for the other two; these two need operator-supplied photos), Effect Bleach
-   before/after photos, and a real OGP.
-   **Provisional assets already in place** (replace when real ones land):
-   - **Salon interiors**: 2/4 (`harajuku-b`, `nagaoka`) use the salon's own
-     HPB interior photo, self-hosted in `public/salons/<slug>.jpg`, grayscaled,
-     shown as a full-bleed band under the salon hero + fed to LocalBusiness
-     `image`. harajuku-a / nagoya have no clean HPB interior (only style
-     collages) — left text-only until real photos arrive.
+1. **Real assets** — remaining: Effect Bleach before/after photos + a real OGP.
+   ✅ **Done 2026-06-13**: iLe logo (boxed mark, header/footer/favicon/JSON-LD),
+   homepage hero photo, and all **4 salon interiors** (owner-supplied).
+   **Provisional assets still in place** (replace when real ones land):
+   - **Salon interiors**: ✅ 4/4 — all salons have an owner-supplied interior in
+     `public/salons/<slug>.jpg` (1600×680 grayscale), shown as a full-bleed band
+     under the salon hero + fed to LocalBusiness `image`. (harajuku-b / nagaoka's
+     earlier HPB photos were replaced by the owner's on 2026-06-13.)
    - **Staff portraits**: 25/32 staff have photos pulled from the salon's
      own **Hot Pepper Beauty** pages, self-hosted in `public/staff/<slug>.jpg`,
      downsampled + **grayscaled** (`sharp`) to fit cool-mono. 7 have no HPB
@@ -479,6 +476,21 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-13** — ホームページ仕上げ（実素材投入）: (1) ヒーローの開発用
+  プレースホルダー文言を実キャプション「*est.* 2020 — Harajuku, Tokyo」に差替。
+  (2) **ブランド実ロゴ**（枠付き「iLe.」）を導入 — 新規 `BrandMark.astro`
+  （Questrial・`currentColor`）をヘッダー/フッターに、`public/logo.svg`（JSON-LD）
+  と `favicon.svg` も枠付きマークに。(3) **ヒーロー実写真**（夜の原宿交差点）を
+  全画面に組込（`public/hero/harajuku.jpg`、`<Picture>` eager、スクリム＋グレイン）。
+  `optimize-images.mjs` に `hero` ディレクトリ追加。(4) **4店舗の内観写真**を
+  オーナー支給に差替/新規（`public/salons/*.jpg` 1600×680 grayscale、harajuku-a /
+  nagoya は新規で `heroImage` 追加、harajuku-b / nagaoka は差替）→ 写真なし店舗の
+  JSON-LD 警告も解消。check/build/4バリデータ 0エラー。
+  > 運用メモ: オーナーがチャットに貼った画像は transcript JSONL
+  > (`/root/.claude/projects/-home-user/<session>.jsonl`) に base64 で残るため、
+  > そこから実ファイルに復元して `sharp` 加工できる（最大~2000pxで取得可）。
+  > Drive 共有リンク経由DL（`drive.google.com/uc?export=download&id=`）も可。
+  > Drive MCP は当セッションでは承認が通らなかった。
 - **2026-06-12** — 開店年の訂正（オーナー指摘）: 長岡＝**2025年3月**・名古屋＝
   **2025年11月**（旧データの 2023/2024 は誤り。開店順も 長岡→名古屋 に逆転）。
   `salons.ts` `openedAt`（JSON-LD foundingDate / est. 表示）、`/company`
