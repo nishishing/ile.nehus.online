@@ -1,13 +1,14 @@
 ---
 /**
- * BrandMark — the boxed "iLe." logo lockup.
+ * BrandMark — the official "iLe." logo lockup.
  *
- * A thin double-framed square with the wordmark in Questrial
- * (the brand's geometric sans). Designed for dark backgrounds
- * (header / footer); strokes + text use currentColor so the
- * parent's text color drives it.
+ * Reproduces the supplied vector logo (`ile.svg`): a thin double-framed
+ * square with the wordmark set in Neue Haas Grotesk Display Pro. The real
+ * font isn't web-available, so we fall back to its Helvetica family
+ * (Helvetica Neue / Helvetica / Arial), which is metrically very close.
  *
- * `size` is the outer square edge in px.
+ * Strokes + text use `currentColor`, so the parent's text color drives it
+ * (white on the dark header / footer). `size` is the outer edge in px.
  */
 interface Props {
   size?: number;
@@ -16,41 +17,29 @@ interface Props {
 const { size = 46, class: className } = Astro.props;
 ---
 
-<span
+<svg
   class:list={["brand-mark", className]}
-  style={`--mark-size:${size}px`}
-  aria-hidden="true"
+  style={`width:${size}px`}
+  viewBox="183 443 572 545"
+  role="img"
+  aria-label="iLe"
+  xmlns="http://www.w3.org/2000/svg"
 >
-  <span class="brand-mark__inner"></span>
-  <span class="brand-mark__text">iLe.</span>
-</span>
+  <!-- outer + inner frame (official coords) -->
+  <rect x="189.74" y="449.5" width="558.48" height="531" fill="none" stroke="currentColor" stroke-width="3" />
+  <rect x="198.5" y="457.5" width="541" height="515" fill="none" stroke="currentColor" stroke-width="3" opacity="0.45" />
+  <text
+    transform="translate(399 768.96) scale(.96 1)"
+    font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+    font-size="96.67"
+    letter-spacing="2.9"
+    fill="currentColor"
+  >iLe.</text>
+</svg>
 
 <style>
   .brand-mark {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--mark-size);
-    height: var(--mark-size);
-    border: 1.3px solid currentColor;
-    box-sizing: border-box;
-    line-height: 1;
-  }
-  /* inner frame */
-  .brand-mark__inner {
-    position: absolute;
-    inset: calc(var(--mark-size) * 0.11);
-    border: 0.8px solid currentColor;
-    opacity: 0.4;
-    pointer-events: none;
-  }
-  .brand-mark__text {
-    font-family: var(--font-mono);
-    font-weight: 400;
-    font-size: calc(var(--mark-size) * 0.4);
-    letter-spacing: 0.01em;
-    /* nudge the optical center: the dot adds visual weight on the right */
-    padding-left: 0.06em;
+    display: block;
+    height: auto;
   }
 </style>
