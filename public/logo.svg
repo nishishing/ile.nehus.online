@@ -1,6 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 64" width="200" height="64" role="img" aria-label="iLe">
-  <rect width="200" height="64" fill="none"/>
-  <text x="100" y="32" text-anchor="middle" dominant-baseline="central"
-        font-family="Georgia, 'Times New Roman', serif" font-style="italic"
-        font-size="40" letter-spacing="2" fill="#16171A">iLe</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="320" height="320" role="img" aria-label="iLe">
+  <rect width="320" height="320" fill="#FFFFFF"/>
+  <rect x="12" y="12" width="296" height="296" fill="none" stroke="#9CA0A6" stroke-width="1.5"/>
+  <rect x="22" y="22" width="276" height="276" fill="none" stroke="#CACDD2" stroke-width="1"/>
+  <text x="160" y="170" text-anchor="middle" dominant-baseline="central"
+        font-family="Questrial, 'Century Gothic', 'Avenir Next', 'Futura', 'Helvetica Neue', Arial, sans-serif"
+        font-weight="400" font-size="108" letter-spacing="1" fill="#5B5E64">iLe.</text>
 </svg>

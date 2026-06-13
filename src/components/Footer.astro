@@ -1,12 +1,15 @@
 ---
 import { site, navFooter, navLegal } from "~data/site";
+import BrandMark from "~components/BrandMark.astro";
 const year = new Date().getFullYear();
 ---
 
 <footer class="footer">
   <div class="footer__inner">
     <div class="footer__brand">
-      <div class="footer__logo">iLe</div>
+      <a class="footer__logo" href="/" aria-label="iLe — home">
+        <BrandMark size={56} />
+      </a>
       <p class="footer__desc">
         Four salons. Four islands. <br />One name, since 2026.
       </p>
@@ -51,10 +54,7 @@ const year = new Date().getFullYear();
     }
   }
   .footer__logo {
-    font-family: var(--font-display);
-    font-size: 28px;
-    letter-spacing: 0.06em;
-    text-transform: lowercase;
+    display: inline-flex;
     margin-bottom: 16px;
   }
   .footer__desc {

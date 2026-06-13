@@ -1,0 +1,56 @@
+---
+/**
+ * BrandMark — the boxed "iLe." logo lockup.
+ *
+ * A thin double-framed square with the wordmark in Questrial
+ * (the brand's geometric sans). Designed for dark backgrounds
+ * (header / footer); strokes + text use currentColor so the
+ * parent's text color drives it.
+ *
+ * `size` is the outer square edge in px.
+ */
+interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 46, class: className } = Astro.props;
+---
+
+<span
+  class:list={["brand-mark", className]}
+  style={`--mark-size:${size}px`}
+  aria-hidden="true"
+>
+  <span class="brand-mark__inner"></span>
+  <span class="brand-mark__text">iLe.</span>
+</span>
+
+<style>
+  .brand-mark {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--mark-size);
+    height: var(--mark-size);
+    border: 1.3px solid currentColor;
+    box-sizing: border-box;
+    line-height: 1;
+  }
+  /* inner frame */
+  .brand-mark__inner {
+    position: absolute;
+    inset: calc(var(--mark-size) * 0.11);
+    border: 0.8px solid currentColor;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .brand-mark__text {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: calc(var(--mark-size) * 0.4);
+    letter-spacing: 0.01em;
+    /* nudge the optical center: the dot adds visual weight on the right */
+    padding-left: 0.06em;
+  }
+</style>
