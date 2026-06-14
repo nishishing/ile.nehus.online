@@ -8,6 +8,9 @@ interface Props {
 }
 const { salon, reverse = false } = Astro.props;
 const placeholderClass = `salon-row__img salon-row__img--${salon.slug}`;
+// Brand token (iLe / iLe.+) is italic; the location follows in roman.
+const [brand, ...areaParts] = salon.name.split(" ");
+const area = areaParts.join(" ");
 ---
 
 <article class:list={["salon-row", reverse && "salon-row--reverse"]}>
@@ -27,7 +30,7 @@ const placeholderClass = `salon-row__img salon-row__img--${salon.slug}`;
   </div>
   <div class="salon-row__detail">
     <h3 class="salon-row__name">
-      <em>iLe</em>&nbsp;{salon.name.replace(/^iLe\s*/, "")}
+      <em>{brand}</em>&nbsp;{area}
     </h3>
     <p class="salon-row__city">{salon.cityShort} / {salon.city.split(" / ")[1]}</p>
     <p class="salon-row__desc">{salon.description}</p>
