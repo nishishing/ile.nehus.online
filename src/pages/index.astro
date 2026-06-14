@@ -3,7 +3,7 @@ import BaseLayout from "~layouts/BaseLayout.astro";
 import Hero from "~components/Hero.astro";
 import Statement from "~components/Statement.astro";
 import SectionHead from "~components/SectionHead.astro";
-import SalonRow from "~components/SalonRow.astro";
+import SalonCard from "~components/SalonCard.astro";
 import StylistCard from "~components/StylistCard.astro";
 import InfoStrip from "~components/InfoStrip.astro";
 import JournalCard from "~components/JournalCard.astro";
@@ -50,9 +50,11 @@ const pageSchemas = [
     <div id="salons-h">
       <SectionHead small="— The Four Islands" title="Salons" />
     </div>
-    {salons.map((salon, i) => (
-      <SalonRow salon={salon} reverse={i % 2 === 1} />
-    ))}
+    <div class="salons-grid">
+      {salons.map((salon) => (
+        <SalonCard salon={salon} />
+      ))}
+    </div>
   </section>
 
   <section class="section section--stylists" aria-labelledby="stylists-h">
@@ -90,6 +92,19 @@ const pageSchemas = [
   }
   .section--stylists {
     background: var(--color-pearl);
+  }
+
+  .salons-grid {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 56px 48px;
+  }
+  @media (min-width: 760px) {
+    .salons-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   .stylists-grid {
