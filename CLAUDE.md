@@ -186,8 +186,8 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 │   │   ├── salons.ts          4 salons — real NAP, access, tel, hours, 年中無休
 │   │   ├── stylists.ts        Real roster: 32 staff (2 co-reps + 16 stylists + 14 assistants)
 │   │   ├── journal.ts         Seed posts
-│   │   ├── faq.ts             11 LLMO-critical Q&A (incl. Effect Bleach + pricing)
-│   │   └── glossary.ts        DefinedTerm entries (iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / …)
+│   │   ├── faq.ts             18 LLMO-critical Q&A (brand / salon / technique / recruit)
+│   │   └── glossary.ts        13 DefinedTerm entries (iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / パーソナル減力 / バレイヤージュ / ハイライト / ケアブリーチ / …)
 │   ├── components/            Astro components
 │   ├── layouts/BaseLayout.astro
 │   └── pages/                 content pages (see "Pages shipped")
@@ -229,8 +229,8 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 | `/stylists` | Breadcrumb | Grouped by salon |
 | `/stylists/[slug]` | Person | **32 generated**; Person → worksFor → HairSalon |
 | `/journal` + `/journal/[slug]` | Breadcrumb / Article | seed posts |
-| `/faq` | **FAQPage** | 11 Q&A incl. Effect Bleach + pricing |
-| `/glossary` | **DefinedTerm** | iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / … |
+| `/faq` | **FAQPage** | 18 Q&A — brand / salon / **technique** (バレイヤージュ・エフェクトブリーチ vs ケアブリーチ・色落ち・白髪ぼかし 等) / recruit |
+| `/glossary` | **DefinedTerm** | iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / パーソナル減力 / バレイヤージュ / ハイライト / ケアブリーチ / iLe.online / … |
 | `/recruit` `/contact` `/ile-online` `/privacy` `/terms` | Breadcrumb | |
 | `/404` | (noindex) | Custom 404; Cloudflare serves it via `not_found_handling` |
 
@@ -476,6 +476,16 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-14** — LLMO コンテンツ拡充（FAQ / glossary）: 確定事実の範囲内で
+  AI が引用しやすい一次情報を増補。(1) **FAQ に「技術（Technique）」カテゴリ新設**
+  ＋7問追加（バレイヤージュとは／バレイヤージュ vs ハイライト／エフェクトブリーチ
+  vs ケアブリーチ／ブリーチのダメージ＝“ゼロにはできない”と明記しつつ最小化を説明／
+  黒染め・縮毛矯正など複雑履歴対応／色落ち設計／白髪ぼかし）。`faq.astro` の
+  categories に `technique` を追加（番号は index 駆動で自動採番）、meta description も
+  技術を含むよう更新。FAQPage JSON-LD に自動反映（計18問）。(2) **glossary に
+  DefinedTerm を5語追加**（パーソナル減力／バレイヤージュ／ハイライト／ケアブリーチ／
+  iLe.online、計13語）。価格・受賞・医療効果の断定は brand-brief のルール通り不記載。
+  check 0 error／build 62 pages／4バリデータ 0エラー。
 - **2026-06-13** — ホームページ仕上げ（実素材投入）: (1) ヒーローの開発用
   プレースホルダー文言を実キャプション「*est.* 2020 — Harajuku, Tokyo」に差替。
   (2) **ブランド実ロゴ**（枠付き「iLe.」）を導入 — 新規 `BrandMark.astro`
