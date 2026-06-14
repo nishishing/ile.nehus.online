@@ -22,6 +22,14 @@ const salons = await getSalons();
 const stylists = await getStylists();
 const journalPosts = await getJournalPosts();
 
+// Staff listing excludes the co-representatives (featured separately on
+// /expertise, /message), grouped by store.
+const staff = stylists.filter((s) => s.position !== "共同代表");
+const stylistGroups = salons.map((salon) => ({
+  salon,
+  members: staff.filter((s) => s.salonSlug === salon.slug),
+}));
+
 // LLMO: page-specific JSON-LD
 const pageSchemas = [
   personFounderSchema(),
@@ -61,11 +69,23 @@ const pageSchemas = [
     <div id="stylists-h">
       <SectionHead small="— The Hands Behind" title="Stylists" />
     </div>
-    <div class="stylists-grid">
-      {stylists.map((stylist, i) => (
-        <StylistCard stylist={stylist} index={i} />
-      ))}
-    </div>
+    {stylistGroups.map(({ salon, members }, gi) => members.length > 0 && (
+      <div class="stylists-store">
+        <h3 class="stylists-store__h">
+          <span class="stylists-store__num">/ {salon.number}</span>
+          {salon.nameLatin}
+          <span class="stylists-store__city">— {salon.cityShort}</span>
+        </h3>
+        <div class="stylists-grid">
+          {members.map((stylist, i) => (
+            <StylistCard stylist={stylist} index={gi * 6 + i} />
+          ))}
+        </div>
+      </div>
+    ))}
+    <p class="stylists-all">
+      <a href="/stylists">View all stylists →</a>
+    </p>
   </section>
 
   <InfoStrip />
@@ -107,6 +127,45 @@ const pageSchemas = [
     }
   }
 
+  .stylists-store {
+    max-width: 1400px;
+    margin: 0 auto 80px;
+  }
+  .stylists-store:last-of-type {
+    margin-bottom: 56px;
+  }
+  .stylists-store__h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(22px, 3vw, 34px);
+    line-height: 1;
+    text-transform: uppercase;
+    margin: 0 0 36px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .stylists-store__num,
+  .stylists-store__city {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    color: var(--color-fg-muted);
+  }
+  .stylists-all {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .stylists-all a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 4px;
+  }
   .stylists-grid {
     display: grid;
     gap: 32px 24px;
