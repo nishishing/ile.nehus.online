@@ -1,0 +1,161 @@
+---
+/**
+ * SalonCard — compact salon card for the homepage 2-up grid.
+ * Landscape photo + name / city / access / hours. The whole card links
+ * to the salon detail page. (The full-width alternating SalonRow is kept
+ * for the /salons listing.)
+ */
+import type { Salon } from "~types/content";
+import Picture from "~components/Picture.astro";
+
+interface Props {
+  salon: Salon;
+}
+const { salon } = Astro.props;
+---
+
+<a class="salon-card" href={`/salons/${salon.slug}`}>
+  <div class:list={["salon-card__img", `salon-card__img--${salon.slug}`]}>
+    {salon.heroImage && (
+      <Picture
+        class="salon-card__photo"
+        src={salon.heroImage.url}
+        width={salon.heroImage.width}
+        height={salon.heroImage.height}
+        alt={`${salon.name}（${salon.nameLatin}）の店内`}
+        loading="lazy"
+      />
+    )}
+    <span class="salon-card__no">No. {salon.number}</span>
+    <span class="salon-card__plate">{salon.badge}</span>
+  </div>
+  <div class="salon-card__body">
+    <h3 class="salon-card__name"><em>iLe</em>&nbsp;{salon.name.replace(/^iLe\s*/, "")}</h3>
+    <p class="salon-card__city">{salon.cityShort} / {salon.city.split(" / ")[1]}</p>
+    <dl class="salon-card__meta">
+      <div><dt>Access</dt><dd>{salon.access}</dd></div>
+      <div><dt>Hours</dt><dd>{salon.hours}</dd></div>
+    </dl>
+    <span class="salon-card__more">View salon</span>
+  </div>
+</a>
+
+<style>
+  .salon-card {
+    display: block;
+    color: inherit;
+  }
+  .salon-card__img {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: linear-gradient(180deg, #6f7378 0%, #2e3035 100%);
+  }
+  .salon-card__photo {
+    transition: transform 0.6s ease;
+  }
+  .salon-card:hover .salon-card__photo {
+    transform: scale(1.03);
+  }
+  /* legibility scrim behind the corner labels */
+  .salon-card__img::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      transparent 26%,
+      transparent 74%,
+      rgba(0, 0, 0, 0.42) 100%
+    );
+  }
+  .salon-card__no {
+    position: absolute;
+    z-index: 2;
+    top: 16px;
+    left: 16px;
+    color: var(--color-white);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.26em;
+  }
+  .salon-card__plate {
+    position: absolute;
+    z-index: 2;
+    bottom: 14px;
+    left: 16px;
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 13px;
+  }
+  .salon-card__body {
+    padding: 22px 4px 0;
+  }
+  .salon-card__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(26px, 2.6vw, 34px);
+    line-height: 1;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+  }
+  .salon-card__name em {
+    font-style: italic;
+  }
+  .salon-card__city {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 18px;
+  }
+  .salon-card__meta {
+    margin: 0 0 18px;
+    border-top: 1px solid var(--color-border);
+  }
+  .salon-card__meta > div {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-border);
+    margin: 0;
+  }
+  .salon-card__meta dt {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0;
+  }
+  .salon-card__meta dd {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .salon-card__more {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .salon-card__more::after {
+    content: "";
+    width: 42px;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.3s ease;
+  }
+  .salon-card:hover .salon-card__more::after {
+    width: 64px;
+  }
+</style>
