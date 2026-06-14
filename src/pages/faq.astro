@@ -9,7 +9,7 @@ import {
 import { getFaqItems } from "~lib/content";
 
 const description =
-  "iLe（イル）と株式会社ing についてのよくある質問。ブランド、サロン、採用に関するご質問にお答えします。";
+  "iLe（イル）と株式会社ing についてのよくある質問。ブランド、サロン、エフェクトブリーチやバレイヤージュなどの技術、採用に関するご質問にお答えします。";
 
 const faqItems = await getFaqItems();
 
@@ -24,6 +24,7 @@ const pageSchemas = [
 const categories = [
   { id: "brand", label: "Brand" },
   { id: "salon", label: "Salons" },
+  { id: "technique", label: "Technique" },
   { id: "recruit", label: "Recruit" },
 ];
 
