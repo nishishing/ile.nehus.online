@@ -12,6 +12,9 @@ interface Props {
   salon: Salon;
 }
 const { salon } = Astro.props;
+// Brand token (iLe / iLe.+) is italic; the location follows in roman.
+const [brand, ...areaParts] = salon.name.split(" ");
+const area = areaParts.join(" ");
 ---
 
 <a class="salon-card" href={`/salons/${salon.slug}`}>
@@ -30,7 +33,7 @@ const { salon } = Astro.props;
     <span class="salon-card__plate">{salon.badge}</span>
   </div>
   <div class="salon-card__body">
-    <h3 class="salon-card__name"><em>iLe</em>&nbsp;{salon.name.replace(/^iLe\s*/, "")}</h3>
+    <h3 class="salon-card__name"><em>{brand}</em>&nbsp;{area}</h3>
     <p class="salon-card__city">{salon.cityShort} / {salon.city.split(" / ")[1]}</p>
     <dl class="salon-card__meta">
       <div><dt>Access</dt><dd>{salon.access}</dd></div>
