@@ -1,20 +1,43 @@
 ---
+/**
+ * Floating — a dismissable bottom-right card featuring the latest Journal post.
+ * The whole card links to the post; a small Close button hides it.
+ */
+import type { JournalPost } from "~types/content";
+import Picture from "~components/Picture.astro";
+
 interface Props {
-  href: string;
-  label: string;
+  post: JournalPost;
 }
-const { href, label } = Astro.props;
+const { post } = Astro.props;
+const image = post.ogImage ?? post.eyecatch;
 ---
 
-<aside class="floating" data-floating>
-  <div class="floating__img" aria-hidden="true">
-    <button type="button" class="floating__close" data-floating-close aria-label="Close">
-      Close ×
-    </button>
-  </div>
-  <div class="floating__link">
-    <a href={href}><em>{label}</em></a>
-  </div>
+<aside class="floating" data-floating aria-label="最新のジャーナル">
+  <button type="button" class="floating__close" data-floating-close aria-label="閉じる">
+    Close ×
+  </button>
+  <a class="floating__link" href={`/journal/${post.slug}`}>
+    <div class="floating__img" aria-hidden="true">
+      {image && (
+        <Picture
+          class="floating__photo"
+          src={image.url}
+          width={image.width}
+          height={image.height}
+          alt=""
+          loading="lazy"
+        />
+      )}
+    </div>
+    <div class="floating__body">
+      <p class="floating__eyebrow">— Latest Journal</p>
+      <p class="floating__cat">{post.categoryLabel}</p>
+      <h2 class="floating__title">{post.title}</h2>
+      <p class="floating__date">{post.publishedAtLabel}</p>
+      <span class="floating__more">Read more →</span>
+    </div>
+  </a>
 </aside>
 
 <script>
@@ -31,7 +54,7 @@ const { href, label } = Astro.props;
     right: 24px;
     bottom: 24px;
     z-index: 80;
-    width: 240px;
+    width: 260px;
     background: var(--color-ink);
     color: var(--color-white);
     overflow: hidden;
@@ -40,10 +63,31 @@ const { href, label } = Astro.props;
   .floating[hidden] {
     display: none;
   }
+  .floating__close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    z-index: 3;
+    color: var(--color-white);
+    background: transparent;
+    border: 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .floating__link {
+    display: block;
+    color: inherit;
+  }
   .floating__img {
-    aspect-ratio: 3 / 4;
-    background: linear-gradient(180deg, #6f7278 0%, #2a2c30 100%);
+    aspect-ratio: 16 / 10;
     position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #6f7278 0%, #2a2c30 100%);
+  }
+  .floating__photo {
+    filter: grayscale(100%) contrast(1.02);
   }
   .floating__img::after {
     content: "";
@@ -53,35 +97,55 @@ const { href, label } = Astro.props;
     mix-blend-mode: overlay;
     opacity: 0.4;
   }
-  .floating__close {
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    color: white;
-    background: transparent;
-    border: 0;
+  .floating__body {
+    padding: 16px 18px 18px;
+  }
+  .floating__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-fg-on-dark-muted);
+    margin: 0 0 10px;
+  }
+  .floating__cat {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-fg-on-dark-muted);
+    margin: 0 0 8px;
+  }
+  .floating__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.35;
+    margin: 0 0 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .floating__date {
     font-family: var(--font-display);
     font-style: italic;
     font-size: 12px;
-    cursor: pointer;
-    z-index: 2;
+    opacity: 0.6;
+    margin: 0 0 14px;
   }
-  .floating__link {
-    padding: 14px 18px;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 13px;
-    text-align: center;
-  }
-  .floating__link a {
-    display: inline-block;
-    border-bottom: 1px solid var(--color-white);
-    padding-bottom: 2px;
+  .floating__more {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 3px;
   }
 
   @media (max-width: 640px) {
     .floating {
-      width: 180px;
+      width: 200px;
       right: 12px;
       bottom: 12px;
     }

@@ -11,10 +11,10 @@ export const salons: readonly Salon[] = [
   {
     slug: "harajuku-a",
     number: "01",
-    name: "iLe 原宿",
-    nameLatin: "iLe Harajuku A",
+    name: "iLe. 原宿",
+    nameLatin: "iLe. Harajuku",
     city: "Harajuku / Tokyo",
-    cityShort: "HARAJUKU A",
+    cityShort: "HARAJUKU",
     address: "〒150-0001 東京都渋谷区神宮前6-10-8 原宿NAビル 4F",
     access: "原宿駅 徒歩7分 / 明治神宮前駅 徒歩2分",
     phone: "03-6427-5235",
@@ -25,7 +25,7 @@ export const salons: readonly Salon[] = [
     description:
       "創業の地。2020年8月、ここから iLe は始まった。原宿の小さな島として、すべての始まりとなった一店舗。",
     seoDescription:
-      "iLe 原宿（iLe Harajuku A）｜明治神宮前駅 徒歩2分・原宿駅 徒歩7分。2020年創業、iLe ブランド発祥の店。独自技術「エフェクトブリーチ」による透明感のあるハイトーンカラー・ブリーチが得意。年中無休、10:00–20:00。",
+      "iLe. 原宿（iLe. Harajuku）｜明治神宮前駅 徒歩2分・原宿駅 徒歩7分。2020年創業、iLe ブランド発祥の店。独自技術「エフェクトブリーチ」による透明感のあるハイトーンカラー・ブリーチが得意。年中無休、10:00–20:00。",
     badge: "— origin",
     heroImage: { url: "/salons/harajuku-a.jpg", width: 1600, height: 680 },
   },

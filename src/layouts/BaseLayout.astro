@@ -4,6 +4,7 @@ import LanguageStrip from "~components/LanguageStrip.astro";
 import Header from "~components/Header.astro";
 import Footer from "~components/Footer.astro";
 import Floating from "~components/Floating.astro";
+import { getJournalPosts } from "~lib/content";
 
 interface Props {
   title?: string;
@@ -22,6 +23,13 @@ const {
   noindex,
   hideFloating = false,
 } = Astro.props;
+
+// Floating CTA features the most recent journal post (same ordering as /journal).
+const latestPost = hideFloating
+  ? null
+  : ([...(await getJournalPosts())].sort((a, b) =>
+      b.publishedAt.localeCompare(a.publishedAt),
+    )[0] ?? null);
 ---
 
 <!doctype html>
@@ -44,8 +52,6 @@ const {
       <slot />
     </main>
     <Footer />
-    {!hideFloating && (
-      <Floating href="/story" label="Visit the Story Page" />
-    )}
+    {latestPost && <Floating post={latestPost} />}
   </body>
 </html>
