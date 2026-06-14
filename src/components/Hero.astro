@@ -7,6 +7,7 @@
  * <Picture> for <video autoplay muted loop playsinline poster="...">.
  */
 import Picture from "~components/Picture.astro";
+import BrandMark from "~components/BrandMark.astro";
 ---
 
 <section class="hero" aria-label="Hero">
@@ -21,6 +22,10 @@ import Picture from "~components/Picture.astro";
   />
   <div class="hero__scrim" aria-hidden="true"></div>
   <div class="hero__grain" aria-hidden="true"></div>
+
+  <div class="hero__logo">
+    <BrandMark size={150} />
+  </div>
 
   <p class="hero__corner-l"><em>est.</em> 2020 — Harajuku, Tokyo</p>
   <div class="hero__corner-r">
@@ -49,6 +54,17 @@ import Picture from "~components/Picture.astro";
   }
   /* Legibility scrim: darken top & bottom so the white corner labels and
      overlaid header nav stay readable over the photo. */
+  .hero__logo {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    pointer-events: none;
+  }
   .hero__scrim {
     position: absolute;
     inset: 0;
