@@ -18,9 +18,13 @@ const pageSchemas = [
 const salons = await getSalons();
 const stylists = await getStylists();
 
+// Co-representatives are featured separately (/expertise, /message), not in
+// the staff roster.
+const staff = stylists.filter((s) => s.position !== "共同代表");
+
 const groups = salons.map((salon) => ({
   salon,
-  members: stylists.filter((s) => s.salonSlug === salon.slug),
+  members: staff.filter((s) => s.salonSlug === salon.slug),
 }));
 ---
 
