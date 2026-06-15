@@ -44,6 +44,11 @@ const pageSchemas = [
   <PageHero eyebrow="— Customer Voice" title="VOICE" italicTitle="Voice" />
 
   <section class="voice-section">
+    <p class="voice-lead">
+      iLe では、髪の履歴を見極めて薬剤を設計する<a href="/effect-bleach">エフェクトブリーチ</a>を軸に、
+      ダメージをできるだけ抑えたハイトーンと、色落ちの美しさまで含めたカラー設計を大切にしています。
+      実際にご来店いただいたお客様から寄せられた声の一部をご紹介します。
+    </p>
     <div class="voice-grid">
       {voices.map((v) => (
         <figure class="voice-card">
@@ -56,6 +61,11 @@ const pageSchemas = [
     <p class="voice-note">
       ※ お客様からいただいた感想を編集してご紹介しています。最新の口コミは各店の Hot Pepper Beauty ページでもご覧いただけます。
     </p>
+    <nav class="voice-links" aria-label="関連ページ">
+      <a href="/effect-bleach">エフェクトブリーチとは</a>
+      <a href="/menu">メニュー・料金</a>
+      <a href="/faq">よくある質問</a>
+    </nav>
     <a class="voice-cta" href="/salons">ご予約はこちら →</a>
   </section>
 </BaseLayout>
@@ -68,10 +78,32 @@ const pageSchemas = [
     position: relative;
     z-index: 1;
   }
+  .voice-lead {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--color-fg-muted);
+    max-width: 720px;
+    margin: 0 0 48px;
+  }
+  .voice-lead a,
+  .voice-links a {
+    border-bottom: 1px solid currentColor;
+  }
   .voice-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+  .voice-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin: 24px 0 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
   }
   @media (min-width: 760px) {
     .voice-grid {
