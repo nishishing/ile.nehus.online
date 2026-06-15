@@ -86,9 +86,53 @@ const pageSchemas = [
       </article>
     ))}
   </section>
+
+  <section class="tech-related" aria-label="関連ページ">
+    <p class="tech-related__lead">技術の詳細や、料金・スタッフもあわせてご覧ください。</p>
+    <nav class="tech-related__links">
+      <a href="/effect-bleach">エフェクトブリーチ</a>
+      <a href="/menu">メニュー・料金</a>
+      <a href="/stylists">スタイリスト</a>
+      <a href="/faq">よくある質問</a>
+    </nav>
+  </section>
 </BaseLayout>
 
 <style>
+  .tech-related {
+    padding: 20px 32px 130px;
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .tech-related__lead {
+    font-size: 14px;
+    color: var(--color-fg-muted);
+    margin: 0 0 24px;
+  }
+  .tech-related__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 14px;
+  }
+  .tech-related__links a {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 8px 15px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .tech-related__links a:hover {
+    color: var(--color-fg);
+    border-color: var(--color-fg);
+  }
   .tech-lead {
     padding: 100px 32px 40px;
     position: relative;
