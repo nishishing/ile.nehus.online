@@ -24,7 +24,7 @@ import BrandMark from "~components/BrandMark.astro";
   <div class="hero__grain" aria-hidden="true"></div>
 
   <div class="hero__logo">
-    <BrandMark size={210} />
+    <BrandMark class="hero__mark" size={300} />
   </div>
 
   <p class="hero__corner-l"><em>est.</em> 2020 — Harajuku, Tokyo</p>
@@ -64,6 +64,12 @@ import BrandMark from "~components/BrandMark.astro";
     justify-content: center;
     color: var(--color-white);
     pointer-events: none;
+  }
+  /* Responsive override of BrandMark's inline width: scales with the
+     viewport, capped so it never overflows on small phones or gets
+     oversized on wide desktops. */
+  .hero__logo :global(.hero__mark) {
+    width: clamp(240px, 40vw, 460px) !important;
   }
   .hero__scrim {
     position: absolute;
