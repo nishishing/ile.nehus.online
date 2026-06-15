@@ -7,7 +7,7 @@
  * global.css). The exact casing "iLe" only ever appears as the brand, so a
  * global match is safe. Output is HTML — render with `set:html`.
  */
-const BRAND_RE = /iLe\.?\+?/g;
+const BRAND_RE = /iLe\.?[+＋]?/g;
 
 export function brandLabel(s: string): string {
   return s.replace(BRAND_RE, (m) => `<span class="brand-token">${m}</span>`);

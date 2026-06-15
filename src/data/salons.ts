@@ -32,8 +32,8 @@ export const salons: readonly Salon[] = [
   {
     slug: "harajuku-b",
     number: "02",
-    name: "iLe.+",
-    nameLatin: "iLe.+ Harajuku",
+    name: "iLe.＋",
+    nameLatin: "iLe.＋ Harajuku",
     city: "Harajuku / Tokyo",
     cityShort: "HARAJUKU",
     formerName: "nehus",
@@ -48,7 +48,7 @@ export const salons: readonly Salon[] = [
     description:
       "同じ街の、もう一つの島。独立した空気と常連を持つ、原宿のもう一つの拠点。",
     seoDescription:
-      "iLe.+ 原宿（旧 nehus／iLe.+ Harajuku）｜明治神宮前駅 徒歩5分・原宿駅 徒歩7分、表参道 MANA。独自技術「エフェクトブリーチ」によるダメージレスなハイトーン・デザインカラーが強み。年中無休、10:00–20:00。",
+      "iLe.＋ 原宿（旧 nehus／iLe.＋ Harajuku）｜明治神宮前駅 徒歩5分・原宿駅 徒歩7分、表参道 MANA。独自技術「エフェクトブリーチ」によるダメージレスなハイトーン・デザインカラーが強み。年中無休、10:00–20:00。",
     badge: "— formerly nehus",
     heroImage: { url: "/salons/harajuku-b.jpg", width: 1600, height: 680 },
   },
