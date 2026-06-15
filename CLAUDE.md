@@ -476,6 +476,9 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-15** — /salons の店舗写真を横長に（オーナー指示）: `SalonRow` の写真を
+  ポートレート `4 / 5` → ホームの SalonCard と同じ **横長 `16 / 10`** に変更。横長の
+  内観写真がポートレートに切り詰められて不自然だった問題を解消。
 - **2026-06-15** — /stylists 最上部に共同代表バンドを追加（オーナー指示）: 西村 涼・
   酒井 元樹の2名を「/ 00 Co-Representatives — iLe」セクションとしてサロン別グループの
   **上**に独立表示（`stylists/index` の `reps = position==="共同代表"`）。各店舗ロスター
