@@ -196,6 +196,8 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 │   └── .well-known/security.txt
 └── docs/
     ├── microcms-schema.md     Operator-facing API spec
+    ├── microcms-setup.md      Operator step-by-step (microCMS導入)
+    ├── dns-launch.md          Operator step-by-step (DNS切替+Search Console)
     └── deploy.md              Cloudflare Pages legacy notes
 ```
 
@@ -476,6 +478,17 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-15** — コンテンツ拡充3点（SEOコラム＋内部リンク＋運用手順書）:
+  (1) **SEOコラム +3本（計9本）** を手動執筆（`blog-generated.json`）: ブリーチ後の
+  ホームケア／ブリーチあり・なしの違い／根元リタッチの頻度。いずれも brand-brief 準拠
+  （価格・医療断定なし、許可パスのみ内部リンク）。BlogPosting JSON-LD・llms.txt・Journal・
+  ホーム Floating に自動反映。topic 文字列は seo-topics と一致させ auto-blog 重複回避。
+  (2) **内部リンク強化＋/reviews・/story 厚み増し**: `salons/[slug]` のリードに関連リンク
+  （Effect Bleach/メニュー/スタイリスト/FAQ）の pill を追加。`/story` に技術＋店舗一覧への
+  橋渡し段落＆リンク。`/reviews` に事実ベースの導入文＋関連リンク（捏造の声は追加せず実声のみ）。
+  (3) **運用手順書2本**: `docs/microcms-setup.md`（microCMS導入の操作ガイド）と
+  `docs/dns-launch.md`（本番ドメインのDNS切替＋Search Console＋sitemap送信＋ロールバック）。
+  check 0／build 67 pages／4バリデータ 0エラー（内部リンクも 0 broken）。
 - **2026-06-15** — ホームの STYLISTS 欄にも共同代表バンドを追加（オーナー指示）:
   `/stylists` と同様に、トップページのスタイリストセクション先頭へ「/ 00
   Co-Representatives — iLe」（西村 涼・酒井 元樹）を表示（`index.astro` の

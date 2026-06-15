@@ -68,6 +68,12 @@ const pageSchemas = [
         <h2 class="salon-detail__name">{salon.name}</h2>
         <p class="salon-detail__city">{salon.city}</p>
         <p class="salon-detail__desc">{salon.description}</p>
+        <nav class="salon-detail__links" aria-label="関連ページ">
+          <a href="/effect-bleach">エフェクトブリーチ</a>
+          <a href="/menu">メニュー・料金</a>
+          <a href="/stylists">スタイリスト</a>
+          <a href="/faq">よくある質問</a>
+        </nav>
       </div>
 
       <dl class="salon-detail__specs">
@@ -170,6 +176,27 @@ const pageSchemas = [
     line-height: 1.95;
     color: var(--color-fg);
     max-width: 480px;
+  }
+  .salon-detail__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin: 28px 0 0;
+  }
+  .salon-detail__links a {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 8px 15px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .salon-detail__links a:hover {
+    color: var(--color-fg);
+    border-color: var(--color-fg);
   }
 
   .salon-detail__specs {
