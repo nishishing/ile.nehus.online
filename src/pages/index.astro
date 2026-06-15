@@ -25,6 +25,7 @@ const journalPosts = await getJournalPosts();
 
 // Staff listing excludes the co-representatives (featured separately on
 // /expertise, /message), grouped by store.
+const reps = stylists.filter((s) => s.position === "共同代表");
 const staff = stylists.filter((s) => s.position !== "共同代表");
 const stylistGroups = salons.map((salon) => ({
   salon,
@@ -73,6 +74,20 @@ const pageSchemas = [
     <div id="stylists-h">
       <SectionHead small="— The Hands Behind" title="Stylists" />
     </div>
+    {reps.length > 0 && (
+      <div class="stylists-store stylists-store--reps">
+        <h3 class="stylists-store__h">
+          <span class="stylists-store__num">/ 00</span>
+          Co-Representatives
+          <span class="stylists-store__city">— <Fragment set:html={brandLabel("iLe")} /></span>
+        </h3>
+        <div class="stylists-grid">
+          {reps.map((stylist, i) => (
+            <StylistCard stylist={stylist} index={i} />
+          ))}
+        </div>
+      </div>
+    )}
     {stylistGroups.map(({ salon, members }, gi) => members.length > 0 && (
       <div class="stylists-store">
         <h3 class="stylists-store__h">
