@@ -476,6 +476,9 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-15** — ヒーロー中央ロゴを拡大（オーナー要望）: `Hero.astro` の
+  中央 `BrandMark` を `size={150}` → `size={210}` に。フルブリードの 100vh
+  ヒーローに対して旗艦ブランドマークが小さく見えたため。ヘッダー(46)/フッター(56)は据え置き。
 - **2026-06-15** — LLMO コンテンツ拡充 第2弾 ＋ UI 仕上げ: (1) **SEOコラム1本**
   を手動執筆し `blog-generated.json` に追記（`choosing-harajuku-bleach-salon`
   「原宿でブリーチが得意なサロンの選び方」/ keywords: 原宿 ブリーチ 等。ローカル
