@@ -476,6 +476,10 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-15** — /stylists 最上部に共同代表バンドを追加（オーナー指示）: 西村 涼・
+  酒井 元樹の2名を「/ 00 Co-Representatives — iLe」セクションとしてサロン別グループの
+  **上**に独立表示（`stylists/index` の `reps = position==="共同代表"`）。各店舗ロスター
+  からは従来どおり除外。build 64 pages／4バリデータ 0エラー。
 - **2026-06-15** — スタッフカードのサロン名をブランドのみに＋「＋」を全角化（オーナー指示）:
   (1) **StylistCard のサロン名はブランドトークンのみ**（`nameLatin.split(" ")[0]`）＝
   `iLe.`／`iLe.＋` を表示し、地名（HARAJUKU 等）は出さない。グループ見出しに店舗＋地名が

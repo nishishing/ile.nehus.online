@@ -19,8 +19,9 @@ const pageSchemas = [
 const salons = await getSalons();
 const stylists = await getStylists();
 
-// Co-representatives are featured separately (/expertise, /message), not in
-// the staff roster.
+// Co-representatives are featured in a dedicated band at the very top, kept
+// out of the per-salon roster below.
+const reps = stylists.filter((s) => s.position === "共同代表");
 const staff = stylists.filter((s) => s.position !== "共同代表");
 
 const groups = salons.map((salon) => ({
@@ -45,6 +46,20 @@ const groups = salons.map((salon) => ({
   />
 
   <section class="stylists-page">
+    {reps.length > 0 && (
+      <div class="stylists-group stylists-group--reps">
+        <h2 class="stylists-group__h">
+          <span class="stylists-group__num">/ 00</span>
+          Co-Representatives
+          <span class="stylists-group__city">— <Fragment set:html={brandLabel("iLe")} /></span>
+        </h2>
+        <div class="stylists-group__grid">
+          {reps.map((stylist, i) => (
+            <StylistCard stylist={stylist} index={i} />
+          ))}
+        </div>
+      </div>
+    )}
     {groups.map(({ salon, members }, gi) => members.length > 0 && (
       <div class="stylists-group">
         <h2 class="stylists-group__h">
