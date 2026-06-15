@@ -298,10 +298,12 @@ the Workers Static Assets flow we actually used).
 >   `public/staff/<slug>.jpg`, then add
 >   `portrait: { url, width: 600, height: 750 }` to each in
 >   `src/data/stylists.ts`.
-> - **Effect Bleach before/after + real OGP** — still open. (iLe logo ✅ done
+> - **Effect Bleach before/after** — still open. (real OGP ✅ done 2026-06-15 —
+>   branded `public/og-default.jpg` from the real Harajuku hero photo + boxed
+>   mark + 「船から、島へ」, via `scripts/generate-og.mjs`. iLe logo ✅ done
 >   2026-06-13 — boxed "iLe." mark, see `BrandMark.astro`; hero photo ✅ done.)
 
-1. **Real assets** — remaining: Effect Bleach before/after photos + a real OGP.
+1. **Real assets** — remaining: Effect Bleach before/after photos.
    ✅ **Done 2026-06-13**: iLe logo (boxed mark, header/footer/favicon/JSON-LD),
    homepage hero photo, and all **4 salon interiors** (owner-supplied).
    **Provisional assets still in place** (replace when real ones land):
@@ -320,7 +322,9 @@ the Workers Static Assets flow we actually used).
      `public/gallery/`, given a **low-saturation cool grade** (cool-mono *lean*
      that keeps the colour legible — colour is the product) + ImageGallery
      JSON-LD. Swap freely; the grade is one `modulate` param.
-   - **OGP**: `public/og-default.jpg` (cool-mono, `sharp` from an SVG).
+   - **OGP**: ✅ real branded `public/og-default.jpg` (1200×630) — the real
+     Harajuku hero photo (grayscale) + boxed iLe. mark + 「船から、島へ」+
+     原宿・名古屋・長岡. Regenerate via `node scripts/generate-og.mjs`.
    - In-page photo placeholders (salons, gallery) are cool-grayscale
      gradients with a CSS film-grain overlay — replace preserving that tone.
 2. **microCMS** — account + APIs per `docs/microcms-schema.md`. Then set
@@ -478,6 +482,13 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-15** — 実OGP（ブランドOGP画像）を作成: `public/og-default.jpg`（1200×630）を
+  実素材ベースに刷新。実写のヒーロー写真（夜の原宿の交差点・グレースケール）＋スクリム＋枠付き iLe. マーク。
+  **英字「FROM A SHIP, TO AN ISLAND」を主役**にし（サイト本体が英字 display 主体のため）、
+  和文「船から、島へ。」は小さめの上品なキャプションに（環境に IPAGothic しか無く、大きい
+  和文ゴシックは野暮ったいため）。下部に HARAJUKU・NAGOYA・NAGAOKA＋ドメイン。再生成は
+  `node scripts/generate-og.mjs`（sharp）。
+  全ページの og:image / twitter:image に反映。build 70 pages／4バリデータ 0エラー。
 - **2026-06-15** — SEOコラム +3本（ローカル/カラー）＋ /menu・/technology 内部リンク補強:
   (1) **コラム3本（計12本）**: 名古屋でブリーチが得意なサロンの選び方／長岡でブリーチカラーを
   楽しむ／グレージュとは？（原宿に続きローカルSEOを名古屋・長岡へ拡張。確定NAPの範囲で店舗に言及）。
