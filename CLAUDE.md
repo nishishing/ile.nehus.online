@@ -476,6 +476,15 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-15** — 店舗カードの表記修正（オーナー指示）: (1) **`iLe.+` の表記は
+  原宿の第2店舗のみ**に統一 — 長岡・名古屋は `iLe.+ → iLe.`（`salons.ts` の
+  `name`/`nameLatin`/`seoDescription`）。東京＝`iLe. 原宿`＋`iLe.+ 原宿`の2店舗、
+  長岡・名古屋＝`iLe.`。`formerly nehus` バッジは据え置き（事実なので）。
+  (2) **店名の `text-transform: uppercase` を撤去**（`SalonCard`/`SalonRow`/
+  `salons/[slug]` の name）→ ブランドは大文字「ILE.」ではなく **「iLe.」** で表示。
+  （詳細ページの PageHero は Latin 名の全大文字見出しのため据え置き）。
+  (3) **ホームの `SalonCard` に住所（`address`）行を追加**（SalonRow・詳細ページは
+  既出）。build 63 pages／4バリデータ 0エラー。
 - **2026-06-15** — ヒーロー中央ロゴを拡大（オーナー要望）: `Hero.astro` の
   中央 `BrandMark` を `size={150}` → `size={210}` に。フルブリードの 100vh
   ヒーローに対して旗艦ブランドマークが小さく見えたため。ヘッダー(46)/フッター(56)は据え置き。
