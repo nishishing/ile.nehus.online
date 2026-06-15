@@ -476,6 +476,12 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-15** — スタッフカードのサロン名をブランドのみに＋「＋」を全角化（オーナー指示）:
+  (1) **StylistCard のサロン名はブランドトークンのみ**（`nameLatin.split(" ")[0]`）＝
+  `iLe.`／`iLe.＋` を表示し、地名（HARAJUKU 等）は出さない。グループ見出しに店舗＋地名が
+  あるため重複を解消。(2) **`iLe.+` の「+」を全角「＋」に**（`salons.ts` harajuku-b の
+  `name`/`nameLatin`/`seoDescription`）。`lib/brand.ts` の `BRAND_RE` を `[+＋]` 対応に。
+  build 64 pages／4バリデータ 0エラー。
 - **2026-06-15** — 店名・ブランド表記の全ページ統一＋スタッフ並び替え（オーナー指示）:
   (1) **原宿の2店舗の表示名から「原宿」を除去** — `iLe. 原宿`→`iLe.`／`iLe.+ 原宿`→`iLe.+`
   （`salons.ts` の `name`。location はサブ見出し/住所で表示）。`nameLatin`（`iLe. Harajuku`等）は

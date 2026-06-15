@@ -10,7 +10,7 @@ interface Props {
 }
 const { stylist, index } = Astro.props;
 const salon = await getSalonBySlug(stylist.salonSlug);
-const salonLabel = salon ? salon.nameLatin : stylist.salonSlug;
+const salonLabel = salon ? salon.nameLatin.split(" ")[0] : stylist.salonSlug;
 const areaLabel = stylist.position
   ? `( ${stylist.position} )`
   : `( ${salon?.cityShort ?? ""} )`;
