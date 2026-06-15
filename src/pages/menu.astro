@@ -66,6 +66,12 @@ const pageSchemas = [
         料金は目安です（税込）。髪の長さ・状態により変動します。
         最新の価格・所要時間・クーポンは、各店の <strong>Hot Pepper Beauty</strong> ページをご確認ください。
       </p>
+      <nav class="menu-links" aria-label="関連ページ">
+        <a href="/effect-bleach">エフェクトブリーチとは</a>
+        <a href="/technology">技術について</a>
+        <a href="/faq">よくある質問</a>
+        <a href="/reviews">お客様の声</a>
+      </nav>
       <a class="menu-cta" href="/salons">店舗別の予約はこちら →</a>
     </div>
   </section>
@@ -116,6 +122,27 @@ const pageSchemas = [
     letter-spacing: 0.04em;
     white-space: nowrap;
     color: var(--color-fg);
+  }
+  .menu-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin: 28px 0 0;
+  }
+  .menu-links a {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 8px 15px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .menu-links a:hover {
+    color: var(--color-fg);
+    border-color: var(--color-fg);
   }
   .menu-note {
     font-size: 13px;

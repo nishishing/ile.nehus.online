@@ -478,6 +478,12 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-15** — SEOコラム +3本（ローカル/カラー）＋ /menu・/technology 内部リンク補強:
+  (1) **コラム3本（計12本）**: 名古屋でブリーチが得意なサロンの選び方／長岡でブリーチカラーを
+  楽しむ／グレージュとは？（原宿に続きローカルSEOを名古屋・長岡へ拡張。確定NAPの範囲で店舗に言及）。
+  brand-brief 準拠・許可パスのみ内部リンク。topic は seo-topics と一致。
+  (2) **/menu** と **/technology** に関連リンク pill（Effect Bleach / 技術 / メニュー /
+  スタイリスト / FAQ / 声）を追加し回遊性を改善。build 70 pages／4バリデータ 0エラー。
 - **2026-06-15** — コンテンツ拡充3点（SEOコラム＋内部リンク＋運用手順書）:
   (1) **SEOコラム +3本（計9本）** を手動執筆（`blog-generated.json`）: ブリーチ後の
   ホームケア／ブリーチあり・なしの違い／根元リタッチの頻度。いずれも brand-brief 準拠
