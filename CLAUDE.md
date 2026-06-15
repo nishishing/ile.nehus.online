@@ -186,8 +186,8 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 │   │   ├── salons.ts          4 salons — real NAP, access, tel, hours, 年中無休
 │   │   ├── stylists.ts        Real roster: 32 staff (2 co-reps + 16 stylists + 14 assistants)
 │   │   ├── journal.ts         Seed posts
-│   │   ├── faq.ts             18 LLMO-critical Q&A (brand / salon / technique / recruit)
-│   │   └── glossary.ts        13 DefinedTerm entries (iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / パーソナル減力 / バレイヤージュ / ハイライト / ケアブリーチ / …)
+│   │   ├── faq.ts             23 LLMO-critical Q&A (brand / salon / access / technique / recruit)
+│   │   └── glossary.ts        16 DefinedTerm entries (iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / パーソナル減力 / バレイヤージュ / ハイライト / ケアブリーチ / 白髪ぼかし / インナーカラー / ダブルカラー / …)
 │   ├── components/            Astro components
 │   ├── layouts/BaseLayout.astro
 │   └── pages/                 content pages (see "Pages shipped")
@@ -229,8 +229,8 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 | `/stylists` | Breadcrumb | Grouped by salon |
 | `/stylists/[slug]` | Person | **32 generated**; Person → worksFor → HairSalon |
 | `/journal` + `/journal/[slug]` | Breadcrumb / Article | seed posts |
-| `/faq` | **FAQPage** | 18 Q&A — brand / salon / **technique** (バレイヤージュ・エフェクトブリーチ vs ケアブリーチ・色落ち・白髪ぼかし 等) / recruit |
-| `/glossary` | **DefinedTerm** | iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / パーソナル減力 / バレイヤージュ / ハイライト / ケアブリーチ / iLe.online / … |
+| `/faq` | **FAQPage** | 23 Q&A — brand / salon (初めて・メンズ含む) / **access** (原宿/名古屋/長岡の最寄駅) / **technique** (バレイヤージュ・ケアブリーチ・色落ち・白髪ぼかし・大人世代 等) / recruit。冒頭にカテゴリのジャンプindex |
+| `/glossary` | **DefinedTerm** | iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / パーソナル減力 / バレイヤージュ / ハイライト / ケアブリーチ / 白髪ぼかし / インナーカラー / ダブルカラー / iLe.online / … |
 | `/recruit` `/contact` `/ile-online` `/privacy` `/terms` | Breadcrumb | |
 | `/404` | (noindex) | Custom 404; Cloudflare serves it via `not_found_handling` |
 
@@ -476,6 +476,20 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-15** — LLMO コンテンツ拡充 第2弾 ＋ UI 仕上げ: (1) **SEOコラム1本**
+  を手動執筆し `blog-generated.json` に追記（`choosing-harajuku-bleach-salon`
+  「原宿でブリーチが得意なサロンの選び方」/ keywords: 原宿 ブリーチ 等。ローカル
+  SEO×LLMO の核。BlogPosting JSON-LD・llms.txt・Journal・ホーム Floating に自動反映、
+  計5コラム）。topic 文字列が seo-topics と一致するため auto-blog の重複選択も回避。
+  (2) **FAQ +5問（計23問）**: salon に「初めてブリーチ」「メンズ利用可否」、**access
+  カテゴリ新設**（原宿/名古屋/長岡の最寄駅、`salons.ts` の access と整合）、technique に
+  「30〜40代の大人世代」。`faq.astro` の categories に `access` 追加。(3) **glossary
+  +3語（計16語）**: 白髪ぼかし／インナーカラー／ダブルカラー。(4) **UI仕上げ**: FAQ
+  冒頭に**カテゴリのジャンプindex**（pill 型アンカー `#faq-<id>`＋`scroll-margin-top`、
+  validate:links の in-page anchor 検証も通過）／**主ナビ（`navPrimary`）に
+  「EFFECT BLEACH」を追加**（旗艦 LLMO ページがフッターのみだったのを解消、desktop の
+  flex nav に1項目追加、mobile は従来どおり nav 非表示）。check 0 error／build 63 pages／
+  4バリデータ 0エラー。
 - **2026-06-14** — LLMO コンテンツ拡充（FAQ / glossary）: 確定事実の範囲内で
   AI が引用しやすい一次情報を増補。(1) **FAQ に「技術（Technique）」カテゴリ新設**
   ＋7問追加（バレイヤージュとは／バレイヤージュ vs ハイライト／エフェクトブリーチ
