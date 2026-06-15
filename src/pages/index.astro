@@ -17,6 +17,7 @@ import {
   breadcrumbSchema,
   jsonLd,
 } from "~lib/schema";
+import { brandLabel } from "~lib/brand";
 
 const salons = await getSalons();
 const stylists = await getStylists();
@@ -27,7 +28,10 @@ const journalPosts = await getJournalPosts();
 const staff = stylists.filter((s) => s.position !== "共同代表");
 const stylistGroups = salons.map((salon) => ({
   salon,
-  members: staff.filter((s) => s.salonSlug === salon.slug),
+  // Photo-less staff are grouped at the very back of each salon.
+  members: staff
+    .filter((s) => s.salonSlug === salon.slug)
+    .sort((a, b) => (a.portrait ? 0 : 1) - (b.portrait ? 0 : 1)),
 }));
 
 // LLMO: page-specific JSON-LD
@@ -73,7 +77,7 @@ const pageSchemas = [
       <div class="stylists-store">
         <h3 class="stylists-store__h">
           <span class="stylists-store__num">/ {salon.number}</span>
-          {salon.nameLatin}
+          <Fragment set:html={brandLabel(salon.nameLatin)} />
           <span class="stylists-store__city">— {salon.cityShort}</span>
         </h3>
         <div class="stylists-grid">

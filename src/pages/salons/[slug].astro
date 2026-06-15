@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "~layouts/BaseLayout.astro";
+import { brandLabel } from "~lib/brand";
 import PageHero from "~components/PageHero.astro";
 import { getSalons, getStylists } from "~lib/content";
 import StylistCard from "~components/StylistCard.astro";
@@ -44,8 +45,7 @@ const pageSchemas = [
 
   <PageHero
     eyebrow={`— Salon ${salon.number}`}
-    title={salon.nameLatin.toUpperCase()}
-    italicTitle="iLe"
+    title={brandLabel(salon.nameLatin)}
   />
 
   {salon.heroImage && (
@@ -96,7 +96,7 @@ const pageSchemas = [
 
   {salonStylists.length > 0 && (
     <section class="salon-stylists">
-      <h2 class="salon-stylists__h">Stylists at {salon.nameLatin}</h2>
+      <h2 class="salon-stylists__h">Stylists at <Fragment set:html={brandLabel(salon.nameLatin)} /></h2>
       <div class="salon-stylists__grid">
         {salonStylists.map((s, i) => (
           <StylistCard stylist={s} index={i} />

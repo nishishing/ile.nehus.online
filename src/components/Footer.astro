@@ -1,5 +1,6 @@
 ---
 import { site, navFooter, navLegal } from "~data/site";
+import { brandLabel } from "~lib/brand";
 import BrandMark from "~components/BrandMark.astro";
 const year = new Date().getFullYear();
 ---
@@ -17,7 +18,7 @@ const year = new Date().getFullYear();
     <nav class="footer__nav" aria-label="Footer">
       <ul>
         {navFooter.map((item) => (
-          <li><a href={item.href}>{item.label}</a></li>
+          <li><a href={item.href} set:html={brandLabel(item.label)}></a></li>
         ))}
       </ul>
     </nav>

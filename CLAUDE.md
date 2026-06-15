@@ -476,6 +476,19 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-15** — 店名・ブランド表記の全ページ統一＋スタッフ並び替え（オーナー指示）:
+  (1) **原宿の2店舗の表示名から「原宿」を除去** — `iLe. 原宿`→`iLe.`／`iLe.+ 原宿`→`iLe.+`
+  （`salons.ts` の `name`。location はサブ見出し/住所で表示）。`nameLatin`（`iLe. Harajuku`等）は
+  SEO/曖昧性回避のため維持。`SalonCard`/`SalonRow` は area を条件付き描画に。
+  (2) **ブランドワードマークを全ページで「iLe」（大文字 ILE にしない）** — `src/lib/brand.ts`
+  の `brandLabel()` が `iLe`/`iLe.`/`iLe.+` を `<span class="brand-token">` でラップし、
+  `global.css` の `.brand-token{text-transform:none}` で大文字化を打ち消す。`text-transform:
+  uppercase` のラベル内でもブランドだけ正しい casing になる（周囲の地名は大文字のまま）。
+  適用: StylistCard サロン名／stylists・home のグループ見出し／salon 詳細ヒーロー（`PageHero`
+  の `title`、eyebrow も `set:html` 化）／salon 詳細「Stylists at …」／stylist 詳細の eyebrow・
+  リンク／Footer（`iLe.ONLINE`）。
+  (3) **スタッフ一覧で写真のないスタッフを各店舗の最後尾に整列**（`stylists/index` と home の
+  グループで `portrait` 有無の安定ソート）。check 0／build 64 pages／4バリデータ 0エラー。
 - **2026-06-15** — 店舗カードの表記修正（オーナー指示）: (1) **`iLe.+` の表記は
   原宿の第2店舗のみ**に統一 — 長岡・名古屋は `iLe.+ → iLe.`（`salons.ts` の
   `name`/`nameLatin`/`seoDescription`）。東京＝`iLe. 原宿`＋`iLe.+ 原宿`の2店舗、

@@ -30,7 +30,7 @@ const area = areaParts.join(" ");
   </div>
   <div class="salon-row__detail">
     <h3 class="salon-row__name">
-      <em>{brand}</em>&nbsp;{area}
+      <em>{brand}</em>{area && <Fragment>&nbsp;{area}</Fragment>}
     </h3>
     <p class="salon-row__city">{salon.cityShort} / {salon.city.split(" / ")[1]}</p>
     <p class="salon-row__desc">{salon.description}</p>

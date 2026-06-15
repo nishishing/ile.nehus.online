@@ -11,7 +11,7 @@ export const salons: readonly Salon[] = [
   {
     slug: "harajuku-a",
     number: "01",
-    name: "iLe. 原宿",
+    name: "iLe.",
     nameLatin: "iLe. Harajuku",
     city: "Harajuku / Tokyo",
     cityShort: "HARAJUKU",
@@ -32,7 +32,7 @@ export const salons: readonly Salon[] = [
   {
     slug: "harajuku-b",
     number: "02",
-    name: "iLe.+ 原宿",
+    name: "iLe.+",
     nameLatin: "iLe.+ Harajuku",
     city: "Harajuku / Tokyo",
     cityShort: "HARAJUKU",

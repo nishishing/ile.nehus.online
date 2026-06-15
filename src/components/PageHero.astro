@@ -20,7 +20,7 @@ if (italicTitle) {
   <div class="page-hero__stand-in" aria-hidden="true"></div>
   <div class="page-hero__grain" aria-hidden="true"></div>
   <div class="page-hero__inner">
-    <p class="page-hero__eyebrow">{eyebrow}</p>
+    <p class="page-hero__eyebrow" set:html={eyebrow}></p>
     <h1 id="page-hero-h" class="page-hero__h" set:html={titleHtml} />
   </div>
 </section>
