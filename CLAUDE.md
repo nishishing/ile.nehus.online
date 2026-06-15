@@ -483,9 +483,11 @@ The user has asked that this file be kept up to date whenever things change.
 ### Changelog
 
 - **2026-06-15** — 実OGP（ブランドOGP画像）を作成: `public/og-default.jpg`（1200×630）を
-  実素材ベースに刷新。実写のヒーロー写真（夜の原宿の交差点・グレースケール）＋スクリム＋
-  枠付き iLe. マーク＋「船から、島へ。」＋FROM A SHIP, TO AN ISLAND＋原宿・名古屋・長岡＋
-  ドメイン。再生成は `node scripts/generate-og.mjs`（sharp、JPは IPAGothic で描画）。
+  実素材ベースに刷新。実写のヒーロー写真（夜の原宿の交差点・グレースケール）＋スクリム＋枠付き iLe. マーク。
+  **英字「FROM A SHIP, TO AN ISLAND」を主役**にし（サイト本体が英字 display 主体のため）、
+  和文「船から、島へ。」は小さめの上品なキャプションに（環境に IPAGothic しか無く、大きい
+  和文ゴシックは野暮ったいため）。下部に HARAJUKU・NAGOYA・NAGAOKA＋ドメイン。再生成は
+  `node scripts/generate-og.mjs`（sharp）。
   全ページの og:image / twitter:image に反映。build 70 pages／4バリデータ 0エラー。
 - **2026-06-15** — SEOコラム +3本（ローカル/カラー）＋ /menu・/technology 内部リンク補強:
   (1) **コラム3本（計12本）**: 名古屋でブリーチが得意なサロンの選び方／長岡でブリーチカラーを
