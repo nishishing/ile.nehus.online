@@ -476,6 +476,10 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-15** — ホームの STYLISTS 欄にも共同代表バンドを追加（オーナー指示）:
+  `/stylists` と同様に、トップページのスタイリストセクション先頭へ「/ 00
+  Co-Representatives — iLe」（西村 涼・酒井 元樹）を表示（`index.astro` の
+  `reps`）。各店舗グループからは従来どおり除外。build 64 pages／4バリデータ 0エラー。
 - **2026-06-15** — /salons の店舗写真を横長に（オーナー指示）: `SalonRow` の写真を
   ポートレート `4 / 5` → ホームの SalonCard と同じ **横長 `16 / 10`** に変更。横長の
   内観写真がポートレートに切り詰められて不自然だった問題を解消。
