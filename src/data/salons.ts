@@ -55,8 +55,8 @@ export const salons: readonly Salon[] = [
   {
     slug: "nagaoka",
     number: "03",
-    name: "iLe.+ 長岡",
-    nameLatin: "iLe.+ Nagaoka",
+    name: "iLe. 長岡",
+    nameLatin: "iLe. Nagaoka",
     city: "Nagaoka / Niigata",
     cityShort: "NAGAOKA",
     formerName: "nehus 長岡",
@@ -71,15 +71,15 @@ export const salons: readonly Salon[] = [
     description:
       "雪の街の島。地域に深く根づいた、人と人の繋がりを大切にする店舗。",
     seoDescription:
-      "iLe.+ 長岡（旧 nehus 長岡／iLe.+ Nagaoka）｜新潟県長岡市古正寺、イオン長岡店すぐ近く。地域に根ざしたサロンで、独自技術「エフェクトブリーチ」によるダメージレスなハイトーンカラーが人気。年中無休、9:00–19:00。",
+      "iLe. 長岡（旧 nehus 長岡／iLe. Nagaoka）｜新潟県長岡市古正寺、イオン長岡店すぐ近く。地域に根ざしたサロンで、独自技術「エフェクトブリーチ」によるダメージレスなハイトーンカラーが人気。年中無休、9:00–19:00。",
     badge: "— formerly nehus 長岡",
     heroImage: { url: "/salons/nagaoka.jpg", width: 1600, height: 680 },
   },
   {
     slug: "nagoya",
     number: "04",
-    name: "iLe.+ 名古屋",
-    nameLatin: "iLe.+ Nagoya",
+    name: "iLe. 名古屋",
+    nameLatin: "iLe. Nagoya",
     city: "Nagoya / Aichi",
     cityShort: "NAGOYA",
     formerName: "nehus 名古屋",
@@ -94,7 +94,7 @@ export const salons: readonly Salon[] = [
     description:
       "中部の島。名古屋に根を張った独立したコミュニティとともに歩む店舗。",
     seoDescription:
-      "iLe.+ 名古屋（旧 nehus 名古屋／iLe.+ Nagoya）｜栄駅 徒歩9分・矢場町駅 徒歩6分、名古屋市中区栄。独自技術「エフェクトブリーチ」で透明感のあるハイトーンカラー・ブリーチを提案。年中無休、10:00–20:00。",
+      "iLe. 名古屋（旧 nehus 名古屋／iLe. Nagoya）｜栄駅 徒歩9分・矢場町駅 徒歩6分、名古屋市中区栄。独自技術「エフェクトブリーチ」で透明感のあるハイトーンカラー・ブリーチを提案。年中無休、10:00–20:00。",
     badge: "— formerly nehus 名古屋",
     heroImage: { url: "/salons/nagoya.jpg", width: 1600, height: 680 },
   },
