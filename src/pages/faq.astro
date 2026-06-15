@@ -24,6 +24,7 @@ const pageSchemas = [
 const categories = [
   { id: "brand", label: "Brand" },
   { id: "salon", label: "Salons" },
+  { id: "access", label: "Access" },
   { id: "technique", label: "Technique" },
   { id: "recruit", label: "Recruit" },
 ];
@@ -47,8 +48,17 @@ const groupedFaq = categories.map((cat) => ({
   />
 
   <section class="faq-section">
+    <nav class="faq-index" aria-label="FAQ categories">
+      {groupedFaq.filter((g) => g.items.length > 0).map((group) => (
+        <a class="faq-index__link" href={`#faq-${group.id}`}>
+          <span class="faq-index__num">{String(categories.findIndex((c) => c.id === group.id) + 1).padStart(2, "0")}</span>
+          {group.label}
+        </a>
+      ))}
+    </nav>
+
     {groupedFaq.map((group) => (
-      <div class="faq-group">
+      <div class="faq-group" id={`faq-${group.id}`}>
         <h2 class="faq-group__title">
           <span class="faq-group__title-num">/ {String(categories.findIndex((c) => c.id === group.id) + 1).padStart(2, "0")}</span>
           {group.label}
@@ -77,8 +87,40 @@ const groupedFaq = categories.map((cat) => ({
     position: relative;
     z-index: 1;
   }
+  .faq-index {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin: 0 0 80px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .faq-index__link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 9px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .faq-index__link:hover {
+    color: var(--color-fg);
+    border-color: var(--color-fg);
+  }
+  .faq-index__num {
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    opacity: 0.6;
+  }
   .faq-group {
     margin-bottom: 100px;
+    scroll-margin-top: 120px;
   }
   .faq-group__title {
     font-family: var(--font-display);

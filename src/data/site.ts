@@ -111,6 +111,7 @@ export const site: SiteConfig = {
 export const navPrimary = [
   { label: "SALONS", href: "/salons" },
   { label: "STYLISTS", href: "/stylists" },
+  { label: "EFFECT BLEACH", href: "/effect-bleach" },
   { label: "STORY", href: "/story" },
   { label: "JOURNAL", href: "/journal" },
   { label: "RECRUIT", href: "/recruit" },

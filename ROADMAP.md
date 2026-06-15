@@ -56,7 +56,11 @@ Astro project scaffold, design tokens, base layout, top page, LLMO basis.
 - [ ] note 代表記事を投入
 - [x] LLMによるSEOコラム自動生成・自動公開（`auto-blog` ワークフロー、
       `scripts/generate-post.mjs`／要 `ANTHROPIC_API_KEY` シークレット）
-- [ ] 全ページの画像差し替え（実写真へ）
+      ＋ 手動執筆コラムも随時追加（2026-06-15 時点で計5本）
+- [x] FAQ / glossary の LLMO 拡充（FAQ 23問: brand/salon/access/technique/recruit、
+      glossary 16語。2026-06-14〜15）
+- [ ] 全ページの画像差し替え（実写真へ）— 残: スタッフ7名のポートレート、
+      Effect Bleach before/after、実OGP（運営側素材待ち）
 - [x] 画像最適化（WebP / AVIF）— `<Picture>` + `scripts/optimize-images.mjs`
       が public/ の自前JPEGに AVIF/WebP 兄弟を prebuild 生成
 
