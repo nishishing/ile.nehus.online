@@ -33,7 +33,7 @@ const area = areaParts.join(" ");
     <span class="salon-card__plate">{salon.badge}</span>
   </div>
   <div class="salon-card__body">
-    <h3 class="salon-card__name"><em>{brand}</em>&nbsp;{area}</h3>
+    <h3 class="salon-card__name"><em>{brand}</em>{area && <Fragment>&nbsp;{area}</Fragment>}</h3>
     <p class="salon-card__city">{salon.cityShort} / {salon.city.split(" / ")[1]}</p>
     <dl class="salon-card__meta">
       <div><dt>Address</dt><dd>{salon.address}</dd></div>

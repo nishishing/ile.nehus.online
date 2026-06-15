@@ -199,3 +199,7 @@
     transform: translateX(-50%);
   }
 }
+
+.brand-token {
+  text-transform: none;
+}

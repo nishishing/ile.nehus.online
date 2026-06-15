@@ -1,6 +1,7 @@
 ---
 import type { Stylist } from "~types/content";
 import { getSalonBySlug } from "~lib/content";
+import { brandLabel } from "~lib/brand";
 import Picture from "~components/Picture.astro";
 
 interface Props {
@@ -29,7 +30,7 @@ const areaLabel = stylist.position
     )}
   </div>
   <h3 class="stylist__name">{stylist.name}</h3>
-  <p class="stylist__salon">{salonLabel}</p>
+  <p class="stylist__salon" set:html={brandLabel(salonLabel)}></p>
   <p class="stylist__area">{areaLabel}</p>
 </article>
 
