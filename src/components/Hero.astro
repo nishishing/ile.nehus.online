@@ -69,7 +69,7 @@ import BrandMark from "~components/BrandMark.astro";
      viewport, capped so it never overflows on small phones or gets
      oversized on wide desktops. */
   .hero__logo :global(.hero__mark) {
-    width: clamp(240px, 40vw, 460px) !important;
+    width: clamp(170px, 30vw, 360px) !important;
   }
   .hero__scrim {
     position: absolute;
@@ -121,5 +121,30 @@ import BrandMark from "~components/BrandMark.astro";
     width: 80px;
     height: 1px;
     background: rgba(255, 255, 255, 0.5);
+  }
+
+  /* On phones a landscape photo can't fill a tall 100vh hero without heavy
+     zoom-crop, so show it as a full-width landscape band (the whole scene,
+     un-cropped-ish) with the mark + labels overlaid. */
+  @media (max-width: 768px) {
+    .hero {
+      height: auto;
+      min-height: 0;
+    }
+    .hero :global(.hero__photo) {
+      position: relative;
+      inset: auto;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      object-position: center center;
+    }
+    .hero__logo :global(.hero__mark) {
+      width: clamp(140px, 34vw, 220px) !important;
+    }
+    .hero__corner-l,
+    .hero__corner-r {
+      bottom: 18px;
+      font-size: 11px;
+    }
   }
 </style>
