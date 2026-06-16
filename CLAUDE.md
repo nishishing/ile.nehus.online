@@ -482,6 +482,12 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-16** — ヒーロー調整（オーナー指示）: (1) 中央ロゴをやや縮小
+  （`clamp(240px,40vw,460px)` → `clamp(170px,30vw,360px)`）。(2) **スマホでヒーロー写真の
+  ズームを解消** — 横長写真を縦長 100vh に cover すると中央が大きく切れて“ズームしすぎ”に
+  見えるため、`@media(max-width:768px)` で `.hero` を height:auto＋写真を `aspect-ratio:16/10`
+  の横長バンド表示（全景が見える）に。モバイルのロゴも `clamp(140px,34vw,220px)` に。
+  デスクトップは従来のフルブリードのまま。build 70 pages／4バリデータ 0エラー。
 - **2026-06-15** — 実OGP（ブランドOGP画像）を作成: `public/og-default.jpg`（1200×630）を
   実素材ベースに刷新。実写のヒーロー写真（夜の原宿の交差点・グレースケール）＋スクリム＋枠付き iLe. マーク。
   **英字「FROM A SHIP, TO AN ISLAND」を主役**にし（サイト本体が英字 display 主体のため）、
