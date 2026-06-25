@@ -9,7 +9,6 @@
 :root{
   --bg:#0e0e11;
   --panel:#16161c;
-  --panel-2:#1f1f27;
   --text:#ffffff;
   --muted:#b5b5c0;
   --accent:#c9ffd9;
@@ -23,14 +22,12 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
   background:var(--bg);
   color:var(--text);
-  line-height:1.7;
 }
 a{color:inherit;text-decoration:none}
 .container{width:min(var(--max),calc(100% - 40px));margin:auto}
 
-/* header */
 header{
-  padding:22px 0;
+  padding:20px 0;
   border-bottom:1px solid #222;
 }
 .header-inner{
@@ -41,39 +38,22 @@ header{
 }
 .logo{
   font-weight:800;
-  letter-spacing:.08em;
-  font-size:1.25rem;
+  letter-spacing:.05em;
 }
-.logo span{display:block;font-size:.72rem;font-weight:500;color:var(--muted);letter-spacing:.02em;margin-top:2px}
 .insta{
   color:var(--muted);
   font-size:.9rem;
 }
 
-/* lead */
-.lead{
-  padding:30px 0 8px;
-}
-.lead p{
-  margin:0;
-  color:var(--muted);
-  font-size:1rem;
-  max-width:760px;
-}
-
-section{padding:28px 0}
+section{padding:36px 0}
 h2{
-  font-size:1.35rem;
-  margin:0 0 16px;
+  font-size:1.4rem;
+  margin:0 0 14px;
 }
-h2 .count{
-  font-size:.95rem;
-  color:var(--muted);
-  font-weight:500;
-  margin-left:6px;
+.grid{
+  display:grid;
+  gap:14px;
 }
-
-.grid{display:grid;gap:14px}
 .grid.cols3{grid-template-columns:repeat(3,1fr)}
 .grid.cols2{grid-template-columns:repeat(2,1fr)}
 
@@ -81,93 +61,33 @@ h2 .count{
   background:var(--panel);
   border-radius:var(--radius);
   padding:20px;
-  display:flex;
-  flex-direction:column;
+  transition:.15s;
 }
+a.card:hover{background:#1f1f27}
 .card h3{
   margin:0 0 8px;
   font-size:1.05rem;
 }
 .card p{
-  margin:0 0 16px;
+  margin:0;
   color:var(--muted);
   font-size:.95rem;
-  flex:1;
 }
 
-/* buttons */
 .btn{
   display:block;
-  text-align:center;
-  padding:13px 16px;
+  padding:14px 16px;
   border-radius:14px;
-  background:var(--panel-2);
+  background:#1f1f27;
   font-weight:600;
   transition:.15s;
 }
 .btn:hover{background:#2a2a36}
-.btn-accent{
-  background:var(--accent);
-  color:#0e0e11;
-}
-.btn-accent:hover{background:#a9f3c2}
-.btn-line{
-  background:var(--line);
-  color:#fff;
-}
-.btn-line:hover{background:#05b34c}
-
-/* category nav */
-.cat-nav{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  padding:24px 0 4px;
-}
-.cat-nav a{
-  background:var(--panel);
-  border:1px solid #262630;
-  border-radius:999px;
-  padding:8px 14px;
-  font-size:.85rem;
-  color:var(--muted);
-  transition:.15s;
-}
-.cat-nav a:hover{
-  background:var(--panel-2);
-  color:#fff;
-}
-
-/* CTA cards */
-.cta .card{gap:6px}
-.pills{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 16px}
-.pill{
-  font-size:.78rem;
-  color:var(--muted);
-  background:#101016;
-  border:1px solid #262630;
-  border-radius:999px;
-  padding:5px 11px;
-}
-
-/* LP highlight */
-.lp{
-  background:linear-gradient(135deg,#16161c,#1d2a22);
-  border:1px solid #2a3a30;
-  border-radius:var(--radius);
-  padding:26px;
-}
-.lp .eyebrow{margin:0 0 6px;font-size:.85rem;color:var(--accent)}
-.lp h2{margin:0 0 10px;font-size:1.3rem}
-.lp p{margin:0 0 18px;color:var(--muted);max-width:680px}
-.lp .note{font-size:.8rem;color:var(--muted);margin:10px 0 0}
 
 .small{font-size:.85rem;color:var(--muted)}
-.scroll-target{scroll-margin-top:20px}
 
 @media(max-width:900px){
   .grid.cols3,.grid.cols2{grid-template-columns:1fr}
-  .header-inner{flex-direction:column;align-items:flex-start;gap:6px}
 }
 </style>
 </head>
@@ -176,7 +96,7 @@ h2 .count{
 
 <header>
   <div class="container header-inner">
-    <div class="logo">BCC<span>美容師のインフラ整備サービス</span></div>
+    <div class="logo">BCC</div>
     <a class="insta" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">
       最新情報は公式LINEで →
     </a>
@@ -185,57 +105,21 @@ h2 .count{
 
 <main class="container">
 
-  <div class="lead">
-    <p>
-      開業・集客・運営に必要な“外部パートナー／サービス”を、カテゴリ別にまとめて探せます。
-      料金や細かな内容は、公式LINEから気軽に質問できます。
-    </p>
-  </div>
-
-  <!-- LP 誘導 -->
   <section>
-    <div class="lp">
-      <p class="eyebrow">BCCの全体像をまず把握したい方へ</p>
-      <h2>BCCで叶うこと・想いをまとめました</h2>
-      <p>「どんな支援がどこまで受けられるのか？」を一発で理解できるページです。はじめての方はまずこちらから見るのが最短です。</p>
-      <a class="btn btn-accent" style="display:inline-block" href="https://drive-blue.online/test/" target="_blank" rel="noopener noreferrer">BCCの説明LPを見る</a>
-      <p class="note">※別タブで開きます</p>
+    <h2>📣 ご案内</h2>
+    <div class="grid cols3">
+      <a class="card" href="https://drive-blue.online/test/" target="_blank" rel="noopener noreferrer">
+        <h3>BCCの説明LP</h3><p>叶うこと・想いをまとめました。はじめての方はこちら</p>
+      </a>
+      <a class="card" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">
+        <h3>公式LINE登録</h3><p>最新情報とLINE限定の極秘情報を受け取れます</p>
+      </a>
+      <a class="card" href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer">
+        <h3>オープンチャット</h3><p>同業者の情報交換・最新の共有・先行案内</p>
+      </a>
     </div>
   </section>
 
-  <!-- LINE + オープンチャット -->
-  <section class="cta">
-    <div class="grid cols2">
-      <div class="card">
-        <h3>LINE登録案内</h3>
-        <p style="flex:none;margin-bottom:6px">登録して最新情報とLINE公式限定の極秘情報を受け取れます。</p>
-        <div class="pills">
-          <span class="pill">導入のお問い合わせ</span>
-          <span class="pill">サービス内容の詳細</span>
-          <span class="pill">オフラインシークレット講習案内</span>
-        </div>
-        <a class="btn btn-line" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">公式LINEに登録する</a>
-        <p class="small" style="margin:10px 0 0">※LINE登録だけのお得情報があります。</p>
-      </div>
-
-      <div class="card">
-        <h3>オープンチャット登録案内</h3>
-        <p style="flex:none;margin-bottom:6px">同業者の情報交換・最新の共有・アップデートを受け取れます。</p>
-        <div class="pills">
-          <span class="pill">最新情報の共有</span>
-          <span class="pill">事例・成功パターン</span>
-          <span class="pill">告知・先行案内</span>
-        </div>
-        <a class="btn" href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer">オープンチャットに参加する</a>
-        <p class="small" style="margin:10px 0 0">※美容室経営のサポートオープンチャット</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- カテゴリナビ -->
-  <nav class="cat-nav" id="category-nav"></nav>
-
-  <!-- サービスカタログ -->
   <div id="catalog"></div>
 
 </main>
@@ -247,81 +131,80 @@ h2 .count{
 <script>
 /**
  * BCC サービス一覧
- * - detailUrl：Notion/サイト/LPの詳細URL
+ * - detailUrl："#" の場合はリンクなしのカードとして表示
  */
 const services = [
-  { id:"salon-start", cat:"開業支援", name:"Salon Start（0円開業）", desc:"0円開業の導線設計。融資・事業計画などの相談に対応。", detailUrl:"https://amplified-moss-043.notion.site/Salon-Start-25cb15ad990a812aa12edec53b11caba?source=copy_link" },
-  { id:"next-beauty-tech", cat:"開業支援", name:"NEXT BEAUTY TECH（融資・事業計画）", desc:"融資・事業計画の相談サポート。", detailUrl:"https://amplified-moss-043.notion.site/NEXT-BEAUTY-TECH-1feb15ad990a80ef9e89ca36ac98cf37?source=copy_link" },
-  { id:"stylebase", cat:"開業支援", name:"StyleBase 開業支援", desc:"開業準備〜運営の立ち上げ支援。", detailUrl:"https://amplified-moss-043.notion.site/StyleBase-1feb15ad990a80ab8d0bf83fc10555eb?source=copy_link" },
+  { cat:"開業支援", name:"Salon Start（0円開業）", desc:"0円開業の導線設計。融資・事業計画などの相談に対応。", detailUrl:"https://amplified-moss-043.notion.site/Salon-Start-25cb15ad990a812aa12edec53b11caba?source=copy_link" },
+  { cat:"開業支援", name:"NEXT BEAUTY TECH（融資・事業計画）", desc:"融資・事業計画の相談サポート。", detailUrl:"https://amplified-moss-043.notion.site/NEXT-BEAUTY-TECH-1feb15ad990a80ef9e89ca36ac98cf37?source=copy_link" },
+  { cat:"開業支援", name:"StyleBase 開業支援", desc:"開業準備〜運営の立ち上げ支援。", detailUrl:"https://amplified-moss-043.notion.site/StyleBase-1feb15ad990a80ab8d0bf83fc10555eb?source=copy_link" },
 
-  { id:"mutas", cat:"不動産", name:"ムータス（不動産専属 事業提携）", desc:"不動産専門事業提携。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a803fb293ef9c93e7f6cc?source=copy_link" },
-  { id:"real-estate-salon", cat:"不動産", name:"美容室専門の不動産屋（テナント・居抜き・M&A）", desc:"テナント・居抜き・M&Aまで美容室特化で対応。", detailUrl:"https://amplified-moss-043.notion.site/M-A-1feb15ad990a8077ba5adf584d742a20?source=copy_link" },
+  { cat:"不動産", name:"ムータス（不動産専属 事業提携）", desc:"不動産専門事業提携。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a803fb293ef9c93e7f6cc?source=copy_link" },
+  { cat:"不動産", name:"美容室専門の不動産屋（テナント・居抜き・M&A）", desc:"テナント・居抜き・M&Aまで美容室特化で対応。", detailUrl:"https://amplified-moss-043.notion.site/M-A-1feb15ad990a8077ba5adf584d742a20?source=copy_link" },
 
-  { id:"plum-plan", cat:"内装業者", name:"PLUM PLAN", desc:"内装・運営から空間設計までトータルサポート。", detailUrl:"#" },
-  { id:"layer-design-works", cat:"内装業者", name:"Layer Design Works", desc:"内装業界最安値クラスを目指す施工パートナー。", detailUrl:"https://amplified-moss-043.notion.site/Layer-Design-Works-21eb15ad990a80f99be6fcdc48a39529?source=copy_link" },
-  { id:"sunny-side-life", cat:"内装業者", name:"SUNNY SIDE LIFE", desc:"内装・空間づくりの相談先。", detailUrl:"https://amplified-moss-043.notion.site/SUNNY-SIDE-LIFE-1feb15ad990a80cd82c4fd4ba4c091e2?source=copy_link" },
+  { cat:"内装業者", name:"PLUM PLAN", desc:"内装・運営から空間設計までトータルサポート。", detailUrl:"#" },
+  { cat:"内装業者", name:"Layer Design Works", desc:"内装業界最安値クラスを目指す施工パートナー。", detailUrl:"https://amplified-moss-043.notion.site/Layer-Design-Works-21eb15ad990a80f99be6fcdc48a39529?source=copy_link" },
+  { cat:"内装業者", name:"SUNNY SIDE LIFE", desc:"内装・空間づくりの相談先。", detailUrl:"https://amplified-moss-043.notion.site/SUNNY-SIDE-LIFE-1feb15ad990a80cd82c4fd4ba4c091e2?source=copy_link" },
 
-  { id:"imamura-fp", cat:"財務", name:"税務調査対策 × 保険（元国税調査官 今村FP）", desc:"税務調査対策×保険（財務面の守りを強化）。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a80bea60df41b55dd0412?source=copy_link" },
+  { cat:"財務", name:"税務調査対策 × 保険（元国税調査官 今村FP）", desc:"税務調査対策×保険（財務面の守りを強化）。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a80bea60df41b55dd0412?source=copy_link" },
 
-  { id:"materials-intro", cat:"材料", name:"材料（仕入れ紹介）", desc:"材料（仕入れ）の紹介・相談。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a8076b1b5d409f25efb8e?source=copy_link" },
-  { id:"drive-blue", cat:"材料", name:"ドライブブルー", desc:"材料・仕入れの相談先。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a8063872bc074e8b3b0b7?source=copy_link" },
+  { cat:"材料", name:"材料（仕入れ紹介）", desc:"材料（仕入れ）の紹介・相談。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a8076b1b5d409f25efb8e?source=copy_link" },
+  { cat:"材料", name:"ドライブブルー", desc:"材料・仕入れの相談先。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a8063872bc074e8b3b0b7?source=copy_link" },
 
-  { id:"hairstyle-market", cat:"ヘアスタイル販売", name:"ヘアスタイル販売サイト", desc:"ヘアスタイルの販売プラットフォーム。", detailUrl:"https://amplified-moss-043.notion.site/286b15ad990a811ea0c9c09889c6ad39?source=copy_link" },
+  { cat:"ヘアスタイル販売", name:"ヘアスタイル販売サイト", desc:"ヘアスタイルの販売プラットフォーム。", detailUrl:"https://amplified-moss-043.notion.site/286b15ad990a811ea0c9c09889c6ad39?source=copy_link" },
 
-  { id:"tonari-seminar", cat:"教育", name:"隣店セミナー講師紹介", desc:"セミナー講師の紹介・マッチング。", detailUrl:"https://amplified-moss-043.notion.site/238b15ad990a8150b35bc571f12db7d1?source=copy_link" },
-  { id:"haircamp", cat:"教育", name:"ヘアキャンプスクール", desc:"学びを継続しやすい教育プログラム。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a8078b362c13836085cf9?source=copy_link" },
-  { id:"toko", cat:"教育", name:"企業向け 人材育成・採用支援サービス（都甲）", desc:"育成と採用の仕組み化を支援。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a80dbad18e72b0f8cd3ed?source=copy_link" },
+  { cat:"教育", name:"隣店セミナー講師紹介", desc:"セミナー講師の紹介・マッチング。", detailUrl:"https://amplified-moss-043.notion.site/238b15ad990a8150b35bc571f12db7d1?source=copy_link" },
+  { cat:"教育", name:"ヘアキャンプスクール", desc:"学びを継続しやすい教育プログラム。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a8078b362c13836085cf9?source=copy_link" },
+  { cat:"教育", name:"企業向け 人材育成・採用支援サービス（都甲）", desc:"育成と採用の仕組み化を支援。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a80dbad18e72b0f8cd3ed?source=copy_link" },
 
-  { id:"tete-lab", cat:"集客", name:"TETE LAB（HPB完全攻略 / WEB集客）", desc:"HPB完全攻略 / WEB集客の支援。", detailUrl:"https://amplified-moss-043.notion.site/TETE-LAB-HPB-WEB-2a7b15ad990a81efbd78fd43d6c6c464?source=copy_link" },
-  { id:"atsukyakumania", cat:"集客", name:"集客マニア（ホットペッパー / Google）", desc:"ホットペッパー・Google（MEO/SEO）などの集客支援。", detailUrl:"https://amplified-moss-043.notion.site/google-1feb15ad990a80918c2edb1788bc8f68?source=copy_link" },
-  { id:"ones", cat:"集客", name:"ONE's 流 集客サポート", desc:"ホットペッパー・ミニモ中心の集客支援。", detailUrl:"https://amplified-moss-043.notion.site/ONE-1feb15ad990a8077b5c3c6c80c2a0005?source=copy_link" },
-  { id:"stylepost", cat:"集客", name:"スタイルポスト（HPBスタイル/ブログ）", desc:"ホットペッパースタイル/ブログのサポート。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a803fa8a8daab01ffb2fd?source=copy_link" },
-  { id:"freed", cat:"集客", name:"フリード（TikTokコンサル / 運用代行）", desc:"TikTokのコンサル・運用代行。", detailUrl:"https://amplified-moss-043.notion.site/TikTok-1feb15ad990a802294addd6890a5c2af?source=copy_link" },
-  { id:"instagram", cat:"集客", name:"Instagramコンサル＆運用代行", desc:"Instagramの設計〜運用までサポート。", detailUrl:"https://amplified-moss-043.notion.site/Instagram-1feb15ad990a803dabf1d3b03b33197c?source=copy_link" },
-  { id:"biyoushijuku", cat:"集客", name:"美容師塾（人間力・美容師力コンサル）", desc:"人間力・美容師力のコンサル支援。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a80a2b5acd3d79b4f358a?source=copy_link" },
-  { id:"gita", cat:"集客", name:"美容室専門 TikTokコンサル（ギータ）", desc:"美容室特化のTikTok戦略支援。", detailUrl:"https://amplified-moss-043.notion.site/tiktok-21eb15ad990a807bb1e6e14f69139300?source=copy_link" },
+  { cat:"集客", name:"TETE LAB（HPB完全攻略 / WEB集客）", desc:"HPB完全攻略 / WEB集客の支援。", detailUrl:"https://amplified-moss-043.notion.site/TETE-LAB-HPB-WEB-2a7b15ad990a81efbd78fd43d6c6c464?source=copy_link" },
+  { cat:"集客", name:"集客マニア（ホットペッパー / Google）", desc:"ホットペッパー・Google（MEO/SEO）などの集客支援。", detailUrl:"https://amplified-moss-043.notion.site/google-1feb15ad990a80918c2edb1788bc8f68?source=copy_link" },
+  { cat:"集客", name:"ONE's 流 集客サポート", desc:"ホットペッパー・ミニモ中心の集客支援。", detailUrl:"https://amplified-moss-043.notion.site/ONE-1feb15ad990a8077b5c3c6c80c2a0005?source=copy_link" },
+  { cat:"集客", name:"スタイルポスト（HPBスタイル/ブログ）", desc:"ホットペッパースタイル/ブログのサポート。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a803fa8a8daab01ffb2fd?source=copy_link" },
+  { cat:"集客", name:"フリード（TikTokコンサル / 運用代行）", desc:"TikTokのコンサル・運用代行。", detailUrl:"https://amplified-moss-043.notion.site/TikTok-1feb15ad990a802294addd6890a5c2af?source=copy_link" },
+  { cat:"集客", name:"Instagramコンサル＆運用代行", desc:"Instagramの設計〜運用までサポート。", detailUrl:"https://amplified-moss-043.notion.site/Instagram-1feb15ad990a803dabf1d3b03b33197c?source=copy_link" },
+  { cat:"集客", name:"美容師塾（人間力・美容師力コンサル）", desc:"人間力・美容師力のコンサル支援。", detailUrl:"https://amplified-moss-043.notion.site/1feb15ad990a80a2b5acd3d79b4f358a?source=copy_link" },
+  { cat:"集客", name:"美容室専門 TikTokコンサル（ギータ）", desc:"美容室特化のTikTok戦略支援。", detailUrl:"https://amplified-moss-043.notion.site/tiktok-21eb15ad990a807bb1e6e14f69139300?source=copy_link" },
 
-  { id:"refundhub", cat:"予約サービス", name:"RefundHub（キャンセル請求・再予約）", desc:"キャンセル請求・再予約の導線づくり。", detailUrl:"https://amplified-moss-043.notion.site/RefundHub-21eb15ad990a81878d54c7435fcc1716?source=copy_link" },
+  { cat:"予約サービス", name:"RefundHub（キャンセル請求・再予約）", desc:"キャンセル請求・再予約の導線づくり。", detailUrl:"https://amplified-moss-043.notion.site/RefundHub-21eb15ad990a81878d54c7435fcc1716?source=copy_link" },
 ];
 
-const categoryOrder = ["開業支援","不動産","内装業者","財務","材料","ヘアスタイル販売","教育","集客","予約サービス"];
-const anchorIdByCategory = Object.fromEntries(categoryOrder.map(c => [c, "cat-" + c]));
+const categories = [
+  { name:"開業支援", emoji:"🚀" },
+  { name:"不動産", emoji:"🏠" },
+  { name:"内装業者", emoji:"🛠" },
+  { name:"財務", emoji:"📊" },
+  { name:"材料", emoji:"🧴" },
+  { name:"ヘアスタイル販売", emoji:"✂️" },
+  { name:"教育", emoji:"📚" },
+  { name:"集客", emoji:"📈" },
+  { name:"予約サービス", emoji:"📅" },
+];
 
 function render(){
   const catalog = document.getElementById("catalog");
-  const nav = document.getElementById("category-nav");
   catalog.innerHTML = "";
-  nav.innerHTML = "";
 
-  categoryOrder.forEach(cat => {
+  categories.forEach(({name:cat, emoji}) => {
     const items = services.filter(s => s.cat === cat);
     if(!items.length) return;
-    const anchorId = anchorIdByCategory[cat];
 
-    // nav chip
-    const navItem = document.createElement("a");
-    navItem.href = "#" + anchorId;
-    navItem.textContent = `${cat}（${items.length}）`;
-    nav.appendChild(navItem);
-
-    // section
     const section = document.createElement("section");
-    section.id = anchorId;
-    section.className = "scroll-target";
 
     const h2 = document.createElement("h2");
-    h2.textContent = cat;
-    const count = document.createElement("span");
-    count.className = "count";
-    count.textContent = `（${items.length}件）`;
-    h2.appendChild(count);
+    h2.textContent = `${emoji} ${cat}`;
 
     const grid = document.createElement("div");
     grid.className = "grid cols3";
 
     items.forEach(s => {
-      const card = document.createElement("div");
+      const hasLink = s.detailUrl && s.detailUrl !== "#";
+      const card = document.createElement(hasLink ? "a" : "div");
       card.className = "card";
+      if(hasLink){
+        card.href = s.detailUrl;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+      }
 
       const name = document.createElement("h3");
       name.textContent = s.name;
@@ -329,18 +212,8 @@ function render(){
       const desc = document.createElement("p");
       desc.textContent = s.desc;
 
-      const detail = document.createElement("a");
-      detail.className = "btn btn-accent";
-      detail.href = s.detailUrl || "#";
-      if(s.detailUrl && s.detailUrl !== "#"){
-        detail.target = "_blank";
-        detail.rel = "noopener noreferrer";
-      }
-      detail.textContent = "詳細 / お問い合わせ";
-
       card.appendChild(name);
       card.appendChild(desc);
-      card.appendChild(detail);
       grid.appendChild(card);
     });
 
