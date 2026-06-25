@@ -7,16 +7,19 @@
 <meta name="description" content="BCC（beauty Cooperative Chain）は、美容師の開業・集客・運営を支えるインフラ整備サービスです。">
 <style>
 :root{
-  --bg:#0e0e11;
-  --panel:#16161c;
-  --text:#ffffff;
-  --muted:#b5b5c0;
-  --accent:#c9ffd9;
-  --line:#06c755;
-  --radius:18px;
-  --max:1100px;
+  --teal:#16a394;
+  --teal-d:#0f8b7e;
+  --navy:#1f2740;
+  --bg:#ffffff;
+  --soft:#f4f6f7;
+  --text:#1c1d21;
+  --muted:#6b7280;
+  --line:#e6e8eb;
+  --radius:16px;
+  --max:1080px;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
@@ -27,136 +30,222 @@ body{
 a{color:inherit;text-decoration:none}
 .container{width:min(var(--max),calc(100% - 40px));margin:auto}
 
-header{padding:20px 0;border-bottom:1px solid #222}
-.header-inner{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.logo{font-weight:800;letter-spacing:.05em}
-.insta{color:var(--muted);font-size:.9rem}
+/* nav */
+.nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:saturate(150%) blur(8px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0}
+.brand{font-weight:800;letter-spacing:.04em;font-size:1.02rem}
+.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links a{color:var(--muted);font-size:.92rem}
+.nav-links a:hover{color:var(--text)}
+.btn-join{background:var(--teal);color:#fff;padding:9px 18px;border-radius:999px;font-weight:700;font-size:.9rem}
+.btn-join:hover{background:var(--teal-d);color:#fff}
+@media(max-width:680px){.nav-links a.hide-sp{display:none}}
 
-section{padding:36px 0}
-h2{font-size:1.4rem;margin:0 0 14px}
-.grid{display:grid;gap:14px}
-.grid.cols3{grid-template-columns:repeat(3,1fr)}
-.grid.cols2{grid-template-columns:repeat(2,1fr)}
+/* hero */
+.hero{position:relative;height:min(62vh,560px);min-height:380px;overflow:hidden;color:#fff;display:grid;place-items:center;text-align:center}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;background-size:cover;background-position:center}
+.hero-slide.on{opacity:1}
+.hero-slide::after{content:"";position:absolute;inset:0;background:rgba(15,20,30,.34)}
+.hero-inner{position:relative;z-index:2;padding:0 20px}
+.hero-eyebrow{font-size:.85rem;letter-spacing:.18em;opacity:.9;margin:0 0 14px;font-weight:600}
+.hero h1{font-size:clamp(1.7rem,4.6vw,3rem);margin:0;font-weight:800;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.hero-sub{margin:16px 0 0;font-size:clamp(.95rem,1.8vw,1.1rem);opacity:.95}
+.hero-cta{margin-top:26px;display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.hero-cta a{padding:12px 22px;border-radius:999px;font-weight:700;font-size:.92rem}
+.hero-cta .primary{background:var(--teal);color:#fff}
+.hero-cta .primary:hover{background:var(--teal-d)}
+.hero-cta .ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.5)}
+.hero-cta .ghost:hover{background:rgba(255,255,255,.24)}
+.dots{position:absolute;left:0;right:0;bottom:18px;z-index:3;display:flex;gap:9px;justify-content:center}
+.dots button{width:9px;height:9px;border-radius:999px;border:0;background:rgba(255,255,255,.45);cursor:pointer;padding:0}
+.dots button.on{background:#fff;width:26px}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:rgba(255,255,255,.16);border:0;color:#fff;width:44px;height:44px;border-radius:999px;font-size:1.2rem;cursor:pointer}
+.arrow:hover{background:rgba(255,255,255,.3)}
+.arrow.prev{left:14px}.arrow.next{right:14px}
+@media(max-width:680px){.arrow{display:none}}
 
-.card{background:var(--panel);border-radius:var(--radius);padding:20px;transition:.15s}
-a.card:hover{background:#1f1f27}
-.card h3{margin:0 0 8px;font-size:1.05rem}
-.card p{margin:0;color:var(--muted);font-size:.95rem}
+/* sections */
+section{padding:46px 0}
+.sec-head{text-align:center;margin:0 0 26px}
+.sec-head .eyebrow{color:var(--teal);font-size:.82rem;letter-spacing:.14em;font-weight:700;margin:0 0 6px}
+.sec-head h2{font-size:1.5rem;margin:0}
+.sec-head p{color:var(--muted);margin:8px 0 0;font-size:.95rem}
 
-.btn{display:block;text-align:center;padding:14px 16px;border-radius:14px;background:#1f1f27;font-weight:600;transition:.15s}
-.btn:hover{background:#2a2a36}
-.btn-line{background:var(--line);color:#fff}
-.btn-line:hover{background:#05b34c}
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:6px;max-width:max-content;margin:0 auto 26px}
+.tab{border:0;background:transparent;color:var(--muted);font-weight:600;font-size:.9rem;padding:9px 16px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--text)}
+.tab.on{background:var(--teal);color:#fff}
+@media(max-width:680px){.tabs{border-radius:18px}}
 
-.back{display:inline-block;color:var(--muted);font-size:.9rem;margin:24px 0 4px}
-.back:hover{color:#fff}
-.eyebrow{color:var(--accent);font-size:.85rem;margin:0 0 6px}
-.detail-title{font-size:1.6rem;margin:0 0 14px}
-.lead{color:var(--muted);max-width:760px}
+/* cards */
+.grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+@media(max-width:880px){.grid{grid-template-columns:1fr}}
+.cat-block{margin-bottom:30px}
+.cat-block h3.cat-title{font-size:1.05rem;margin:0 0 14px;display:flex;align-items:center;gap:8px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.15s;display:flex;flex-direction:column}
+a.card:hover{box-shadow:0 10px 30px rgba(20,30,40,.08);transform:translateY(-2px);border-color:#d6dade}
+.thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#eef2f1,#e3efec);display:grid;place-items:center;font-size:2rem}
+.card-body{padding:16px 18px}
+.card-body h4{margin:0 0 6px;font-size:1rem}
+.card-body p{margin:0;color:var(--muted);font-size:.9rem}
+
+/* notice cards (ご案内) */
+.notice .grid .card{border-color:var(--line)}
+.notice .thumb{background:linear-gradient(135deg,#e9f6f3,#dff0ec)}
+
+/* footer */
+.footer{background:var(--navy);color:#fff;margin-top:20px}
+.footer-inner{padding:42px 0}
+.footer h3{margin:0 0 10px;font-size:1.05rem;letter-spacing:.04em}
+.footer p{margin:0;color:#aab2c5;font-size:.9rem;max-width:680px}
+.footer .small{color:#8b93a7;font-size:.82rem;margin-top:18px}
+
+/* detail */
+.back{display:inline-block;color:var(--muted);font-size:.9rem;margin:26px 0 6px}
+.back:hover{color:var(--text)}
+.detail .eyebrow{color:var(--teal);font-size:.85rem;font-weight:700;margin:0 0 8px}
+.detail h1{font-size:clamp(1.5rem,3.4vw,2rem);margin:0 0 14px}
+.lead{color:#3b3d44;max-width:760px}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:620px}
+@media(max-width:680px){.cta-grid{grid-template-columns:1fr}}
+.btn{display:block;text-align:center;padding:14px 16px;border-radius:12px;font-weight:700;border:1px solid var(--line);background:#fff}
+.btn:hover{background:var(--soft)}
+.btn-line{background:var(--teal);color:#fff;border-color:var(--teal)}
+.btn-line:hover{background:var(--teal-d)}
 .small{font-size:.85rem;color:var(--muted)}
-
-@media(max-width:900px){.grid.cols3,.grid.cols2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header>
-  <div class="container header-inner">
-    <div class="logo"><a href="index.html">BCC</a></div>
-    <a class="insta" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">最新情報は公式LINEで →</a>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">BCC <span style="color:var(--muted);font-weight:500">｜美容師のインフラ整備</span></a>
+    <div class="nav-links">
+      <a class="hide-sp" href="index.html">ホーム</a>
+      <a class="hide-sp" href="https://drive-blue.online/test/" target="_blank" rel="noopener noreferrer">BCCについて</a>
+      <a class="btn-join" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">公式LINE登録</a>
+    </div>
   </div>
+</nav>
+<header class="hero" id="home">
+  <div class="hero-slide on" data-i="0" style="background-image:linear-gradient(135deg,#0f8b7e,#14324a)"></div>
+  <div class="hero-slide" data-i="1" style="background-image:linear-gradient(135deg,#13324a,#1f2740)"></div>
+  <div class="hero-slide" data-i="2" style="background-image:linear-gradient(135deg,#16a394,#0f8b7e)"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow" id="heroEyebrow">beauty Cooperative Chain</p>
+    <h1 id="heroTitle">美容師のインフラを、ひとつに。</h1>
+    <p class="hero-sub" id="heroSub">開業・集客・運営に必要な外部パートナーを、カテゴリ別にまとめて。</p>
+    <div class="hero-cta">
+      <a class="primary" href="#services">サービスを見る</a>
+      <a class="ghost" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">公式LINE登録</a>
+    </div>
+  </div>
+  <button class="arrow prev" id="heroPrev" aria-label="前へ">‹</button>
+  <button class="arrow next" id="heroNext" aria-label="次へ">›</button>
+  <div class="dots" id="heroDots"></div>
 </header>
-<main class="container">
 
-  <section>
-    <h2>📣 ご案内</h2>
-    <div class="grid cols3">
-      <a class="card" href="https://drive-blue.online/test/" target="_blank" rel="noopener noreferrer"><h3>BCCの説明LP</h3><p>叶うこと・想いをまとめました。はじめての方はこちら</p></a>
-      <a class="card" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer"><h3>公式LINE登録</h3><p>最新情報とLINE限定の極秘情報を受け取れます</p></a>
-      <a class="card" href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer"><h3>オープンチャット</h3><p>同業者の情報交換・最新の共有・先行案内</p></a>
+<main>
+
+  <section class="notice container" id="info">
+    <div class="sec-head">
+      <p class="eyebrow">INFORMATION</p>
+      <h2>ご案内</h2>
+      <p>まずはこちらから。BCCの全体像と最新情報。</p>
+    </div>
+    <div class="grid">
+      <a class="card" href="https://drive-blue.online/test/" target="_blank" rel="noopener noreferrer">
+        <div class="thumb">📣</div>
+        <div class="card-body"><h4>BCCの説明LP</h4><p>叶うこと・想いをまとめました。はじめての方はこちら。</p></div>
+      </a>
+      <a class="card" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">
+        <div class="thumb">💬</div>
+        <div class="card-body"><h4>公式LINE登録</h4><p>最新情報とLINE限定の極秘情報を受け取れます。</p></div>
+      </a>
+      <a class="card" href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer">
+        <div class="thumb">👥</div>
+        <div class="card-body"><h4>オープンチャット</h4><p>同業者の情報交換・最新の共有・先行案内。</p></div>
+      </a>
     </div>
   </section>
 
-  <section>
-    <h2>🚀 開業支援</h2>
-    <div class="grid cols3">
-      <a class="card" href="salon-start.html"><h3>Salon Start（0円開業）</h3><p>0円開業の導線設計。融資・事業計画などの相談に対応。</p></a>
-      <a class="card" href="next-beauty-tech.html"><h3>NEXT BEAUTY TECH（融資・事業計画）</h3><p>融資・事業計画の相談サポート。</p></a>
-      <a class="card" href="stylebase.html"><h3>StyleBase 開業支援</h3><p>開業準備〜運営の立ち上げ支援。</p></a>
+  <section class="container" id="services">
+    <div class="sec-head">
+      <p class="eyebrow">SERVICES</p>
+      <h2>サービス一覧</h2>
+      <p>業種ごとにタブで切り替えできます。</p>
     </div>
-  </section>
-
-  <section>
-    <h2>🏠 不動産</h2>
-    <div class="grid cols3">
-      <a class="card" href="mutas.html"><h3>ムータス（不動産専属 事業提携）</h3><p>不動産専門事業提携。</p></a>
-      <a class="card" href="real-estate-salon.html"><h3>美容室専門の不動産屋（テナント・居抜き・M&amp;A）</h3><p>テナント・居抜き・M&amp;Aまで美容室特化で対応。</p></a>
-    </div>
-  </section>
-
-  <section>
-    <h2>🛠 内装業者</h2>
-    <div class="grid cols3">
-      <a class="card" href="plum-plan.html"><h3>PLUM PLAN</h3><p>内装・運営から空間設計までトータルサポート。</p></a>
-      <a class="card" href="layer-design-works.html"><h3>Layer Design Works</h3><p>内装業界最安値クラスを目指す施工パートナー。</p></a>
-      <a class="card" href="sunny-side-life.html"><h3>SUNNY SIDE LIFE</h3><p>内装・空間づくりの相談先。</p></a>
-    </div>
-  </section>
-
-  <section>
-    <h2>📊 財務</h2>
-    <div class="grid cols3">
-      <a class="card" href="imamura-fp.html"><h3>税務調査対策 × 保険（元国税調査官 今村FP）</h3><p>税務調査対策×保険（財務面の守りを強化）。</p></a>
-    </div>
-  </section>
-
-  <section>
-    <h2>🧴 材料</h2>
-    <div class="grid cols3">
-      <a class="card" href="materials-intro.html"><h3>材料（仕入れ紹介）</h3><p>材料（仕入れ）の紹介・相談。</p></a>
-      <a class="card" href="drive-blue.html"><h3>ドライブブルー</h3><p>材料・仕入れの相談先。</p></a>
-    </div>
-  </section>
-
-  <section>
-    <h2>✂️ ヘアスタイル販売</h2>
-    <div class="grid cols3">
-      <a class="card" href="hairstyle-market.html"><h3>ヘアスタイル販売サイト</h3><p>ヘアスタイルの販売プラットフォーム。</p></a>
-    </div>
-  </section>
-
-  <section>
-    <h2>📚 教育</h2>
-    <div class="grid cols3">
-      <a class="card" href="tonari-seminar.html"><h3>隣店セミナー講師紹介</h3><p>セミナー講師の紹介・マッチング。</p></a>
-      <a class="card" href="haircamp.html"><h3>ヘアキャンプスクール</h3><p>学びを継続しやすい教育プログラム。</p></a>
-      <a class="card" href="toko.html"><h3>企業向け 人材育成・採用支援サービス（都甲）</h3><p>育成と採用の仕組み化を支援。</p></a>
-    </div>
-  </section>
-
-  <section>
-    <h2>📈 集客</h2>
-    <div class="grid cols3">
-      <a class="card" href="tete-lab.html"><h3>TETE LAB（HPB完全攻略 / WEB集客）</h3><p>HPB完全攻略 / WEB集客の支援。</p></a>
-      <a class="card" href="atsukyakumania.html"><h3>集客マニア（ホットペッパー / Google）</h3><p>ホットペッパー・Google（MEO/SEO）などの集客支援。</p></a>
-      <a class="card" href="ones.html"><h3>ONE's 流 集客サポート</h3><p>ホットペッパー・ミニモ中心の集客支援。</p></a>
-      <a class="card" href="stylepost.html"><h3>スタイルポスト（HPBスタイル/ブログ）</h3><p>ホットペッパースタイル/ブログのサポート。</p></a>
-      <a class="card" href="freed.html"><h3>フリード（TikTokコンサル / 運用代行）</h3><p>TikTokのコンサル・運用代行。</p></a>
-      <a class="card" href="instagram.html"><h3>Instagramコンサル＆運用代行</h3><p>Instagramの設計〜運用までサポート。</p></a>
-      <a class="card" href="biyoushijuku.html"><h3>美容師塾（人間力・美容師力コンサル）</h3><p>人間力・美容師力のコンサル支援。</p></a>
-      <a class="card" href="gita.html"><h3>美容室専門 TikTokコンサル（ギータ）</h3><p>美容室特化のTikTok戦略支援。</p></a>
-    </div>
-  </section>
-
-  <section>
-    <h2>📅 予約サービス</h2>
-    <div class="grid cols3">
-      <a class="card" href="refundhub.html"><h3>RefundHub（キャンセル請求・再予約）</h3><p>キャンセル請求・再予約の導線づくり。</p></a>
-    </div>
+    <div class="tabs" id="tabs"></div>
+    <div id="panels"></div>
   </section>
 
 </main>
-<footer class="container" style="padding:40px 0;border-top:1px solid #222">
-  <p class="small">© BCC</p>
+
+<script>
+const DATA = [{"name":"開業支援","emoji":"🚀","items":[{"id":"salon-start","name":"Salon Start（0円開業）","desc":"0円開業の導線設計。融資・事業計画などの相談に対応。"},{"id":"next-beauty-tech","name":"NEXT BEAUTY TECH（融資・事業計画）","desc":"融資・事業計画の相談サポート。"},{"id":"stylebase","name":"StyleBase 開業支援","desc":"開業準備〜運営の立ち上げ支援。"}]},{"name":"不動産","emoji":"🏠","items":[{"id":"mutas","name":"ムータス（不動産専属 事業提携）","desc":"不動産専門事業提携。"},{"id":"real-estate-salon","name":"美容室専門の不動産屋（テナント・居抜き・M&A）","desc":"テナント・居抜き・M&Aまで美容室特化で対応。"}]},{"name":"内装業者","emoji":"🛠","items":[{"id":"plum-plan","name":"PLUM PLAN","desc":"内装・運営から空間設計までトータルサポート。"},{"id":"layer-design-works","name":"Layer Design Works","desc":"内装業界最安値クラスを目指す施工パートナー。"},{"id":"sunny-side-life","name":"SUNNY SIDE LIFE","desc":"内装・空間づくりの相談先。"}]},{"name":"財務","emoji":"📊","items":[{"id":"imamura-fp","name":"税務調査対策 × 保険（元国税調査官 今村FP）","desc":"税務調査対策×保険（財務面の守りを強化）。"}]},{"name":"材料","emoji":"🧴","items":[{"id":"materials-intro","name":"材料（仕入れ紹介）","desc":"材料（仕入れ）の紹介・相談。"},{"id":"drive-blue","name":"ドライブブルー","desc":"材料・仕入れの相談先。"}]},{"name":"ヘアスタイル販売","emoji":"✂️","items":[{"id":"hairstyle-market","name":"ヘアスタイル販売サイト","desc":"ヘアスタイルの販売プラットフォーム。"}]},{"name":"教育","emoji":"📚","items":[{"id":"tonari-seminar","name":"隣店セミナー講師紹介","desc":"セミナー講師の紹介・マッチング。"},{"id":"haircamp","name":"ヘアキャンプスクール","desc":"学びを継続しやすい教育プログラム。"},{"id":"toko","name":"企業向け 人材育成・採用支援サービス（都甲）","desc":"育成と採用の仕組み化を支援。"}]},{"name":"集客","emoji":"📈","items":[{"id":"tete-lab","name":"TETE LAB（HPB完全攻略 / WEB集客）","desc":"HPB完全攻略 / WEB集客の支援。"},{"id":"atsukyakumania","name":"集客マニア（ホットペッパー / Google）","desc":"ホットペッパー・Google（MEO/SEO）などの集客支援。"},{"id":"ones","name":"ONE's 流 集客サポート","desc":"ホットペッパー・ミニモ中心の集客支援。"},{"id":"stylepost","name":"スタイルポスト（HPBスタイル/ブログ）","desc":"ホットペッパースタイル/ブログのサポート。"},{"id":"freed","name":"フリード（TikTokコンサル / 運用代行）","desc":"TikTokのコンサル・運用代行。"},{"id":"instagram","name":"Instagramコンサル＆運用代行","desc":"Instagramの設計〜運用までサポート。"},{"id":"biyoushijuku","name":"美容師塾（人間力・美容師力コンサル）","desc":"人間力・美容師力のコンサル支援。"},{"id":"gita","name":"美容室専門 TikTokコンサル（ギータ）","desc":"美容室特化のTikTok戦略支援。"}]},{"name":"予約サービス","emoji":"📅","items":[{"id":"refundhub","name":"RefundHub（キャンセル請求・再予約）","desc":"キャンセル請求・再予約の導線づくり。"}]}];
+const HERO = [{"eyebrow":"beauty Cooperative Chain","h1":"美容師のインフラを、ひとつに。","sub":"開業・集客・運営に必要な外部パートナーを、カテゴリ別にまとめて。"},{"eyebrow":"OPEN / GROW / RUN","h1":"開業も集客も、ワンストップで。","sub":"信頼できるサービスだけを厳選。料金や詳細は公式LINEで。"},{"eyebrow":"MEMBERS","h1":"経営の“次の一手”が見つかる場所。","sub":"最新情報・限定特典は公式LINEとオープンチャットから。"}];
+
+/* ---- services tabs ---- */
+(function(){
+  const tabs = document.getElementById("tabs");
+  const panels = document.getElementById("panels");
+  const TABS = [{name:"すべて", emoji:"⭐", all:true}].concat(DATA.map(d=>({name:d.name, emoji:d.emoji})));
+
+  function cardHTML(it){
+    return '<a class="card" href="'+it.id+'.html"><div class="thumb">'+ (it._emoji||"📄") +'</div><div class="card-body"><h4>'+ it.name +'</h4><p>'+ it.desc +'</p></div></a>';
+  }
+  function panelHTML(tab){
+    if(tab.all){
+      return DATA.map(d=>(
+        '<div class="cat-block"><h3 class="cat-title">'+d.emoji+' '+d.name+'</h3><div class="grid">'+
+        d.items.map(it=>cardHTML(Object.assign({_emoji:d.emoji},it))).join("")+'</div></div>'
+      )).join("");
+    }
+    const d = DATA.find(x=>x.name===tab.name);
+    return '<div class="grid">'+ d.items.map(it=>cardHTML(Object.assign({_emoji:d.emoji},it))).join("") +'</div>';
+  }
+  function activate(i){
+    [...tabs.children].forEach((b,bi)=>b.classList.toggle("on",bi===i));
+    panels.innerHTML = panelHTML(TABS[i]);
+  }
+  TABS.forEach((t,i)=>{
+    const b=document.createElement("button");
+    b.className="tab"+(i===0?" on":"");
+    b.textContent = t.emoji+" "+t.name;
+    b.onclick=()=>activate(i);
+    tabs.appendChild(b);
+  });
+  activate(0);
+})();
+
+/* ---- hero slideshow ---- */
+(function(){
+  const slides=[...document.querySelectorAll(".hero-slide")];
+  const dots=document.getElementById("heroDots");
+  const eyebrow=document.getElementById("heroEyebrow");
+  const title=document.getElementById("heroTitle");
+  const sub=document.getElementById("heroSub");
+  let i=0,timer;
+  slides.forEach((_,n)=>{const b=document.createElement("button");if(n===0)b.className="on";b.onclick=()=>go(n);dots.appendChild(b);});
+  function go(n){
+    i=(n+slides.length)%slides.length;
+    slides.forEach((s,si)=>s.classList.toggle("on",si===i));
+    [...dots.children].forEach((d,di)=>d.classList.toggle("on",di===i));
+    eyebrow.textContent=HERO[i].eyebrow; title.textContent=HERO[i].h1; sub.textContent=HERO[i].sub;
+    restart();
+  }
+  function restart(){clearInterval(timer);timer=setInterval(()=>go(i+1),5000);}
+  document.getElementById("heroPrev").onclick=()=>go(i-1);
+  document.getElementById("heroNext").onclick=()=>go(i+1);
+  restart();
+})();
+</script>
+<footer class="footer">
+  <div class="container footer-inner">
+    <h3>BCC — beauty Cooperative Chain</h3>
+    <p>美容師の開業・集客・運営を支えるインフラ整備サービス。必要な外部パートナーをカテゴリ別にまとめ、公式LINEから気軽に相談できます。</p>
+    <p class="small">© BCC</p>
+  </div>
 </footer>
 </body>
 </html>

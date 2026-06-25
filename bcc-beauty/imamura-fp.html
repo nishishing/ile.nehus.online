@@ -7,16 +7,19 @@
 <meta name="description" content="税務調査対策×保険（財務面の守りを強化）。">
 <style>
 :root{
-  --bg:#0e0e11;
-  --panel:#16161c;
-  --text:#ffffff;
-  --muted:#b5b5c0;
-  --accent:#c9ffd9;
-  --line:#06c755;
-  --radius:18px;
-  --max:1100px;
+  --teal:#16a394;
+  --teal-d:#0f8b7e;
+  --navy:#1f2740;
+  --bg:#ffffff;
+  --soft:#f4f6f7;
+  --text:#1c1d21;
+  --muted:#6b7280;
+  --line:#e6e8eb;
+  --radius:16px;
+  --max:1080px;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
@@ -27,65 +30,126 @@ body{
 a{color:inherit;text-decoration:none}
 .container{width:min(var(--max),calc(100% - 40px));margin:auto}
 
-header{padding:20px 0;border-bottom:1px solid #222}
-.header-inner{display:flex;justify-content:space-between;align-items:center;gap:16px}
-.logo{font-weight:800;letter-spacing:.05em}
-.insta{color:var(--muted);font-size:.9rem}
+/* nav */
+.nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:saturate(150%) blur(8px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0}
+.brand{font-weight:800;letter-spacing:.04em;font-size:1.02rem}
+.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links a{color:var(--muted);font-size:.92rem}
+.nav-links a:hover{color:var(--text)}
+.btn-join{background:var(--teal);color:#fff;padding:9px 18px;border-radius:999px;font-weight:700;font-size:.9rem}
+.btn-join:hover{background:var(--teal-d);color:#fff}
+@media(max-width:680px){.nav-links a.hide-sp{display:none}}
 
-section{padding:36px 0}
-h2{font-size:1.4rem;margin:0 0 14px}
-.grid{display:grid;gap:14px}
-.grid.cols3{grid-template-columns:repeat(3,1fr)}
-.grid.cols2{grid-template-columns:repeat(2,1fr)}
+/* hero */
+.hero{position:relative;height:min(62vh,560px);min-height:380px;overflow:hidden;color:#fff;display:grid;place-items:center;text-align:center}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease;background-size:cover;background-position:center}
+.hero-slide.on{opacity:1}
+.hero-slide::after{content:"";position:absolute;inset:0;background:rgba(15,20,30,.34)}
+.hero-inner{position:relative;z-index:2;padding:0 20px}
+.hero-eyebrow{font-size:.85rem;letter-spacing:.18em;opacity:.9;margin:0 0 14px;font-weight:600}
+.hero h1{font-size:clamp(1.7rem,4.6vw,3rem);margin:0;font-weight:800;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.hero-sub{margin:16px 0 0;font-size:clamp(.95rem,1.8vw,1.1rem);opacity:.95}
+.hero-cta{margin-top:26px;display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.hero-cta a{padding:12px 22px;border-radius:999px;font-weight:700;font-size:.92rem}
+.hero-cta .primary{background:var(--teal);color:#fff}
+.hero-cta .primary:hover{background:var(--teal-d)}
+.hero-cta .ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.5)}
+.hero-cta .ghost:hover{background:rgba(255,255,255,.24)}
+.dots{position:absolute;left:0;right:0;bottom:18px;z-index:3;display:flex;gap:9px;justify-content:center}
+.dots button{width:9px;height:9px;border-radius:999px;border:0;background:rgba(255,255,255,.45);cursor:pointer;padding:0}
+.dots button.on{background:#fff;width:26px}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:rgba(255,255,255,.16);border:0;color:#fff;width:44px;height:44px;border-radius:999px;font-size:1.2rem;cursor:pointer}
+.arrow:hover{background:rgba(255,255,255,.3)}
+.arrow.prev{left:14px}.arrow.next{right:14px}
+@media(max-width:680px){.arrow{display:none}}
 
-.card{background:var(--panel);border-radius:var(--radius);padding:20px;transition:.15s}
-a.card:hover{background:#1f1f27}
-.card h3{margin:0 0 8px;font-size:1.05rem}
-.card p{margin:0;color:var(--muted);font-size:.95rem}
+/* sections */
+section{padding:46px 0}
+.sec-head{text-align:center;margin:0 0 26px}
+.sec-head .eyebrow{color:var(--teal);font-size:.82rem;letter-spacing:.14em;font-weight:700;margin:0 0 6px}
+.sec-head h2{font-size:1.5rem;margin:0}
+.sec-head p{color:var(--muted);margin:8px 0 0;font-size:.95rem}
 
-.btn{display:block;text-align:center;padding:14px 16px;border-radius:14px;background:#1f1f27;font-weight:600;transition:.15s}
-.btn:hover{background:#2a2a36}
-.btn-line{background:var(--line);color:#fff}
-.btn-line:hover{background:#05b34c}
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:6px;max-width:max-content;margin:0 auto 26px}
+.tab{border:0;background:transparent;color:var(--muted);font-weight:600;font-size:.9rem;padding:9px 16px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--text)}
+.tab.on{background:var(--teal);color:#fff}
+@media(max-width:680px){.tabs{border-radius:18px}}
 
-.back{display:inline-block;color:var(--muted);font-size:.9rem;margin:24px 0 4px}
-.back:hover{color:#fff}
-.eyebrow{color:var(--accent);font-size:.85rem;margin:0 0 6px}
-.detail-title{font-size:1.6rem;margin:0 0 14px}
-.lead{color:var(--muted);max-width:760px}
+/* cards */
+.grid{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+@media(max-width:880px){.grid{grid-template-columns:1fr}}
+.cat-block{margin-bottom:30px}
+.cat-block h3.cat-title{font-size:1.05rem;margin:0 0 14px;display:flex;align-items:center;gap:8px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.15s;display:flex;flex-direction:column}
+a.card:hover{box-shadow:0 10px 30px rgba(20,30,40,.08);transform:translateY(-2px);border-color:#d6dade}
+.thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#eef2f1,#e3efec);display:grid;place-items:center;font-size:2rem}
+.card-body{padding:16px 18px}
+.card-body h4{margin:0 0 6px;font-size:1rem}
+.card-body p{margin:0;color:var(--muted);font-size:.9rem}
+
+/* notice cards (ご案内) */
+.notice .grid .card{border-color:var(--line)}
+.notice .thumb{background:linear-gradient(135deg,#e9f6f3,#dff0ec)}
+
+/* footer */
+.footer{background:var(--navy);color:#fff;margin-top:20px}
+.footer-inner{padding:42px 0}
+.footer h3{margin:0 0 10px;font-size:1.05rem;letter-spacing:.04em}
+.footer p{margin:0;color:#aab2c5;font-size:.9rem;max-width:680px}
+.footer .small{color:#8b93a7;font-size:.82rem;margin-top:18px}
+
+/* detail */
+.back{display:inline-block;color:var(--muted);font-size:.9rem;margin:26px 0 6px}
+.back:hover{color:var(--text)}
+.detail .eyebrow{color:var(--teal);font-size:.85rem;font-weight:700;margin:0 0 8px}
+.detail h1{font-size:clamp(1.5rem,3.4vw,2rem);margin:0 0 14px}
+.lead{color:#3b3d44;max-width:760px}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:620px}
+@media(max-width:680px){.cta-grid{grid-template-columns:1fr}}
+.btn{display:block;text-align:center;padding:14px 16px;border-radius:12px;font-weight:700;border:1px solid var(--line);background:#fff}
+.btn:hover{background:var(--soft)}
+.btn-line{background:var(--teal);color:#fff;border-color:var(--teal)}
+.btn-line:hover{background:var(--teal-d)}
 .small{font-size:.85rem;color:var(--muted)}
-
-@media(max-width:900px){.grid.cols3,.grid.cols2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header>
-  <div class="container header-inner">
-    <div class="logo"><a href="index.html">BCC</a></div>
-    <a class="insta" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">最新情報は公式LINEで →</a>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">BCC <span style="color:var(--muted);font-weight:500">｜美容師のインフラ整備</span></a>
+    <div class="nav-links">
+      <a class="hide-sp" href="index.html">ホーム</a>
+      <a class="hide-sp" href="https://drive-blue.online/test/" target="_blank" rel="noopener noreferrer">BCCについて</a>
+      <a class="btn-join" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">公式LINE登録</a>
+    </div>
   </div>
-</header>
-<main class="container">
+</nav>
+<main class="container detail">
   <a class="back" href="index.html">← BCC トップに戻る</a>
-
-  <section style="padding-top:18px">
+  <section style="padding-top:14px">
     <p class="eyebrow">📊 財務</p>
-    <h1 class="detail-title">税務調査対策 × 保険（元国税調査官 今村FP）</h1>
+    <h1>税務調査対策 × 保険（元国税調査官 今村FP）</h1>
     <p class="lead">税務調査対策×保険（財務面の守りを強化）。</p>
     <p class="lead" style="margin-top:14px">料金・導入の流れ・詳しい内容は、公式LINEからお気軽にお問い合わせください。あなたのサロンの状況に合わせてご案内します。</p>
   </section>
-
   <section style="padding-top:0">
-    <h2>お問い合わせ・ご相談</h2>
-    <div class="grid cols2">
+    <div class="sec-head" style="text-align:left;margin-bottom:14px"><h2 style="font-size:1.2rem">お問い合わせ・ご相談</h2></div>
+    <div class="cta-grid">
       <a class="btn btn-line" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">公式LINEで相談する</a>
       <a class="btn" href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer">オープンチャットに参加する</a>
     </div>
     <p class="small" style="margin-top:12px">※公式LINE登録だけのお得な情報もあります。</p>
   </section>
 </main>
-<footer class="container" style="padding:40px 0;border-top:1px solid #222">
-  <p class="small">© BCC</p>
+<footer class="footer">
+  <div class="container footer-inner">
+    <h3>BCC — beauty Cooperative Chain</h3>
+    <p>美容師の開業・集客・運営を支えるインフラ整備サービス。必要な外部パートナーをカテゴリ別にまとめ、公式LINEから気軽に相談できます。</p>
+    <p class="small">© BCC</p>
+  </div>
 </footer>
 </body>
 </html>
