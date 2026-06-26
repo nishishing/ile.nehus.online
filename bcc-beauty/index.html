@@ -94,7 +94,9 @@ section{padding:108px 0}
 
 /* cards */
 .grid{display:grid;gap:1px;grid-template-columns:repeat(3,1fr);background:var(--line);border:1px solid var(--line)}
-@media(max-width:880px){.grid{grid-template-columns:1fr}}
+.grid.two{grid-template-columns:repeat(2,1fr);max-width:760px;margin:0 auto}
+@media(max-width:880px){.grid{grid-template-columns:1fr}.grid.two{grid-template-columns:1fr}}
+.hero-sub strong,.lead strong{color:var(--gold);font-weight:700}
 .card{position:relative;background:var(--surface);padding:34px 30px 30px;transition:.35s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;gap:14px;min-height:230px}
 a.card:hover{background:#fff}
 .card .ctag{margin:0}
@@ -141,7 +143,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
       <a class="hide-sp" href="index.html">Home</a>
       <a class="hide-sp" href="#services">Services</a>
       <a class="hide-sp" href="https://drive-blue.online/test/" target="_blank" rel="noopener noreferrer">About</a>
-      <a class="btn-join" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">公式LINE</a>
+      <a class="btn-join" href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer">オープンチャット</a>
     </div>
   </div>
 </nav>
@@ -152,10 +154,10 @@ a.card:hover .more .arw{transform:translateX(8px)}
     <h1>美容師のインフラを、<br>ひとつに。</h1>
     <div class="rule"></div>
     <p class="kicker">From open to grow &mdash; all in one place.</p>
-    <p class="hero-sub">開業・集客・運営に必要な外部パートナーを、カテゴリ別に厳選してご紹介します。料金や詳細は公式LINEで。</p>
+    <p class="hero-sub">開業・集客・運営に必要な外部パートナーを、カテゴリ別に厳選。<br>BCC会員は、すべて<strong>無料</strong>でご利用いただけます。</p>
     <div class="hero-cta">
       <a class="primary" href="#services">View services</a>
-      <a class="ghost" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">公式LINE</a>
+      <a class="ghost" href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer">Open chat</a>
     </div>
   </div>
   <div class="scrollcue"><span>scroll</span><span class="line"></span></div>
@@ -166,26 +168,20 @@ a.card:hover .more .arw{transform:translateX(8px)}
   <section class="container">
     <div class="sec-head reveal">
       <p class="komoji lbl">Information</p>
-      <h2>まずは、<em>ここから</em>。</h2>
-      <p>BCCの全体像と最新情報。気になることは公式LINEで気軽に。</p>
+      <h2>掲載サービスは、<em>会員無料</em>。</h2>
+      <p>BCC会員なら、すべてのサービスを無料でご利用いただけます。</p>
     </div>
-    <div class="grid reveal">
+    <div class="grid two reveal">
       <a class="card" href="https://drive-blue.online/test/" target="_blank" rel="noopener noreferrer">
         <p class="komoji ctag">About</p>
         <h4>BCCの説明LP</h4>
-        <p>叶うこと・想いをまとめました。はじめての方はこちら。</p>
+        <p>叶うこと・想いをまとめました。BCCの全体像はこちら。</p>
         <span class="more">View <span class="arw">→</span></span>
-      </a>
-      <a class="card" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">
-        <p class="komoji ctag">Line</p>
-        <h4>公式LINE登録</h4>
-        <p>最新情報とLINE限定の極秘情報を受け取れます。</p>
-        <span class="more">Join <span class="arw">→</span></span>
       </a>
       <a class="card" href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer">
         <p class="komoji ctag">Community</p>
         <h4>オープンチャット</h4>
-        <p>同業者の情報交換・最新の共有・先行案内。</p>
+        <p>同業者の情報交換・最新の共有・先行案内。ご相談もこちら。</p>
         <span class="more">Enter <span class="arw">→</span></span>
       </a>
     </div>
@@ -243,9 +239,8 @@ const DATA = [{"name":"開業支援","en":"Open","items":[{"id":"salon-start","n
   <div class="container footer-inner reveal">
     <p class="big serif">BCC</p>
     <p class="komoji" style="margin:0 0 26px">beauty Cooperative Chain</p>
-    <p>美容師の開業・集客・運営を支えるインフラ整備サービス。<br>必要な外部パートナーをカテゴリ別にまとめ、公式LINEから気軽にご相談いただけます。</p>
+    <p>美容師の開業・集客・運営を支えるインフラ整備サービス。<br>必要な外部パートナーをカテゴリ別にまとめ、BCC会員は無料でご利用いただけます。</p>
     <div class="links">
-      <a href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">公式LINE</a>
       <a href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer">Open Chat</a>
       <a href="https://drive-blue.online/test/" target="_blank" rel="noopener noreferrer">About</a>
     </div>
