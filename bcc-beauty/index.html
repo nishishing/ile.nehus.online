@@ -7,112 +7,148 @@
 <meta name="description" content="BCC（beauty Cooperative Chain）は、美容師の開業・集客・運営を支えるインフラ整備サービスです。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f7f6f3;
+  --bg:#f6f5f1;
   --surface:#ffffff;
-  --ink:#191917;
-  --muted:#73726c;
-  --line:#e8e7e1;
-  --black:#191917;
-  --blue:#2383e2;
+  --ink:#1a1916;
+  --muted:#7a776e;
+  --line:#e7e4dc;
+  --hair:#ddd9cf;
+  --black:#1a1916;
+  --blue:#2b6fe0;
   --green:#06c755;
   --green-d:#05b34c;
-  --radius:14px;
-  --max:1080px;
-  --font-serif:'Lora',Georgia,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
-  --font-sans:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  --radius:18px;
+  --max:1120px;
+  --font-serif:'Lora',Georgia,"Hiragino Mincho ProN",serif;
+  --font-jp:'Inter',-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:var(--font-sans);
-  background:var(--bg);
-  color:var(--ink);
-  line-height:1.7;
-  -webkit-font-smoothing:antialiased;
-}
+body{margin:0;font-family:var(--font-jp);background:var(--bg);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-.container{width:min(var(--max),calc(100% - 40px));margin:auto}
-.serif{font-family:var(--font-serif)}
+.container{width:min(var(--max),calc(100% - 44px));margin:auto}
+/* big display = serif for latin, gothic for JP (JP not in Lora) */
+.display{font-family:var(--font-serif)}
+.jp-gothic{font-family:var(--font-jp)}
+em{font-style:italic}
+
+/* reveal */
+html.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+html.js .reveal.in{opacity:1;transform:none}
 
 /* nav */
-.nav{position:sticky;top:0;z-index:30;background:rgba(247,246,243,.85);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--line)}
-.nav-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0}
-.brand{font-family:var(--font-serif);font-weight:700;letter-spacing:.01em;font-size:1.15rem}
-.nav-links{display:flex;align-items:center;gap:22px}
-.nav-links a{color:var(--muted);font-size:.92rem;font-weight:500}
+.nav{position:sticky;top:0;z-index:40;background:rgba(246,245,241,.78);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:15px 0}
+.brand{font-family:var(--font-serif);font-weight:600;letter-spacing:.02em;font-size:1.2rem}
+.brand .dot{color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links a{color:var(--muted);font-size:.9rem;font-weight:500}
 .nav-links a:hover{color:var(--ink)}
-.btn-join{background:var(--black);color:#fff;padding:9px 18px;border-radius:8px;font-weight:600;font-size:.88rem}
-.btn-join:hover{background:#000;color:#fff}
+.btn-join{background:var(--black);color:#fff;padding:10px 20px;border-radius:999px;font-weight:600;font-size:.86rem;transition:.2s}
+.btn-join:hover{background:#000;transform:translateY(-1px)}
 @media(max-width:680px){.nav-links a.hide-sp{display:none}}
 
 /* hero */
-.hero{position:relative;min-height:min(74vh,620px);overflow:hidden;color:var(--ink);display:grid;place-items:center;text-align:center}
-.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
-.hero-slide.on{opacity:1}
-.hero-inner{position:relative;z-index:2;padding:64px 20px}
-.hero-eyebrow{font-size:.78rem;letter-spacing:.2em;margin:0 0 18px;font-weight:600;color:var(--muted);text-transform:uppercase}
-.hero h1{font-family:var(--font-serif);font-size:clamp(2rem,5.4vw,3.6rem);line-height:1.18;margin:0;font-weight:600;letter-spacing:-.01em}
-.hero-sub{margin:20px auto 0;font-size:clamp(1rem,1.8vw,1.18rem);color:#44433e;max-width:620px}
-.hero-cta{margin-top:30px;display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.hero-cta a{padding:13px 24px;border-radius:9px;font-weight:600;font-size:.95rem}
+.hero{position:relative;overflow:hidden;min-height:min(88vh,760px);display:grid;place-items:center;text-align:center;padding:80px 0 60px}
+.hero::before{content:"";position:absolute;inset:-20% -10%;z-index:0;background:
+  radial-gradient(40% 40% at 18% 22%,rgba(120,170,235,.42),transparent 70%),
+  radial-gradient(38% 38% at 82% 18%,rgba(244,196,156,.42),transparent 70%),
+  radial-gradient(45% 45% at 70% 82%,rgba(186,170,235,.40),transparent 70%),
+  radial-gradient(40% 40% at 25% 80%,rgba(150,214,184,.38),transparent 70%);
+  filter:blur(36px);animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(0,-3%,0) scale(1.08)}}
+.hero-mark{position:absolute;z-index:0;font-family:var(--font-serif);font-weight:700;font-size:min(46vw,640px);line-height:1;color:rgba(26,25,22,.04);user-select:none;letter-spacing:-.04em}
+.hero-inner{position:relative;z-index:2;padding:0 20px;max-width:920px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;letter-spacing:.24em;font-weight:600;color:var(--muted);text-transform:uppercase}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:999px;background:var(--blue)}
+.hero h1{font-family:var(--font-jp);font-weight:700;font-size:clamp(2.1rem,6vw,4.1rem);line-height:1.16;letter-spacing:-.02em;margin:22px 0 0}
+.hero h1 .rot{display:inline-block;min-width:1px;transition:opacity .5s,transform .5s}
+.hero h1 .rot.out{opacity:0;transform:translateY(10px)}
+.hero .kicker{font-family:var(--font-serif);font-style:italic;font-weight:500;font-size:clamp(1.05rem,2.4vw,1.5rem);color:#48463f;margin:18px 0 0}
+.hero-sub{margin:18px auto 0;font-size:clamp(.98rem,1.7vw,1.12rem);color:#56544c;max-width:600px}
+.hero-cta{margin-top:34px;display:inline-flex;gap:13px;flex-wrap:wrap;justify-content:center}
+.hero-cta a{padding:14px 26px;border-radius:999px;font-weight:600;font-size:.94rem;transition:.2s}
 .hero-cta .primary{background:var(--black);color:#fff}
-.hero-cta .primary:hover{background:#000}
-.hero-cta .ghost{background:transparent;color:var(--ink);border:1px solid #cfcec7}
-.hero-cta .ghost:hover{background:rgba(0,0,0,.04)}
-.dots{position:absolute;left:0;right:0;bottom:22px;z-index:3;display:flex;gap:9px;justify-content:center}
-.dots button{width:8px;height:8px;border-radius:999px;border:0;background:rgba(25,25,23,.25);cursor:pointer;padding:0}
-.dots button.on{background:var(--ink);width:24px}
-.arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:rgba(255,255,255,.6);border:1px solid var(--line);color:var(--ink);width:42px;height:42px;border-radius:999px;font-size:1.2rem;cursor:pointer}
-.arrow:hover{background:#fff}
-.arrow.prev{left:14px}.arrow.next{right:14px}
-@media(max-width:680px){.arrow{display:none}}
+.hero-cta .primary:hover{background:#000;transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.hero-cta .ghost{background:rgba(255,255,255,.55);color:var(--ink);border:1px solid rgba(26,25,22,.16);backdrop-filter:blur(4px)}
+.hero-cta .ghost:hover{background:rgba(255,255,255,.85)}
+.scrollcue{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;color:var(--muted);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scrollcue .line{width:1px;height:34px;background:linear-gradient(var(--muted),transparent);animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;gap:0;animation:scroll 30s linear infinite;will-change:transform}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee span{display:inline-flex;align-items:center;gap:14px;padding:16px 0;font-family:var(--font-jp);font-size:1.05rem;color:#403e38}
+.marquee span::after{content:"✦";margin:0 28px;color:var(--blue);font-size:.7rem}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* sections */
-section{padding:64px 0}
+section{padding:84px 0}
+.sec-head{max-width:720px}
+.sec-head.center{text-align:center;margin-inline:auto}
+.sec-head .lbl{color:var(--blue);font-size:.74rem;letter-spacing:.18em;font-weight:600;margin:0 0 12px;text-transform:uppercase}
+.sec-head h2{font-family:var(--font-jp);font-weight:700;font-size:clamp(1.7rem,3.4vw,2.5rem);margin:0;letter-spacing:-.02em;line-height:1.25}
+.sec-head h2 em{font-style:normal;color:var(--blue)}
+.sec-head p{color:var(--muted);margin:16px 0 0;font-size:1rem}
 .alt{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.sec-head{text-align:center;margin:0 0 34px}
-.sec-head .eyebrow{color:var(--blue);font-size:.76rem;letter-spacing:.16em;font-weight:600;margin:0 0 10px;text-transform:uppercase}
-.sec-head h2{font-family:var(--font-serif);font-size:clamp(1.6rem,3vw,2.2rem);margin:0;font-weight:600;letter-spacing:-.01em}
-.sec-head p{color:var(--muted);margin:12px 0 0;font-size:.98rem}
 
 /* tabs */
-.tabs{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;background:#efeeea;border:1px solid var(--line);border-radius:12px;padding:5px;max-width:max-content;margin:0 auto 34px}
-.tab{border:0;background:transparent;color:var(--muted);font-weight:500;font-size:.9rem;padding:9px 16px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;background:#efeee9;border:1px solid var(--line);border-radius:999px;padding:5px;max-width:max-content;margin:34px auto 40px}
+.tab{border:0;background:transparent;color:var(--muted);font-weight:500;font-size:.88rem;padding:9px 17px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.18s}
 .tab:hover{color:var(--ink)}
-.tab.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08);font-weight:600}
+.tab.on{background:var(--ink);color:#fff;font-weight:600}
+
+/* category block (すべて) */
+.cat-block{margin-bottom:54px}
+.cat-bar{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--hair);padding-bottom:14px;margin-bottom:24px}
+.cat-bar .idx{font-family:var(--font-serif);font-size:.95rem;color:var(--blue);font-weight:600}
+.cat-bar h3{font-family:var(--font-jp);font-weight:700;font-size:1.25rem;margin:0;letter-spacing:-.01em}
+.cat-bar .cnt{margin-left:auto;color:var(--muted);font-size:.82rem;letter-spacing:.08em}
 
 /* cards */
 .grid{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
 @media(max-width:880px){.grid{grid-template-columns:1fr}}
-.cat-block{margin-bottom:34px}
-.cat-block h3.cat-title{font-family:var(--font-serif);font-size:1.15rem;margin:0 0 16px;display:flex;align-items:center;gap:8px;font-weight:600}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:.18s;display:flex;flex-direction:column}
-a.card:hover{box-shadow:0 12px 32px rgba(25,25,23,.09);transform:translateY(-3px)}
-.thumb{aspect-ratio:16/10;display:grid;place-items:center;font-size:2rem}
-.card-body{padding:18px 20px}
-.card-body h4{margin:0 0 6px;font-size:1.02rem;font-weight:600}
-.card-body p{margin:0;color:var(--muted);font-size:.9rem}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:.22s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;gap:12px;min-height:188px}
+a.card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(26,25,22,.10);border-color:var(--hair)}
+.card .top{display:flex;align-items:center;gap:12px}
+.card .chip{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:1.25rem;flex:none}
+.card .tag{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.card h4{font-family:var(--font-jp);font-weight:700;font-size:1.12rem;margin:0;line-height:1.4;letter-spacing:.01em}
+.card p{margin:0;color:var(--muted);font-size:.9rem;flex:1}
+.card .more{display:inline-flex;align-items:center;gap:7px;font-size:.84rem;font-weight:600;color:var(--ink)}
+.card .more .arw{transition:transform .22s}
+a.card:hover .more .arw{transform:translateX(5px)}
 
 /* footer */
-.footer{background:var(--bg);border-top:1px solid var(--line);margin-top:8px}
-.footer-inner{padding:52px 0}
-.footer h3{font-family:var(--font-serif);margin:0 0 12px;font-size:1.15rem;font-weight:600}
-.footer p{margin:0;color:var(--muted);font-size:.92rem;max-width:640px}
-.footer .small{color:#9a988f;font-size:.82rem;margin-top:20px}
+.footer{background:var(--bg);border-top:1px solid var(--line)}
+.footer-inner{padding:70px 0 48px}
+.footer .big{font-family:var(--font-serif);font-weight:600;font-size:clamp(1.8rem,5vw,3rem);letter-spacing:-.01em;margin:0 0 10px}
+.footer .big .dot{color:var(--blue)}
+.footer p{margin:0;color:var(--muted);font-size:.94rem;max-width:600px}
+.footer .links{display:flex;gap:20px;flex-wrap:wrap;margin-top:26px}
+.footer .links a{color:var(--ink);font-weight:600;font-size:.9rem;border-bottom:1px solid var(--hair);padding-bottom:2px}
+.footer .links a:hover{border-color:var(--ink)}
+.footer .small{color:#9a988f;font-size:.8rem;margin-top:34px;letter-spacing:.04em}
 
 /* detail */
-.back{display:inline-block;color:var(--muted);font-size:.9rem;margin:28px 0 8px}
+.detail-hero{padding:64px 0 30px;background:
+  radial-gradient(60% 80% at 90% -10%,rgba(120,170,235,.18),transparent 70%),
+  radial-gradient(50% 70% at 0% 0%,rgba(244,196,156,.16),transparent 70%)}
+.back{display:inline-flex;align-items:center;gap:7px;color:var(--muted);font-size:.88rem;margin:0 0 22px}
 .back:hover{color:var(--ink)}
-.detail .eyebrow{color:var(--blue);font-size:.82rem;font-weight:600;margin:0 0 10px;letter-spacing:.04em}
-.detail h1{font-family:var(--font-serif);font-size:clamp(1.7rem,3.6vw,2.4rem);margin:0 0 16px;font-weight:600;letter-spacing:-.01em}
-.lead{color:#44433e;max-width:760px}
-.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:620px}
+.detail .eyebrow{margin-bottom:14px}
+.detail h1{font-family:var(--font-jp);font-weight:700;font-size:clamp(1.8rem,4vw,2.7rem);margin:0 0 18px;letter-spacing:-.02em;line-height:1.25}
+.lead{color:#48463f;max-width:720px;font-size:1.05rem}
+.panelbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px;max-width:680px}
+.panelbox h2{font-family:var(--font-jp);font-weight:700;font-size:1.2rem;margin:0 0 18px}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
 @media(max-width:680px){.cta-grid{grid-template-columns:1fr}}
-.btn{display:block;text-align:center;padding:14px 16px;border-radius:10px;font-weight:600;border:1px solid #cfcec7;background:var(--surface)}
+.btn{display:block;text-align:center;padding:15px 16px;border-radius:12px;font-weight:600;border:1px solid rgba(26,25,22,.16);background:var(--surface);transition:.18s}
 .btn:hover{background:rgba(0,0,0,.03)}
 .btn-line{background:var(--green);color:#fff;border-color:var(--green)}
 .btn-line:hover{background:var(--green-d)}
@@ -122,133 +158,144 @@ a.card:hover{box-shadow:0 12px 32px rgba(25,25,23,.09);transform:translateY(-3px
 <body>
 <nav class="nav">
   <div class="container nav-inner">
-    <a class="brand" href="index.html">BCC <span style="color:var(--muted);font-weight:500">｜美容師のインフラ整備</span></a>
+    <a class="brand" href="index.html">BCC<span class="dot">.</span></a>
     <div class="nav-links">
       <a class="hide-sp" href="index.html">ホーム</a>
+      <a class="hide-sp" href="#services">サービス</a>
       <a class="hide-sp" href="https://drive-blue.online/test/" target="_blank" rel="noopener noreferrer">BCCについて</a>
       <a class="btn-join" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">公式LINE登録</a>
     </div>
   </div>
 </nav>
-<header class="hero" id="home">
-  <div class="hero-slide on" data-i="0" style="background:#e7f3f8"></div>
-  <div class="hero-slide" data-i="1" style="background:#fbecdd"></div>
-  <div class="hero-slide" data-i="2" style="background:#eef0f9"></div>
+<header class="hero">
+  <div class="hero-mark display">BCC</div>
   <div class="hero-inner">
-    <p class="hero-eyebrow" id="heroEyebrow">beauty Cooperative Chain</p>
-    <h1 id="heroTitle">美容師のインフラを、ひとつに。</h1>
-    <p class="hero-sub" id="heroSub">開業・集客・運営に必要な外部パートナーを、カテゴリ別にまとめて。</p>
+    <span class="eyebrow">beauty Cooperative Chain</span>
+    <h1>美容師のインフラを、<br><span class="rot" id="rot">ひとつに。</span></h1>
+    <p class="kicker">From open to grow &mdash; all in one place.</p>
+    <p class="hero-sub">開業・集客・運営に必要な外部パートナーを、カテゴリ別にまとめました。料金や詳細は公式LINEで。</p>
     <div class="hero-cta">
       <a class="primary" href="#services">サービスを見る</a>
       <a class="ghost" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">公式LINE登録</a>
     </div>
   </div>
-  <button class="arrow prev" id="heroPrev" aria-label="前へ">‹</button>
-  <button class="arrow next" id="heroNext" aria-label="次へ">›</button>
-  <div class="dots" id="heroDots"></div>
+  <div class="scrollcue"><span>scroll</span><span class="line"></span></div>
 </header>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>🚀 開業支援</span><span>🏠 不動産</span><span>🛠 内装業者</span><span>📊 財務</span><span>🧴 材料</span><span>✂️ ヘアスタイル販売</span><span>📚 教育</span><span>📈 集客</span><span>📅 予約サービス</span><span>🚀 開業支援</span><span>🏠 不動産</span><span>🛠 内装業者</span><span>📊 財務</span><span>🧴 材料</span><span>✂️ ヘアスタイル販売</span><span>📚 教育</span><span>📈 集客</span><span>📅 予約サービス</span>
+  </div>
+</div>
 
 <main>
 
-  <section class="notice container" id="info">
-    <div class="sec-head">
-      <p class="eyebrow">INFORMATION</p>
-      <h2>ご案内</h2>
-      <p>まずはこちらから。BCCの全体像と最新情報。</p>
+  <section class="container">
+    <div class="sec-head center reveal">
+      <p class="lbl">Information</p>
+      <h2>まずは、<em>ここから</em>。</h2>
+      <p>BCCの全体像と最新情報。気になることは公式LINEで気軽に。</p>
     </div>
-    <div class="grid">
+    <div class="grid reveal">
       <a class="card" href="https://drive-blue.online/test/" target="_blank" rel="noopener noreferrer">
-        <div class="thumb" style="background:#e7f3f8">📣</div>
-        <div class="card-body"><h4>BCCの説明LP</h4><p>叶うこと・想いをまとめました。はじめての方はこちら。</p></div>
+        <div class="top"><div class="chip" style="background:#dceaf5">📣</div><span class="tag">About</span></div>
+        <h4>BCCの説明LP</h4>
+        <p>叶うこと・想いをまとめました。はじめての方はこちら。</p>
+        <span class="more">見てみる <span class="arw">→</span></span>
       </a>
       <a class="card" href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">
-        <div class="thumb" style="background:#e9f5ee">💬</div>
-        <div class="card-body"><h4>公式LINE登録</h4><p>最新情報とLINE限定の極秘情報を受け取れます。</p></div>
+        <div class="top"><div class="chip" style="background:#dfeee6">💬</div><span class="tag">Line</span></div>
+        <h4>公式LINE登録</h4>
+        <p>最新情報とLINE限定の極秘情報を受け取れます。</p>
+        <span class="more">登録する <span class="arw">→</span></span>
       </a>
       <a class="card" href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer">
-        <div class="thumb" style="background:#fbecdd">👥</div>
-        <div class="card-body"><h4>オープンチャット</h4><p>同業者の情報交換・最新の共有・先行案内。</p></div>
+        <div class="top"><div class="chip" style="background:#f7e6d6">👥</div><span class="tag">Community</span></div>
+        <h4>オープンチャット</h4>
+        <p>同業者の情報交換・最新の共有・先行案内。</p>
+        <span class="more">参加する <span class="arw">→</span></span>
       </a>
     </div>
   </section>
 
-  <section class="alt" id="services"><div class="container">
-    <div class="sec-head">
-      <p class="eyebrow">SERVICES</p>
-      <h2>サービス一覧</h2>
-      <p>業種ごとにタブで切り替えできます。</p>
+  <section class="alt" id="services">
+    <div class="container">
+      <div class="sec-head center reveal">
+        <p class="lbl">Services</p>
+        <h2>必要なものが、<em>ここに揃う</em>。</h2>
+        <p>業種ごとにタブで切り替えできます。</p>
+      </div>
+      <div class="tabs reveal" id="tabs"></div>
+      <div id="panels"></div>
     </div>
-    <div class="tabs" id="tabs"></div>
-    <div id="panels"></div>
-  </div></section>
+  </section>
 
 </main>
 
 <script>
-const DATA = [{"name":"開業支援","emoji":"🚀","tint":"#e7f3f8","items":[{"id":"salon-start","name":"Salon Start（0円開業）","desc":"0円開業の導線設計。融資・事業計画などの相談に対応。"},{"id":"next-beauty-tech","name":"NEXT BEAUTY TECH（融資・事業計画）","desc":"融資・事業計画の相談サポート。"},{"id":"stylebase","name":"StyleBase 開業支援","desc":"開業準備〜運営の立ち上げ支援。"}]},{"name":"不動産","emoji":"🏠","tint":"#fbecdd","items":[{"id":"mutas","name":"ムータス（不動産専属 事業提携）","desc":"不動産専門事業提携。"},{"id":"real-estate-salon","name":"美容室専門の不動産屋（テナント・居抜き・M&A）","desc":"テナント・居抜き・M&Aまで美容室特化で対応。"}]},{"name":"内装業者","emoji":"🛠","tint":"#eef0f9","items":[{"id":"plum-plan","name":"PLUM PLAN","desc":"内装・運営から空間設計までトータルサポート。"},{"id":"layer-design-works","name":"Layer Design Works","desc":"内装業界最安値クラスを目指す施工パートナー。"},{"id":"sunny-side-life","name":"SUNNY SIDE LIFE","desc":"内装・空間づくりの相談先。"}]},{"name":"財務","emoji":"📊","tint":"#e9f5ee","items":[{"id":"imamura-fp","name":"税務調査対策 × 保険（元国税調査官 今村FP）","desc":"税務調査対策×保険（財務面の守りを強化）。"}]},{"name":"材料","emoji":"🧴","tint":"#fdeef0","items":[{"id":"materials-intro","name":"材料（仕入れ紹介）","desc":"材料（仕入れ）の紹介・相談。"},{"id":"drive-blue","name":"ドライブブルー","desc":"材料・仕入れの相談先。"}]},{"name":"ヘアスタイル販売","emoji":"✂️","tint":"#f3eefb","items":[{"id":"hairstyle-market","name":"ヘアスタイル販売サイト","desc":"ヘアスタイルの販売プラットフォーム。"}]},{"name":"教育","emoji":"📚","tint":"#eaf2fb","items":[{"id":"tonari-seminar","name":"隣店セミナー講師紹介","desc":"セミナー講師の紹介・マッチング。"},{"id":"haircamp","name":"ヘアキャンプスクール","desc":"学びを継続しやすい教育プログラム。"},{"id":"toko","name":"企業向け 人材育成・採用支援サービス（都甲）","desc":"育成と採用の仕組み化を支援。"}]},{"name":"集客","emoji":"📈","tint":"#fcf3e6","items":[{"id":"tete-lab","name":"TETE LAB（HPB完全攻略 / WEB集客）","desc":"HPB完全攻略 / WEB集客の支援。"},{"id":"atsukyakumania","name":"集客マニア（ホットペッパー / Google）","desc":"ホットペッパー・Google（MEO/SEO）などの集客支援。"},{"id":"ones","name":"ONE's 流 集客サポート","desc":"ホットペッパー・ミニモ中心の集客支援。"},{"id":"stylepost","name":"スタイルポスト（HPBスタイル/ブログ）","desc":"ホットペッパースタイル/ブログのサポート。"},{"id":"freed","name":"フリード（TikTokコンサル / 運用代行）","desc":"TikTokのコンサル・運用代行。"},{"id":"instagram","name":"Instagramコンサル＆運用代行","desc":"Instagramの設計〜運用までサポート。"},{"id":"biyoushijuku","name":"美容師塾（人間力・美容師力コンサル）","desc":"人間力・美容師力のコンサル支援。"},{"id":"gita","name":"美容室専門 TikTokコンサル（ギータ）","desc":"美容室特化のTikTok戦略支援。"}]},{"name":"予約サービス","emoji":"📅","tint":"#eef6ef","items":[{"id":"refundhub","name":"RefundHub（キャンセル請求・再予約）","desc":"キャンセル請求・再予約の導線づくり。"}]}];
-const HERO = [{"eyebrow":"beauty Cooperative Chain","h1":"美容師のインフラを、ひとつに。","sub":"開業・集客・運営に必要な外部パートナーを、カテゴリ別にまとめて。"},{"eyebrow":"Open / Grow / Run","h1":"開業も集客も、ワンストップで。","sub":"信頼できるサービスだけを厳選。料金や詳細は公式LINEで。"},{"eyebrow":"Members","h1":"経営の“次の一手”が、見つかる。","sub":"最新情報・限定特典は公式LINEとオープンチャットから。"}];
+const DATA = [{"name":"開業支援","emoji":"🚀","tint":"#dceaf5","items":[{"id":"salon-start","name":"Salon Start（0円開業）","desc":"0円開業の導線設計。融資・事業計画などの相談に対応。"},{"id":"next-beauty-tech","name":"NEXT BEAUTY TECH（融資・事業計画）","desc":"融資・事業計画の相談サポート。"},{"id":"stylebase","name":"StyleBase 開業支援","desc":"開業準備〜運営の立ち上げ支援。"}]},{"name":"不動産","emoji":"🏠","tint":"#f7e6d6","items":[{"id":"mutas","name":"ムータス（不動産専属 事業提携）","desc":"不動産専門事業提携。"},{"id":"real-estate-salon","name":"美容室専門の不動産屋（テナント・居抜き・M&A）","desc":"テナント・居抜き・M&Aまで美容室特化で対応。"}]},{"name":"内装業者","emoji":"🛠","tint":"#e8e6f5","items":[{"id":"plum-plan","name":"PLUM PLAN","desc":"内装・運営から空間設計までトータルサポート。"},{"id":"layer-design-works","name":"Layer Design Works","desc":"内装業界最安値クラスを目指す施工パートナー。"},{"id":"sunny-side-life","name":"SUNNY SIDE LIFE","desc":"内装・空間づくりの相談先。"}]},{"name":"財務","emoji":"📊","tint":"#dfeee6","items":[{"id":"imamura-fp","name":"税務調査対策 × 保険（元国税調査官 今村FP）","desc":"税務調査対策×保険（財務面の守りを強化）。"}]},{"name":"材料","emoji":"🧴","tint":"#f6e3e6","items":[{"id":"materials-intro","name":"材料（仕入れ紹介）","desc":"材料（仕入れ）の紹介・相談。"},{"id":"drive-blue","name":"ドライブブルー","desc":"材料・仕入れの相談先。"}]},{"name":"ヘアスタイル販売","emoji":"✂️","tint":"#eae7df","items":[{"id":"hairstyle-market","name":"ヘアスタイル販売サイト","desc":"ヘアスタイルの販売プラットフォーム。"}]},{"name":"教育","emoji":"📚","tint":"#dceaf5","items":[{"id":"tonari-seminar","name":"隣店セミナー講師紹介","desc":"セミナー講師の紹介・マッチング。"},{"id":"haircamp","name":"ヘアキャンプスクール","desc":"学びを継続しやすい教育プログラム。"},{"id":"toko","name":"企業向け 人材育成・採用支援サービス（都甲）","desc":"育成と採用の仕組み化を支援。"}]},{"name":"集客","emoji":"📈","tint":"#f7e6d6","items":[{"id":"tete-lab","name":"TETE LAB（HPB完全攻略 / WEB集客）","desc":"HPB完全攻略 / WEB集客の支援。"},{"id":"atsukyakumania","name":"集客マニア（ホットペッパー / Google）","desc":"ホットペッパー・Google（MEO/SEO）などの集客支援。"},{"id":"ones","name":"ONE's 流 集客サポート","desc":"ホットペッパー・ミニモ中心の集客支援。"},{"id":"stylepost","name":"スタイルポスト（HPBスタイル/ブログ）","desc":"ホットペッパースタイル/ブログのサポート。"},{"id":"freed","name":"フリード（TikTokコンサル / 運用代行）","desc":"TikTokのコンサル・運用代行。"},{"id":"instagram","name":"Instagramコンサル＆運用代行","desc":"Instagramの設計〜運用までサポート。"},{"id":"biyoushijuku","name":"美容師塾（人間力・美容師力コンサル）","desc":"人間力・美容師力のコンサル支援。"},{"id":"gita","name":"美容室専門 TikTokコンサル（ギータ）","desc":"美容室特化のTikTok戦略支援。"}]},{"name":"予約サービス","emoji":"📅","tint":"#e8e6f5","items":[{"id":"refundhub","name":"RefundHub（キャンセル請求・再予約）","desc":"キャンセル請求・再予約の導線づくり。"}]}];
+const ROT = ["ひとつに。","シンプルに。","もっと自由に。"];
 
-/* ---- services tabs ---- */
+/* services tabs */
 (function(){
-  const tabs = document.getElementById("tabs");
-  const panels = document.getElementById("panels");
-  const TABS = [{name:"すべて", emoji:"⭐", all:true}].concat(DATA.map(d=>({name:d.name, emoji:d.emoji})));
-
-  function cardHTML(it){
-    return '<a class="card" href="'+it.id+'.html"><div class="thumb" style="background:'+ (it._tint||"#eef0f9") +'">'+ (it._emoji||"📄") +'</div><div class="card-body"><h4>'+ it.name +'</h4><p>'+ it.desc +'</p></div></a>';
+  var tabs=document.getElementById("tabs");
+  var panels=document.getElementById("panels");
+  var TABS=[{name:"すべて",emoji:"✦",all:true}].concat(DATA.map(function(d){return {name:d.name,emoji:d.emoji};}));
+  function card(it,d){
+    return '<a class="card" href="'+it.id+'.html"><div class="top"><div class="chip" style="background:'+d.tint+'">'+d.emoji+'</div><span class="tag">'+d.name+'</span></div><h4>'+it.name+'</h4><p>'+it.desc+'</p><span class="more">詳細を見る <span class="arw">→</span></span></a>';
   }
-  function panelHTML(tab){
+  function panel(tab){
     if(tab.all){
-      return DATA.map(d=>(
-        '<div class="cat-block"><h3 class="cat-title">'+d.emoji+' '+d.name+'</h3><div class="grid">'+
-        d.items.map(it=>cardHTML(Object.assign({_emoji:d.emoji,_tint:d.tint},it))).join("")+'</div></div>'
-      )).join("");
+      return DATA.map(function(d,i){
+        var idx=("0"+(i+1)).slice(-2);
+        return '<div class="cat-block"><div class="cat-bar"><span class="idx">'+idx+'</span><h3>'+d.emoji+' '+d.name+'</h3><span class="cnt">'+d.items.length+' service'+(d.items.length>1?'s':'')+'</span></div><div class="grid">'+d.items.map(function(it){return card(it,d);}).join("")+'</div></div>';
+      }).join("");
     }
-    const d = DATA.find(x=>x.name===tab.name);
-    return '<div class="grid">'+ d.items.map(it=>cardHTML(Object.assign({_emoji:d.emoji,_tint:d.tint},it))).join("") +'</div>';
+    var d=DATA.find(function(x){return x.name===tab.name;});
+    return '<div class="grid">'+d.items.map(function(it){return card(it,d);}).join("")+'</div>';
   }
   function activate(i){
-    [...tabs.children].forEach((b,bi)=>b.classList.toggle("on",bi===i));
-    panels.innerHTML = panelHTML(TABS[i]);
+    [].forEach.call(tabs.children,function(b,bi){b.classList.toggle("on",bi===i);});
+    panels.innerHTML=panel(TABS[i]);
   }
-  TABS.forEach((t,i)=>{
-    const b=document.createElement("button");
+  TABS.forEach(function(t,i){
+    var b=document.createElement("button");
     b.className="tab"+(i===0?" on":"");
-    b.textContent = t.emoji+" "+t.name;
-    b.onclick=()=>activate(i);
+    b.textContent=t.emoji+" "+t.name;
+    b.onclick=function(){activate(i);};
     tabs.appendChild(b);
   });
   activate(0);
 })();
 
-/* ---- hero slideshow ---- */
+/* hero rotating word */
 (function(){
-  const slides=[...document.querySelectorAll(".hero-slide")];
-  const dots=document.getElementById("heroDots");
-  const eyebrow=document.getElementById("heroEyebrow");
-  const title=document.getElementById("heroTitle");
-  const sub=document.getElementById("heroSub");
-  let i=0,timer;
-  slides.forEach((_,n)=>{const b=document.createElement("button");if(n===0)b.className="on";b.onclick=()=>go(n);dots.appendChild(b);});
-  function go(n){
-    i=(n+slides.length)%slides.length;
-    slides.forEach((s,si)=>s.classList.toggle("on",si===i));
-    [...dots.children].forEach((d,di)=>d.classList.toggle("on",di===i));
-    eyebrow.textContent=HERO[i].eyebrow; title.textContent=HERO[i].h1; sub.textContent=HERO[i].sub;
-    restart();
-  }
-  function restart(){clearInterval(timer);timer=setInterval(()=>go(i+1),5000);}
-  document.getElementById("heroPrev").onclick=()=>go(i-1);
-  document.getElementById("heroNext").onclick=()=>go(i+1);
-  restart();
+  var el=document.getElementById("rot");if(!el)return;var i=0;
+  setInterval(function(){
+    el.classList.add("out");
+    setTimeout(function(){i=(i+1)%ROT.length;el.textContent=ROT[i];el.classList.remove("out");},480);
+  },2600);
 })();
 </script>
 <footer class="footer">
-  <div class="container footer-inner">
-    <h3>BCC — beauty Cooperative Chain</h3>
+  <div class="container footer-inner reveal">
+    <p class="big display">beauty Cooperative Chain<span class="dot">.</span></p>
     <p>美容師の開業・集客・運営を支えるインフラ整備サービス。必要な外部パートナーをカテゴリ別にまとめ、公式LINEから気軽に相談できます。</p>
-    <p class="small">© BCC</p>
+    <div class="links">
+      <a href="https://lin.ee/aQTLZGG" target="_blank" rel="noopener noreferrer">公式LINE</a>
+      <a href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer">オープンチャット</a>
+      <a href="https://drive-blue.online/test/" target="_blank" rel="noopener noreferrer">説明LP</a>
+    </div>
+    <p class="small">© BCC — beauty Cooperative Chain</p>
   </div>
 </footer>
+<script>
+document.documentElement.classList.add("js");
+(function(){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(function(el){io.observe(el);});
+})();
+</script>
+
 </body>
 </html>
