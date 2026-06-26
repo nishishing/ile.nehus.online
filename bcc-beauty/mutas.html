@@ -17,6 +17,7 @@
   --muted:#8d897b;
   --line:#e2dfd4;
   --hair:#d6d2c5;
+  --gold:#9c8552;
   --radius:6px;
   --max:1080px;
   --font-serif:'Cormorant Garamond',Georgia,serif;
@@ -53,7 +54,7 @@ html.js .reveal.in{opacity:1;transform:none}
 .hero-inner{position:relative;z-index:2;padding:0 20px;max-width:880px}
 .hero .eyebrow{display:block;text-transform:uppercase;letter-spacing:.34em;font-size:.72rem;color:var(--muted);font-weight:500;margin:0 0 30px}
 .hero h1{font-family:var(--font-jp);font-weight:500;font-size:clamp(2.2rem,6.2vw,4.4rem);line-height:1.28;letter-spacing:.02em;margin:0}
-.hero .rule{width:48px;height:1px;background:var(--hair);margin:34px auto}
+.hero .rule{width:54px;height:1px;background:var(--gold);opacity:.7;margin:34px auto}
 .hero .kicker{font-family:var(--font-serif);font-style:italic;font-weight:500;font-size:clamp(1.2rem,2.6vw,1.7rem);color:var(--soft-ink);margin:0;letter-spacing:.01em}
 .hero-sub{margin:22px auto 0;font-size:clamp(.95rem,1.6vw,1.05rem);color:var(--muted);max-width:540px;line-height:2}
 .hero-cta{margin-top:40px;display:inline-flex;gap:14px;flex-wrap:wrap;justify-content:center}
@@ -73,7 +74,7 @@ section{padding:108px 0}
 .sec-head{text-align:center;max-width:680px;margin:0 auto 64px}
 .sec-head .lbl{margin:0 0 20px}
 .sec-head h2{font-family:var(--font-jp);font-weight:500;font-size:clamp(1.7rem,3.4vw,2.6rem);margin:0;letter-spacing:.03em;line-height:1.4}
-.sec-head h2 em{font-style:normal;font-family:var(--font-serif);font-weight:600;letter-spacing:.01em}
+.sec-head h2 em{font-style:normal;font-family:var(--font-serif);font-weight:600;letter-spacing:.01em;color:var(--gold)}
 .sec-head p{color:var(--muted);margin:20px 0 0;font-size:.96rem}
 
 /* tabs */
@@ -81,14 +82,14 @@ section{padding:108px 0}
 .tab{border:0;background:transparent;color:var(--muted);font-family:var(--font-jp);font-weight:500;font-size:.85rem;letter-spacing:.06em;padding:6px 2px;cursor:pointer;white-space:nowrap;position:relative;transition:.2s}
 .tab:hover{color:var(--ink)}
 .tab.on{color:var(--ink)}
-.tab.on::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--ink)}
+.tab.on::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--gold)}
 
 /* category block (すべて) */
 .cat-block{margin-bottom:72px}
 .cat-bar{display:flex;align-items:baseline;gap:18px;border-bottom:1px solid var(--hair);padding-bottom:18px;margin-bottom:34px}
-.cat-bar .idx{font-family:var(--font-serif);font-size:1.5rem;color:var(--ink);font-weight:600;line-height:1}
+.cat-bar .idx{font-family:var(--font-serif);font-size:1.5rem;color:var(--gold);font-weight:600;line-height:1}
 .cat-bar h3{font-family:var(--font-jp);font-weight:500;font-size:1.2rem;margin:0;letter-spacing:.04em}
-.cat-bar .en{font-family:var(--font-serif);font-style:italic;color:var(--muted);font-size:1rem}
+.cat-bar .en{font-family:var(--font-serif);font-style:italic;color:var(--gold);font-size:1rem}
 .cat-bar .cnt{margin-left:auto;color:var(--muted);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase}
 
 /* cards */
@@ -99,7 +100,7 @@ a.card:hover{background:#fff}
 .card .ctag{margin:0}
 .card h4{font-family:var(--font-jp);font-weight:600;font-size:1.08rem;margin:0;line-height:1.55;letter-spacing:.02em}
 .card p{margin:0;color:var(--muted);font-size:.88rem;flex:1;line-height:1.85}
-.card .more{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.card .more{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
 .card .more .arw{transition:transform .3s}
 a.card:hover .more .arw{transform:translateX(8px)}
 
@@ -110,7 +111,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .footer p{margin:0 auto;color:var(--muted);font-size:.92rem;max-width:520px;line-height:2}
 .footer .links{display:flex;gap:30px;flex-wrap:wrap;justify-content:center;margin-top:34px}
 .footer .links a{color:var(--ink);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase}
-.footer .links a:hover{color:var(--muted)}
+.footer .links a:hover{color:var(--gold)}
 .footer .small{color:#a8a496;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;margin-top:46px}
 
 /* detail */
@@ -119,7 +120,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .back:hover{color:var(--ink)}
 .detail .lbl{margin:0 0 18px}
 .detail h1{font-family:var(--font-jp);font-weight:500;font-size:clamp(1.9rem,4.2vw,2.9rem);margin:0 0 8px;letter-spacing:.03em;line-height:1.4}
-.detail .en{font-family:var(--font-serif);font-style:italic;color:var(--muted);font-size:1.15rem;display:block;margin:0 0 26px}
+.detail .en{font-family:var(--font-serif);font-style:italic;color:var(--gold);font-size:1.15rem;display:block;margin:0 0 26px}
 .lead{color:var(--soft-ink);max-width:680px;font-size:1.02rem;line-height:2}
 .panelbox{border-top:1px solid var(--hair);padding-top:40px;max-width:680px;margin-top:18px}
 .panelbox h2{font-family:var(--font-jp);font-weight:500;font-size:1.05rem;margin:0 0 24px;letter-spacing:.06em}
