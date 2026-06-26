@@ -78,11 +78,11 @@ section{padding:108px 0}
 .sec-head p{color:var(--muted);margin:20px 0 0;font-size:.96rem}
 
 /* tabs */
-.tabs{display:flex;flex-wrap:wrap;gap:8px 26px;justify-content:center;margin:0 auto 60px;padding-bottom:2px}
-.tab{border:0;background:transparent;color:var(--muted);font-family:var(--font-jp);font-weight:500;font-size:.85rem;letter-spacing:.06em;padding:6px 2px;cursor:pointer;white-space:nowrap;position:relative;transition:.2s}
-.tab:hover{color:var(--ink)}
-.tab.on{color:var(--ink)}
-.tab.on::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--gold)}
+.tabs{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:0 auto 64px;max-width:940px}
+.tab{border:1px solid var(--hair);background:transparent;color:var(--soft-ink);font-family:var(--font-jp);font-weight:600;font-size:1.02rem;letter-spacing:.05em;padding:14px 30px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.22s}
+.tab:hover{border-color:var(--ink);color:var(--ink)}
+.tab.on{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+@media(max-width:680px){.tab{font-size:.92rem;padding:12px 22px}}
 
 /* category block (すべて) */
 .cat-block{margin-bottom:72px}
