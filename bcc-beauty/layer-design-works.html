@@ -133,6 +133,20 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .btn-line{background:var(--ink);color:var(--surface);border-color:var(--ink)}
 .btn-line:hover{background:transparent;color:var(--ink)}
 .small{font-size:.78rem;color:var(--muted);letter-spacing:.04em}
+/* rich detail content (from Notion) */
+.svc-logo{display:block;width:200px;max-width:55%;border-radius:10px;border:1px solid var(--line);margin:24px 0 4px}
+.block{max-width:780px}
+.subhead{font-family:var(--font-jp);font-weight:600;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+.feature-list{list-style:none;padding:0;margin:0;display:grid;gap:12px;max-width:700px}
+.feature-list li{position:relative;padding-left:24px;color:var(--soft-ink);line-height:1.8}
+.feature-list li::before{content:"";position:absolute;left:0;top:.85em;width:12px;height:1px;background:var(--gold)}
+.quote{margin:0;border-left:2px solid var(--gold);padding:6px 0 6px 22px;color:var(--soft-ink);line-height:2;max-width:720px}
+.cases{display:grid;gap:34px;max-width:780px}
+.case{display:grid;gap:14px}
+.case .meta{margin:0;color:var(--ink);font-weight:500}
+.case .ph{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:680px){.case .ph{grid-template-columns:1fr}}
+.case img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block}
 </style>
 </head>
 <body>
@@ -153,14 +167,23 @@ a.card:hover .more .arw{transform:translateX(8px)}
       <a class="back" href="index.html">← Back to top</a>
       <p class="komoji lbl">Interior ・ 内装業者</p>
       <h1>Layer Design Works</h1>
+      <img class="svc-logo" src="notion/layer-design-works/logo.jpg" alt="Layer Design Works">
       <p class="lead">内装業界最安値クラスを目指す施工パートナー。</p>
-      <p class="lead" style="margin-top:16px">詳しい内容やお申し込み・ご相談は、オープンチャットからお気軽にどうぞ。</p>
-      <div class="panelbox">
+      <p class="lead" style="margin-top:16px">内装業界最安値クラスを目指す施工パートナー。美容室オーナーの「やりたい」に寄り添い、予算に合わせた設計・内装を行います。</p>
+    </div>
+  </section>
+  <section style="padding-top:18px">
+    <div class="container reveal">
+      <div class="block" style="margin-top:8px"><p class="subhead">特長</p><ul class="feature-list"><li>無料ご相談可能</li><li>美容室オーナー様の「やりたい」に寄り添う内装設計</li><li>予算に合わせた設計・内装も可能</li><li>坪単価 20〜40万円の内装実績</li></ul></div>
+      <div class="block" style="margin-top:50px"><p class="subhead">お客様の声</p><blockquote class="quote">立ち会いし、作業を進めながら内装を作ることができたので理想通り作ることができました！途中でセット面の位置や造作のサイズ感も作りながら合わせることができたので、イメージと相違なくできました！</blockquote></div>
+      <div class="block" style="margin-top:50px"><p class="subhead">実例</p><div class="cases"><div class="case"><p class="meta">名古屋／25坪　内装費 500万円（スケルトン工事から・ボイラー・エアコン込み）</p><div class="ph"><img src="notion/layer-design-works/case-01.jpg" alt="" loading="lazy"><img src="notion/layer-design-works/case-02.jpg" alt="" loading="lazy"></div></div><div class="case"><p class="meta">坪単価60／600万円</p></div></div></div>
+      <div class="panelbox" style="margin-top:54px">
         <h2>ご相談・お申し込み</h2>
         <div class="cta-grid">
-          <a class="btn btn-line" href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer">オープンチャットで相談する</a>
+          <a class="btn btn-line" href="https://lin.ee/DXZM8Px" target="_blank" rel="noopener noreferrer">公式LINEで相談する</a>
           <a class="btn" href="index.html#services">ほかのサービスを見る</a>
         </div>
+        <p class="small" style="margin-top:16px">※詳しい内容・お見積りは、こちらの公式LINEでご案内します。</p>
       </div>
     </div>
   </section>
