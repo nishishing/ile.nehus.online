@@ -2,6 +2,7 @@
 import BaseLayout from "~layouts/BaseLayout.astro";
 import PageHero from "~components/PageHero.astro";
 import Prose from "~components/Prose.astro";
+import Picture from "~components/Picture.astro";
 import { getJournalPosts } from "~lib/content";
 import {
   articleSchema,
@@ -48,6 +49,19 @@ const pageSchemas = [
     title={post.title.toUpperCase()}
   />
 
+  {post.eyecatch?.url && (
+    <figure class="journal-eyecatch">
+      <Picture
+        class="journal-eyecatch__img"
+        src={post.eyecatch.url}
+        width={post.eyecatch.width}
+        height={post.eyecatch.height}
+        alt={post.eyecatchAlt ?? post.title}
+        loading="eager"
+      />
+    </figure>
+  )}
+
   <article class="journal-article">
     <Prose>
       {post.subtitle && <p class="lead">{post.subtitle}</p>}
@@ -58,9 +72,25 @@ const pageSchemas = [
 </BaseLayout>
 
 <style>
+  .journal-eyecatch {
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    background: var(--color-ink);
+  }
+  .journal-eyecatch :global(.journal-eyecatch__img) {
+    display: block;
+    width: 100%;
+    max-height: 70vh;
+    object-fit: cover;
+  }
   .journal-article {
     padding: 110px 32px 140px;
     position: relative;
     z-index: 1;
+  }
+  /* When an eyecatch precedes the article, tighten the top padding a touch. */
+  .journal-eyecatch + .journal-article {
+    padding-top: 80px;
   }
 </style>

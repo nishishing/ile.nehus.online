@@ -483,6 +483,13 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-27** — Journal 記事にアイキャッチ画像対応（オーナー指示「ブログに写真を」）:
+  `journal/[slug].astro` で `post.eyecatch`（MicroCMSImage、既存の型フィールド）を `Picture` で
+  PageHero 直下にフルブリード表示（`eyecatchAlt`→alt、未設定なら従来どおり非表示）。`articleSchema` は
+  既に `eyecatch.url` を JSON-LD image に使うため AI 露出にも寄与。irida コラムに **Bonding Plex の
+  シャンプー＆トリートメント2点を並べた合成ヒーロー**（`public/irida/journal-bonding-plex.jpg`、
+  1600×1000、`sharp` で dark cool-mono 合成）を設定。全 journal 記事で再利用可能。build 82 pages／
+  4バリデータ 0エラー。
 - **2026-06-27** — SEOコラム +1本（オーナー指示）: irida のシャンプー＆トリートメント記事
   `irida-bonding-plex-shampoo-treatment`（`blog-generated.json`、計23本）。Bonding Plex S&T の
   考え方・使い方（シャンプー単体はトリートメント併用推奨）・サロンケアとの組合せを brand-brief 準拠で執筆
