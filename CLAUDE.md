@@ -483,6 +483,11 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-27** — SEOコラム +1本（オーナー指示）: irida のシャンプー＆トリートメント記事
+  `irida-bonding-plex-shampoo-treatment`（`blog-generated.json`、計23本）。Bonding Plex S&T の
+  考え方・使い方（シャンプー単体はトリートメント併用推奨）・サロンケアとの組合せを brand-brief 準拠で執筆
+  （価格・医療断定なし）。内部リンクは `/irida` `/effect-bleach`。BlogPosting JSON-LD・llms.txt・Journal・
+  ホーム Floating に自動反映。build 82 pages／4バリデータ 0エラー。
 - **2026-06-27** — 自社ブランド **Irida（イリーダ）** ページ新設（オーナー指示）: 新規
   `/irida`（プレミアムヘアケア）。Brand + Product JSON-LD（Brand→parentOrganization→#organization、
   Bonding Plex S&T を Product として offers ¥5,500/JPY/InStock）。フラッグシップ **Bonding Plex
