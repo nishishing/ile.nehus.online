@@ -3,7 +3,7 @@
 // CI / Cloudflare regenerate them from the committed .jpg sources.
 //
 // Skips work when an up-to-date derivative already exists (mtime check).
-import { readdir, stat } from "node:fs/promises";
+import { readdir } from "node:fs/promises";
 import { existsSync, statSync } from "node:fs";
 import { join, extname } from "node:path";
 import sharp from "sharp";
