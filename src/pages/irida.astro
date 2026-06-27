@@ -1,0 +1,442 @@
+---
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import Picture from "~components/Picture.astro";
+import { breadcrumbSchema, jsonLd } from "~lib/schema";
+import { site } from "~data/site";
+
+const SHOP = "https://ileing.stores.jp";
+
+const description =
+  "Irida（イリーダ）— iLe が手がけるプレミアムヘアケア。Bonding Plex シャンプー&トリートメント、repair milk、moist / silky oil。サロン品質のケアを、あなたの毎日に。";
+
+// Ingredients featured on the Bonding Plex line.
+const ingredients = ["BAOBAB OIL", "ARGAN OIL", "OLIVE LEAF EXTRACT"];
+
+// Product lineup (names / volume / price are from the official store).
+const products = [
+  {
+    name: "Bonding Plex シャンプー & トリートメント",
+    en: "Irida Bonding Plex Shampoo & Treatment",
+    volume: "各300ml セット",
+    price: "¥5,500",
+    badge: "NEW",
+    desc: "5年の歳月をかけて完成した、ブリーチ毛も健康毛も美しく仕上げる Irida のフラッグシップ。",
+  },
+  {
+    name: "Bonding Plex シャンプー",
+    en: "Irida Bonding Plex Shampoo",
+    volume: "300ml",
+    price: "STORESにて",
+    desc: "少量でも豊かな泡立ち。うるおいを守りながら、軽やかにしっとりまとまる洗い上がりへ。",
+  },
+  {
+    name: "Bonding Plex トリートメント",
+    en: "Irida Bonding Plex Treatment",
+    volume: "300ml",
+    price: "STORESにて",
+    desc: "重さでごまかさない。補修力と軽やかさを両立し、指通りのよい柔らかな質感へ導く。",
+  },
+  {
+    name: "repair milk（洗い流さないトリートメント）",
+    en: "Repair Milk",
+    volume: "140ml／業務用 400ml",
+    price: "¥3,300／¥8,800",
+    desc: "髪を補修しながら毎日の扱いやすさを支える、アウトバスのリペアミルク。",
+  },
+  {
+    name: "moist oil（艶ありオイル）",
+    en: "Moist Oil",
+    volume: "100ml",
+    price: "¥3,300",
+    desc: "しっとりとした艶感とまとまりを与えるヘアオイル。",
+  },
+  {
+    name: "silky oil（艶なしオイル）",
+    en: "Silky Oil",
+    volume: "100ml",
+    price: "¥3,300",
+    desc: "軽やかでサラリとした指通りに仕上げる、艶なしタイプのヘアオイル。",
+  },
+];
+
+const absUrl = (p: string) => `${site.url}${p}`;
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Irida", url: "/irida" },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "Brand",
+    "@id": `${site.url}/irida#brand`,
+    name: "Irida",
+    alternateName: "イリーダ",
+    description:
+      "iLe（株式会社ing）が手がけるプレミアムヘアケアブランド。エフェクトブリーチで多くの髪と向き合ってきた知見から生まれた、ブリーチ毛も健康毛も美しく仕上げるホームケア。",
+    logo: `${site.url}/irida/shampoo.jpg`,
+    url: `${site.url}/irida`,
+    parentOrganization: { "@id": `${site.url}/#organization` },
+    sameAs: [SHOP],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Irida Bonding Plex Shampoo & Treatment",
+    image: absUrl("/irida/shampoo.jpg"),
+    description:
+      "5年の歳月をかけて完成した Irida のシャンプー＆トリートメント。バオバブオイル・アルガンオイル・オリーブ葉エキス配合。ブリーチ毛も健康毛も、より扱いやすく美しく。",
+    brand: { "@id": `${site.url}/irida#brand` },
+    category: "ヘアケア",
+    offers: {
+      "@type": "Offer",
+      price: "5500",
+      priceCurrency: "JPY",
+      availability: "https://schema.org/InStock",
+      url: SHOP,
+    },
+  },
+];
+---
+
+<BaseLayout title="Irida — Premium Hair Care" description={description} ogImage="/irida/shampoo.jpg">
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero eyebrow="— Premium Hair Care by iLe" title="IRIDA" italicTitle="Irida" />
+
+  <!-- Brand statement -->
+  <section class="irida-lead">
+    <p class="irida-lead__big">美しい髪は、つづく。</p>
+    <p class="irida-lead__sub">サロン品質のケアを、あなたの毎日に。</p>
+    <p class="irida-lead__text">
+      <strong>Irida（イリーダ）</strong> は、iLe（株式会社ing）が手がけるプレミアムヘアケアブランドです。
+      <a href="/effect-bleach">エフェクトブリーチ</a>をはじめ、数えきれない髪と向き合ってきた現場の知見から生まれました。
+      ブリーチ毛も、健康毛も。すべての髪を、より扱いやすく、より美しく――サロンの仕上がりを、ご自宅のケアへ。
+    </p>
+  </section>
+
+  <!-- Bonding Plex feature -->
+  <section class="irida-plex">
+    <div class="irida-plex__head">
+      <p class="irida-plex__eyebrow">— Signature Line</p>
+      <h2 class="irida-plex__h">Bonding&nbsp;Plex<span>Shampoo &amp; Treatment</span></h2>
+      <ul class="irida-plex__ing" aria-label="主な配合成分">
+        {ingredients.map((i) => <li>{i}</li>)}
+      </ul>
+    </div>
+
+    <div class="irida-plex__rows">
+      <article class="irida-feat">
+        <div class="irida-feat__img">
+          <Picture class="irida-feat__photo" src="/irida/shampoo.jpg" width={900} height={1125} alt="Irida Bonding Plex Shampoo のボトル" loading="lazy" />
+        </div>
+        <div class="irida-feat__body">
+          <h3 class="irida-feat__name">Bonding Plex <em>Shampoo</em></h3>
+          <p>
+            5年の歳月をかけて完成した、Irida 初のシャンプー。「ブリーチ毛も満足でき、ブリーチしていない髪も美しく仕上がる」――
+            その難題に向き合い続けて辿り着きました。少量でも驚くほど豊かな泡立ちで、やさしく包み込むように洗い、
+            軽やかでありながらしっとりまとまる質感へ。ダメージケア成分と毛髪補修成分を贅沢に配合しています。
+          </p>
+        </div>
+      </article>
+
+      <article class="irida-feat irida-feat--reverse">
+        <div class="irida-feat__img">
+          <Picture class="irida-feat__photo" src="/irida/treatment.jpg" width={900} height={1200} alt="Irida Bonding Plex Treatment のボトル" loading="lazy" />
+        </div>
+        <div class="irida-feat__body">
+          <h3 class="irida-feat__name">Bonding Plex <em>Treatment</em></h3>
+          <p>
+            理想は、重さでごまかさないこと。ブリーチ毛に必要な補修力と、健康毛でも心地よく使える軽やかさ。
+            その“ちょうどいい”を追求しました。髪一本一本をなめらかに包み込みながら内部へ補修成分を届け、
+            指通りのよい柔らかな質感へ。しっとりするのに重くない、まとまるのにペタッとしない仕上がりです。
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <p class="irida-note">
+      ※ シャンプーはトリートメントに合わせて設計しているため、単体だとボンディング処方により毛が少し硬く感じる場合があります。<strong>トリートメントとの併用</strong>がおすすめです。
+    </p>
+  </section>
+
+  <!-- Lineup -->
+  <section class="irida-lineup">
+    <h2 class="irida-lineup__h">Lineup</h2>
+    <div class="irida-lineup__grid">
+      {products.map((p) => (
+        <a class="irida-card" href={SHOP} target="_blank" rel="noopener">
+          {p.badge && <span class="irida-card__badge">{p.badge}</span>}
+          <h3 class="irida-card__name">{p.name}</h3>
+          <p class="irida-card__en">{p.en}</p>
+          <p class="irida-card__desc">{p.desc}</p>
+          <p class="irida-card__meta"><span>{p.volume}</span><span class="irida-card__price">{p.price}</span></p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Shop CTA -->
+  <section class="irida-shop">
+    <p class="irida-shop__lead">ご購入・在庫・最新価格は、公式オンラインストアにて。</p>
+    <a class="irida-shop__cta" href={SHOP} target="_blank" rel="noopener">Irida ONLINE STORE →</a>
+    <nav class="irida-shop__links" aria-label="関連ページ">
+      <a href="/effect-bleach">エフェクトブリーチ</a>
+      <a href="/salons">店舗一覧</a>
+      <a href="/menu">メニュー</a>
+    </nav>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Brand statement */
+  .irida-lead {
+    padding: 110px 32px 40px;
+    max-width: 880px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .irida-lead__big {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.4;
+    margin: 0 0 8px;
+  }
+  .irida-lead__sub {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 36px;
+  }
+  .irida-lead__text {
+    font-size: 15px;
+    line-height: 2.1;
+    color: var(--color-fg-muted);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .irida-lead__text a { border-bottom: 1px solid currentColor; }
+
+  /* Bonding Plex */
+  .irida-plex {
+    padding: 60px 32px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .irida-plex__head { text-align: center; margin-bottom: 64px; }
+  .irida-plex__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 16px;
+  }
+  .irida-plex__h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(36px, 6vw, 68px);
+    line-height: 1;
+    margin: 0 0 20px;
+  }
+  .irida-plex__h span {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin-top: 14px;
+  }
+  .irida-plex__ing {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 18px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--color-fg-subtle);
+  }
+  .irida-plex__ing li { position: relative; }
+  .irida-plex__ing li:not(:last-child)::after { content: "・"; margin-left: 18px; color: var(--color-mist); }
+
+  .irida-plex__rows { display: grid; gap: 72px; }
+  .irida-feat {
+    display: grid;
+    gap: 36px;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+  @media (min-width: 820px) {
+    .irida-feat { grid-template-columns: 0.9fr 1.1fr; }
+    .irida-feat--reverse > :first-child { order: 2; }
+  }
+  .irida-feat__img {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: linear-gradient(180deg, #2e3035 0%, #16171a 100%);
+  }
+  .irida-feat__photo { width: 100%; height: 100%; object-fit: cover; }
+  .irida-feat__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.2;
+    margin: 0 0 18px;
+  }
+  .irida-feat__name em { font-style: italic; }
+  .irida-feat__body p {
+    font-size: 15px;
+    line-height: 2.05;
+    color: var(--color-fg-muted);
+    margin: 0;
+    max-width: 520px;
+  }
+  .irida-note {
+    margin: 56px auto 0;
+    max-width: 760px;
+    font-size: 12.5px;
+    line-height: 1.9;
+    color: var(--color-fg-subtle);
+    border-top: 1px solid var(--color-border);
+    padding-top: 24px;
+  }
+
+  /* Lineup */
+  .irida-lineup {
+    padding: 90px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .irida-lineup__h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 44px);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 48px;
+  }
+  .irida-lineup__grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) { .irida-lineup__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .irida-lineup__grid { grid-template-columns: repeat(3, 1fr); } }
+  .irida-card {
+    position: relative;
+    display: block;
+    padding: 28px 24px;
+    border: 1px solid var(--color-border);
+    background: var(--color-snow);
+    color: inherit;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .irida-card:hover { border-color: var(--color-fg); transform: translateY(-2px); }
+  .irida-card__badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    padding: 4px 9px;
+    background: var(--color-ink);
+    color: var(--color-white);
+  }
+  .irida-card__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 1.45;
+    margin: 0 0 4px;
+    padding-right: 44px;
+  }
+  .irida-card__en {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-fg-subtle);
+    margin: 0 0 16px;
+  }
+  .irida-card__desc {
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: var(--color-fg-muted);
+    margin: 0 0 20px;
+  }
+  .irida-card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    border-top: 1px solid var(--color-border);
+    padding-top: 14px;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--color-fg-muted);
+  }
+  .irida-card__price { color: var(--color-fg); }
+
+  /* Shop CTA */
+  .irida-shop {
+    padding: 80px 32px 130px;
+    text-align: center;
+    background: var(--color-pearl);
+    position: relative;
+    z-index: 1;
+  }
+  .irida-shop__lead { font-size: 14px; color: var(--color-fg-muted); margin: 0 0 28px; }
+  .irida-shop__cta {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 18px 40px;
+    border: 1px solid var(--color-ink);
+    color: var(--color-ink);
+    transition: background 0.2s, color 0.2s;
+  }
+  .irida-shop__cta:hover { background: var(--color-ink); color: var(--color-white); }
+  .irida-shop__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 14px;
+    margin: 40px 0 0;
+  }
+  .irida-shop__links a {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 8px 15px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .irida-shop__links a:hover { color: var(--color-fg); border-color: var(--color-fg); }
+</style>

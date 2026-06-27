@@ -3,12 +3,12 @@
 // CI / Cloudflare regenerate them from the committed .jpg sources.
 //
 // Skips work when an up-to-date derivative already exists (mtime check).
-import { readdir, stat } from "node:fs/promises";
+import { readdir } from "node:fs/promises";
 import { existsSync, statSync } from "node:fs";
 import { join, extname } from "node:path";
 import sharp from "sharp";
 
-const DIRS = ["staff", "salons", "gallery", "hero"].map((d) => join("public", d));
+const DIRS = ["staff", "salons", "gallery", "hero", "irida"].map((d) => join("public", d));
 const AVIF = { quality: 50, effort: 4 };
 const WEBP = { quality: 72 };
 
