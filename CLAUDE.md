@@ -233,6 +233,7 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 | `/journal` + `/journal/[slug]` | Breadcrumb / Article | seed posts |
 | `/faq` | **FAQPage** | 23 Q&A — brand / salon (初めて・メンズ含む) / **access** (原宿/名古屋/長岡の最寄駅) / **technique** (バレイヤージュ・ケアブリーチ・色落ち・白髪ぼかし・大人世代 等) / recruit。冒頭にカテゴリのジャンプindex |
 | `/glossary` | **DefinedTerm** | iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / パーソナル減力 / バレイヤージュ / ハイライト / ケアブリーチ / 白髪ぼかし / インナーカラー / ダブルカラー / iLe.online / … |
+| `/irida` | **Brand + Product + Breadcrumb** | 自社プレミアムヘアケア「Irida（イリーダ）」。Bonding Plex シャンプー&トリートメント等。購入は STORES（`https://ileing.stores.jp`）。footer nav に IRIDA |
 | `/recruit` `/contact` `/ile-online` `/privacy` `/terms` | Breadcrumb | |
 | `/404` | (noindex) | Custom 404; Cloudflare serves it via `not_found_handling` |
 
@@ -482,6 +483,15 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-06-27** — 自社ブランド **Irida（イリーダ）** ページ新設（オーナー指示）: 新規
+  `/irida`（プレミアムヘアケア）。Brand + Product JSON-LD（Brand→parentOrganization→#organization、
+  Bonding Plex S&T を Product として offers ¥5,500/JPY/InStock）。フラッグシップ **Bonding Plex
+  シャンプー&トリートメント**（左右写真の feature 行・配合成分 BAOBAB/ARGAN/OLIVE LEAF・
+  「シャンプー単体はボンディング処方で硬く感じる場合→トリートメント併用推奨」の注記）＋
+  Lineup（repair milk / moist oil / silky oil 等、実価格）＋ STORES（`https://ileing.stores.jp`）への
+  購入導線。商品写真2点はオーナー支給画像を `sharp` で低彩度クールグレード（`public/irida/*.jpg`、
+  `optimize-images.mjs` の DIRS に `irida` 追加）。footer nav に **IRIDA** を追加。cool-mono 準拠。
+  build 81 pages／4バリデータ 0エラー。
 - **2026-06-16** — ヒーロー調整（オーナー指示）: (1) 中央ロゴをやや縮小
   （`clamp(240px,40vw,460px)` → `clamp(170px,30vw,360px)`）。(2) **スマホでヒーロー写真の
   ズームを解消** — 横長写真を縦長 100vh に cover すると中央が大きく切れて“ズームしすぎ”に

@@ -123,6 +123,7 @@ export const navFooter = [
   { label: "MENU", href: "/menu" },
   { label: "EFFECT BLEACH", href: "/effect-bleach" },
   { label: "TECHNOLOGY", href: "/technology" },
+  { label: "IRIDA", href: "/irida" },
   { label: "EXPERTISE", href: "/expertise" },
   { label: "VOICE", href: "/reviews" },
   { label: "STORY", href: "/story" },
