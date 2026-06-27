@@ -3,12 +3,13 @@ import BaseLayout from "~layouts/BaseLayout.astro";
 import PageHero from "~components/PageHero.astro";
 import Picture from "~components/Picture.astro";
 import { breadcrumbSchema, jsonLd } from "~lib/schema";
+import { brandLabel } from "~lib/brand";
 import { site } from "~data/site";
 
 const SHOP = "https://ileing.stores.jp";
 
 const description =
-  "Irida（イリーダ）— iLe が手がけるプレミアムヘアケア。Bonding Plex シャンプー&トリートメント、repair milk、moist / silky oil。サロン品質のケアを、あなたの毎日に。";
+  "irida（イリーダ）— iLe が手がけるプレミアムヘアケア。Bonding Plex シャンプー&トリートメント、repair milk、moist / silky oil。サロン品質のケアを、あなたの毎日に。";
 
 // Ingredients featured on the Bonding Plex line.
 const ingredients = ["BAOBAB OIL", "ARGAN OIL", "OLIVE LEAF EXTRACT"];
@@ -107,14 +108,17 @@ const pageSchemas = [
     ))}
   </Fragment>
 
-  <PageHero eyebrow="— Premium Hair Care by iLe" title="IRIDA" italicTitle="Irida" />
+  <PageHero
+    eyebrow={brandLabel("— Premium Hair Care by iLe")}
+    title={'<span class="brand-token">irida</span>'}
+  />
 
   <!-- Brand statement -->
   <section class="irida-lead">
     <p class="irida-lead__big">美しい髪は、つづく。</p>
     <p class="irida-lead__sub">サロン品質のケアを、あなたの毎日に。</p>
     <p class="irida-lead__text">
-      <strong>Irida（イリーダ）</strong> は、iLe（株式会社ing）が手がけるプレミアムヘアケアブランドです。
+      <strong>irida（イリーダ）</strong> は、iLe（株式会社ing）が手がけるプレミアムヘアケアブランドです。
       <a href="/effect-bleach">エフェクトブリーチ</a>をはじめ、数えきれない髪と向き合ってきた現場の知見から生まれました。
       ブリーチ毛も、健康毛も。すべての髪を、より扱いやすく、より美しく――サロンの仕上がりを、ご自宅のケアへ。
     </p>

@@ -490,8 +490,10 @@ The user has asked that this file be kept up to date whenever things change.
   「シャンプー単体はボンディング処方で硬く感じる場合→トリートメント併用推奨」の注記）＋
   Lineup（repair milk / moist oil / silky oil 等、実価格）＋ STORES（`https://ileing.stores.jp`）への
   購入導線。商品写真2点はオーナー支給画像を `sharp` で低彩度クールグレード（`public/irida/*.jpg`、
-  `optimize-images.mjs` の DIRS に `irida` 追加）。footer nav に **IRIDA** を追加。cool-mono 準拠。
-  build 81 pages／4バリデータ 0エラー。
+  `optimize-images.mjs` の DIRS に `irida` 追加）。**ブランド表記は小文字「irida」**（ロゴ準拠）—
+  ヒーロー/ヘッダー/フッターは `brand-token` span（`text-transform:none`）で大文字化を打ち消し、
+  uppercase ナビ内でも小文字を維持（`brandLabel` と同じ仕組み）。**主ナビ（STYLISTS の隣）+ footer nav に
+  irida** を追加（Header/404 のラベルを `set:html` 化）。cool-mono 準拠。build 81 pages／4バリデータ 0エラー。
 - **2026-06-16** — ヒーロー調整（オーナー指示）: (1) 中央ロゴをやや縮小
   （`clamp(240px,40vw,460px)` → `clamp(170px,30vw,360px)`）。(2) **スマホでヒーロー写真の
   ズームを解消** — 横長写真を縦長 100vh に cover すると中央が大きく切れて“ズームしすぎ”に

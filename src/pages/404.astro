@@ -19,7 +19,7 @@ const description =
     <nav class="notfound__nav" aria-label="主要ページ">
       <a href="/">Home</a>
       {navPrimary.map((item) => (
-        <a href={item.href}>{item.label}</a>
+        <a href={item.href} set:html={item.label} />
       ))}
     </nav>
   </section>
