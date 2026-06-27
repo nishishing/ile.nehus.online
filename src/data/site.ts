@@ -111,6 +111,7 @@ export const site: SiteConfig = {
 export const navPrimary = [
   { label: "SALONS", href: "/salons" },
   { label: "STYLISTS", href: "/stylists" },
+  { label: '<span class="brand-token">irida</span>', href: "/irida" },
   { label: "EFFECT BLEACH", href: "/effect-bleach" },
   { label: "STORY", href: "/story" },
   { label: "JOURNAL", href: "/journal" },
@@ -123,7 +124,7 @@ export const navFooter = [
   { label: "MENU", href: "/menu" },
   { label: "EFFECT BLEACH", href: "/effect-bleach" },
   { label: "TECHNOLOGY", href: "/technology" },
-  { label: "IRIDA", href: "/irida" },
+  { label: '<span class="brand-token">irida</span>', href: "/irida" },
   { label: "EXPERTISE", href: "/expertise" },
   { label: "VOICE", href: "/reviews" },
   { label: "STORY", href: "/story" },

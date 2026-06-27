@@ -10,7 +10,7 @@ import BrandMark from "~components/BrandMark.astro";
   <nav class="header__nav" aria-label="Primary">
     <ul>
       {navPrimary.map((item) => (
-        <li><a href={item.href}>{item.label}</a></li>
+        <li><a href={item.href} set:html={item.label} /></li>
       ))}
     </ul>
   </nav>
