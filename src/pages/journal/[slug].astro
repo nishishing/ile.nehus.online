@@ -37,6 +37,7 @@ const pageSchemas = [
   title={post.subtitle ? `${post.title} — ${post.subtitle}` : post.title}
   description={description}
   ogType="article"
+  ogImage={post.ogImage?.url ?? post.eyecatch?.url}
 >
   <Fragment slot="head">
     {pageSchemas.map((schema) => (
