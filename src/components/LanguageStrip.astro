@@ -25,7 +25,7 @@ import { languages } from "~data/site";
 <style>
   .lang-strip {
     position: fixed;
-    top: 0;
+    top: var(--announce-h);
     right: 0;
     z-index: 60;
     padding: 16px 22px;
@@ -35,6 +35,19 @@ import { languages } from "~data/site";
     font-size: 11px;
     letter-spacing: 0.18em;
     color: var(--color-fg-on-dark-muted);
+    /* Overlays the header's right edge — never swallow clicks meant for
+       the BOOK link / menu button beneath. Real links re-enable below. */
+    pointer-events: none;
+  }
+  .lang-strip a {
+    pointer-events: auto;
+  }
+  /* On phones the strip (JP + 3 "coming soon" placeholders) is decorative
+     and crowds out the menu button — hide it. */
+  @media (max-width: 768px) {
+    .lang-strip {
+      display: none;
+    }
   }
   .lang-strip__current {
     color: var(--color-white);

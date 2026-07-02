@@ -16,13 +16,64 @@ import BrandMark from "~components/BrandMark.astro";
   </nav>
   <div class="header__right">
     <a href="/salons" class="header__action">BOOK</a>
+    <button
+      type="button"
+      class="header__menu-btn"
+      aria-label="メニューを開く"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-open
+    >
+      <span class="header__menu-icon" aria-hidden="true"></span>
+    </button>
   </div>
 </header>
+
+<!-- Mobile full-screen menu (opened by the hamburger; ≤768px only) -->
+<div id="mobile-menu" class="mobile-menu" hidden>
+  <button type="button" class="mobile-menu__close" data-menu-close>
+    Close ×
+  </button>
+  <nav class="mobile-menu__nav" aria-label="Mobile">
+    <ul>
+      {navPrimary.map((item) => (
+        <li><a href={item.href} set:html={item.label} /></li>
+      ))}
+      <li class="mobile-menu__book"><a href="/salons">BOOK →</a></li>
+    </ul>
+  </nav>
+  <p class="mobile-menu__foot"><em>est.</em> 2020 — Harajuku, Tokyo</p>
+</div>
+
+<script>
+  const openBtn = document.querySelector("[data-menu-open]");
+  const closeBtn = document.querySelector("[data-menu-close]");
+  const menu = document.getElementById("mobile-menu");
+
+  const setOpen = (open: boolean) => {
+    if (!menu || !openBtn) return;
+    menu.toggleAttribute("hidden", !open);
+    openBtn.setAttribute("aria-expanded", String(open));
+    openBtn.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
+    document.documentElement.style.overflow = open ? "hidden" : "";
+  };
+
+  openBtn?.addEventListener("click", () => {
+    setOpen(menu?.hasAttribute("hidden") ?? false);
+  });
+  closeBtn?.addEventListener("click", () => setOpen(false));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setOpen(false);
+  });
+  menu?.querySelectorAll("a").forEach((a) => {
+    a.addEventListener("click", () => setOpen(false));
+  });
+</script>
 
 <style>
   .header {
     position: fixed;
-    top: 0;
+    top: var(--announce-h);
     left: 0;
     right: 0;
     z-index: 50;
@@ -64,6 +115,87 @@ import BrandMark from "~components/BrandMark.astro";
     letter-spacing: 0.22em;
     text-transform: uppercase;
   }
+  .header__menu-btn {
+    display: none;
+    background: none;
+    border: 0;
+    padding: 10px 2px;
+    color: inherit;
+    cursor: pointer;
+  }
+  .header__menu-icon {
+    display: block;
+    width: 22px;
+    height: 9px;
+    border-top: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+  }
+
+  /* Mobile full-screen menu */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 100; /* above Floating (80) and AnnounceBar (70) */
+    background: var(--color-ink);
+    color: var(--color-white);
+    padding: 84px 28px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-menu[hidden] {
+    display: none;
+  }
+  .mobile-menu__close {
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    background: none;
+    border: 0;
+    padding: 10px;
+    color: var(--color-white);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .mobile-menu__nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .mobile-menu__nav a {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 7.5vw, 38px);
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    transition: opacity 0.15s;
+  }
+  .mobile-menu__nav a:hover {
+    opacity: 0.7;
+  }
+  .mobile-menu__book {
+    margin-top: 14px;
+  }
+  .mobile-menu__book a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.26em;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    padding: 14px 26px;
+    display: inline-block;
+  }
+  .mobile-menu__foot {
+    margin: auto 0 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--color-fg-on-dark-muted);
+  }
 
   @media (max-width: 768px) {
     .header {
@@ -73,8 +205,20 @@ import BrandMark from "~components/BrandMark.astro";
     .header__nav {
       display: none;
     }
+    /* With the nav hidden, the grid collapses to two tracks — pin the
+       actions to the right edge (the language strip is hidden on mobile). */
     .header__right {
-      padding-right: 64px;
+      padding-right: 0;
+      justify-self: end;
+    }
+    .header__menu-btn {
+      display: inline-flex;
+    }
+  }
+  /* Menu is mobile-only; never show on desktop even if state leaks. */
+  @media (min-width: 769px) {
+    .mobile-menu {
+      display: none !important;
     }
   }
 </style>
