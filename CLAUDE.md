@@ -285,6 +285,16 @@ the Workers Static Assets flow we actually used).
 
 ## What still needs the user (operator-side work)
 
+> **📊 TODO — Web Analytics 有効化（2026-07-02 実装済・トークン待ち）。**
+> コードは `PUBLIC_CF_BEACON_TOKEN` があるときだけ Cloudflare Web Analytics の
+> beacon を出す（BaseLayout）。有効化はどちらか:
+> ① **推奨**: Cloudflare ダッシュボード → アカウントの **Analytics & Logs →
+> Web Analytics → Add a site** で `ile-hair-harajuku.com` を追加 → 発行された
+> JS スニペットの `token` 値をコピー → Workers のビルド設定（Settings →
+> Variables and Secrets）に `PUBLIC_CF_BEACON_TOKEN` として追加 → 再デプロイ。
+> ② プロキシ済みドメインなら同画面の automatic setup（自動注入）でも可（この場合
+> env 変数は不要・コード側は何も出さないまま）。
+
 > **📌 TODO — awaiting operator photos (add when supplied; per owner, "later").**
 > These couldn't be auto-sourced: HPB had no clean shot and Instagram is
 > login-walled / rate-limited from CI. Drop the files in and wire as noted —
@@ -483,6 +493,23 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-07-02** — サイト点検フォローアップ5点（オーナー指示「すべてお願いします」）:
+  (1) **スマホ用ハンバーガーメニュー** — `Header.astro` に mobile 専用のメニューボタン＋
+  フルスクリーンオーバーレイナビ（navPrimary + BOOK、ink 背景、Esc/リンククリックで閉、
+  `aria-expanded`/`aria-controls`、scroll lock）。≤768px でナビ非表示だった問題を解消。
+  あわせて **LanguageStrip をモバイル非表示に**（JP 以外は coming-soon の飾りでリンク無し、
+  メニューボタンのタップを横取りしていた）＋ desktop も `pointer-events:none`（リンクのみ auto）。
+  (2) **8/1 統合の告知バー** — 新規 `AnnounceBar.astro`（fixed 最上部、`--announce-h:34px` を
+  global.css で定義し Header/LanguageStrip がオフセット）。press 記事
+  `/journal/press-release-2026-08-01-unification` へリンク。**8/1 以降は撤去（または文言差替）+
+  `--announce-h:0px`**。
+  (3) **Cloudflare Web Analytics（env-gated）** — BaseLayout が `PUBLIC_CF_BEACON_TOKEN`
+  設定時のみ beacon script を出力。⚠️ 有効化はオーナー作業（下の operator 節参照）。
+  (4) **Journal 一覧カードにサムネ** — `JournalCard` が `eyecatch ?? ogImage` を `Picture` で表示
+  （hover ズーム、無い記事は従来のグラデ。ホームの Journal セクションにも波及）。
+  (5) **Contact にアドレスコピー** — `data-copy-email` ボタン（clipboard API、✓フィードバック、
+  mailto 不動作な PC 環境向け）。全て Playwright 実機確認済（メニュー開閉/Esc/ナビゲーション/
+  コピー動作/desktop 非表示）。check/build 86 pages/4バリデータ 0エラー。
 - **2026-06-27** — Journal 記事にアイキャッチ画像対応（オーナー指示「ブログに写真を」）:
   `journal/[slug].astro` で `post.eyecatch`（MicroCMSImage、既存の型フィールド）を `Picture` で
   PageHero 直下にフルブリード表示（`eyecatchAlt`→alt、未設定なら従来どおり非表示）。`articleSchema` は

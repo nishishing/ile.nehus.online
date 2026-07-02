@@ -1,10 +1,18 @@
 ---
 import BaseHead from "~components/BaseHead.astro";
 import LanguageStrip from "~components/LanguageStrip.astro";
+import AnnounceBar from "~components/AnnounceBar.astro";
 import Header from "~components/Header.astro";
 import Footer from "~components/Footer.astro";
 import Floating from "~components/Floating.astro";
 import { getJournalPosts } from "~lib/content";
+
+// Cloudflare Web Analytics (cookieless). Emitted only when the token is
+// provided at build time — set PUBLIC_CF_BEACON_TOKEN in the Cloudflare
+// build settings (Workers & Pages → Settings → Variables) to enable.
+const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN as
+  | string
+  | undefined;
 
 interface Props {
   title?: string;
@@ -43,9 +51,18 @@ const latestPost = hideFloating
       noindex={noindex}
     />
     <slot name="head" />
+    {cfBeaconToken && (
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: cfBeaconToken })}
+      ></script>
+    )}
   </head>
   <body>
     <a href="#main" class="skip-link">本文へスキップ</a>
+    <AnnounceBar />
     <LanguageStrip />
     <Header />
     <main id="main" tabindex="-1">

@@ -1,0 +1,68 @@
+---
+/**
+ * AnnounceBar — slim site-wide notice for the 2026-08-01 brand unification.
+ * Fixed above the header (Header / LanguageStrip offset by --announce-h).
+ * ⚠️ Temporal: remove (or repurpose) after the 2026-08-01 launch.
+ */
+import { brandLabel } from "~lib/brand";
+
+const href = "/journal/press-release-2026-08-01-unification";
+---
+
+<a class="announce" href={href}>
+  <span class="announce__badge">2026.8.1</span>
+  <span class="announce__text" set:html={brandLabel("nehus は iLe になります")} />
+  <span class="announce__more">｜ブランド統合のお知らせ</span>
+  <span class="announce__arrow" aria-hidden="true">→</span>
+</a>
+
+<style>
+  .announce {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 70;
+    height: var(--announce-h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 16px;
+    background: var(--color-ink);
+    color: var(--color-white);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .announce__badge {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 2px 8px;
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    flex: none;
+  }
+  .announce__text,
+  .announce__more {
+    transition: opacity 0.15s;
+  }
+  .announce__arrow {
+    flex: none;
+  }
+  .announce:hover .announce__text,
+  .announce:hover .announce__more {
+    opacity: 0.7;
+  }
+  @media (max-width: 560px) {
+    .announce {
+      gap: 9px;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+    }
+    .announce__more {
+      display: none;
+    }
+  }
+</style>

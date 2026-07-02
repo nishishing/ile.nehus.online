@@ -1,16 +1,32 @@
 ---
 import type { JournalPost } from "~types/content";
+import Picture from "~components/Picture.astro";
 
 interface Props {
   post: JournalPost;
   index: number;
 }
 const { post, index } = Astro.props;
+
+// Thumbnail: use the post's eyecatch/OG image when it has one; posts
+// without a photo keep the gradient placeholder.
+const image = post.eyecatch ?? post.ogImage;
 ---
 
 <article class={`journal-card journal-card--${(index % 2) + 1}`}>
   <a href={`/journal/${post.slug}`} class="journal-card__link">
-    <div class="journal-card__img" aria-hidden="true"></div>
+    <div class="journal-card__img" aria-hidden="true">
+      {image && (
+        <Picture
+          class="journal-card__photo"
+          src={image.url}
+          width={image.width}
+          height={image.height}
+          alt=""
+          loading="lazy"
+        />
+      )}
+    </div>
     <p class="journal-card__cat">{post.categoryLabel}</p>
     <h3 class="journal-card__title">
       {post.title}
@@ -34,6 +50,14 @@ const { post, index } = Astro.props;
     margin-bottom: 28px;
     position: relative;
     overflow: hidden;
+  }
+  .journal-card__img :global(.journal-card__photo) {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.5s ease;
+  }
+  .journal-card__link:hover :global(.journal-card__photo) {
+    transform: scale(1.03);
   }
   .journal-card--1 .journal-card__img {
     background: linear-gradient(180deg, #6e7277 0%, #2a2c30 100%);

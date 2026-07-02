@@ -203,3 +203,10 @@
 .brand-token {
   text-transform: none;
 }
+
+/* Site-wide announcement bar height (AnnounceBar.astro). Header and
+   LanguageStrip offset themselves by this. Set to 0px when the bar is
+   removed after the 2026-08-01 launch. */
+:root {
+  --announce-h: 34px;
+}
