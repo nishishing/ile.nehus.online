@@ -13,7 +13,11 @@ live brand site automatically, so it must be factually safe and on-brand.
 - Four salons: **iLe 原宿（発祥店）**, **iLe 原宿B（旧 nehus）**,
   **iLe 名古屋（旧 nehus 名古屋）**, **iLe 長岡（旧 nehus 長岡）**.
 - **エフェクトブリーチ（Effect Bleach）** is iLe's signature bleach technique,
-  developed and systematized by 酒井 元樹. It diagnoses damage history in 10
+  developed and systematized by 酒井 元樹. It is also productised as a
+  dedicated bleach developer（脱色の2剤＝オキシ）**developed and supervised by
+  co-representatives 酒井 元樹 and 西村 涼**, and is used by salons and
+  stylists across Japan — iLe is the 開発元 (originating salon). Do not name
+  specific manufacturers or resellers. It diagnoses damage history in 10
   levels and varies hydrogen-peroxide concentration to the millimetre
   ("パーソナル減力") to prevent breakage and keep the hair's "芯（core）" while
   achieving transparent high-tone colour. It also designs for the beauty of the

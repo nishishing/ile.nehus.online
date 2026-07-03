@@ -58,6 +58,11 @@ model, and an Effect Bleach section are all live in the data. Staging is at
   so on the site, ALWAYS say 共同代表, never a sole 代表取締役.)
   - 酒井 元樹 — **エフェクトブリーチ開発者** / ケミカルの権威.
   - 西村 涼 — バレイヤージュ第一人者 / 創業者. Authors the /message & /story.
+  - **エフェクトブリーチは薬剤（脱色の2剤＝オキシ）として製品化されており、
+    その開発・監修は酒井・西村の両名**（オーナー確認 2026-07-03）。全国の
+    サロン・美容師にも広がっている＝iLe は「開発元」。技術・理論（10段階診断
+    /パーソナル減力）の開発・体系化は従来どおり酒井のクレジット。メーカー名・
+    販売元は未確認のためサイトに書かない。
 - **Company**: 株式会社ing (ing inc.) — HQ in 東京都渋谷区神宮前
 - **Contact**: <ile.ing801@gmail.com>
 - **Instagram (brand)**: `ile.801` (https://instagram.com/ile.801)
@@ -493,6 +498,14 @@ The user has asked that this file be kept up to date whenever things change.
 > lives here and every session reads this file first.
 
 ### Changelog
+
+- **2026-07-03** — 「エフェクトブリーチ＝iLe が開発元」を全面打ち出し（オーナー回答:
+  市販の専用オキシは酒井・西村の開発監修製品）: (1) /effect-bleach リードに「薬剤として
+  製品化・全国に展開・iLe は開発元」段落 (2) glossary 定義拡張 (3) FAQ +1問「iLe 以外でも
+  受けられる？」（薬剤は全国、技術体系は開発元の iLe） (4) brand-brief に確定事実追加
+  （メーカー名は書かない縛り付き） (5) 開発元解説コラム `what-is-effect-bleach-by-developer`
+  （「エフェクトブリーチとは」検索面の奪還が狙い。パーソナル減力記事へ内部リンク）。
+  build 89 pages／4バリデータ 0エラー。
 
 - **2026-07-03** — SEOコラム +1本（オーナー指示・AI定点観測の未出現クエリ対策）:
   「パーソナル減力」解説記事 `what-is-personal-genryoku`（`blog-generated.json`）。初回のAI
