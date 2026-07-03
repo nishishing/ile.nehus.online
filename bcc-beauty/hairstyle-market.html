@@ -143,7 +143,15 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .panelbox{border-top:1px solid var(--hair);padding-top:40px;max-width:680px;margin-top:18px}
 .panelbox h2{font-family:var(--font-jp);font-weight:500;font-size:1.05rem;margin:0 0 24px;letter-spacing:.06em}
 .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cta-grid.one{grid-template-columns:1fr}
 @media(max-width:680px){.cta-grid{grid-template-columns:1fr}}
+/* password gate (click → reveal pw → open site) */
+.pwgate .btn{width:100%}
+.pwgate-btn[hidden]{display:none}
+.pwgate-open{margin-top:14px;display:grid;gap:12px}
+.pwgate-open[hidden]{display:none}
+.pwgate-pw{margin:0;padding:15px 18px;border:1px solid var(--hair);border-radius:8px;background:var(--surface);text-align:center;font-size:1rem;letter-spacing:.06em;color:var(--soft-ink)}
+.pwgate-pw strong{font-family:var(--font-serif);font-weight:600;font-size:1.7rem;letter-spacing:.14em;color:var(--gold);margin-left:8px;vertical-align:-2px}
 .btn{display:block;text-align:center;padding:16px;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--hair);transition:.25s}
 .btn:hover{border-color:var(--ink)}
 .btn-line{background:var(--ink);color:var(--surface);border-color:var(--ink)}
@@ -216,7 +224,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
       <p class="lead" style="margin-top:16px">ヘアスタイルの販売サイト「Artify」をご案内するサービス。AIヘアスタイルのオーダーメイドにも対応しています。</p>
       <div class="panelbox" style="margin-top:38px">
         <h2>詳しくはこちら</h2>
-        <div class="cta-grid">
+        <div class="cta-grid one">
           <a class="btn" href="https://amplified-moss-043.notion.site/286b15ad990a811ea0c9c09889c6ad39" target="_blank" rel="noopener noreferrer">資料（詳細）を見る</a>
         </div>
         <p class="small" style="margin-top:16px">※詳しい内容は、上の資料をご覧ください。</p>
@@ -245,6 +253,15 @@ document.documentElement.classList.add("js");
 (function(){
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.12});
   document.querySelectorAll(".reveal").forEach(function(el){io.observe(el);});
+})();
+(function(){
+  document.querySelectorAll(".pwgate-btn").forEach(function(b){
+    b.addEventListener("click",function(){
+      var g=b.closest(".pwgate");if(!g)return;
+      b.setAttribute("hidden","");
+      var o=g.querySelector(".pwgate-open");if(o)o.removeAttribute("hidden");
+    });
+  });
 })();
 </script>
 </body>
