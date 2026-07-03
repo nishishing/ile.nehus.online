@@ -168,6 +168,30 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .dsub{font-family:var(--font-jp);font-weight:600;font-size:1rem;letter-spacing:.02em;margin:0 0 12px;color:var(--ink)}
 .dossier .lead{max-width:760px}
 .dossier .feature-list{margin-bottom:0}
+/* dossier: accordion + timeline + plan cards */
+.dossier .dov{max-width:760px;margin:0 0 30px}
+.dacc{border-top:1px solid var(--hair);max-width:780px}
+.dossier .dacc:last-of-type{border-bottom:1px solid var(--hair)}
+.dacc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 2px;font-family:var(--font-jp);font-weight:600;font-size:1.02rem;letter-spacing:.02em;color:var(--ink)}
+.dacc>summary::-webkit-details-marker{display:none}
+.dacc>summary:hover{color:var(--gold)}
+.dacc-i{position:relative;width:14px;height:14px;flex:none}
+.dacc-i::before,.dacc-i::after{content:"";position:absolute;background:var(--gold)}
+.dacc-i::before{top:6px;left:0;width:14px;height:1.5px}
+.dacc-i::after{top:0;left:6px;width:1.5px;height:14px;transition:.25s}
+.dacc[open] .dacc-i::after{transform:scaleY(0)}
+.dacc-body{padding:0 2px 30px}
+.dacc-body .feature-list{max-width:none}
+.steps{list-style:none;counter-reset:st;margin:0;padding:0;max-width:720px}
+.steps li{counter-increment:st;position:relative;padding:0 0 24px 46px;color:var(--soft-ink);line-height:1.85}
+.steps li::before{content:counter(st,decimal-leading-zero);position:absolute;left:0;top:-1px;font-family:var(--font-serif);font-weight:600;font-size:1.05rem;color:var(--gold)}
+.steps li::after{content:"";position:absolute;left:11px;top:24px;bottom:0;width:1px;background:var(--hair)}
+.steps li:last-child{padding-bottom:0}
+.steps li:last-child::after{display:none}
+.plans{display:grid;gap:12px;max-width:720px}
+.plan{border:1px solid var(--line);border-radius:10px;padding:16px 20px;background:var(--surface)}
+.plan .pn{display:block;font-family:var(--font-jp);font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:.02em}
+.plan .pd{color:var(--soft-ink);font-size:.92rem;line-height:1.85}
 </style>
 </head>
 <body>
@@ -194,7 +218,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section style="padding-top:18px">
     <div class="container reveal">
-      <div class="block dossier" style="margin-top:8px"><p class="subhead">資料の内容</p><p class="lead" style="margin:0 0 26px">全国で活躍する現役スタイリストによる隣店講習（臨店セミナー）のマッチングサービスです。カット・カット教育から縮毛矯正、ヘアアレンジ、ブリーチ・デザインカラー、毛髪理論・教育まで幅広い分野の講師が在籍し、サロンの課題に合わせた講習を選べます。展示形式・実習形式、単発・複数回コースなど、内容は相談のうえ最適な形で提供されます。</p><div class="dsec"><p class="dsub">カット・カット教育</p><ul class="feature-list"><li>レイヤーカットのスピードと再現性を両立（20人まで20万円＋交通費）</li><li>カット理論の教育に特化。オンラインサロン累計会員3000人超、著書あり（10万円＋交通費）</li><li>法人向けカットカリキュラムの提供</li></ul></div><div class="dsec"><p class="dsub">縮毛矯正・ヘアケア・ヘアアレンジ</p><ul class="feature-list"><li>2時間以内で終わる縮毛矯正・ヘアケア。明日から活かせる内容（隣店講習165,000円＋交通・宿泊費／隣店＋レッスン220,000円＋交通・宿泊費）</li><li>フロントからも盛れるヘアアレンジ。時短で映えるテクニックに強い（10人以下7万円／10人以上10万円〜＋交通費）</li></ul></div><div class="dsec"><p class="dsub">ブリーチ・デザインカラー</p><ul class="feature-list"><li>継続できるハイトーンカラー。薬剤選定から褪色後まで計算したデザイン設計（10人以下10万円／10人以上10万円〜＋交通費）</li><li>営業で生きるブリーチカラー。明日から使える技術と落とし込み（5万円〜＋交通費）</li><li>失敗ゼロのムラ修正×リピートを生むカウンセリング（15名以下15万円＋1名5,000円＋交通費）</li><li>デザインカラー・高明度カラー。髪質改善×ハイトーン（10名以下10万円／10名以上10万円〜）</li><li>ハイライト・バレイヤージュ・フルブリーチ。究極のダメージレス（12万円＋交通費）</li><li>複雑履歴へのカウンセリングとワンブリーチ設計（5万円〜＋交通費）</li><li>ブリーチ初心者向け。ダメージレスなブリーチとムラ補正（10人以下一律77,000円／10人〜は1人7,700円＋交通費）</li><li>バレイヤージュ・シャドウルーツ等のデザインカラー職人（10人以下7万円／10人以上10万円）</li><li>基礎から応用までのデザインカラーとブランディング（5万円＋交通費）</li></ul></div><div class="dsec"><p class="dsub">毛髪理論・美容師教育</p><ul class="feature-list"><li>毛髪理論・薬剤知識の美容師の裏教科書。成分から理解する薬剤設計（臨店講習20万円・3回以上コース＋交通・宿泊費）</li><li>感覚を再現可能な理論に変える美容師教育。ブリーチ〜バレイヤージュ、白髪ぼかし等（臨店10万円／会場15万円＋交通費）</li></ul></div></div>
+      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">全国で活躍する現役スタイリストによる隣店講習（臨店セミナー）のマッチングサービスです。カット・カット教育から縮毛矯正、ヘアアレンジ、ブリーチ・デザインカラー、毛髪理論・教育まで幅広い分野の講師が在籍し、サロンの課題に合わせた講習を選べます。展示形式・実習形式、単発・複数回コースなど、内容は相談のうえ最適な形で提供されます。</p><details class="dacc" open><summary><span>カット・カット教育</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>レイヤーカットのスピードと再現性を両立（20人まで20万円＋交通費）</li><li>カット理論の教育に特化。オンラインサロン累計会員3000人超、著書あり（10万円＋交通費）</li><li>法人向けカットカリキュラムの提供</li></ul></div></details><details class="dacc"><summary><span>縮毛矯正・ヘアケア・ヘアアレンジ</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>2時間以内で終わる縮毛矯正・ヘアケア。明日から活かせる内容（隣店講習165,000円＋交通・宿泊費／隣店＋レッスン220,000円＋交通・宿泊費）</li><li>フロントからも盛れるヘアアレンジ。時短で映えるテクニックに強い（10人以下7万円／10人以上10万円〜＋交通費）</li></ul></div></details><details class="dacc"><summary><span>ブリーチ・デザインカラー</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>継続できるハイトーンカラー。薬剤選定から褪色後まで計算したデザイン設計（10人以下10万円／10人以上10万円〜＋交通費）</li><li>営業で生きるブリーチカラー。明日から使える技術と落とし込み（5万円〜＋交通費）</li><li>失敗ゼロのムラ修正×リピートを生むカウンセリング（15名以下15万円＋1名5,000円＋交通費）</li><li>デザインカラー・高明度カラー。髪質改善×ハイトーン（10名以下10万円／10名以上10万円〜）</li><li>ハイライト・バレイヤージュ・フルブリーチ。究極のダメージレス（12万円＋交通費）</li><li>複雑履歴へのカウンセリングとワンブリーチ設計（5万円〜＋交通費）</li><li>ブリーチ初心者向け。ダメージレスなブリーチとムラ補正（10人以下一律77,000円／10人〜は1人7,700円＋交通費）</li><li>バレイヤージュ・シャドウルーツ等のデザインカラー職人（10人以下7万円／10人以上10万円）</li><li>基礎から応用までのデザインカラーとブランディング（5万円＋交通費）</li></ul></div></details><details class="dacc"><summary><span>毛髪理論・美容師教育</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>毛髪理論・薬剤知識の美容師の裏教科書。成分から理解する薬剤設計（臨店講習20万円・3回以上コース＋交通・宿泊費）</li><li>感覚を再現可能な理論に変える美容師教育。ブリーチ〜バレイヤージュ、白髪ぼかし等（臨店10万円／会場15万円＋交通費）</li></ul></div></details></div>
       <div class="panelbox" style="margin-top:54px">
         <h2>ご相談・ご予約</h2>
         <div class="cta-grid">

@@ -168,6 +168,30 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .dsub{font-family:var(--font-jp);font-weight:600;font-size:1rem;letter-spacing:.02em;margin:0 0 12px;color:var(--ink)}
 .dossier .lead{max-width:760px}
 .dossier .feature-list{margin-bottom:0}
+/* dossier: accordion + timeline + plan cards */
+.dossier .dov{max-width:760px;margin:0 0 30px}
+.dacc{border-top:1px solid var(--hair);max-width:780px}
+.dossier .dacc:last-of-type{border-bottom:1px solid var(--hair)}
+.dacc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 2px;font-family:var(--font-jp);font-weight:600;font-size:1.02rem;letter-spacing:.02em;color:var(--ink)}
+.dacc>summary::-webkit-details-marker{display:none}
+.dacc>summary:hover{color:var(--gold)}
+.dacc-i{position:relative;width:14px;height:14px;flex:none}
+.dacc-i::before,.dacc-i::after{content:"";position:absolute;background:var(--gold)}
+.dacc-i::before{top:6px;left:0;width:14px;height:1.5px}
+.dacc-i::after{top:0;left:6px;width:1.5px;height:14px;transition:.25s}
+.dacc[open] .dacc-i::after{transform:scaleY(0)}
+.dacc-body{padding:0 2px 30px}
+.dacc-body .feature-list{max-width:none}
+.steps{list-style:none;counter-reset:st;margin:0;padding:0;max-width:720px}
+.steps li{counter-increment:st;position:relative;padding:0 0 24px 46px;color:var(--soft-ink);line-height:1.85}
+.steps li::before{content:counter(st,decimal-leading-zero);position:absolute;left:0;top:-1px;font-family:var(--font-serif);font-weight:600;font-size:1.05rem;color:var(--gold)}
+.steps li::after{content:"";position:absolute;left:11px;top:24px;bottom:0;width:1px;background:var(--hair)}
+.steps li:last-child{padding-bottom:0}
+.steps li:last-child::after{display:none}
+.plans{display:grid;gap:12px;max-width:720px}
+.plan{border:1px solid var(--line);border-radius:10px;padding:16px 20px;background:var(--surface)}
+.plan .pn{display:block;font-family:var(--font-jp);font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:.02em}
+.plan .pd{color:var(--soft-ink);font-size:.92rem;line-height:1.85}
 </style>
 </head>
 <body>
@@ -194,7 +218,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section style="padding-top:18px">
     <div class="container reveal">
-      <div class="block dossier" style="margin-top:8px"><p class="subhead">資料の内容</p><p class="lead" style="margin:0 0 26px">株式会社ONE'sが提供する集客サポートは、グループ年間新規集客48,000人の実績に基づくノウハウを共有し、新規集客1.5倍を目指して半年後には自社で自走できるようにする卒業型サポートです。ホットペッパービューティー（HPB）とminimoを対象に、現地講習とWEBミーティングで1店舗を集中的に支援します。</p><div class="dsec"><p class="dsub">会社概要</p><ul class="feature-list"><li>社名：株式会社ONE's（創業2017年／設立2018年）</li><li>所在地：神奈川県厚木市中町 シンセイビル4階</li><li>従業員数：180人（2024年11月時点）、売上収益：約16億5千万</li></ul></div><div class="dsec"><p class="dsub">強み</p><ul class="feature-list"><li>現役美容師・原宿勤務で美容トレンドの最先端</li><li>ONE'sグループ全20店舗の集客責任者による指導</li><li>新卒スタッフ60名以上への教育で培われた指導力</li><li>6ヶ月での自走を当事者意識でサポート</li></ul></div><div class="dsec"><p class="dsub">サポート内容</p><ul class="feature-list"><li>HPB現地講習（180分×2回）</li><li>ページ制作補助（○×チェックシート）</li><li>WEBミーティング（月1回90分×6ヶ月）</li><li>StylePost（オプション）導入店舗の運用補助</li><li>LINEでの質疑対応</li></ul></div><div class="dsec"><p class="dsub">料金</p><ul class="feature-list"><li>HPB集客サポート：600,000円（6ヶ月）</li><li>minimo集客サポート：600,000円（6ヶ月）</li><li>1店舗追加は月5万円／交通・宿泊費は実費別途</li></ul></div></div>
+      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">株式会社ONE'sが提供する集客サポートは、グループ年間新規集客48,000人の実績に基づくノウハウを共有し、新規集客1.5倍を目指して半年後には自社で自走できるようにする卒業型サポートです。ホットペッパービューティー（HPB）とminimoを対象に、現地講習とWEBミーティングで1店舗を集中的に支援します。</p><details class="dacc" open><summary><span>会社概要</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>社名：株式会社ONE's（創業2017年／設立2018年）</li><li>所在地：神奈川県厚木市中町 シンセイビル4階</li><li>従業員数：180人（2024年11月時点）、売上収益：約16億5千万</li></ul></div></details><details class="dacc"><summary><span>強み</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>現役美容師・原宿勤務で美容トレンドの最先端</li><li>ONE'sグループ全20店舗の集客責任者による指導</li><li>新卒スタッフ60名以上への教育で培われた指導力</li><li>6ヶ月での自走を当事者意識でサポート</li></ul></div></details><details class="dacc"><summary><span>サポート内容</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>HPB現地講習（180分×2回）</li><li>ページ制作補助（○×チェックシート）</li><li>WEBミーティング（月1回90分×6ヶ月）</li><li>StylePost（オプション）導入店舗の運用補助</li><li>LINEでの質疑対応</li></ul></div></details><details class="dacc"><summary><span>料金</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><div class="plans"><div class="plan"><span class="pn">HPB集客サポート</span><span class="pd">600,000円（6ヶ月）</span></div><div class="plan"><span class="pn">minimo集客サポート</span><span class="pd">600,000円（6ヶ月）</span></div><div class="plan"><span class="pd">1店舗追加は月5万円／交通・宿泊費は実費別途</span></div></div></div></details></div>
       <div class="panelbox" style="margin-top:54px">
         <h2>ご相談・ご予約</h2>
         <div class="cta-grid">

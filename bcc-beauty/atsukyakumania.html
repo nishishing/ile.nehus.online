@@ -168,6 +168,30 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .dsub{font-family:var(--font-jp);font-weight:600;font-size:1rem;letter-spacing:.02em;margin:0 0 12px;color:var(--ink)}
 .dossier .lead{max-width:760px}
 .dossier .feature-list{margin-bottom:0}
+/* dossier: accordion + timeline + plan cards */
+.dossier .dov{max-width:760px;margin:0 0 30px}
+.dacc{border-top:1px solid var(--hair);max-width:780px}
+.dossier .dacc:last-of-type{border-bottom:1px solid var(--hair)}
+.dacc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 2px;font-family:var(--font-jp);font-weight:600;font-size:1.02rem;letter-spacing:.02em;color:var(--ink)}
+.dacc>summary::-webkit-details-marker{display:none}
+.dacc>summary:hover{color:var(--gold)}
+.dacc-i{position:relative;width:14px;height:14px;flex:none}
+.dacc-i::before,.dacc-i::after{content:"";position:absolute;background:var(--gold)}
+.dacc-i::before{top:6px;left:0;width:14px;height:1.5px}
+.dacc-i::after{top:0;left:6px;width:1.5px;height:14px;transition:.25s}
+.dacc[open] .dacc-i::after{transform:scaleY(0)}
+.dacc-body{padding:0 2px 30px}
+.dacc-body .feature-list{max-width:none}
+.steps{list-style:none;counter-reset:st;margin:0;padding:0;max-width:720px}
+.steps li{counter-increment:st;position:relative;padding:0 0 24px 46px;color:var(--soft-ink);line-height:1.85}
+.steps li::before{content:counter(st,decimal-leading-zero);position:absolute;left:0;top:-1px;font-family:var(--font-serif);font-weight:600;font-size:1.05rem;color:var(--gold)}
+.steps li::after{content:"";position:absolute;left:11px;top:24px;bottom:0;width:1px;background:var(--hair)}
+.steps li:last-child{padding-bottom:0}
+.steps li:last-child::after{display:none}
+.plans{display:grid;gap:12px;max-width:720px}
+.plan{border:1px solid var(--line);border-radius:10px;padding:16px 20px;background:var(--surface)}
+.plan .pn{display:block;font-family:var(--font-jp);font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:.02em}
+.plan .pd{color:var(--soft-ink);font-size:.92rem;line-height:1.85}
 </style>
 </head>
 <body>
@@ -194,7 +218,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section style="padding-top:18px">
     <div class="container reveal">
-      <div class="block dossier" style="margin-top:8px"><p class="subhead">資料の内容</p><p class="lead" style="margin:0 0 26px">集客マニア株式会社（2022年3月3日設立）は、美容室向けの集客コンサルティングを行う会社です。ホットペッパービューティーなどの大手集客サイト、Googleビジネスプロフィール（GBP）、LINEマーケティングを軸に、知識装着と集客最大化を目的とした12ヶ月のオーダーメイド型サポートを提供します。取引実績は239社・513店舗です。</p><div class="dsec"><p class="dsub">会社概要</p><ul class="feature-list"><li>社名：集客マニア株式会社</li><li>設立：2022年3月3日</li><li>事業内容：コンサルティング、ネイル/1人サロン16店舗、LINEマーケティング、GBP運用自動化システム</li><li>取引実績：239社・513店舗</li></ul></div><div class="dsec"><p class="dsub">サービスの考え方</p><ul class="feature-list"><li>目的は知識装着と集客最大化、ゴールは関係各社との協力と自走化</li><li>丸投げさせず、サロンの地力を育てるオーダーメイド型サポート</li><li>大手集客サイトとGoogleビジネスプロフィールの両輪で運用</li></ul></div><div class="dsec"><p class="dsub">12ヶ月コンサルティング</p><ul class="feature-list"><li>期間12ヶ月、月1回（1.5時間〜）×12回、対象はオーナー・店長・集客担当</li><li>前半：集客広告の活用状況把握と基礎知識装着、流入経路・フリーワード分析、クーポン設計</li><li>中盤：レポート分析、Googleビジネスプロフィール活用、競合比較</li><li>後半：SNS広告・Google広告、求人活用、LINE公式アカウント活用、復習テスト（約50問）</li></ul></div><div class="dsec"><p class="dsub">GBP運用効率UPツール「cheez」</p><ul class="feature-list"><li>集客サイトとInstagramを更新するだけでGoogleビジネスプロフィールも自動更新・最適化</li><li>毎日更新でGBPへ反映した場合、1人あたり月間約10時間の削減</li><li>閑散期でもGBP経由の集客効果が53.3%UPした事例あり</li><li>料金：月額20,000円（税抜）／初期費用15,000円（税抜）</li></ul></div><div class="dsec"><p class="dsub">取引サロン事例</p><ul class="feature-list"><li>名古屋・カラー特化サロン：口コミ100件を集め新規400名を獲得</li><li>三重県・郊外サロン：Googleで口コミ100件・エリアNo.1、新規客が平均100人増</li><li>新宿・アイラッシュサロン：プランUP後は平均新規300人を獲得</li></ul></div></div>
+      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">集客マニア株式会社（2022年3月3日設立）は、美容室向けの集客コンサルティングを行う会社です。ホットペッパービューティーなどの大手集客サイト、Googleビジネスプロフィール（GBP）、LINEマーケティングを軸に、知識装着と集客最大化を目的とした12ヶ月のオーダーメイド型サポートを提供します。取引実績は239社・513店舗です。</p><details class="dacc" open><summary><span>会社概要</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>社名：集客マニア株式会社</li><li>設立：2022年3月3日</li><li>事業内容：コンサルティング、ネイル/1人サロン16店舗、LINEマーケティング、GBP運用自動化システム</li><li>取引実績：239社・513店舗</li></ul></div></details><details class="dacc"><summary><span>サービスの考え方</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>目的は知識装着と集客最大化、ゴールは関係各社との協力と自走化</li><li>丸投げさせず、サロンの地力を育てるオーダーメイド型サポート</li><li>大手集客サイトとGoogleビジネスプロフィールの両輪で運用</li></ul></div></details><details class="dacc"><summary><span>12ヶ月コンサルティング</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>期間12ヶ月、月1回（1.5時間〜）×12回、対象はオーナー・店長・集客担当</li><li>前半：集客広告の活用状況把握と基礎知識装着、流入経路・フリーワード分析、クーポン設計</li><li>中盤：レポート分析、Googleビジネスプロフィール活用、競合比較</li><li>後半：SNS広告・Google広告、求人活用、LINE公式アカウント活用、復習テスト（約50問）</li></ul></div></details><details class="dacc"><summary><span>GBP運用効率UPツール「cheez」</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>集客サイトとInstagramを更新するだけでGoogleビジネスプロフィールも自動更新・最適化</li><li>毎日更新でGBPへ反映した場合、1人あたり月間約10時間の削減</li><li>閑散期でもGBP経由の集客効果が53.3%UPした事例あり</li><li>料金：月額20,000円（税抜）／初期費用15,000円（税抜）</li></ul></div></details><details class="dacc"><summary><span>取引サロン事例</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>名古屋・カラー特化サロン：口コミ100件を集め新規400名を獲得</li><li>三重県・郊外サロン：Googleで口コミ100件・エリアNo.1、新規客が平均100人増</li><li>新宿・アイラッシュサロン：プランUP後は平均新規300人を獲得</li></ul></div></details></div>
       <div class="panelbox" style="margin-top:54px">
         <h2>ご相談・ご予約</h2>
         <div class="cta-grid">

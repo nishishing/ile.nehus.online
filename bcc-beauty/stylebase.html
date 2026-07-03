@@ -168,6 +168,30 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .dsub{font-family:var(--font-jp);font-weight:600;font-size:1rem;letter-spacing:.02em;margin:0 0 12px;color:var(--ink)}
 .dossier .lead{max-width:760px}
 .dossier .feature-list{margin-bottom:0}
+/* dossier: accordion + timeline + plan cards */
+.dossier .dov{max-width:760px;margin:0 0 30px}
+.dacc{border-top:1px solid var(--hair);max-width:780px}
+.dossier .dacc:last-of-type{border-bottom:1px solid var(--hair)}
+.dacc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 2px;font-family:var(--font-jp);font-weight:600;font-size:1.02rem;letter-spacing:.02em;color:var(--ink)}
+.dacc>summary::-webkit-details-marker{display:none}
+.dacc>summary:hover{color:var(--gold)}
+.dacc-i{position:relative;width:14px;height:14px;flex:none}
+.dacc-i::before,.dacc-i::after{content:"";position:absolute;background:var(--gold)}
+.dacc-i::before{top:6px;left:0;width:14px;height:1.5px}
+.dacc-i::after{top:0;left:6px;width:1.5px;height:14px;transition:.25s}
+.dacc[open] .dacc-i::after{transform:scaleY(0)}
+.dacc-body{padding:0 2px 30px}
+.dacc-body .feature-list{max-width:none}
+.steps{list-style:none;counter-reset:st;margin:0;padding:0;max-width:720px}
+.steps li{counter-increment:st;position:relative;padding:0 0 24px 46px;color:var(--soft-ink);line-height:1.85}
+.steps li::before{content:counter(st,decimal-leading-zero);position:absolute;left:0;top:-1px;font-family:var(--font-serif);font-weight:600;font-size:1.05rem;color:var(--gold)}
+.steps li::after{content:"";position:absolute;left:11px;top:24px;bottom:0;width:1px;background:var(--hair)}
+.steps li:last-child{padding-bottom:0}
+.steps li:last-child::after{display:none}
+.plans{display:grid;gap:12px;max-width:720px}
+.plan{border:1px solid var(--line);border-radius:10px;padding:16px 20px;background:var(--surface)}
+.plan .pn{display:block;font-family:var(--font-jp);font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:.02em}
+.plan .pd{color:var(--soft-ink);font-size:.92rem;line-height:1.85}
 </style>
 </head>
 <body>
@@ -194,7 +218,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section style="padding-top:18px">
     <div class="container reveal">
-      <div class="block dossier" style="margin-top:8px"><p class="subhead">資料の内容</p><p class="lead" style="margin:0 0 26px">StyleBase（スタイルベース）は、美容室・サロンの開業から運営までを一気通貫でサポートする開業支援サービスです。物件探し・資金計画支援・設計施工・保健所対応・オープン後の集客支援までをワンストップで提供します。美容師デザイナーが設計を担当し、実際のサロン運営で培った動線・オペレーションのノウハウを空間設計に反映することで、続く店舗づくりを目指しています。</p><div class="dsec"><p class="dsub">サービス内容</p><ul class="feature-list"><li>ヒアリング／LINEでの相談受付</li><li>物件探し・現地調査</li><li>資金計画支援（提携税理士事務所と連携）・融資支援</li><li>設計・パース・レイアウト提案、見積り</li><li>着工・現場管理・工程報告</li><li>保健所申請・各種検査立会いなどの行政手続き</li><li>オープン後の集客コンサル・ツール紹介・VC加盟のサポート</li></ul></div><div class="dsec"><p class="dsub">私たちの強み</p><ul class="feature-list"><li>豊富な実績とノウハウ：グループ会社の株式会社ONE'sが25店舗以上の美容室・アイラッシュを出店・運営</li><li>物件探しから資金計画、保健所対応、オープン後支援までを一気通貫でサポート</li><li>美容師デザイナーが設計を担当し、収支・回転率・利益構造を意識した現場と経営を融合した設計提案力</li><li>創業から100店舗以上の設計・施工実績と、着工後の価格変動ゼロを基本とする明朗会計</li><li>美容師のハサミ以外を任せられる伴走体制。提携企業と連携した集客支援やVC加盟の提案も可能</li></ul></div><div class="dsec"><p class="dsub">よくあるご質問</p><ul class="feature-list"><li>小規模サロンでも依頼可能。8坪〜90坪まで幅広い実績があり、個人開業にも対応</li><li>デザインだけ・施工だけの依頼も可能（設計施工一括のほうがコスト効率は高い）</li><li>ヘアサロン以外にネイル・アイラッシュ・整体・物販併設サロンなどにも対応可能</li></ul></div><div class="dsec"><p class="dsub">会社概要</p><ul class="feature-list"><li>会社名：株式会社阿部建設／株式会社ムータス（神奈川県厚木市中町4-5-15 4F）</li><li>ブランド：StyleBase（スタイルベース）</li><li>事業内容：内装設計／施工／設備販売／開業支援／テナント仲介</li><li>有資格者：一級建築士、土木施工管理技士、宅地建物取引士 在籍</li><li>許認可：建設業許可 神奈川県知事(般-7)第93059号／宅建業 神奈川県知事(1)第30917号</li></ul></div></div>
+      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">StyleBase（スタイルベース）は、美容室・サロンの開業から運営までを一気通貫でサポートする開業支援サービスです。物件探し・資金計画支援・設計施工・保健所対応・オープン後の集客支援までをワンストップで提供します。美容師デザイナーが設計を担当し、実際のサロン運営で培った動線・オペレーションのノウハウを空間設計に反映することで、続く店舗づくりを目指しています。</p><details class="dacc" open><summary><span>サービス内容</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>ヒアリング／LINEでの相談受付</li><li>物件探し・現地調査</li><li>資金計画支援（提携税理士事務所と連携）・融資支援</li><li>設計・パース・レイアウト提案、見積り</li><li>着工・現場管理・工程報告</li><li>保健所申請・各種検査立会いなどの行政手続き</li><li>オープン後の集客コンサル・ツール紹介・VC加盟のサポート</li></ul></div></details><details class="dacc"><summary><span>私たちの強み</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>豊富な実績とノウハウ：グループ会社の株式会社ONE'sが25店舗以上の美容室・アイラッシュを出店・運営</li><li>物件探しから資金計画、保健所対応、オープン後支援までを一気通貫でサポート</li><li>美容師デザイナーが設計を担当し、収支・回転率・利益構造を意識した現場と経営を融合した設計提案力</li><li>創業から100店舗以上の設計・施工実績と、着工後の価格変動ゼロを基本とする明朗会計</li><li>美容師のハサミ以外を任せられる伴走体制。提携企業と連携した集客支援やVC加盟の提案も可能</li></ul></div></details><details class="dacc"><summary><span>よくあるご質問</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>小規模サロンでも依頼可能。8坪〜90坪まで幅広い実績があり、個人開業にも対応</li><li>デザインだけ・施工だけの依頼も可能（設計施工一括のほうがコスト効率は高い）</li><li>ヘアサロン以外にネイル・アイラッシュ・整体・物販併設サロンなどにも対応可能</li></ul></div></details><details class="dacc"><summary><span>会社概要</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>会社名：株式会社阿部建設／株式会社ムータス（神奈川県厚木市中町4-5-15 4F）</li><li>ブランド：StyleBase（スタイルベース）</li><li>事業内容：内装設計／施工／設備販売／開業支援／テナント仲介</li><li>有資格者：一級建築士、土木施工管理技士、宅地建物取引士 在籍</li><li>許認可：建設業許可 神奈川県知事(般-7)第93059号／宅建業 神奈川県知事(1)第30917号</li></ul></div></details></div>
       <div class="panelbox" style="margin-top:54px">
         <h2>ご相談・ご予約</h2>
         <div class="cta-grid">

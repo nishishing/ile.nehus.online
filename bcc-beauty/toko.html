@@ -168,6 +168,30 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .dsub{font-family:var(--font-jp);font-weight:600;font-size:1rem;letter-spacing:.02em;margin:0 0 12px;color:var(--ink)}
 .dossier .lead{max-width:760px}
 .dossier .feature-list{margin-bottom:0}
+/* dossier: accordion + timeline + plan cards */
+.dossier .dov{max-width:760px;margin:0 0 30px}
+.dacc{border-top:1px solid var(--hair);max-width:780px}
+.dossier .dacc:last-of-type{border-bottom:1px solid var(--hair)}
+.dacc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 2px;font-family:var(--font-jp);font-weight:600;font-size:1.02rem;letter-spacing:.02em;color:var(--ink)}
+.dacc>summary::-webkit-details-marker{display:none}
+.dacc>summary:hover{color:var(--gold)}
+.dacc-i{position:relative;width:14px;height:14px;flex:none}
+.dacc-i::before,.dacc-i::after{content:"";position:absolute;background:var(--gold)}
+.dacc-i::before{top:6px;left:0;width:14px;height:1.5px}
+.dacc-i::after{top:0;left:6px;width:1.5px;height:14px;transition:.25s}
+.dacc[open] .dacc-i::after{transform:scaleY(0)}
+.dacc-body{padding:0 2px 30px}
+.dacc-body .feature-list{max-width:none}
+.steps{list-style:none;counter-reset:st;margin:0;padding:0;max-width:720px}
+.steps li{counter-increment:st;position:relative;padding:0 0 24px 46px;color:var(--soft-ink);line-height:1.85}
+.steps li::before{content:counter(st,decimal-leading-zero);position:absolute;left:0;top:-1px;font-family:var(--font-serif);font-weight:600;font-size:1.05rem;color:var(--gold)}
+.steps li::after{content:"";position:absolute;left:11px;top:24px;bottom:0;width:1px;background:var(--hair)}
+.steps li:last-child{padding-bottom:0}
+.steps li:last-child::after{display:none}
+.plans{display:grid;gap:12px;max-width:720px}
+.plan{border:1px solid var(--line);border-radius:10px;padding:16px 20px;background:var(--surface)}
+.plan .pn{display:block;font-family:var(--font-jp);font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:.02em}
+.plan .pd{color:var(--soft-ink);font-size:.92rem;line-height:1.85}
 </style>
 </head>
 <body>
@@ -194,7 +218,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section style="padding-top:18px">
     <div class="container reveal">
-      <div class="block dossier" style="margin-top:8px"><p class="subhead">資料の内容</p><p class="lead" style="margin:0 0 26px">美容業界経験20年以上の都甲真利恵による、サロンの定着・採用課題への伴走支援サービスです。育てて残す仕組みづくりを、現場経験を活かしてサポートします。人材育成支援とリクルート支援の2本柱で構成されています。</p><div class="dsec"><p class="dsub">人材育成パッケージ</p><ul class="feature-list"><li>目的：新人の早期離職防止、幹部・中堅の育成、定着支援</li><li>新人定着サポート（月1回×3ヶ月〜）</li><li>マナー研修（単発可）／幹部育成（月1回×継続型）</li><li>内定者研修（入社前マインドセット）、面談サポート</li><li>金額目安：3万円〜6万円／回</li></ul></div><div class="dsec"><p class="dsub">リクルート支援パッケージ</p><ul class="feature-list"><li>目的：採用活動の効率化、ミスマッチ防止、外部ブランディング</li><li>学校訪問代行（月5万円〜）</li><li>求人票の添削・アドバイス</li><li>単独説明会の企画・運営</li><li>採用コンサル（月3万円〜）</li></ul></div><div class="dsec"><p class="dsub">導入の流れ</p><ul class="feature-list"><li>初回ヒアリング（無料）</li><li>サービスのご提案</li><li>ご契約</li><li>スタート（単発〜継続）</li></ul></div><div class="dsec"><p class="dsub">活用事例・実績</p><p class="lead" style="margin:0">離職率47%→15%への改善など、企業の定着・採用課題の解決を支援した実績があります。内容に応じて柔軟にカスタマイズ可能です。</p></div></div>
+      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">美容業界経験20年以上の都甲真利恵による、サロンの定着・採用課題への伴走支援サービスです。育てて残す仕組みづくりを、現場経験を活かしてサポートします。人材育成支援とリクルート支援の2本柱で構成されています。</p><details class="dacc" open><summary><span>人材育成パッケージ</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>目的：新人の早期離職防止、幹部・中堅の育成、定着支援</li><li>新人定着サポート（月1回×3ヶ月〜）</li><li>マナー研修（単発可）／幹部育成（月1回×継続型）</li><li>内定者研修（入社前マインドセット）、面談サポート</li><li>金額目安：3万円〜6万円／回</li></ul></div></details><details class="dacc"><summary><span>リクルート支援パッケージ</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>目的：採用活動の効率化、ミスマッチ防止、外部ブランディング</li><li>学校訪問代行（月5万円〜）</li><li>求人票の添削・アドバイス</li><li>単独説明会の企画・運営</li><li>採用コンサル（月3万円〜）</li></ul></div></details><details class="dacc"><summary><span>導入の流れ</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ol class="steps"><li>初回ヒアリング（無料）</li><li>サービスのご提案</li><li>ご契約</li><li>スタート（単発〜継続）</li></ol></div></details><details class="dacc"><summary><span>活用事例・実績</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><p class="lead" style="margin:0">離職率47%→15%への改善など、企業の定着・採用課題の解決を支援した実績があります。内容に応じて柔軟にカスタマイズ可能です。</p></div></details></div>
       <div class="panelbox" style="margin-top:54px">
         <h2>ご相談・ご予約</h2>
         <div class="cta-grid">

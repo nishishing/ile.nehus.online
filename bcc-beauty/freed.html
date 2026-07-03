@@ -168,6 +168,30 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .dsub{font-family:var(--font-jp);font-weight:600;font-size:1rem;letter-spacing:.02em;margin:0 0 12px;color:var(--ink)}
 .dossier .lead{max-width:760px}
 .dossier .feature-list{margin-bottom:0}
+/* dossier: accordion + timeline + plan cards */
+.dossier .dov{max-width:760px;margin:0 0 30px}
+.dacc{border-top:1px solid var(--hair);max-width:780px}
+.dossier .dacc:last-of-type{border-bottom:1px solid var(--hair)}
+.dacc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 2px;font-family:var(--font-jp);font-weight:600;font-size:1.02rem;letter-spacing:.02em;color:var(--ink)}
+.dacc>summary::-webkit-details-marker{display:none}
+.dacc>summary:hover{color:var(--gold)}
+.dacc-i{position:relative;width:14px;height:14px;flex:none}
+.dacc-i::before,.dacc-i::after{content:"";position:absolute;background:var(--gold)}
+.dacc-i::before{top:6px;left:0;width:14px;height:1.5px}
+.dacc-i::after{top:0;left:6px;width:1.5px;height:14px;transition:.25s}
+.dacc[open] .dacc-i::after{transform:scaleY(0)}
+.dacc-body{padding:0 2px 30px}
+.dacc-body .feature-list{max-width:none}
+.steps{list-style:none;counter-reset:st;margin:0;padding:0;max-width:720px}
+.steps li{counter-increment:st;position:relative;padding:0 0 24px 46px;color:var(--soft-ink);line-height:1.85}
+.steps li::before{content:counter(st,decimal-leading-zero);position:absolute;left:0;top:-1px;font-family:var(--font-serif);font-weight:600;font-size:1.05rem;color:var(--gold)}
+.steps li::after{content:"";position:absolute;left:11px;top:24px;bottom:0;width:1px;background:var(--hair)}
+.steps li:last-child{padding-bottom:0}
+.steps li:last-child::after{display:none}
+.plans{display:grid;gap:12px;max-width:720px}
+.plan{border:1px solid var(--line);border-radius:10px;padding:16px 20px;background:var(--surface)}
+.plan .pn{display:block;font-family:var(--font-jp);font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:.02em}
+.plan .pd{color:var(--soft-ink);font-size:.92rem;line-height:1.85}
 </style>
 </head>
 <body>
@@ -194,7 +218,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section style="padding-top:18px">
     <div class="container reveal">
-      <div class="block dossier" style="margin-top:8px"><p class="subhead">資料の内容</p><p class="lead" style="margin:0 0 26px">freed（フリード）は、美容師・美容サロン向けのTikTok運用支援サービスです。企画設計から撮影・編集・投稿・分析改善までを一貫して代行し、集客と美容師個人のタレント性向上を支援します。運営はUTSUWA SHOP。</p><div class="dsec"><p class="dsub">なぜTikTokなのか</p><ul class="feature-list"><li>成長スピードが速く、SNS業界のリーダー的存在</li><li>主要ユーザー層は10〜30代で、若年層へ直接アプローチできる</li><li>フォロワー数に関係なく魅力的なコンテンツが拡散される</li><li>短くインパクトのある動画でリアルな魅力を伝えられる</li></ul></div><div class="dsec"><p class="dsub">自社運用による成功事例</p><ul class="feature-list"><li>メンズ美容師：市販ヘア用品の採点動画で平均17万再生、開発ワックスがAmazon1位に</li><li>ブリーチ特化美容師：施術解説動画で平均8万再生、月間10組以上の新規顧客を獲得</li><li>美容メディア：セルフセット動画で平均3万再生、販路拡大を支援</li></ul></div><div class="dsec"><p class="dsub">運用プランの提供内容</p><ul class="feature-list"><li>アカウント構築：コンセプトメイキング、プロフィール最適化、市場・ユーザー調査</li><li>運用：企画・提案、撮影/編集/投稿の代行（撮影 月1回／投稿 月6回）</li><li>他SNS連携：Instagram運用（リール投稿・月6回、フルプランのみ）</li><li>対応・マネジメント：コメント返信、月次レポート・月1回のMTG</li></ul></div><div class="dsec"><p class="dsub">料金プラン（税別）</p><ul class="feature-list"><li>助成金利用なし：契約6ヶ月、1,200,000円＋税（月額200,000円＋税）</li><li>助成金利用あり：契約6ヶ月、2,000,000円＋税（実質負担 月130,000円）。Instagram運用・コメント対応・月次MTGを含む</li><li>※助成金利用の詳細は別途案内</li></ul></div></div>
+      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">freed（フリード）は、美容師・美容サロン向けのTikTok運用支援サービスです。企画設計から撮影・編集・投稿・分析改善までを一貫して代行し、集客と美容師個人のタレント性向上を支援します。運営はUTSUWA SHOP。</p><details class="dacc" open><summary><span>なぜTikTokなのか</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>成長スピードが速く、SNS業界のリーダー的存在</li><li>主要ユーザー層は10〜30代で、若年層へ直接アプローチできる</li><li>フォロワー数に関係なく魅力的なコンテンツが拡散される</li><li>短くインパクトのある動画でリアルな魅力を伝えられる</li></ul></div></details><details class="dacc"><summary><span>自社運用による成功事例</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>メンズ美容師：市販ヘア用品の採点動画で平均17万再生、開発ワックスがAmazon1位に</li><li>ブリーチ特化美容師：施術解説動画で平均8万再生、月間10組以上の新規顧客を獲得</li><li>美容メディア：セルフセット動画で平均3万再生、販路拡大を支援</li></ul></div></details><details class="dacc"><summary><span>運用プランの提供内容</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><div class="plans"><div class="plan"><span class="pn">アカウント構築</span><span class="pd">コンセプトメイキング、プロフィール最適化、市場・ユーザー調査</span></div><div class="plan"><span class="pn">運用</span><span class="pd">企画・提案、撮影/編集/投稿の代行（撮影 月1回／投稿 月6回）</span></div><div class="plan"><span class="pn">他SNS連携</span><span class="pd">Instagram運用（リール投稿・月6回、フルプランのみ）</span></div><div class="plan"><span class="pn">対応・マネジメント</span><span class="pd">コメント返信、月次レポート・月1回のMTG</span></div></div></div></details><details class="dacc"><summary><span>料金プラン（税別）</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><div class="plans"><div class="plan"><span class="pn">助成金利用なし</span><span class="pd">契約6ヶ月、1,200,000円＋税（月額200,000円＋税）</span></div><div class="plan"><span class="pn">助成金利用あり</span><span class="pd">契約6ヶ月、2,000,000円＋税（実質負担 月130,000円）。Instagram運用・コメント対応・月次MTGを含む</span></div><div class="plan"><span class="pd">※助成金利用の詳細は別途案内</span></div></div></div></details></div>
       <div class="panelbox" style="margin-top:54px">
         <h2>ご相談・ご予約</h2>
         <div class="cta-grid">

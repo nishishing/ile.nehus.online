@@ -168,6 +168,30 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .dsub{font-family:var(--font-jp);font-weight:600;font-size:1rem;letter-spacing:.02em;margin:0 0 12px;color:var(--ink)}
 .dossier .lead{max-width:760px}
 .dossier .feature-list{margin-bottom:0}
+/* dossier: accordion + timeline + plan cards */
+.dossier .dov{max-width:760px;margin:0 0 30px}
+.dacc{border-top:1px solid var(--hair);max-width:780px}
+.dossier .dacc:last-of-type{border-bottom:1px solid var(--hair)}
+.dacc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 2px;font-family:var(--font-jp);font-weight:600;font-size:1.02rem;letter-spacing:.02em;color:var(--ink)}
+.dacc>summary::-webkit-details-marker{display:none}
+.dacc>summary:hover{color:var(--gold)}
+.dacc-i{position:relative;width:14px;height:14px;flex:none}
+.dacc-i::before,.dacc-i::after{content:"";position:absolute;background:var(--gold)}
+.dacc-i::before{top:6px;left:0;width:14px;height:1.5px}
+.dacc-i::after{top:0;left:6px;width:1.5px;height:14px;transition:.25s}
+.dacc[open] .dacc-i::after{transform:scaleY(0)}
+.dacc-body{padding:0 2px 30px}
+.dacc-body .feature-list{max-width:none}
+.steps{list-style:none;counter-reset:st;margin:0;padding:0;max-width:720px}
+.steps li{counter-increment:st;position:relative;padding:0 0 24px 46px;color:var(--soft-ink);line-height:1.85}
+.steps li::before{content:counter(st,decimal-leading-zero);position:absolute;left:0;top:-1px;font-family:var(--font-serif);font-weight:600;font-size:1.05rem;color:var(--gold)}
+.steps li::after{content:"";position:absolute;left:11px;top:24px;bottom:0;width:1px;background:var(--hair)}
+.steps li:last-child{padding-bottom:0}
+.steps li:last-child::after{display:none}
+.plans{display:grid;gap:12px;max-width:720px}
+.plan{border:1px solid var(--line);border-radius:10px;padding:16px 20px;background:var(--surface)}
+.plan .pn{display:block;font-family:var(--font-jp);font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:.02em}
+.plan .pd{color:var(--soft-ink);font-size:.92rem;line-height:1.85}
 </style>
 </head>
 <body>
@@ -194,7 +218,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section style="padding-top:18px">
     <div class="container reveal">
-      <div class="block dossier" style="margin-top:8px"><p class="subhead">資料の内容</p><p class="lead" style="margin:0 0 26px">元国税局調査官の今村FPによる、税務に強いファイナンシャルプランニングサービスです。税務調査対策 × 保険を軸に、税務調査・実務・法解釈に精通した立場から実践的なアドバイスを行います。</p><div class="dsec"><p class="dsub">元国税FPの強み</p><ul class="feature-list"><li>元公務員という背景による高い信頼性と安心感</li><li>税務調査・実務・法解釈に精通し、実践的かつ詳細なアドバイスが可能</li><li>税務リスクと節税効果を両面から評価し、実効性の高いスキームを提案</li><li>税務調査官の思考や指摘ポイントを熟知した的確な調査対応</li><li>役員報酬・社宅利用など、経営者向けの高度な税務戦略にも対応</li></ul></div><div class="dsec"><p class="dsub">一般FPとの違い</p><ul class="feature-list"><li>税務知識：一般FPは基本レベルが中心／元国税FPは税務調査・実務・法解釈まで精通</li><li>税務調査対応：一般FPは原則税理士に委任／元国税FPは調査官の視点で的確に対応</li><li>節税提案：一般FPは教科書的／元国税FPはリスクと効果を両面評価した実効性の高い提案</li><li>経営者対応：一般FPは資金繰り支援が中心／元国税FPは役員報酬・社宅利用など高度な税務戦略まで</li></ul></div></div>
+      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">元国税局調査官の今村FPによる、税務に強いファイナンシャルプランニングサービスです。税務調査対策 × 保険を軸に、税務調査・実務・法解釈に精通した立場から実践的なアドバイスを行います。</p><details class="dacc" open><summary><span>元国税FPの強み</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>元公務員という背景による高い信頼性と安心感</li><li>税務調査・実務・法解釈に精通し、実践的かつ詳細なアドバイスが可能</li><li>税務リスクと節税効果を両面から評価し、実効性の高いスキームを提案</li><li>税務調査官の思考や指摘ポイントを熟知した的確な調査対応</li><li>役員報酬・社宅利用など、経営者向けの高度な税務戦略にも対応</li></ul></div></details><details class="dacc"><summary><span>一般FPとの違い</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>税務知識：一般FPは基本レベルが中心／元国税FPは税務調査・実務・法解釈まで精通</li><li>税務調査対応：一般FPは原則税理士に委任／元国税FPは調査官の視点で的確に対応</li><li>節税提案：一般FPは教科書的／元国税FPはリスクと効果を両面評価した実効性の高い提案</li><li>経営者対応：一般FPは資金繰り支援が中心／元国税FPは役員報酬・社宅利用など高度な税務戦略まで</li></ul></div></details></div>
       <div class="panelbox" style="margin-top:54px">
         <h2>ご相談・ご予約</h2>
         <div class="cta-grid">

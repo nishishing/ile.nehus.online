@@ -168,6 +168,30 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .dsub{font-family:var(--font-jp);font-weight:600;font-size:1rem;letter-spacing:.02em;margin:0 0 12px;color:var(--ink)}
 .dossier .lead{max-width:760px}
 .dossier .feature-list{margin-bottom:0}
+/* dossier: accordion + timeline + plan cards */
+.dossier .dov{max-width:760px;margin:0 0 30px}
+.dacc{border-top:1px solid var(--hair);max-width:780px}
+.dossier .dacc:last-of-type{border-bottom:1px solid var(--hair)}
+.dacc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 2px;font-family:var(--font-jp);font-weight:600;font-size:1.02rem;letter-spacing:.02em;color:var(--ink)}
+.dacc>summary::-webkit-details-marker{display:none}
+.dacc>summary:hover{color:var(--gold)}
+.dacc-i{position:relative;width:14px;height:14px;flex:none}
+.dacc-i::before,.dacc-i::after{content:"";position:absolute;background:var(--gold)}
+.dacc-i::before{top:6px;left:0;width:14px;height:1.5px}
+.dacc-i::after{top:0;left:6px;width:1.5px;height:14px;transition:.25s}
+.dacc[open] .dacc-i::after{transform:scaleY(0)}
+.dacc-body{padding:0 2px 30px}
+.dacc-body .feature-list{max-width:none}
+.steps{list-style:none;counter-reset:st;margin:0;padding:0;max-width:720px}
+.steps li{counter-increment:st;position:relative;padding:0 0 24px 46px;color:var(--soft-ink);line-height:1.85}
+.steps li::before{content:counter(st,decimal-leading-zero);position:absolute;left:0;top:-1px;font-family:var(--font-serif);font-weight:600;font-size:1.05rem;color:var(--gold)}
+.steps li::after{content:"";position:absolute;left:11px;top:24px;bottom:0;width:1px;background:var(--hair)}
+.steps li:last-child{padding-bottom:0}
+.steps li:last-child::after{display:none}
+.plans{display:grid;gap:12px;max-width:720px}
+.plan{border:1px solid var(--line);border-radius:10px;padding:16px 20px;background:var(--surface)}
+.plan .pn{display:block;font-family:var(--font-jp);font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:.02em}
+.plan .pd{color:var(--soft-ink);font-size:.92rem;line-height:1.85}
 </style>
 </head>
 <body>
@@ -194,7 +218,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section style="padding-top:18px">
     <div class="container reveal">
-      <div class="block dossier" style="margin-top:8px"><p class="subhead">資料の内容</p><p class="lead" style="margin:0 0 26px">Salon Start は、日本最大級のシェアサロンを展開する株式会社GO TODAY SHAiRE SALON が運営する、美容室の「サブリース型 0円開業」サービスです。希望のサロン物件をGO TODAYが物件オーナーから一括で借り上げてシェアする仕組みで、初期費用をほとんどかけずに自分のサロンを出店できます。</p><div class="dsec"><p class="dsub">Salon Start の仕組み（サブリース）</p><ul class="feature-list"><li>STEP01：サロン物件をGO TODAYがオーナーから一括で借り上げ</li><li>STEP02：物件取得と、ご希望に応じた内装工事も行った上で提供</li><li>STEP03：初期費用をほとんどかけずに自分のサロンをオープン</li></ul></div><div class="dsec"><p class="dsub">選ばれる6つの理由</p><ul class="feature-list"><li>初期費用0円で安心スタート：GO TODAYが物件を取得するので、手元資金や借入枠を減らさず出店できる</li><li>契約終了後は自分のお店に：3〜5年のサブリース契約後、物件オーナーと直接契約へ切替可能。永続的なロイヤリティやリース料も不要</li><li>競業禁止・ブランド指定なし：店名・内装・設備・薬剤の縛りが一切なく、1店舗のみ〜複数店舗の活用も自由</li><li>独自開発の便利なシステム：予約・決済・顧客管理をスマホで完結するアプリ「SHAiRE」、送料無料の格安材料発注システム「Hatt」（1,000名以上が利用）</li><li>経験豊富なプロがサポート：不動産の専門家や有名サロン出身の美容師がチームで、売上診断・物件選び・開業まで支援</li><li>美容室開業のスペシャリスト監修：“日本一美容室開業やる人”からも高い評価・推薦</li></ul></div><div class="dsec"><p class="dsub">運営会社</p><ul class="feature-list"><li>会社名：株式会社GO TODAY SHAiRE SALON（代表 大庭邦彦）</li><li>設立：2016年10月（創業2017年11月）／東京都渋谷区神南</li><li>事業内容：シェアサロンの運営／スマホアプリ開発／サブリース（転貸）の提供</li></ul></div></div>
+      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">Salon Start は、日本最大級のシェアサロンを展開する株式会社GO TODAY SHAiRE SALON が運営する、美容室の「サブリース型 0円開業」サービスです。希望のサロン物件をGO TODAYが物件オーナーから一括で借り上げてシェアする仕組みで、初期費用をほとんどかけずに自分のサロンを出店できます。</p><details class="dacc" open><summary><span>Salon Start の仕組み（サブリース）</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>STEP01：サロン物件をGO TODAYがオーナーから一括で借り上げ</li><li>STEP02：物件取得と、ご希望に応じた内装工事も行った上で提供</li><li>STEP03：初期費用をほとんどかけずに自分のサロンをオープン</li></ul></div></details><details class="dacc"><summary><span>選ばれる6つの理由</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>初期費用0円で安心スタート：GO TODAYが物件を取得するので、手元資金や借入枠を減らさず出店できる</li><li>契約終了後は自分のお店に：3〜5年のサブリース契約後、物件オーナーと直接契約へ切替可能。永続的なロイヤリティやリース料も不要</li><li>競業禁止・ブランド指定なし：店名・内装・設備・薬剤の縛りが一切なく、1店舗のみ〜複数店舗の活用も自由</li><li>独自開発の便利なシステム：予約・決済・顧客管理をスマホで完結するアプリ「SHAiRE」、送料無料の格安材料発注システム「Hatt」（1,000名以上が利用）</li><li>経験豊富なプロがサポート：不動産の専門家や有名サロン出身の美容師がチームで、売上診断・物件選び・開業まで支援</li><li>美容室開業のスペシャリスト監修：“日本一美容室開業やる人”からも高い評価・推薦</li></ul></div></details><details class="dacc"><summary><span>運営会社</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>会社名：株式会社GO TODAY SHAiRE SALON（代表 大庭邦彦）</li><li>設立：2016年10月（創業2017年11月）／東京都渋谷区神南</li><li>事業内容：シェアサロンの運営／スマホアプリ開発／サブリース（転貸）の提供</li></ul></div></details></div>
       <div class="panelbox" style="margin-top:54px">
         <h2>ご相談・ご予約</h2>
         <div class="cta-grid">
