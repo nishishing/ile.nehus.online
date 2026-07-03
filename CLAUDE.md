@@ -494,6 +494,13 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-07-03** — SEOコラム +1本（オーナー指示・AI定点観測の未出現クエリ対策）:
+  「パーソナル減力」解説記事 `what-is-personal-genryoku`（`blog-generated.json`）。初回のAI
+  visibility 実測で「パーソナル減力というブリーチの考え方」に未出現だったため、glossary の
+  DefinedTerm と整合する自己完結の定義段落＋10段階診断/ミリ単位減力/断毛防止を brand-brief
+  準拠で執筆（ダメージ「ゼロにはできない」明記・価格なし）。内部リンク /effect-bleach /salons。
+  build 88 pages／4バリデータ 0エラー。
+
 - **2026-07-03** — /recruit 作り込み（オーナー指示）: 旧・簡素な3職種リストから全面リビルド。
   構成 = Intro（次の島を、あなたと。＋統計バンド 2020/4 salons/3 cities/32 members）→
   店舗内観の full-bleed band → **Why iLe 3本柱**（①エフェクトブリーチ開発元・共著書・
