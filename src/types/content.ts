@@ -142,7 +142,15 @@ export interface SiteConfig {
   foundedAtLabel: string;
   unifiedAt: string;
   unifiedAtLabel: string;
+  /** 表示用の本社住所(全文)。概要表などに出す。 */
   headOffice: string;
+  /** JSON-LD PostalAddress 用の構造化住所(検索エンジン/LLM向け)。 */
+  headOfficeParts?: {
+    postalCode: string;
+    addressRegion: string;
+    addressLocality: string;
+    streetAddress: string;
+  };
   contactEmail: string;
   description: string;
   ogImage: string;

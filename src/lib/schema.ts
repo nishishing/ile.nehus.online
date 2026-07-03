@@ -62,8 +62,10 @@ export function organizationSchema() {
     address: {
       "@type": "PostalAddress",
       addressCountry: "JP",
-      addressRegion: "Tokyo",
-      addressLocality: site.headOffice,
+      addressRegion: site.headOfficeParts?.addressRegion ?? "Tokyo",
+      addressLocality: site.headOfficeParts?.addressLocality ?? site.headOffice,
+      streetAddress: site.headOfficeParts?.streetAddress,
+      postalCode: site.headOfficeParts?.postalCode,
     },
     email: site.contactEmail,
     sameAs: site.instagramHandle

@@ -100,7 +100,15 @@ export const site: SiteConfig = {
   foundedAtLabel: "August 1, 2020",
   unifiedAt: "2026-08-01",
   unifiedAtLabel: "August 1, 2026",
-  headOffice: "東京都渋谷区神宮前",
+  // 本社 = 原宿本店と同一 (2026-07-04 オーナー確認済み)。GBP API審査で「会社情報が不完全」と
+  // 却下された対策として番地まで明記 — company.astro の概要表と JSON-LD(PostalAddress) が参照。
+  headOffice: "〒150-0001 東京都渋谷区神宮前6-10-8 原宿NAビル 4F",
+  headOfficeParts: {
+    postalCode: "150-0001",
+    addressRegion: "Tokyo",
+    addressLocality: "渋谷区",
+    streetAddress: "神宮前6-10-8 原宿NAビル 4F",
+  },
   contactEmail: "ile.ing801@gmail.com",
   description:
     "iLe｜美容室 — 原宿・名古屋・長岡。船から、島へ。2026年8月1日、4店舗すべてを iLe に統一。",
