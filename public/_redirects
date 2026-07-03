@@ -2,3 +2,9 @@
 # Cloudflare Workers Static Assets honours this file (Pages-compatible syntax).
 /ile-technology /technology 301
 /ile-technology/ /technology 301
+/about-ile /story 301
+/about-ile/ /story 301
+/directors /expertise 301
+/directors/ /expertise 301
+/salon-list /salons 301
+/salon-list/ /salons 301
