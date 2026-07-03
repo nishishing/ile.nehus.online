@@ -109,6 +109,7 @@ export const site: SiteConfig = {
     addressLocality: "渋谷区",
     streetAddress: "神宮前6-10-8 原宿NAビル 4F",
   },
+  contactTel: "03-6427-5235", // 代表電話(2026-07-04 オーナー提供)。company概要表とJSON-LD telephone が参照
   contactEmail: "ile.ing801@gmail.com",
   description:
     "iLe｜美容室 — 原宿・名古屋・長岡。船から、島へ。2026年8月1日、4店舗すべてを iLe に統一。",

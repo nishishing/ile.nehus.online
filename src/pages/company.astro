@@ -56,6 +56,7 @@ const overviewRows: Array<{ label: string; value: string }> = [
       .join(" / "),
   },
   { label: "Address", value: site.headOffice },
+  ...(site.contactTel ? [{ label: "Tel", value: site.contactTel }] : []),
   { label: "Business", value: "美容室の運営 / Hair atelier" },
   { label: "Salons", value: "4 — iLe 原宿 ×2, iLe 名古屋, iLe 長岡" },
   { label: "Related", value: "iLe.online（オンラインサロン）" },

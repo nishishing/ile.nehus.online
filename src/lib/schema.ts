@@ -67,6 +67,7 @@ export function organizationSchema() {
       streetAddress: site.headOfficeParts?.streetAddress,
       postalCode: site.headOfficeParts?.postalCode,
     },
+    telephone: site.contactTel ? "+81-" + site.contactTel.replace(/^0/, "").replace(/-/g, "-") : undefined,
     email: site.contactEmail,
     sameAs: site.instagramHandle
       ? [`https://www.instagram.com/${site.instagramHandle}/`]

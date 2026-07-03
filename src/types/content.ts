@@ -151,6 +151,8 @@ export interface SiteConfig {
     addressLocality: string;
     streetAddress: string;
   };
+  /** 代表電話(表示用 03-xxxx形式)。 */
+  contactTel?: string;
   contactEmail: string;
   description: string;
   ogImage: string;
