@@ -234,7 +234,8 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 | `/faq` | **FAQPage** | 23 Q&A — brand / salon (初めて・メンズ含む) / **access** (原宿/名古屋/長岡の最寄駅) / **technique** (バレイヤージュ・ケアブリーチ・色落ち・白髪ぼかし・大人世代 等) / recruit。冒頭にカテゴリのジャンプindex |
 | `/glossary` | **DefinedTerm** | iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / パーソナル減力 / バレイヤージュ / ハイライト / ケアブリーチ / 白髪ぼかし / インナーカラー / ダブルカラー / iLe.online / … |
 | `/irida` | **Brand + Product + Breadcrumb** | 自社プレミアムヘアケア「Irida（イリーダ）」。Bonding Plex シャンプー&トリートメント等。購入は STORES（`https://ileing.stores.jp`）。footer nav に IRIDA |
-| `/recruit` `/contact` `/ile-online` `/privacy` `/terms` | Breadcrumb | |
+| `/recruit` | **3× JobPosting + Breadcrumb** | 作り込み済（2026-07-03）: 統計バンド / Why iLe 3本柱（技術=エフェクトブリーチ開発元・成長=6年で4店舗・3都市）/ iLe Academy 節 / 職種3件（応募資格・勤務地・待遇は面談で）/ 応募の流れ / CTA。給与等の数字は載せない（確定情報のみ） |
+| `/contact` `/ile-online` `/privacy` `/terms` | Breadcrumb | |
 | `/404` | (noindex) | Custom 404; Cloudflare serves it via `not_found_handling` |
 
 `sitemap-index.xml` is auto-generated (404 / manifest / security.txt excluded).
@@ -493,6 +494,16 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-07-03** — /recruit 作り込み（オーナー指示）: 旧・簡素な3職種リストから全面リビルド。
+  構成 = Intro（次の島を、あなたと。＋統計バンド 2020/4 salons/3 cities/32 members）→
+  店舗内観の full-bleed band → **Why iLe 3本柱**（①エフェクトブリーチ開発元・共著書・
+  セミナー講師 ②6年で4店舗＋2026統合=挑戦の余白 ③3都市同基準）→ **iLe Academy**（ink 背景の
+  Education 節）→ **Open Positions 3職種**（応募資格/勤務地/待遇=面談で、mailto 応募ボタン、
+  職種別 subject）→ 応募の流れ 3step → CTA（見学だけでも歓迎）。**JobPosting JSON-LD ×3**
+  （hiringOrganization→#organization、jobLocation=4店舗実住所、applicationContact、
+  directApply。給与は schema にも本文にも載せない）。brand-brief 準拠＝給与・福利厚生等の
+  未確定情報は一切捏造せず「面談時に説明」で統一。Playwright で desktop/mobile 実機確認済。
+  check 0／build 87 pages／4バリデータ 0エラー。
 - **2026-07-02** — サイト点検フォローアップ5点（オーナー指示「すべてお願いします」）:
   (1) **スマホ用ハンバーガーメニュー** — `Header.astro` に mobile 専用のメニューボタン＋
   フルスクリーンオーバーレイナビ（navPrimary + BOOK、ink 背景、Esc/リンククリックで閉、
