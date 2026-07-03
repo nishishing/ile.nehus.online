@@ -1,0 +1,4 @@
+# Legacy WordPress URLs still indexed by Google/AI search → new equivalents.
+# Cloudflare Workers Static Assets honours this file (Pages-compatible syntax).
+/ile-technology /technology 301
+/ile-technology/ /technology 301
