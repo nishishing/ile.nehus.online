@@ -9,8 +9,8 @@ import { salons } from "~data/salons";
 
 const description = `iLe（${site.companyName}）の採用情報。美容師（スタイリスト・アシスタント）、新卒採用を募集。エフェクトブリーチを開発した技術集団のもと、原宿・名古屋・長岡の4店舗で共に島をつくる仲間を募集しています。`;
 
-// Facts only — no invented salary/benefit figures. Conditions are
-// explained at the interview (待遇は面談で説明), per brand-brief rules.
+// Stats / salary / benefits are real figures from the owner's recruiting
+// material (2026-07-04) — do not invent or extrapolate beyond them.
 const stats = [
   { n: "2020", label: "EST. HARAJUKU" },
   { n: "4", label: "SALONS" },
@@ -93,6 +93,48 @@ const steps = [
   },
 ];
 
+// 給与・福利厚生 — オーナー提供の採用資料（2026-07-04）より。数値は実データ。
+const compTables = [
+  {
+    area: "東京・名古屋",
+    en: "TOKYO / NAGOYA",
+    tiers: [
+      { range: "月技術売上 100万以下", rate: "技術売上 30% ＋ 店販 10%" },
+      { range: "100万以上", rate: "技術売上 35% ＋ 店販 10%" },
+      { range: "200万以上", rate: "技術売上 40% ＋ 店販 10%" },
+    ],
+    assistant: "基本給 ＋ 歩合 30%〜50%（美容師歴・技術レベルによる）",
+  },
+  {
+    area: "長岡",
+    en: "NAGAOKA",
+    tiers: [
+      { range: "月技術売上 80万以下", rate: "技術売上 30% ＋ 店販 10%" },
+      { range: "80万以上", rate: "技術売上 35% ＋ 店販 10%" },
+      { range: "120万以上", rate: "技術売上 38% ＋ 店販 10%" },
+      { range: "150万以上", rate: "技術売上 40% ＋ 店販 10%" },
+    ],
+    assistant: "基本給 ＋ 歩合 20%〜50%（美容師歴・技術レベルによる）",
+  },
+];
+
+const benefits = [
+  "国民健康保険",
+  "厚生年金",
+  "店販手当あり",
+  "夏季冬季休暇あり",
+  "土日休みあり",
+  "交通費支給",
+  "セミナー・ヘアショー",
+  "業界誌・雑誌撮影",
+  "国内外出張あり",
+  "SNS教育",
+  "格安携帯",
+  "引っ越し手当",
+];
+
+const holidays = ["月8〜10日休み", "夏季冬季休暇あり", "有給あり"];
+
 const mailSubject = encodeURIComponent("採用応募：");
 const heroSalon = salons[0];
 
@@ -100,7 +142,9 @@ const jobPostingSchemas = positions.map((p) => ({
   "@context": "https://schema.org",
   "@type": "JobPosting",
   title: p.title,
-  description: `${p.desc} 応募資格: ${p.requirements}。勤務地: ${p.locations}。給与・待遇は面談時にご説明します。`,
+  description: `${p.desc} 応募資格: ${p.requirements}。勤務地: ${p.locations}。スタイリストは完全歩合制（最低保証あり・技術売上の30〜40%＋店販10%、最高月収180万円の実績）、アシスタントは基本給＋歩合（最高月収50万円の実績）。休日は月8〜10日、夏季冬季休暇・有給あり。`,
+  jobBenefits:
+    "国民健康保険、厚生年金、店販手当、夏季冬季休暇、土日休みあり、交通費支給、セミナー・ヘアショー、業界誌・雑誌撮影、国内外出張、SNS教育、格安携帯、引っ越し手当",
   datePosted: "2026-07-02",
   hiringOrganization: { "@id": `${site.url}/#organization` },
   industry: "美容業",
@@ -209,6 +253,57 @@ const pageSchemas = [
     </div>
   </section>
 
+  <!-- Compensation -->
+  <section class="recruit-comp" id="compensation">
+    <h2 class="recruit-h2">給与 <em>— Compensation</em></h2>
+    <p class="recruit-comp__lead">
+      スタイリストは<strong>完全歩合制（最低保証あり）</strong>。売上に応じて歩合率が上がる、シンプルで公平な仕組みです。
+    </p>
+    <div class="recruit-comp__grid">
+      {compTables.map((t) => (
+        <article class="comp-card">
+          <p class="comp-card__area">{t.en}</p>
+          <h3 class="comp-card__h">{t.area}</h3>
+          <p class="comp-card__label">スタイリスト（完全歩合・最低保証あり）</p>
+          <ul class="comp-card__tiers">
+            {t.tiers.map((tier) => (
+              <li><span>{tier.range}</span><span class="comp-card__rate">{tier.rate}</span></li>
+            ))}
+          </ul>
+          <p class="comp-card__label">アシスタント</p>
+          <p class="comp-card__assistant">{t.assistant}</p>
+        </article>
+      ))}
+    </div>
+    <ul class="recruit-comp__max" aria-label="最高月収実績">
+      <li><span class="recruit-comp__max-n">180<em>万円</em></span><span class="recruit-comp__max-label">スタイリスト最高月収</span></li>
+      <li><span class="recruit-comp__max-n">50<em>万円</em></span><span class="recruit-comp__max-label">アシスタント最高月収</span></li>
+    </ul>
+  </section>
+
+  <!-- Benefits -->
+  <section class="recruit-benefits">
+    <h2 class="recruit-h2">福利厚生・休日 <em>— Benefits</em></h2>
+    <div class="recruit-benefits__cols">
+      <div>
+        <h3 class="recruit-benefits__h">福利厚生</h3>
+        <ul class="recruit-benefits__list">
+          {benefits.map((b) => (
+            <li>{b}</li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3 class="recruit-benefits__h">休日</h3>
+        <ul class="recruit-benefits__list">
+          {holidays.map((h) => (
+            <li>{h}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- Positions -->
   <section class="recruit-positions" id="positions">
     <h2 class="recruit-h2">Open <em>Positions</em></h2>
@@ -229,7 +324,7 @@ const pageSchemas = [
             </div>
             <div>
               <dt>給与・待遇</dt>
-              <dd>経験・スキルを考慮のうえ決定します（面談時に詳しくご説明します）</dd>
+              <dd>上記の<a href="#compensation">給与テーブル</a>のとおり（詳細は面談時にご説明します）</dd>
             </div>
           </dl>
           <a
@@ -564,6 +659,159 @@ const pageSchemas = [
   .position__apply:hover {
     background: var(--color-ink);
     color: var(--color-white);
+  }
+
+  /* Compensation */
+  .recruit-comp {
+    padding: 110px 32px 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .recruit-comp__lead {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--color-fg-muted);
+    margin: -24px 0 44px;
+    max-width: 640px;
+  }
+  .recruit-comp__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 760px) {
+    .recruit-comp__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .comp-card {
+    border: 1px solid var(--color-border);
+    background: var(--color-snow);
+    padding: 32px 28px;
+  }
+  .comp-card__area {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.26em;
+    color: var(--color-fg-subtle);
+    margin: 0 0 6px;
+  }
+  .comp-card__h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 24px;
+    margin: 0 0 24px;
+  }
+  .comp-card__label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    color: var(--color-fg-muted);
+    border-top: 1px solid var(--color-border);
+    padding-top: 16px;
+    margin: 0 0 12px;
+  }
+  .comp-card__tiers {
+    list-style: none;
+    margin: 0 0 26px;
+    padding: 0;
+  }
+  .comp-card__tiers li {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--color-mist);
+  }
+  .comp-card__tiers li span:first-child {
+    color: var(--color-fg-muted);
+    flex: none;
+  }
+  .comp-card__rate {
+    text-align: right;
+  }
+  .comp-card__assistant {
+    font-size: 13.5px;
+    line-height: 1.9;
+    margin: 0;
+  }
+  .recruit-comp__max {
+    list-style: none;
+    margin: 26px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--color-ink);
+  }
+  .recruit-comp__max li {
+    padding: 26px 12px;
+    text-align: center;
+  }
+  .recruit-comp__max li:last-child {
+    border-left: 1px solid var(--color-ink);
+  }
+  .recruit-comp__max-n {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(34px, 4.5vw, 52px);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .recruit-comp__max-n em {
+    font-style: italic;
+    font-size: 0.45em;
+  }
+  .recruit-comp__max-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--color-fg-muted);
+  }
+
+  /* Benefits */
+  .recruit-benefits {
+    padding: 80px 32px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .recruit-benefits__cols {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 700px) {
+    .recruit-benefits__cols {
+      grid-template-columns: 1fr;
+    }
+  }
+  .recruit-benefits__h {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 18px;
+  }
+  .recruit-benefits__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 12px;
+  }
+  .recruit-benefits__list li {
+    font-size: 13px;
+    border: 1px solid var(--color-mist);
+    border-radius: 999px;
+    padding: 9px 17px;
+    background: var(--color-snow);
   }
 
   /* Flow */

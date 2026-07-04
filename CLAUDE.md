@@ -239,7 +239,7 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 | `/faq` | **FAQPage** | 23 Q&A — brand / salon (初めて・メンズ含む) / **access** (原宿/名古屋/長岡の最寄駅) / **technique** (バレイヤージュ・ケアブリーチ・色落ち・白髪ぼかし・大人世代 等) / recruit。冒頭にカテゴリのジャンプindex |
 | `/glossary` | **DefinedTerm** | iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / パーソナル減力 / バレイヤージュ / ハイライト / ケアブリーチ / 白髪ぼかし / インナーカラー / ダブルカラー / iLe.online / … |
 | `/irida` | **Brand + Product + Breadcrumb** | 自社プレミアムヘアケア「Irida（イリーダ）」。Bonding Plex シャンプー&トリートメント等。購入は STORES（`https://ileing.stores.jp`）。footer nav に IRIDA |
-| `/recruit` | **3× JobPosting + Breadcrumb** | 作り込み済（2026-07-03）: 統計バンド / Why iLe 3本柱（技術=エフェクトブリーチ開発元・成長=6年で4店舗・3都市）/ iLe Academy 節 / 職種3件（応募資格・勤務地・待遇は面談で）/ 応募の流れ / CTA。給与等の数字は載せない（確定情報のみ） |
+| `/recruit` | **3× JobPosting + Breadcrumb** | 作り込み済（2026-07-03）+ **実給与データ掲載（2026-07-04、オーナー提供の採用資料より）**: 統計バンド / Why iLe 3本柱 / iLe Academy 節 / **給与セクション**（東京・名古屋と長岡の歩合テーブル、完全歩合+最低保証、最高月収 スタイリスト180万・アシスタント50万）/ **福利厚生・休日**（国保・厚生年金・店販手当・月8〜10休 等12項目）/ 職種3件 / 応募の流れ / CTA。JobPosting description・jobBenefits にも反映 |
 | `/contact` `/ile-online` `/privacy` `/terms` | Breadcrumb | |
 | `/404` | (noindex) | Custom 404; Cloudflare serves it via `not_found_handling` |
 
@@ -498,6 +498,14 @@ The user has asked that this file be kept up to date whenever things change.
 > lives here and every session reads this file first.
 
 ### Changelog
+
+- **2026-07-04** — /recruit に実給与・福利厚生を掲載（オーナー提供の採用資料スクショより）:
+  **給与セクション**（東京・名古屋 / 長岡 の2カード: スタイリスト完全歩合の歩合テーブル
+  30〜40%＋店販10%・最低保証あり、アシスタント基本給+歩合 30〜50%/長岡20〜50%、
+  最高月収バンド 180万/50万）＋**福利厚生・休日セクション**（12項目 pill + 月8〜10休/
+  夏季冬季休暇/有給）。JobPosting JSON-LD の description・jobBenefits にも同データを反映。
+  職種の待遇行は #compensation へのアンカーに。数値は資料の実データのみ・推測なし。
+  check 0／build 89 pages／4バリデータ 0エラー。
 
 - **2026-07-03** — 「エフェクトブリーチ＝iLe が開発元」を全面打ち出し（オーナー回答:
   市販の専用オキシは酒井・西村の開発監修製品）: (1) /effect-bleach リードに「薬剤として
