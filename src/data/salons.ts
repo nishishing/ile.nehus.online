@@ -55,7 +55,7 @@ export const salons: readonly Salon[] = [
   {
     slug: "nagaoka",
     number: "03",
-    name: "iLe. 長岡",
+    name: "iLe. nagaoka",
     nameLatin: "iLe. Nagaoka",
     city: "Nagaoka / Niigata",
     cityShort: "NAGAOKA",
@@ -78,7 +78,7 @@ export const salons: readonly Salon[] = [
   {
     slug: "nagoya",
     number: "04",
-    name: "iLe. 名古屋",
+    name: "iLe. nagoya",
     nameLatin: "iLe. Nagoya",
     city: "Nagoya / Aichi",
     cityShort: "NAGOYA",
