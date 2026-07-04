@@ -499,6 +499,13 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-07-04** — 新卒採用を一旦締切表示に＋名古屋/長岡の店名を英語表記に（オーナー指示）:
+  (1) /recruit の新卒採用は **2026-06-30 で一旦締切** — カードは「締切」バッジ＋案内文
+  （次期募集はページ/Instagram で告知）に切替、応募ボタン非表示、**JobPosting JSON-LD からも
+  除外**（募集中はスタイリスト/アシスタントの2件のみ）。再開時は positions の `closed: false` へ。
+  (2) `salons.ts` の表示名を `iLe. 長岡`→`iLe. nagaoka` / `iLe. 名古屋`→`iLe. nagoya`
+  （n は小文字、B2B告知の表記と統一）。`nameLatin`/seoDescription は据え置き。
+
 - **2026-07-04** — /recruit に実給与・福利厚生を掲載（オーナー提供の採用資料スクショより）:
   **給与セクション**（東京・名古屋 / 長岡 の2カード: スタイリスト完全歩合の歩合テーブル
   30〜40%＋店販10%・最低保証あり、アシスタント基本給+歩合 30〜50%/長岡20〜50%、
