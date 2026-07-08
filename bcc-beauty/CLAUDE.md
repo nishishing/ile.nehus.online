@@ -106,7 +106,7 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 | layer-design-works | 内装業者 | Layer Design Works | LINE + 施工写真 + 資料 |
 | sunny-side-life | 内装業者 | SUNNY SIDE LIFE | LINE |
 | imamura-fp | 財務 | 税務調査対策×保険（今村FP） | LINE |
-| liverty | 福利厚生 | 携帯電話プラン（ソフトバンク・BCC限定） | 料金シミュレーター/LP/チラシ/Instagram `shoo1004_official`（合言葉「BCC／携帯」） |
+| liverty | 福利厚生 | 携帯電話プラン（ソフトバンク・BCC限定） | 公式LINE `lin.ee/WNphK9j`（合言葉「BCC／携帯」）/ 料金シミュレーター/LP/チラシ/Instagram `shoo1004_official` |
 | materials-intro | 材料 | 材料（仕入れ紹介） | LINE + 資料 |
 | drive-blue | 材料 | ドライブブルー | **PWゲート**→発注サイト `irida.stores.jp`（PW 123）+ リジェネ使い方Notion |
 | hairstyle-market | ヘアスタイル販売 | ヘアスタイル販売サイト | Artify `artify.stores.jp` + 資料 |

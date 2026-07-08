@@ -394,8 +394,9 @@ const RICH = {
     panelTitle: "試算・お問い合わせ",
     review: "実際に僕がやってみました。ギガ放題・電話かけ放題・テザリングなどオプションが全てついていて、通信料が12,000円から5,000円ほどになりました！ 携帯はiPhone16でしたが、1円でiPhone17に変えて、iPhone16はメルカリで10万円ほどで売れました。スタッフもみんな最新のiPhoneに変えられて、画質も容量も料金も良くなり、従業員満足度もかなり上げることができました！ ソフトバンクショップでは必ずしも案内されないプランなので、ぜひお問い合わせください。",
     links: [
-      { label: "スマホ料金シミュレーターで試算", href: "https://liverty-mobile-sim.vercel.app/", primary: true },
-      { label: "Instagramで相談（担当）", href: "https://www.instagram.com/shoo1004_official/", note: "ご連絡時に「BCC／携帯」とお伝えください。芸能関係も担当する担当スタッフが順次対応します。" },
+      { label: "携帯プラン専用の公式LINEへ", href: "https://lin.ee/WNphK9j", primary: true, note: "ご連絡時に「BCC／携帯」とお伝えください。芸能関係も担当する担当スタッフが順次対応します。" },
+      { label: "スマホ料金シミュレーターで試算", href: "https://liverty-mobile-sim.vercel.app/" },
+      { label: "Instagramで相談（担当）", href: "https://www.instagram.com/shoo1004_official/" },
       { label: "新デザインLPを見る", href: "https://liverty-salon-lp.vercel.app/" },
       { label: "チラシ（A4）を見る", href: "https://liverty-salon-lp.vercel.app/flyer-a4.html" },
     ],
