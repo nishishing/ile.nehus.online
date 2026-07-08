@@ -158,6 +158,10 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
     専用の `lpNav`（ブランド＋「公式LINE登録」のみ、Home/Servicesは出さない）＋ヒーロー/Pick up/最終CTAを全て
     公式LINE登録に。`pageDoc(...,navHtml=nav)` に nav 差し替え引数を追加（about は `lpNav` を渡す）。
     広告の遷移先は `/about` を使う（トップURLは公開で配らない）。
+    さらに **オープンチャットも会員限定**（登録後）なので、/about からは一切出さない：専用 `lpFooter`
+    （Open Chat を出さず公式LINE登録に）＋ヒーローのオープンチャットCTA削除＋加盟フロー step1 を
+    「BCC公式LINEに登録」のみに。`pageDoc(...,navHtml,footerHtml)` で nav/footer を差し替え（about は lpNav/lpFooter）。
+    → **公開LP（/about）の唯一のCTAは「公式LINE登録」**。
 - **2026-07-05** — 引き継ぎ整備: `_build/gen.mjs`＋`_build/writeups.json` をリポに永続化し、
   この `CLAUDE.md` を作成。再生成コマンドの再現性を確認。Notion側にも要点を記録。
 - **2026-07-05** — 「携帯電話プラン（ソフトバンク・BCC限定）」を新カテゴリ **福利厚生** で本格ページ化

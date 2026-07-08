@@ -307,8 +307,22 @@ const footer = `<footer class="footer">
   </div>
 </footer>`;
 
+// 公開LP（/about）用フッター：オープンチャット（会員限定）は出さず公式LINE登録に
+const lpFooter = `<footer class="footer">
+  <div class="container footer-inner reveal">
+    <p class="big serif">BCC</p>
+    <p class="komoji" style="margin:0 0 26px">beauty Cooperative Chain</p>
+    <p>美容師の開業・集客・運営を支える共同体。<br>まずは公式LINEの登録から。</p>
+    <div class="links">
+      <a href="${LINE_URL}" target="_blank" rel="noopener noreferrer">公式LINE登録</a>
+      <a href="${ABOUT}">About</a>
+    </div>
+    <p class="small">© BCC — beauty Cooperative Chain</p>
+  </div>
+</footer>`;
+
 const BASE = "https://bcc-tau.vercel.app";
-function pageDoc(title, desc, body, path = "", navHtml = nav) {
+function pageDoc(title, desc, body, path = "", navHtml = nav, footerHtml = footer) {
   const url = `${BASE}/${path}`;
   return `<!doctype html>
 <html lang="ja">
@@ -339,7 +353,7 @@ ${STYLE}
 <body>
 ${navHtml}
 ${body}
-${footer}
+${footerHtml}
 <script>
 document.documentElement.classList.add("js");
 (function(){
@@ -627,7 +641,6 @@ const aboutBody = `<header class="hero">
     <p class="hero-sub">美容師の可能性を広げるために生まれた共同体。材料・教育・SNS・財務など、技術以外の経営課題を、仲間とサポートで解決します。</p>
     <div class="hero-cta">
       <a class="primary" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">BCC公式LINEに登録</a>
-      <a class="ghost" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットで相談</a>
     </div>
   </div>
   <div class="scrollcue"><span>scroll</span><span class="line"></span></div>
@@ -775,8 +788,8 @@ const aboutBody = `<header class="hero">
     </div>
     <div class="block reveal" style="max-width:720px;margin:0 auto">
       <ol class="steps">
-        <li>BCC公式LINEに登録／オープンチャットに参加</li>
-        <li>サービス一覧から、必要なパートナーを選ぶ</li>
+        <li>BCC公式LINEに登録</li>
+        <li>会員ページのサービス一覧から、必要なパートナーを選ぶ</li>
         <li>各サービス専用の窓口に相談</li>
         <li>導入・利用スタート</li>
       </ol>
@@ -851,6 +864,7 @@ writeFileSync(
     aboutBody,
     "about",
     lpNav,
+    lpFooter,
   ),
 );
 
