@@ -396,7 +396,6 @@ const RICH = {
     links: [
       { label: "携帯プラン専用の公式LINEへ", href: "https://lin.ee/WNphK9j", primary: true, note: "ご連絡時に「BCC／携帯」とお伝えください。芸能関係も担当する担当スタッフが順次対応します。" },
       { label: "スマホ料金シミュレーターで試算", href: "https://liverty-mobile-sim.vercel.app/" },
-      { label: "Instagramで相談（担当）", href: "https://www.instagram.com/shoo1004_official/" },
       { label: "新デザインLPを見る", href: "https://liverty-salon-lp.vercel.app/" },
       { label: "チラシ（A4）を見る", href: "https://liverty-salon-lp.vercel.app/flyer-a4.html" },
     ],
