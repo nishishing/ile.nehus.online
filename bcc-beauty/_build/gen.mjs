@@ -11,6 +11,7 @@ mkdirSync(OUT, { recursive: true });
 const LINE_URL = "https://lin.ee/aQTLZGG";
 const OC_URL = "https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default";
 const LP_URL = "https://drive-blue.online/test/";
+const ABOUT = "about.html"; // 自前の説明LP（旧: LP_URL 外部）
 
 const categories = ["開業支援", "不動産", "内装業者", "財務", "福利厚生", "材料", "ヘアスタイル販売", "教育", "集客", "予約サービス"];
 
@@ -235,15 +236,50 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .plans{display:grid;gap:12px;max-width:720px}
 .plan{border:1px solid var(--line);border-radius:10px;padding:16px 20px;background:var(--surface)}
 .plan .pn{display:block;font-family:var(--font-jp);font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:.02em}
-.plan .pd{color:var(--soft-ink);font-size:.92rem;line-height:1.85}`;
+.plan .pd{color:var(--soft-ink);font-size:.92rem;line-height:1.85}
+/* about / LP */
+.visions{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.vision{background:var(--surface);padding:44px 40px}
+@media(max-width:680px){.vision{padding:34px 26px}}
+.vision .vn{font-family:var(--font-serif);font-size:1.4rem;color:var(--gold);font-weight:600;line-height:1;display:block;margin-bottom:18px}
+.vision h3{font-family:var(--font-jp);font-weight:500;font-size:1.3rem;letter-spacing:.03em;margin:0 0 14px;line-height:1.55}
+.vision p{margin:0;color:var(--soft-ink);font-size:.95rem;line-height:2;max-width:760px}
+.problems{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:880px){.problems{grid-template-columns:1fr}}
+.problem{background:var(--surface);padding:34px 30px}
+.problem h3{font-family:var(--font-jp);font-weight:600;font-size:1.05rem;margin:0 0 18px;letter-spacing:.02em}
+.pillars{display:grid;gap:38px;max-width:820px;margin:0 auto}
+.pillar{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:start}
+.pillar .pi{font-family:var(--font-serif);font-size:2rem;color:var(--gold);font-weight:600;line-height:1}
+.pillar h3{font-family:var(--font-jp);font-weight:600;font-size:1.12rem;margin:0 0 10px;letter-spacing:.02em}
+.pillar p{margin:0;color:var(--soft-ink);line-height:2}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--surface);padding:40px 20px;text-align:center}
+.stat .num{font-family:var(--font-serif);font-weight:600;font-size:2.6rem;color:var(--gold);line-height:1;letter-spacing:.02em}
+.stat .lbl2{display:block;margin-top:14px;color:var(--muted);font-size:.78rem;letter-spacing:.08em}
+.faq{max-width:780px;margin:0 auto}
+.faq .qa{border-top:1px solid var(--hair);padding:26px 2px}
+.faq .qa:last-child{border-bottom:1px solid var(--hair)}
+.faq .q{font-family:var(--font-jp);font-weight:600;font-size:1.02rem;margin:0 0 12px;letter-spacing:.02em}
+.faq .q::before{content:"Q  ";font-family:var(--font-serif);color:var(--gold)}
+.faq .a{margin:0;color:var(--soft-ink);line-height:2;font-size:.95rem}
+.spec{max-width:720px;margin:0 auto;border-top:1px solid var(--hair)}
+.spec .row{display:grid;grid-template-columns:180px 1fr;gap:20px;padding:20px 2px;border-bottom:1px solid var(--hair)}
+@media(max-width:680px){.spec .row{grid-template-columns:1fr;gap:6px}}
+.spec dt{margin:0;color:var(--muted);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+.spec dd{margin:0;color:var(--soft-ink);line-height:1.9}
+.lp-cta{text-align:center}
+.lp-cta .go{display:inline-block;margin-top:4px;padding:16px 42px;background:var(--ink);color:var(--surface);border:1px solid var(--ink);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;transition:.25s}
+.lp-cta .go:hover{background:transparent;color:var(--ink)}`;
 
 const nav = `<nav class="nav">
   <div class="container nav-inner">
     <a class="brand" href="index.html">BCC</a>
     <div class="nav-links">
       <a class="hide-sp" href="index.html">Home</a>
-      <a class="hide-sp" href="#services">Services</a>
-      <a class="hide-sp" href="${LP_URL}" target="_blank" rel="noopener noreferrer">About</a>
+      <a class="hide-sp" href="index.html#services">Services</a>
+      <a class="hide-sp" href="${ABOUT}">About</a>
       <a class="btn-join" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャット</a>
     </div>
   </div>
@@ -256,7 +292,7 @@ const footer = `<footer class="footer">
     <p>美容師の開業・集客・運営を支えるインフラ整備サービス。<br>必要な外部パートナーを、カテゴリ別にまとめています。</p>
     <div class="links">
       <a href="${OC_URL}" target="_blank" rel="noopener noreferrer">Open Chat</a>
-      <a href="${LP_URL}" target="_blank" rel="noopener noreferrer">About</a>
+      <a href="${ABOUT}">About</a>
     </div>
     <p class="small">© BCC — beauty Cooperative Chain</p>
   </div>
@@ -571,6 +607,218 @@ writeFileSync(
   ),
 );
 
+// ---- about / 説明LP ----
+const aboutBody = `<header class="hero">
+  <div class="hero-mark serif">BCC</div>
+  <div class="hero-inner">
+    <span class="eyebrow">About — beauty Cooperative Chain</span>
+    <h1><span style="white-space:nowrap">美容業界を、</span><span style="white-space:nowrap">もっと強く。</span><span style="white-space:nowrap">もっと面白く。</span></h1>
+    <div class="rule"></div>
+    <p class="kicker">Make the beauty industry stronger, and more fun.</p>
+    <p class="hero-sub">美容師の可能性を広げるために生まれた共同体。材料・教育・SNS・財務など、技術以外の経営課題を、仲間とサポートで解決します。</p>
+    <div class="hero-cta">
+      <a class="primary" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットで相談</a>
+      <a class="ghost" href="index.html#services">サービス一覧</a>
+    </div>
+  </div>
+  <div class="scrollcue"><span>scroll</span><span class="line"></span></div>
+</header>
+
+<main>
+
+  <section class="container">
+    <div class="sec-head reveal">
+      <p class="komoji lbl">Vision</p>
+      <h2>私たちの、<em>想い</em>。</h2>
+    </div>
+    <div class="visions reveal">
+      <div class="vision">
+        <span class="vn">01</span>
+        <h3>美容業界を、もっと強く。もっと面白く。</h3>
+        <p>美容師の可能性を広げるために生まれた共同体です。材料・スタッフ教育・SNS・財務など、技術以外の経営課題を、コミュニティのサポートで解決していきます。</p>
+      </div>
+      <div class="vision">
+        <span class="vn">02</span>
+        <h3>美容業界の未来を、私たちの手で変える。</h3>
+        <p>海外では当たり前に使える商材が、国内では規制で使えないことがあります。美容師がもっと自由に、創造的に働ける環境へ。業界そのものを前に進めます。</p>
+      </div>
+      <div class="vision">
+        <span class="vn">03</span>
+        <h3>流行や美学を生み出す“場”と“仲間”をつくりたい。</h3>
+        <p>技術・感性・経営力を、つながり合う起業家のコミュニティで磨く。トレンドと美学が生まれ続ける場所を、仲間とともに育てていきます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="komoji lbl">Challenges</p>
+        <h2>こんなお悩み、<em>ありませんか</em>。</h2>
+      </div>
+      <div class="problems reveal">
+        <div class="problem">
+          <h3>経営の負担を減らしたい</h3>
+          <ul class="feature-list">
+            <li>材料費・運営コストの負担が大きい</li>
+            <li>開業・融資の手続きが不透明</li>
+            <li>税務・保険の相談先がない</li>
+          </ul>
+        </div>
+        <div class="problem">
+          <h3>技術や集客方法を知りたい</h3>
+          <ul class="feature-list">
+            <li>スタッフの教育・育成が難しい</li>
+            <li>最新の技術・薬剤の情報がほしい</li>
+            <li>SNS・採用の方法がわからない</li>
+          </ul>
+        </div>
+        <div class="problem">
+          <h3>人脈やサポートがほしい</h3>
+          <ul class="feature-list">
+            <li>同業の起業家とつながりたい</li>
+            <li>不動産・内装の情報がほしい</li>
+            <li>頼れるサポート体制がほしい</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="sec-head reveal">
+      <p class="komoji lbl">Why BCC</p>
+      <h2>選ばれる、<em>3つの理由</em>。</h2>
+    </div>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <span class="pi">01</span>
+        <div>
+          <h3>美容室経営の負担を軽減する仕組み</h3>
+          <p>ディーラー・メーカーとの直接提携により、材料を特別価格で安定供給。材料費・運営コストを抑えながら、利益を確保できる運営体制づくりを支えます。</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <span class="pi">02</span>
+        <div>
+          <h3>教育・集客・海外展開まで、充実のサポート</h3>
+          <p>オーナー向けの経営研修・技術講習、ホットペッパー／SNSを活用した集客支援、さらに海外展開まで。学びと集客をまとめて後押しします。</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <span class="pi">03</span>
+        <div>
+          <h3>出店から経営まで、徹底サポート</h3>
+          <p>不動産・融資・事業計画から、保険・税務対策・福利厚生まで。経営の知識がなくても安心して進められる環境をご提供します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="komoji lbl">Support</p>
+        <h2>提供する、<em>サポート</em>。</h2>
+      </div>
+      <div class="block reveal" style="max-width:720px;margin:0 auto">
+        <ul class="feature-list">
+          <li>専用の仕入れルートで、商材を特別価格で提供</li>
+          <li>オーナー向けの経営研修・技術講習</li>
+          <li>ホットペッパー・SNSを活用した集客支援コンサルティング</li>
+          <li>不動産・融資の相談（物件探し・融資支援・事業計画書の作成）</li>
+          <li>店舗運営サポート（保険・税務対策・福利厚生支援）</li>
+          <li>全国の加盟店・アンバサダーとのネットワーク形成</li>
+        </ul>
+        <p class="lead" style="margin-top:26px">経営の知識がなくても、安心して取り組める環境をご提供します。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="sec-head reveal">
+      <p class="komoji lbl">Flow</p>
+      <h2>加盟までの、<em>流れ</em>。</h2>
+    </div>
+    <div class="block reveal" style="max-width:720px;margin:0 auto">
+      <ol class="steps">
+        <li>BCC公式LINEに登録／オープンチャットに参加</li>
+        <li>サービス一覧から、必要なパートナーを選ぶ</li>
+        <li>各サービス専用の窓口に相談</li>
+        <li>導入・利用スタート</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="komoji lbl">Track record</p>
+        <h2>これまでの、<em>実績</em>。</h2>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><span class="num">23</span><span class="lbl2">加盟ディーラー</span></div>
+        <div class="stat"><span class="num">8</span><span class="lbl2">提携メーカー</span></div>
+        <div class="stat"><span class="num">21</span><span class="lbl2">自社商品</span></div>
+        <div class="stat"><span class="num">4</span><span class="lbl2">海外エリア展開</span></div>
+      </div>
+      <p class="sec-head" style="margin:34px auto 0;color:var(--muted);font-size:.9rem">日本・韓国・香港・台湾でサロン運営／美容業界向けの広告・教育も展開。</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="sec-head reveal">
+      <p class="komoji lbl">FAQ</p>
+      <h2>よくある、<em>ご質問</em>。</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="qa">
+        <p class="q">フランチャイズとは何が違うの？</p>
+        <p class="a">BCCはフランチャイズではなく「加盟店制度」です。経営の自由度が高いのが特徴です。</p>
+      </div>
+      <div class="qa">
+        <p class="q">どのくらいの費用がかかりますか？</p>
+        <p class="a">BCCへの入会は無料です。各サービスの費用は、実際にご利用いただくサービスごとに、それぞれの窓口で個別にご案内します。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="komoji lbl">Company</p>
+        <h2>会社、<em>概要</em>。</h2>
+      </div>
+      <dl class="spec reveal">
+        <div class="row"><dt>会社名</dt><dd>合同会社BCC（Beauty Co-operative Chain）</dd></div>
+        <div class="row"><dt>事業内容</dt><dd>美容室向け商材の提供・販売／サロン経営支援（教育・集客・不動産・融資）／国内外のサロン展開・マーケティング支援／アンバサダーネットワークの構築</dd></div>
+        <div class="row"><dt>代表者</dt><dd>西村 涼・瀬野 克</dd></div>
+        <div class="row"><dt>事業展開</dt><dd>日本・韓国・香港・台湾</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="container lp-cta">
+    <div class="sec-head reveal" style="margin-bottom:34px">
+      <p class="komoji lbl">Get started</p>
+      <h2>BCCで、<em>一緒に解決</em>しませんか。</h2>
+      <p>材料費の削減、セミナー参加、融資相談まで。あなたのサロン経営を、まるごとサポートします。</p>
+    </div>
+    <a class="go reveal" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットで相談する</a>
+  </section>
+
+</main>`;
+
+writeFileSync(
+  `${OUT}/about.html`,
+  pageDoc(
+    "BCCとは｜beauty Cooperative Chain",
+    "美容師の開業・集客・運営を支える共同体 BCC（beauty Cooperative Chain）の想い・提供サポート・実績・会社概要。",
+    aboutBody,
+    "about",
+  ),
+);
+
 // ---- index ----
 const monoOf = (name) => [...name.split("（")[0].split("(")[0].trim()][0] || "·";
 const DATA = categories
@@ -615,10 +863,10 @@ const indexBody = `<header class="hero">
       <p>BCCの全体像はこちら。気になることはオープンチャットで気軽に。</p>
     </div>
     <div class="grid two reveal">
-      <a class="card" href="${LP_URL}" target="_blank" rel="noopener noreferrer">
+      <a class="card" href="${ABOUT}">
         <p class="komoji ctag">About</p>
-        <h4>BCCの説明LP</h4>
-        <p>叶うこと・想いをまとめました。BCCの全体像はこちら。</p>
+        <h4>BCCとは</h4>
+        <p>想い・提供サポート・実績・会社概要。BCCの全体像はこちら。</p>
         <span class="more">View <span class="arw">→</span></span>
       </a>
       <a class="card" href="${OC_URL}" target="_blank" rel="noopener noreferrer">
