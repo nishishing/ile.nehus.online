@@ -150,6 +150,9 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
   ナビ・フッター・トップの「BCCとは」導線を外部 `drive-blue.online/test/` から **内部 /about** に張り替え
   （外部LPは別ドメインのため据え置き。必要なら owner がリダイレクト）。あわせて携帯プランのInstagramボタンを削除。
   会社概要は 合同会社BCC／代表 西村涼・瀬野克／日本・韓国・香港・台湾。
+  - 追記（同日・広告LP化）: About上部に **Pick up（携帯事業=liverty／仕入れ紹介=materials-intro）** の
+    ピックアップ2枚を追加。実績に **会員数755** を追加（statsは可変グリッド化）。代表者に **岡本裕也** を追加
+    → 代表 西村涼・瀬野克・岡本裕也。
 - **2026-07-05** — 引き継ぎ整備: `_build/gen.mjs`＋`_build/writeups.json` をリポに永続化し、
   この `CLAUDE.md` を作成。再生成コマンドの再現性を確認。Notion側にも要点を記録。
 - **2026-07-05** — 「携帯電話プラン（ソフトバンク・BCC限定）」を新カテゴリ **福利厚生** で本格ページ化

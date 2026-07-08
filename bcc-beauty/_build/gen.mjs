@@ -253,8 +253,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .pillar .pi{font-family:var(--font-serif);font-size:2rem;color:var(--gold);font-weight:600;line-height:1}
 .pillar h3{font-family:var(--font-jp);font-weight:600;font-size:1.12rem;margin:0 0 10px;letter-spacing:.02em}
 .pillar p{margin:0;color:var(--soft-ink);line-height:2}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-@media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
 .stat{background:var(--surface);padding:40px 20px;text-align:center}
 .stat .num{font-family:var(--font-serif);font-weight:600;font-size:2.6rem;color:var(--gold);line-height:1;letter-spacing:.02em}
 .stat .lbl2{display:block;margin-top:14px;color:var(--muted);font-size:.78rem;letter-spacing:.08em}
@@ -626,6 +625,30 @@ const aboutBody = `<header class="hero">
 
 <main>
 
+  <section class="alt">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="komoji lbl">Pick up</p>
+        <h2>注目の、<em>サービス</em>。</h2>
+        <p>まずはここから。会員の反響が大きい2つのサービスです。</p>
+      </div>
+      <div class="grid two reveal">
+        <a class="card" href="liverty.html">
+          <p class="komoji ctag">携帯事業</p>
+          <h4>携帯電話プラン（ソフトバンク・BCC限定）</h4>
+          <p>通信料を大幅に削減。最新iPhoneに機種変更でき、スタッフの福利厚生・節税にも活用できます。</p>
+          <span class="more">詳しく見る <span class="arw">→</span></span>
+        </a>
+        <a class="card" href="materials-intro.html">
+          <p class="komoji ctag">仕入れ紹介</p>
+          <h4>材料（仕入れ紹介）</h4>
+          <p>サロン向けに、材料の仕入れ（ディーラー）を特別価格でご紹介。取引内容に応じた特典もあります。</p>
+          <span class="more">詳しく見る <span class="arw">→</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="container">
     <div class="sec-head reveal">
       <p class="komoji lbl">Vision</p>
@@ -757,6 +780,7 @@ const aboutBody = `<header class="hero">
         <h2>これまでの、<em>実績</em>。</h2>
       </div>
       <div class="stats reveal">
+        <div class="stat"><span class="num">755</span><span class="lbl2">会員数（名）</span></div>
         <div class="stat"><span class="num">23</span><span class="lbl2">加盟ディーラー</span></div>
         <div class="stat"><span class="num">8</span><span class="lbl2">提携メーカー</span></div>
         <div class="stat"><span class="num">21</span><span class="lbl2">自社商品</span></div>
@@ -792,7 +816,7 @@ const aboutBody = `<header class="hero">
       <dl class="spec reveal">
         <div class="row"><dt>会社名</dt><dd>合同会社BCC（Beauty Co-operative Chain）</dd></div>
         <div class="row"><dt>事業内容</dt><dd>美容室向け商材の提供・販売／サロン経営支援（教育・集客・不動産・融資）／国内外のサロン展開・マーケティング支援／アンバサダーネットワークの構築</dd></div>
-        <div class="row"><dt>代表者</dt><dd>西村 涼・瀬野 克</dd></div>
+        <div class="row"><dt>代表者</dt><dd>西村 涼・瀬野 克・岡本 裕也</dd></div>
         <div class="row"><dt>事業展開</dt><dd>日本・韓国・香港・台湾</dd></div>
       </dl>
     </div>
