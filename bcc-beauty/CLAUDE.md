@@ -153,6 +153,11 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
   - 追記（同日・広告LP化）: About上部に **Pick up（携帯事業=liverty／仕入れ紹介=materials-intro）** の
     ピックアップ2枚を追加。実績に **会員数755** を追加（statsは可変グリッド化）。代表者に **岡本裕也** を追加
     → 代表 西村涼・瀬野克・岡本裕也。
+  - 追記（同日・会員限定/公開の分離）: **トップ（`/` index）＋各サービス詳細＝公式LINE登録後に見る会員限定**、
+    **`/about`＝公開の広告LP**。/about は会員限定へ直リンクせず **公式LINE登録（LINE_URL）に集約**：
+    専用の `lpNav`（ブランド＋「公式LINE登録」のみ、Home/Servicesは出さない）＋ヒーロー/Pick up/最終CTAを全て
+    公式LINE登録に。`pageDoc(...,navHtml=nav)` に nav 差し替え引数を追加（about は `lpNav` を渡す）。
+    広告の遷移先は `/about` を使う（トップURLは公開で配らない）。
 - **2026-07-05** — 引き継ぎ整備: `_build/gen.mjs`＋`_build/writeups.json` をリポに永続化し、
   この `CLAUDE.md` を作成。再生成コマンドの再現性を確認。Notion側にも要点を記録。
 - **2026-07-05** — 「携帯電話プラン（ソフトバンク・BCC限定）」を新カテゴリ **福利厚生** で本格ページ化

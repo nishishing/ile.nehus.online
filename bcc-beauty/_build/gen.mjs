@@ -284,6 +284,16 @@ const nav = `<nav class="nav">
   </div>
 </nav>`;
 
+// 公開LP（/about）用ナビ：サービス一覧（会員限定）へは出さず、公式LINE登録に集約
+const lpNav = `<nav class="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="about.html">BCC</a>
+    <div class="nav-links">
+      <a class="btn-join" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">公式LINE登録</a>
+    </div>
+  </div>
+</nav>`;
+
 const footer = `<footer class="footer">
   <div class="container footer-inner reveal">
     <p class="big serif">BCC</p>
@@ -298,7 +308,7 @@ const footer = `<footer class="footer">
 </footer>`;
 
 const BASE = "https://bcc-tau.vercel.app";
-function pageDoc(title, desc, body, path = "") {
+function pageDoc(title, desc, body, path = "", navHtml = nav) {
   const url = `${BASE}/${path}`;
   return `<!doctype html>
 <html lang="ja">
@@ -327,7 +337,7 @@ ${STYLE}
 </style>
 </head>
 <body>
-${nav}
+${navHtml}
 ${body}
 ${footer}
 <script>
@@ -616,8 +626,8 @@ const aboutBody = `<header class="hero">
     <p class="kicker">Make the beauty industry stronger, and more fun.</p>
     <p class="hero-sub">美容師の可能性を広げるために生まれた共同体。材料・教育・SNS・財務など、技術以外の経営課題を、仲間とサポートで解決します。</p>
     <div class="hero-cta">
-      <a class="primary" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットで相談</a>
-      <a class="ghost" href="index.html#services">サービス一覧</a>
+      <a class="primary" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">BCC公式LINEに登録</a>
+      <a class="ghost" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットで相談</a>
     </div>
   </div>
   <div class="scrollcue"><span>scroll</span><span class="line"></span></div>
@@ -630,20 +640,20 @@ const aboutBody = `<header class="hero">
       <div class="sec-head reveal">
         <p class="komoji lbl">Pick up</p>
         <h2>注目の、<em>サービス</em>。</h2>
-        <p>まずはここから。会員の反響が大きい2つのサービスです。</p>
+        <p>会員の反響が大きい2つのサービス。詳細は公式LINE登録後にご覧いただけます。</p>
       </div>
       <div class="grid two reveal">
-        <a class="card" href="liverty.html">
+        <a class="card" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">
           <p class="komoji ctag">携帯事業</p>
           <h4>携帯電話プラン（ソフトバンク・BCC限定）</h4>
           <p>通信料を大幅に削減。最新iPhoneに機種変更でき、スタッフの福利厚生・節税にも活用できます。</p>
-          <span class="more">詳しく見る <span class="arw">→</span></span>
+          <span class="more">公式LINEで見る <span class="arw">→</span></span>
         </a>
-        <a class="card" href="materials-intro.html">
+        <a class="card" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">
           <p class="komoji ctag">仕入れ紹介</p>
           <h4>材料（仕入れ紹介）</h4>
           <p>サロン向けに、材料の仕入れ（ディーラー）を特別価格でご紹介。取引内容に応じた特典もあります。</p>
-          <span class="more">詳しく見る <span class="arw">→</span></span>
+          <span class="more">公式LINEで見る <span class="arw">→</span></span>
         </a>
       </div>
     </div>
@@ -826,9 +836,9 @@ const aboutBody = `<header class="hero">
     <div class="sec-head reveal" style="margin-bottom:34px">
       <p class="komoji lbl">Get started</p>
       <h2>BCCで、<em>一緒に解決</em>しませんか。</h2>
-      <p>材料費の削減、セミナー参加、融資相談まで。あなたのサロン経営を、まるごとサポートします。</p>
+      <p>材料費の削減、セミナー参加、融資相談まで。あなたのサロン経営を、まるごとサポートします。まずは公式LINEの登録から。</p>
     </div>
-    <a class="go reveal" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットで相談する</a>
+    <a class="go reveal" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">BCC公式LINEに登録する</a>
   </section>
 
 </main>`;
@@ -840,6 +850,7 @@ writeFileSync(
     "美容師の開業・集客・運営を支える共同体 BCC（beauty Cooperative Chain）の想い・提供サポート・実績・会社概要。",
     aboutBody,
     "about",
+    lpNav,
   ),
 );
 
