@@ -499,6 +499,12 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-07-23** — URL の trailing-slash 統一（オーナー承認済み）: `wrangler.jsonc` の
+  `assets.html_handling` を `auto-trailing-slash` → **`drop-trailing-slash`** に変更。
+  Astro は `trailingSlash: "never"`・canonical/sitemap も末尾スラッシュなしなのに、
+  Workers 既定挙動が `/faq` → `/faq/` に 307 していた不一致を解消（`/faq` を直接 200 で
+  配信、`/faq/` は `/faq` へ1ホップ）。wrangler dev で /・/faq・/faq/・llms.txt を検証。
+
 - **2026-07-23** — AI定点観測（7/20実測: 出現率44%/引用率9%）のNGクエリ対策で llms.txt＋FAQ を補強:
   (1) `llms.txt.ts` に「## 専門性・実績」セクション新設（開発元・共著書・両代表の肩書。
   ambition系クエリ「バレイヤージュ第一人者は誰？」等の対策）＋店舗一覧に NAP

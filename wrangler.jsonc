@@ -15,7 +15,9 @@
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
+    // Astro is trailingSlash:"never" and canonical/sitemap URLs have no
+    // trailing slash — serve /faq directly and 308 /faq/ → /faq to match.
+    "html_handling": "drop-trailing-slash"
   },
   "observability": {
     "enabled": true
