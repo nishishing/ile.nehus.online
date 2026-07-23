@@ -150,6 +150,10 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 
 ## Changelog（新しい順）
 
+- **2026-07-23（同日・noindex）** — 会員限定ページ（トップ＋詳細25）に `<meta name="robots" content="noindex">`
+  を追加（受付判断で実施。「URL非公開」ガードを検索インデックスの穴から守る）。**/about（公開広告LP）は
+  indexable のまま**、404 は HTTP 404 のため対象外。判定は `pageDoc()` の `path` 引数。
+
 - **2026-07-23（同日・クリーンURL化）** — ページ内の内部リンクを `.html` 付きから拡張子なし
   （`/` `/about` `/<id>` `/#services`）に変更。`vercel.json` の `cleanUrls` で `.html` は 308 リダイレクト
   されていたため、毎クリック1リダイレクトが解消。外部リンクと出力ファイル名は変更なし。
