@@ -96,8 +96,10 @@ Astro project scaffold, design tokens, base layout, top page, LLMO basis.
       `sc-domain:ile-hair-harajuku.com` 所有権確認済み、`sitemap-index.xml`
       送信成功（100ページ検出）。**Bing Webmaster Tools も GSC からの
       インポートで登録済み**（sitemap 自動取込。ChatGPT 検索の Bing
-      インデックス対策）。残タスク: GSC に残る旧WordPress時代の死んだ
-      サイトマップ3件（sitemap.xml / wp-sitemap.xml / sitemap_index.xml）の削除
+      インデックス対策）。旧WordPress時代の死んだサイトマップ3件
+      （sitemap.xml / wp-sitemap.xml / sitemap_index.xml）も GSC から削除済み
+      （2026-07-23）。※「https://ile-hair-harajuku.com/」という型不明の
+      エントリ（エラー・0ページ）が1件残存 — 削除可否はオーナー判断待ち
 
 ## 🎯 7/27 – 7/31 — Soft Launch
 
