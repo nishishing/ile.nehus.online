@@ -324,13 +324,16 @@ const lpFooter = `<footer class="footer">
 const BASE = "https://bcc-tau.vercel.app";
 function pageDoc(title, desc, body, path = "", navHtml = nav, footerHtml = footer) {
   const url = `${BASE}/${path}`;
+  // 会員限定ページ（トップ＋サービス詳細）は検索エンジンに載せない。
+  // /about は公開広告LPなので indexable のまま。404 は HTTP 404 のため対象外。
+  const robots = path === "about" || path === "404" ? "" : '\n<meta name="robots" content="noindex">';
   return `<!doctype html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
-<meta name="description" content="${esc(desc)}">
+<meta name="description" content="${esc(desc)}">${robots}
 <link rel="canonical" href="${url}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
