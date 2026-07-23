@@ -239,11 +239,11 @@ a.card:hover .more .arw{transform:translateX(8px)}
 <body>
 <nav class="nav">
   <div class="container nav-inner">
-    <a class="brand" href="index.html">BCC</a>
+    <a class="brand" href="/">BCC</a>
     <div class="nav-links">
-      <a class="hide-sp" href="index.html">Home</a>
-      <a class="hide-sp" href="index.html#services">Services</a>
-      <a class="hide-sp" href="about.html">About</a>
+      <a class="hide-sp" href="/">Home</a>
+      <a class="hide-sp" href="/#services">Services</a>
+      <a class="hide-sp" href="/about">About</a>
       <a class="btn-join" href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer">オープンチャット</a>
     </div>
   </div>
@@ -273,7 +273,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
       <p>BCCの全体像はこちら。気になることはオープンチャットで気軽に。</p>
     </div>
     <div class="grid two reveal">
-      <a class="card" href="about.html">
+      <a class="card" href="/about">
         <p class="komoji ctag">About</p>
         <h4>BCCとは</h4>
         <p>想い・提供サポート・実績・会社概要。BCCの全体像はこちら。</p>
@@ -313,7 +313,7 @@ const DATA = [{"name":"開業支援","en":"Open","items":[{"id":"salon-start","n
     var mark = it.logo
       ? '<div class="cmark'+(it.dark?' dark':'')+'"><img src="'+it.logo+'" alt=""></div>'
       : '<div class="cmark"><span class="mono">'+it.mono+'</span></div>';
-    return '<a class="card" href="'+it.id+'.html">'+mark+'<p class="komoji ctag">'+(d.en||d.name)+'</p><h4>'+it.name+'</h4><p>'+it.desc+'</p><span class="more">詳細 <span class="arw">→</span></span></a>';
+    return '<a class="card" href="/'+it.id+'">'+mark+'<p class="komoji ctag">'+(d.en||d.name)+'</p><h4>'+it.name+'</h4><p>'+it.desc+'</p><span class="more">詳細 <span class="arw">→</span></span></a>';
   }
   function panel(tab){
     if(tab.all){
@@ -346,7 +346,7 @@ const DATA = [{"name":"開業支援","en":"Open","items":[{"id":"salon-start","n
     <p>美容師の開業・集客・運営を支えるインフラ整備サービス。<br>必要な外部パートナーを、カテゴリ別にまとめています。</p>
     <div class="links">
       <a href="https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" rel="noopener noreferrer">Open Chat</a>
-      <a href="about.html">About</a>
+      <a href="/about">About</a>
     </div>
     <p class="small">© BCC — beauty Cooperative Chain</p>
   </div>
