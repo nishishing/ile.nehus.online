@@ -3,6 +3,13 @@
 > BCC はサロン本体（ing/R）とは別会社。記録はこのファイルと `CLAUDE.md` に閉じる
 > （ing の決定ログ・Notion 秘書HQ には書かない — 2026-07-23 受付裁定）。
 
+## 2026-07-23（追記4） — 移行完了
+
+- main push → 本番デプロイをマーカーで実証（配信確認済み → 本コミットで撤去）。
+- 切替後の全ページ確認: 27ページ 200 / 内部ファイル4点 404 / 旧 `.html` リンク残 0。
+- **旧デプロイブランチ `claude/vigilant-dirac-cduzkl` を削除**（バックアップはタグ
+  `bcc-v1-pre-merge-20260723` で保持）。以後の本番反映は「draft PR → ready → squash merge → main」のみ。
+
 ## 2026-07-23（追記3） — Vercel main 切替後の検証
 
 - オーナーが Vercel Branch Tracking を main に切替。受付の削除前照合で「41ファイル差分」報告
