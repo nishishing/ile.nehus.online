@@ -150,6 +150,10 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 
 ## Changelog（新しい順）
 
+- **2026-07-23（同日・クリーンURL化）** — ページ内の内部リンクを `.html` 付きから拡張子なし
+  （`/` `/about` `/<id>` `/#services`）に変更。`vercel.json` の `cleanUrls` で `.html` は 308 リダイレクト
+  されていたため、毎クリック1リダイレクトが解消。外部リンクと出力ファイル名は変更なし。
+
 - **2026-07-23（同日・公開露出の修正）** — 本番URLで `/CLAUDE.md` `/_build/gen.mjs` `/_build/writeups.json`
   が配信されていたのを発見（Root Directory 直下は全ファイル配信されるため）。**`.vercelignore`
   （CLAUDE.md / SESSIONS.md / _build/）を追加**して内部ファイルを配信から除外。作業ログは

@@ -11,7 +11,7 @@ mkdirSync(OUT, { recursive: true });
 const LINE_URL = "https://lin.ee/aQTLZGG";
 const OC_URL = "https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default";
 const LP_URL = "https://drive-blue.online/test/";
-const ABOUT = "about.html"; // 自前の説明LP（旧: LP_URL 外部）
+const ABOUT = "/about"; // 自前の説明LP（旧: LP_URL 外部）
 
 const categories = ["開業支援", "不動産", "内装業者", "財務", "福利厚生", "材料", "ヘアスタイル販売", "教育", "集客", "予約サービス"];
 
@@ -274,10 +274,10 @@ a.card:hover .more .arw{transform:translateX(8px)}
 
 const nav = `<nav class="nav">
   <div class="container nav-inner">
-    <a class="brand" href="index.html">BCC</a>
+    <a class="brand" href="/">BCC</a>
     <div class="nav-links">
-      <a class="hide-sp" href="index.html">Home</a>
-      <a class="hide-sp" href="index.html#services">Services</a>
+      <a class="hide-sp" href="/">Home</a>
+      <a class="hide-sp" href="/#services">Services</a>
       <a class="hide-sp" href="${ABOUT}">About</a>
       <a class="btn-join" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャット</a>
     </div>
@@ -287,7 +287,7 @@ const nav = `<nav class="nav">
 // 公開LP（/about）用ナビ：サービス一覧（会員限定）へは出さず、公式LINE登録に集約
 const lpNav = `<nav class="nav">
   <div class="container nav-inner">
-    <a class="brand" href="about.html">BCC</a>
+    <a class="brand" href="/about">BCC</a>
     <div class="nav-links">
       <a class="btn-join" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">公式LINE登録</a>
     </div>
@@ -570,7 +570,7 @@ for (const s of services) {
   } else {
     if (line) ctas.push(`<a class="btn btn-line" href="${line}" target="_blank" rel="noopener noreferrer">${esc(brand)}専用の公式LINEへ</a>`);
     if (doc) ctas.push(`<a class="btn" href="${doc}" target="_blank" rel="noopener noreferrer">資料（詳細）を見る</a>`);
-    else if (line) ctas.push(`<a class="btn" href="index.html#services">ほかのサービスを見る</a>`);
+    else if (line) ctas.push(`<a class="btn" href="/#services">ほかのサービスを見る</a>`);
     if (line) note = `\n        <p class="small" style="margin-top:16px">※詳しい内容・お見積り・ご予約は、${esc(brand)}専用の公式LINEでご案内します（BCCの公式LINEとは別アカウントです）。</p>`;
     else if (doc) note = `\n        <p class="small" style="margin-top:16px">※詳しい内容は、上の資料をご覧ください。</p>`;
   }
@@ -589,7 +589,7 @@ for (const s of services) {
   const body = `<main>
   <section class="detail detail-hero">
     <div class="container reveal">
-      <a class="back" href="index.html">← Back to top</a>
+      <a class="back" href="/">← Back to top</a>
       <p class="komoji lbl">${esc(enOf[s.cat] || "")} ・ ${esc(s.cat)}</p>
       <h1>${esc(s.name)}</h1>${logo}
       <p class="lead">${esc(s.desc)}</p>
@@ -952,7 +952,7 @@ const DATA = ${JSON.stringify(DATA)};
     var mark = it.logo
       ? '<div class="cmark'+(it.dark?' dark':'')+'"><img src="'+it.logo+'" alt=""></div>'
       : '<div class="cmark"><span class="mono">'+it.mono+'</span></div>';
-    return '<a class="card" href="'+it.id+'.html">'+mark+'<p class="komoji ctag">'+(d.en||d.name)+'</p><h4>'+it.name+'</h4><p>'+it.desc+'</p><span class="more">詳細 <span class="arw">→</span></span></a>';
+    return '<a class="card" href="/'+it.id+'">'+mark+'<p class="komoji ctag">'+(d.en||d.name)+'</p><h4>'+it.name+'</h4><p>'+it.desc+'</p><span class="more">詳細 <span class="arw">→</span></span></a>';
   }
   function panel(tab){
     if(tab.all){
