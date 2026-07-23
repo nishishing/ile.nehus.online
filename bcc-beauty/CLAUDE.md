@@ -150,6 +150,10 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 
 ## Changelog（新しい順）
 
+- **2026-07-23（同日・公開露出の修正）** — 本番URLで `/CLAUDE.md` `/_build/gen.mjs` `/_build/writeups.json`
+  が配信されていたのを発見（Root Directory 直下は全ファイル配信されるため）。**`.vercelignore`
+  （CLAUDE.md / SESSIONS.md / _build/）を追加**して内部ファイルを配信から除外。作業ログは
+  `SESSIONS.md`（新設・同じく非公開）に記録する運用を開始。
 - **2026-07-23** — **運用移行: PR #53 を main へ squash merge、Vercel Production Branch を main に切替**
   （オーナー承認済み。棚卸し ai-company#11 → 受付経由で決定）。マージ前 HEAD は タグ
   `bcc-v1-pre-merge-20260723` で保全。iLe 本体への影響なしを検証（Cloudflare 配信は Astro `dist/` のみ、
