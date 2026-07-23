@@ -92,7 +92,12 @@ Astro project scaffold, design tokens, base layout, top page, LLMO basis.
       新サイト（Astro）が本番配信中（旧 WordPress/ConoHa → Cloudflare へ切替）。
       llms.txt / sitemap も本番URLで配信確認済み（2026-07-23 実査）
 - [ ] WordPress 退避（旧サーバー側のデータ退避・解約はユーザー側で状況確認）
-- [ ] Search Console 登録 + sitemap 送信
+- [x] Search Console 登録 + sitemap 送信 — 2026-07-23 オーナー作業完了。
+      `sc-domain:ile-hair-harajuku.com` 所有権確認済み、`sitemap-index.xml`
+      送信成功（100ページ検出）。**Bing Webmaster Tools も GSC からの
+      インポートで登録済み**（sitemap 自動取込。ChatGPT 検索の Bing
+      インデックス対策）。残タスク: GSC に残る旧WordPress時代の死んだ
+      サイトマップ3件（sitemap.xml / wp-sitemap.xml / sitemap_index.xml）の削除
 
 ## 🎯 7/27 – 7/31 — Soft Launch
 
