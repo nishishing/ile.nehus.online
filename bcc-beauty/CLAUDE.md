@@ -15,11 +15,16 @@
 
 - **本番URL**: <https://bcc-tau.vercel.app>
 - **ホスティング**: Vercel（プロジェクト名 `bcc` / scope `boku244-gmailcoms-projects`）。
-  GitHub連携で **このリポジトリのブランチ `claude/vigilant-dirac-cduzkl` への push で自動デプロイ**。
+  GitHub連携で **`main` への push（マージ）で自動デプロイ**（2026-07-23 に Production Branch を
+  旧デプロイブランチ `claude/vigilant-dirac-cduzkl` から `main` に切替。オーナー承認済み）。
   Vercel の **Root Directory = `bcc-beauty`**、`vercel.json` の `cleanUrls`（拡張子なしURL）。
-- **⚠️ `main` には push しない**（iLe本サイトのCloudflare本番デプロイが走る）。BCCの作業は必ず上記ブランチで。
+- **作業フロー**: 作業ブランチで編集 → **draft PR → ready → squash merge**（就業規則の恒久許可フロー）。
+  `main` への直接 push はしない。マージすると iLe 本サイトの Cloudflare ビルドも走るが、
+  Cloudflare が配信するのは Astro の `dist/` のみで `bcc-beauty/` は含まれない（2026-07-23 検証済み:
+  prebuild の画像最適化も `public/` 固定パスのみ・CI にデプロイなし）。iLe 側の内容は変わらない。
 - BCCは iLe本サイト（`src/` のAstro）とは**完全に独立**。`bcc-beauty/` 配下で閉じている。
-  PRは #53（ドラフト、Vercelデプロイ用。mainへのマージは想定していない）。
+  初期構築の PR は #53（2026-07-23 に main へ squash merge 済み。マージ前 HEAD はタグ
+  `bcc-v1-pre-merge-20260723` で保全）。
 
 ---
 
@@ -135,7 +140,7 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 - **連絡先が無いサービスは連絡ボタンを出さない**（パネルごと非表示）。
 - **外部URLの追跡パラメータ（`fbclid` 等）は除去**してから使う。
 - **和文はゴシックのみ**。原色・絵文字・CSS装飾過多はしない。
-- **`main` に push しない**。作業は `claude/vigilant-dirac-cduzkl`。push→Vercel自動デプロイ。
+- **`main` に直接 push しない**。作業ブランチ → draft PR → ready → squash merge。main マージ→Vercel自動デプロイ。
 - **生成HTMLを手編集しない**。`_build/gen.mjs`（＋`writeups.json`）を直して再生成。
 - **秘密情報をコミットしない**。自分のモデル識別子はコミット/PR/成果物に書かない（チャット内のみ）。
 - push前チェック: 生成物（`bcc-beauty/`）にAPIキー/アクセストークン/モデル識別子らしき
@@ -145,6 +150,15 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 
 ## Changelog（新しい順）
 
+- **2026-07-23** — **運用移行: PR #53 を main へ squash merge、Vercel Production Branch を main に切替**
+  （オーナー承認済み。棚卸し ai-company#11 → 受付経由で決定）。マージ前 HEAD は タグ
+  `bcc-v1-pre-merge-20260723` で保全。iLe 本体への影響なしを検証（Cloudflare 配信は Astro `dist/` のみ、
+  prebuild は `public/` 固定パスのみ、CI にデプロイなし）。全27ページ・外部リンク36本の生存確認済み
+  （stores.jp 2本の curl 403 は bot 判定で、実ブラウザでは正常）。以後の作業は draft PR → squash merge。
+  担当: BCC会員ポータル専任セッション（BCC の Web 資産はこのポータルに一本化。BCC はサロン本体とは
+  別会社のため、記録はこのファイルと担当セッションの md に閉じる）。
+  保留（オーナー判断待ち）: 独自ドメイン / 会員ゲート / コンテンツ鮮度更新 / 旧LP
+  `drive-blue.online/test/` から /about へのリダイレクト（オーナー操作待ち）。
 - **2026-07-08** — 説明LP（About）を自前ページ **`about.html`（/about）** として現行デザインで新設
   （想い／お悩み／選ばれる3つの理由／提供サポート／加盟の流れ／実績 23・8・21・4／FAQ／会社概要／CTA）。
   ナビ・フッター・トップの「BCCとは」導線を外部 `drive-blue.online/test/` から **内部 /about** に張り替え
