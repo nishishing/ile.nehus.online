@@ -142,6 +142,8 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 - **和文はゴシックのみ**。原色・絵文字・CSS装飾過多はしない。
 - **`main` に直接 push しない**。作業ブランチ → draft PR → ready → squash merge。main マージ→Vercel自動デプロイ。
 - **生成HTMLを手編集しない**。`_build/gen.mjs`（＋`writeups.json`）を直して再生成。
+- **`stylemanager.html` は例外**（gen.mjs 非管理の外部由来スナップショット。元 = StyleManager 告知ページ
+  `imac.tailce20b0.ts.net/announce`）。更新は元から再取得して置換する。手編集しない。内容の正は HPB 側。
 - **秘密情報をコミットしない**。自分のモデル識別子はコミット/PR/成果物に書かない（チャット内のみ）。
 - push前チェック: 生成物（`bcc-beauty/`）にAPIキー/アクセストークン/モデル識別子らしき
   文字列が混入していないか grep で確認してから push する（何も出なければOK）。
@@ -149,6 +151,13 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 ---
 
 ## Changelog（新しい順）
+
+- **2026-07-24（未公開・draft）** — HPB担当リレー（オーナー指示）で、StyleManager 実データ告知を BCC 会員へ
+  「おすすめコンテンツ」配信する件。告知の元URL `imac.tailce20b0.ts.net/announce` は Tailscale **Funnel が
+  有効で公開到達する**ことを実証済み（公開DNS 103.84.155.153 経由で 200）が、自宅サーバ＋Funnel 依存で
+  一斉配信リンクとしては脆弱なため、**公開ページを自己完結HTMLで bcc-beauty/ にミラー**（`stylemanager.html`
+  → `/stylemanager`）。元は外部参照が CTA(`lin.ee/y0r6N4U`)のみ・チャートは全てインライン base64 で、byte 単位の
+  忠実コピー。**顧客向け公開のため merge＝公開はオーナーOK後**（現状 draft PR で保留）。配信文面もオーナー承認待ち。
 
 - **2026-07-23（同日・noindex）** — 会員限定ページ（トップ＋詳細25）に `<meta name="robots" content="noindex">`
   を追加（受付判断で実施。「URL非公開」ガードを検索インデックスの穴から守る）。**/about（公開広告LP）は
