@@ -152,12 +152,13 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 
 ## Changelog（新しい順）
 
-- **2026-07-24（未公開・draft）** — HPB担当リレー（オーナー指示）で、StyleManager 実データ告知を BCC 会員へ
+- **2026-07-24（公開済み）** — HPB担当リレー（オーナー指示）で、StyleManager 実データ告知を BCC 会員へ
   「おすすめコンテンツ」配信する件。告知の元URL `imac.tailce20b0.ts.net/announce` は Tailscale **Funnel が
   有効で公開到達する**ことを実証済み（公開DNS 103.84.155.153 経由で 200）が、自宅サーバ＋Funnel 依存で
   一斉配信リンクとしては脆弱なため、**公開ページを自己完結HTMLで bcc-beauty/ にミラー**（`stylemanager.html`
   → `/stylemanager`）。元は外部参照が CTA(`lin.ee/y0r6N4U`)のみ・チャートは全てインライン base64 で、byte 単位の
-  忠実コピー。**顧客向け公開のため merge＝公開はオーナーOK後**（現状 draft PR で保留）。配信文面もオーナー承認待ち。
+  忠実コピー。**オーナー承認を得て PR #68 を merge・公開**（`/stylemanager` = 200 で配信確認）。配信文面も確定
+  （実データ＋公式LINE 2本立て＋数字なしの人数限定）。実際の一斉配信操作はオーナー（BCC 公式LINE 等）。
 
 - **2026-07-23（同日・noindex）** — 会員限定ページ（トップ＋詳細25）に `<meta name="robots" content="noindex">`
   を追加（受付判断で実施。「URL非公開」ガードを検索インデックスの穴から守る）。**/about（公開広告LP）は
