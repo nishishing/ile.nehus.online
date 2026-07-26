@@ -56,13 +56,13 @@ model, and an Effect Bleach section are all live in the data. Staging is at
   (Nishimura Ryo). **Publicly the company is led by two co-reps.**
   (Internally 酒井 is effectively the company head, but that is NOT public —
   so on the site, ALWAYS say 共同代表, never a sole 代表取締役.)
-  - 酒井 元樹 — **エフェクトブリーチ開発者** / ケミカルの権威.
-  - 西村 涼 — バレイヤージュ第一人者 / 創業者. Authors the /message & /story.
-  - **エフェクトブリーチは薬剤（脱色の2剤＝オキシ）として製品化されており、
-    その開発・監修は酒井・西村の両名**（オーナー確認 2026-07-03）。全国の
-    サロン・美容師にも広がっている＝iLe は「開発元」。技術・理論（10段階診断
-    /パーソナル減力）の開発・体系化は従来どおり酒井のクレジット。メーカー名・
-    販売元は未確認のためサイトに書かない。
+  - 酒井 元樹 — **エフェクトブリーチ共同開発者** / ケミカルの権威.
+  - 西村 涼 — **エフェクトブリーチ共同開発者** / バレイヤージュ第一人者 / 創業者. Authors the /message & /story.
+  - **エフェクトブリーチは、技術・理論（10段階診断/パーソナル減力）も薬剤
+    （脱色の2剤＝オキシ）も、西村 涼・酒井 元樹の両名が共同で開発・体系化・監修**
+    （オーナー確認 2026-07-26。当初「技術＝酒井単独」としていたのを訂正）。全国の
+    サロン・美容師にも広がっている＝iLe は「開発元」。**どの箇所も「酒井単独開発」と
+    読める表現を書かない**。メーカー名・販売元は未確認のためサイトに書かない。
 - **Company**: 株式会社ing (ing inc.) — HQ in 東京都渋谷区神宮前
 - **Contact**: <ile.ing801@gmail.com>
 - **Instagram (brand)**: `ile.801` (https://instagram.com/ile.801)
@@ -498,6 +498,17 @@ The user has asked that this file be kept up to date whenever things change.
 > lives here and every session reads this file first.
 
 ### Changelog
+
+- **2026-07-26** — 🔴 エフェクトブリーチ開発者を「酒井単独」→「西村涼・酒井元樹の
+  共同開発」に全面訂正（オーナー確認 2026-07-26）: **技術・理論の開発・体系化も両名**
+  （従来サイトは「技術＝酒井単独／薬剤＝両名」で書き分けていたが、技術も両名が正）。
+  一括修正した箇所: **`scripts/brand-brief.md`（再発防止の核＝次の自動生成が単独に戻らない）**、
+  faq.ts×2、glossary.ts、llms.txt.ts×2、expertise.astro×2、recruit.astro、
+  effect-bleach.astro×2、blog-generated.json×6、**site.ts（JSON-LD の Person bio＋
+  西村の knowsAbout にエフェクトブリーチ追加＝構造化データも両名）**、本CLAUDE.md。
+  ＝サイト本文＋構造化データ＋自動生成の種＋開発ドキュメントを網羅。確定ファクト集
+  `ile_business_facts.md`（claude-config）も別PRで更新。「薬剤＝両名」既存記載は整合。
+  **どの箇所も「酒井単独開発」と読める表現を残さない**方針。check/build 102/4バリデータ 0。
 
 - **2026-07-26** — AI可視性 第2弾（7/26実測のカテゴリ別分析に基づく・出現率アップ狙い）:
   7/26 実測でカテゴリ別出現率が area 82%/technique 83% に対し **informational 14%/
