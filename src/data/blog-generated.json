@@ -1,6 +1,8 @@
 [
   {
     "slug": "why-bleach-damages-hair-and-how-to-minimize",
+    "eyecatch": { "url": "/journal/why-bleach-damages-hair-and-how-to-minimize.jpg", "width": 1193, "height": 417 },
+    "eyecatchAlt": "ブリーチしたブロンドの毛先のクローズアップ",
     "category": "column",
     "categoryLabel": "COLUMN",
     "title": "ブリーチで髪が傷む仕組みと、ダメージを抑えるための考え方",
@@ -33,6 +35,8 @@
   },
   {
     "slug": "black-dye-selfcolor-to-hightone",
+    "eyecatch": { "url": "/journal/black-dye-selfcolor-to-hightone.jpg", "width": 995, "height": 1327 },
+    "eyecatchAlt": "根元を暗く残したブロンドのウルフスタイル（後ろ姿）",
     "category": "column",
     "categoryLabel": "COLUMN",
     "title": "黒染め・セルフカラーからハイトーンに戻すときに知っておきたいこと",
@@ -49,6 +53,8 @@
   },
   {
     "slug": "enjoy-bleach-color-fading",
+    "eyecatch": { "url": "/journal/enjoy-bleach-color-fading.jpg", "width": 1600, "height": 959 },
+    "eyecatchAlt": "シルバーアッシュのロングヘア（背面）",
     "category": "column",
     "categoryLabel": "COLUMN",
     "title": "ブリーチカラーの色落ちを楽しむ｜退色の過程ときれいな抜け方",
@@ -81,6 +87,8 @@
   },
   {
     "slug": "inner-color-design-color-face-framing",
+    "eyecatch": { "url": "/journal/inner-color-design-color-face-framing.jpg", "width": 1045, "height": 1393 },
+    "eyecatchAlt": "ピンクと黒のインナーカラー（後頭部）",
     "category": "column",
     "categoryLabel": "COLUMN",
     "title": "インナーカラーとデザインカラーの違い、顔まわりの魅せ方",
@@ -129,6 +137,8 @@
   },
   {
     "slug": "retouch-frequency-hightone",
+    "eyecatch": { "url": "/journal/retouch-frequency-hightone.jpg", "width": 1193, "height": 715 },
+    "eyecatchAlt": "明るいブロンドのハイトーンカラー",
     "category": "column",
     "categoryLabel": "COLUMN",
     "title": "根元のリタッチはどのくらいの頻度？｜ハイトーンを維持する通い方",
@@ -557,6 +567,8 @@
   },
   {
     "slug": "purple-shampoo-usage-frequency",
+    "eyecatch": { "url": "/journal/purple-shampoo-usage-frequency.jpg", "width": 1576, "height": 1970 },
+    "eyecatchAlt": "黄味を抑えたシルバーの毛先",
     "category": "column",
     "categoryLabel": "COLUMN",
     "title": "紫シャンプー（ムラシャン）の正しい使い方と頻度｜黄ばみを抑えて色を長く",
