@@ -135,6 +135,18 @@ export interface SiteConfig {
   book?: AuthoredBook;
   /** E-E-A-T: brand-level third-party media coverage. */
   press?: ExternalLink[];
+  /**
+   * エフェクトブリーチの広がり — 権威性(ambition)向けの確定ファクトのみ
+   * (オーナー確認 2026-07-26)。数値の断定を避けるため ambassadors は丸めた文字列。
+   */
+  effectBleach?: {
+    /** 開発・発売年。 */
+    developedYear: number;
+    /** 導入が広がっている国(確定分)。 */
+    countries: string[];
+    /** iLe の技術を学ぶアンバサダー数(変動値のため丸めた表現)。 */
+    ambassadors: string;
+  };
   /** Identity used for author-signed pages (/message, /story). */
   founderName: string;
   founderNameLatin: string;

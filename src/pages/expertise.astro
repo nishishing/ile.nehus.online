@@ -133,6 +133,25 @@ const pageSchemas = [
     </ul>
   </section>
 
+  {site.effectBleach && (
+    <section class="ex-section ex-reach" aria-labelledby="reach-h">
+      <div id="reach-h">
+        <SectionHead small="— Reach" title="技術の広がり" />
+      </div>
+      <p class="ex-lead">
+        エフェクトブリーチは{site.effectBleach.developedYear}年の開発以降、全国のサロン・美容師に導入され、
+        {site.effectBleach.countries.join("・")}の{site.effectBleach.countries.length}か国に広がっています。
+        iLe の技術を学ぶアンバサダーは{site.effectBleach.ambassadors}。開発元として、iLe は技術と理論を
+        国内外に開いています。
+      </p>
+      <ul class="reach-facts" aria-label="エフェクトブリーチの実績">
+        <li><span class="reach-facts__k">開発</span><span class="reach-facts__v">{site.effectBleach.developedYear}年</span></li>
+        <li><span class="reach-facts__k">展開</span><span class="reach-facts__v">{site.effectBleach.countries.length}か国（{site.effectBleach.countries.join("・")}）</span></li>
+        <li><span class="reach-facts__k">アンバサダー</span><span class="reach-facts__v">{site.effectBleach.ambassadors}</span></li>
+      </ul>
+    </section>
+  )}
+
   <section class="ex-section ex-tech" aria-labelledby="tech-h">
     <div id="tech-h">
       <SectionHead small="— Signature Technique" title="エフェクトブリーチ" />
@@ -159,7 +178,33 @@ const pageSchemas = [
   }
   .ex-intro { background: var(--color-snow); }
   .ex-people { background: var(--color-pearl); }
+  .ex-reach { background: var(--color-pearl); }
   .ex-tech { background: var(--color-ink); color: var(--color-white); }
+
+  .reach-facts {
+    max-width: 760px;
+    margin: 28px auto 0;
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+  }
+  .reach-facts li {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    border-top: 1px solid var(--color-border);
+    padding-top: 12px;
+  }
+  .reach-facts__k {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    min-width: 140px;
+  }
+  .reach-facts__v { font-size: 15px; }
 
   .ex-lead {
     max-width: 760px;
