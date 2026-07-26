@@ -95,6 +95,11 @@ export const site: SiteConfig = {
       url: "https://bangs.jp/special_contents/article.php?id=43",
     },
   ],
+  effectBleach: {
+    developedYear: 2021,
+    countries: ["日本", "韓国", "台湾", "香港", "メキシコ", "マレーシア"],
+    ambassadors: "約70名",
+  },
   founderName: "西村 涼",
   founderNameLatin: "Nishimura Ryo",
   foundedAt: "2020-08-01",
