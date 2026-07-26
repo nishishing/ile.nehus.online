@@ -499,6 +499,19 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-07-26** — AI可視性 第2弾（7/26実測のカテゴリ別分析に基づく・出現率アップ狙い）:
+  7/26 実測でカテゴリ別出現率が area 82%/technique 83% に対し **informational 14%/
+  ambition 0%** と判明。informational の定番クエリ（傷む理由/色落ち/リタッチ頻度/
+  インナーvsデザイン/紫シャンプー/縮毛矯正）は**記事もFAQも既にあるのにAIに拾われて
+  いない**＝量産ではなく露出不足が原因（llms.txt は最新12本しか載せない設計で古い
+  良記事が埋もれる）。対策: (1) `llms.txt.ts` に **GUIDES「お役立ちガイド」常設
+  セクション**新設（定番テーマの代表記事6本を最新枠と別に常時露出）。(2) FAQ +4問
+  （計30問）: informational穴埋め=「インナーカラーとデザインカラーの違い」「紫シャンプーの
+  使い方と頻度」（記事はあるがFAQ無し）、ambition/権威=「エフェクトブリーチは誰が開発？」
+  「バレイヤージュ・デザインカラーが得意なのは誰？」（酒井=開発者/西村=第一人者を著書と
+  ともに明示）。数値・肩書は確定ファクトのみ、誇大な最上級は書かない。check 0/build 102/
+  4バリデータ 0エラー。※ambition は外部メディア言及が本質で、サイト内施策は補助。
+
 - **2026-07-23** — URL の trailing-slash 統一（オーナー承認済み）: `wrangler.jsonc` の
   `assets.html_handling` を `auto-trailing-slash` → **`drop-trailing-slash`** に変更。
   Astro は `trailingSlash: "never"`・canonical/sitemap も末尾スラッシュなしなのに、

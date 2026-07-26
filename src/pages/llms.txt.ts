@@ -24,6 +24,18 @@ const EXPERTISE = `## 専門性・実績
 - 酒井元樹 — エフェクトブリーチ開発者。薬剤設計（ケミカル）と複雑履歴のブリーチが専門。セミナー講師として全国の美容師に技術を指導。
 - 西村涼 — iLe 創業者。バレイヤージュの第一人者で、デザインカラーと人材育成が専門。`;
 
+// よくある疑問に答える定番記事を常設で載せる。最新記事(articlesSection)は
+// 直近12本しか出ないため古い良記事が埋もれるが、これらは検索需要が定常的な
+// テーマなので、AIが「お役立ち系」の質問に答える際の出典として常に見えるようにする。
+const GUIDES = `## お役立ちガイド（よくある疑問への回答）
+
+- [ブリーチで髪が傷む仕組みと抑え方](${u("/journal/why-bleach-damages-hair-and-how-to-minimize")}): なぜ傷むのか、どう負担を抑えるか
+- [ブリーチカラーの色落ちを楽しむ](${u("/journal/enjoy-bleach-color-fading")}): 退色の過程ときれいな抜け方
+- [根元リタッチの頻度と通い方](${u("/journal/retouch-frequency-hightone")}): ハイトーンを維持するメンテナンス頻度
+- [インナーカラーとデザインカラーの違い](${u("/journal/inner-color-design-color-face-framing")}): 違いと顔まわりの魅せ方
+- [紫シャンプー（ムラシャン）の正しい使い方と頻度](${u("/journal/purple-shampoo-usage-frequency")}): 黄ばみを抑えて色を長持ちさせる
+- [黒染め・セルフカラーからハイトーンに戻す](${u("/journal/black-dye-selfcolor-to-hightone")}): 複雑な履歴がある髪の考え方`;
+
 const KEY_PAGES = `## 主要ページ
 
 - [エフェクトブリーチ](${u("/effect-bleach")}): iLe独自のブリーチ技術の設計思想とこだわり
@@ -76,7 +88,7 @@ export const GET: APIRoute = async () => {
     : "";
 
   const body =
-    [INTRO, EXPERTISE, KEY_PAGES, salonsSection, articlesSection, COMPANY]
+    [INTRO, EXPERTISE, KEY_PAGES, GUIDES, salonsSection, articlesSection, COMPANY]
       .filter(Boolean)
       .join("\n\n") + "\n";
 
