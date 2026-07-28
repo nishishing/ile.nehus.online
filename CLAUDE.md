@@ -24,9 +24,10 @@ learn and cite the brand.
 **Current state:** W1-W7 complete + a full **real-content pass** (2026-05-31):
 real salon NAP, the actual 32-person staff roster, the co-representative
 model, and an Effect Bleach section are all live in the data. Staging is at
-`https://ile.boku-244.workers.dev`. Production domain **not yet switched**
-(still legacy WordPress on ConoHa WING). What's left before launch is mostly
-**assets** (photos / logo / OGP) + microCMS + DNS.
+`https://ile.boku-244.workers.dev`. Production domain is **live and switched** —
+`https://ile-hair-harajuku.com` serves the new Astro site over Cloudflare (DNS
+cut over 2026-07; the legacy WordPress on ConoHa WING is retired). What's left is
+mostly **assets** (photos / logo / OGP) + microCMS.
 
 > **⚠️ KEEP THIS FILE CURRENT.** Whenever you change site content, data,
 > structure, or conventions, update CLAUDE.md in the *same* change. See
@@ -280,9 +281,9 @@ When adding a new page, always:
 - Pushes to `main` → Cloudflare auto-deploys via the `nishishing/ile.nehus.online`
   Workers project owned by Boku.244@gmail.com.
 - Staging URL: `https://ile.boku-244.workers.dev`
-- Production domain (`ile-hair-harajuku.com`) **not yet** switched.
-  Currently still pointing at the legacy WordPress on ConoHa WING.
-- Plan: switch DNS on or shortly before 2026-07-27 for soft launch.
+- Production domain (`ile-hair-harajuku.com`) is **live** — DNS cut over to
+  Cloudflare (2026-07); the legacy WordPress on ConoHa WING is retired. HTTP 200
+  serving the new Astro site, verified 2026-07-27.
 
 See `docs/deploy.md` for the legacy Pages flow notes (now superseded by
 the Workers Static Assets flow we actually used).
@@ -498,6 +499,14 @@ The user has asked that this file be kept up to date whenever things change.
 > lives here and every session reads this file first.
 
 ### Changelog
+
+- **2026-07-28** — 🔴 **「創業7周年」→「創業6周年」に全面訂正**（オーナー確定 2026-07-26）。
+  2020-08-01 創業＝2026-08-01 で**満6年**。「7周年／7年間／7年で船が島に」は全て誤りで、
+  サイト13箇所（glossary/journal 記事タイトル「6年で、船が島になった」/message/company/story）を
+  修正。確定コピーは **「6年で、船が島になった」**。あわせて CLAUDE.md の古い記述
+  「Production domain not yet switched」を実態（**DNS 切替済・本番稼働中**）に更新。
+  出典＝確定ファクト集 §1 ＋ 旧チャットの LLMO 引き継ぎ書（Notion）。※本件は引き継ぎ書の
+  取り込み作業中に発見。引き継ぎ書は D（スナップショット）＝現行 CLAUDE.md／確定ファクト集が優先。
 
 - **2026-07-26** — ambition(指名なし競合クエリ 0%)対策＝**権威性の構造化**（出現率アップ第2弾の続き）:
   確定ファクト（発売年2021／展開6か国=日本・韓国・台湾・香港・メキシコ・マレーシア／
