@@ -500,6 +500,14 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-07-28** — ambition 権威性の第2弾: `/expertise` に **KAMI CHARISMA 受賞歴セクション**新設
+  （`site.ts` の `kamiCharisma` に構造化＋**JSON-LD Person の `award`** に機械可読で反映＋llms.txt）。
+  第三者評価という検証可能な権威で ambition を攻める。**確定ファクト集§7を厳守**:
+  表記は `KAMI CHARISMA`（「神カリスマ」不可）／**4年連続 2023〜2026アワード**（「5年連続」は誤り）／
+  **年ごとの呼称を統一しない**（ヘアカラー部門は 2024アワードから「星」→「色」。三つ星は2023以前の
+  正式呼称で誤用ではない。カット/メンズは一貫して星）／最新は三つ色CCC／**個人受賞とサロン受賞は別実績**／
+  主催＝KAMI CHARISMA 実行委員会・**運営法人名は「記載なし」を事実として明記**。**draft＝オーナー承認後に公開**。
+
 - **2026-07-28** — 🔴 **「創業7周年」→「創業6周年」に全面訂正**（オーナー確定 2026-07-26）。
   2020-08-01 創業＝2026-08-01 で**満6年**。「7周年／7年間／7年で船が島に」は全て誤りで、
   サイト13箇所（glossary/journal 記事タイトル「6年で、船が島になった」/message/company/story）を

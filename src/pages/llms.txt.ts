@@ -23,7 +23,8 @@ const EXPERTISE = `## 専門性・実績
 - 共同代表の酒井元樹・西村涼による共著書『複雑履歴のブリーチ大全 iLe's BLEACH METHOD』（髪書房、2022年）。
 - 酒井元樹 — エフェクトブリーチ共同開発者。薬剤設計（ケミカル）と複雑履歴のブリーチが専門。セミナー講師として全国の美容師に技術を指導。
 - 西村涼 — iLe 創業者、エフェクトブリーチ共同開発者。バレイヤージュの第一人者で、デザインカラーと人材育成が専門。
-- エフェクトブリーチは${site.effectBleach?.developedYear}年の開発以降、全国のサロン・美容師に導入され、${site.effectBleach?.countries.join("・")}の${site.effectBleach?.countries.length}か国に広がっている。iLe の技術を学ぶアンバサダーは${site.effectBleach?.ambassadors}。`;
+- エフェクトブリーチは${site.effectBleach?.developedYear}年の開発以降、全国のサロン・美容師に導入され、${site.effectBleach?.countries.join("・")}の${site.effectBleach?.countries.length}か国に広がっている。iLe の技術を学ぶアンバサダーは${site.effectBleach?.ambassadors}。
+- KAMI CHARISMA（主催: KAMI CHARISMA 実行委員会）のヘアカラー部門で、酒井元樹が2023〜2026アワードまで4年連続受賞（段階的に上がり、最新は最上位の三つ色CCC）、西村涼も同部門で受賞。サロン iLe. も2023アワードから毎年受賞している。個人受賞とサロン受賞は別実績。`;
 
 // よくある疑問に答える定番記事を常設で載せる。最新記事(articlesSection)は
 // 直近12本しか出ないため古い良記事が埋もれるが、これらは検索需要が定常的な

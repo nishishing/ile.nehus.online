@@ -40,25 +40,35 @@ export function organizationSchema() {
       "ダメージレスブリーチ",
       "複雑履歴のブリーチ",
     ],
-    founder: site.representatives.map((r) => ({
-      "@type": "Person",
-      "@id": `${site.url}/${r.id}`,
-      name: r.name,
-      alternateName: r.nameLatin,
-      jobTitle: `${r.title} / ${r.titleEn}`,
-      description: r.bio,
-      knowsAbout: r.knowsAbout,
-      worksFor: { "@id": `${site.url}/#organization` },
-      // E-E-A-T: verified identity profiles + third-party coverage.
-      sameAs: r.sameAs?.length ? r.sameAs : undefined,
-      subjectOf: r.press?.length
-        ? r.press.map((p) => ({
-            "@type": "WebPage",
-            name: p.label,
-            url: p.url,
-          }))
-        : undefined,
-    })),
+    founder: site.representatives.map((r) => {
+      // E-E-A-T: KAMI CHARISMA awards as a machine-readable authority signal.
+      // Grade strings are each year's official name (color/star varies by year).
+      const kami = site.kamiCharisma?.personal.find((p) => p.name === r.name);
+      return {
+        "@type": "Person",
+        "@id": `${site.url}/${r.id}`,
+        name: r.name,
+        alternateName: r.nameLatin,
+        jobTitle: `${r.title} / ${r.titleEn}`,
+        description: r.bio,
+        knowsAbout: r.knowsAbout,
+        worksFor: { "@id": `${site.url}/#organization` },
+        award: kami?.awards.length
+          ? kami.awards.map(
+              (a) => `KAMI CHARISMA ${a.year} ${a.grade}（ヘアカラー部門）`,
+            )
+          : undefined,
+        // E-E-A-T: verified identity profiles + third-party coverage.
+        sameAs: r.sameAs?.length ? r.sameAs : undefined,
+        subjectOf: r.press?.length
+          ? r.press.map((p) => ({
+              "@type": "WebPage",
+              name: p.label,
+              url: p.url,
+            }))
+          : undefined,
+      };
+    }),
     address: {
       "@type": "PostalAddress",
       addressCountry: "JP",

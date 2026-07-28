@@ -147,6 +147,21 @@ export interface SiteConfig {
     /** iLe の技術を学ぶアンバサダー数(変動値のため丸めた表現)。 */
     ambassadors: string;
   };
+  /**
+   * KAMI CHARISMA 受賞歴 — 第三者評価の権威性(E-E-A-T)。確定ファクト集§7準拠。
+   * ⚠️ grade はその年の正式呼称そのまま(ヘアカラー部門は 2024アワードから「星」→「色」)。
+   * 年をまたいで呼称を統一しない。個人受賞とサロン受賞は別実績。
+   */
+  kamiCharisma?: {
+    organizer: string;
+    /** 会長/副会長・運営法人名の扱いなど(「記載なし」も事実として明記)。 */
+    organizerNote: string;
+    url: string;
+    /** 個人受賞(ヘアカラー部門)。 */
+    personal: { name: string; awards: { year: string; grade: string }[] }[];
+    /** サロン受賞(個人とは別実績)。 */
+    salon: { year: string; detail: string }[];
+  };
   /** Identity used for author-signed pages (/message, /story). */
   founderName: string;
   founderNameLatin: string;

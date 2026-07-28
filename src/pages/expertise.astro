@@ -152,6 +152,48 @@ const pageSchemas = [
     </section>
   )}
 
+  {site.kamiCharisma && (
+    <section class="ex-section ex-awards" aria-labelledby="awards-h">
+      <div id="awards-h">
+        <SectionHead small="— Awards" title="第三者評価 — KAMI CHARISMA" />
+      </div>
+      <p class="ex-lead">
+        iLe の技術は第三者評価でも認められています。KAMI CHARISMA のヘアカラー部門で、
+        共同代表の酒井 元樹が 2023〜2026アワードまで4年連続で受賞（最新は最上位の三つ色CCC）、
+        西村 涼も同部門で受賞しています。サロン iLe. も 2023アワードから毎年受賞しています。
+      </p>
+      <div class="awards">
+        <div class="awards__group">
+          <h3 class="awards__h">個人受賞（ヘアカラー部門）</h3>
+          {site.kamiCharisma.personal.map((p) => (
+            <div class="awards__person">
+              <p class="awards__name">{p.name}</p>
+              <ul class="awards__years" aria-label={`${p.name}の受賞`}>
+                {p.awards.map((a) => (
+                  <li><span class="awards__year">{a.year}</span><span class="awards__grade">{a.grade}</span></li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div class="awards__group">
+          <h3 class="awards__h">サロン受賞</h3>
+          <ul class="awards__years" aria-label="サロン受賞">
+            {site.kamiCharisma.salon.map((s) => (
+              <li><span class="awards__year">{s.year}</span><span class="awards__grade">{s.detail}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <p class="awards__note">
+        等級の呼称は KAMI CHARISMA 各年の正式名称に準じます（ヘアカラー部門は 2024アワードから
+        「星」→「色」へ呼称変更）。個人受賞とサロン受賞は別の実績です。<br />
+        主催: {site.kamiCharisma.organizer}（{site.kamiCharisma.organizerNote}）
+        <a href={site.kamiCharisma.url} target="_blank" rel="noopener">公式サイト ↗</a>
+      </p>
+    </section>
+  )}
+
   <section class="ex-section ex-tech" aria-labelledby="tech-h">
     <div id="tech-h">
       <SectionHead small="— Signature Technique" title="エフェクトブリーチ" />
@@ -179,7 +221,59 @@ const pageSchemas = [
   .ex-intro { background: var(--color-snow); }
   .ex-people { background: var(--color-pearl); }
   .ex-reach { background: var(--color-pearl); }
+  .ex-awards { background: var(--color-snow); }
   .ex-tech { background: var(--color-ink); color: var(--color-white); }
+
+  .awards {
+    max-width: 900px;
+    margin: 32px auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .awards__h {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 16px;
+  }
+  .awards__person { margin-bottom: 20px; }
+  .awards__name { font-size: 15px; margin: 0 0 8px; }
+  .awards__years {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+  }
+  .awards__years li {
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-top: 1px solid var(--color-border);
+    padding-top: 8px;
+  }
+  .awards__year {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--color-fg-muted);
+    min-width: 96px;
+  }
+  .awards__grade { font-size: 14px; }
+  .awards__note {
+    max-width: 900px;
+    margin: 28px auto 0;
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--color-fg-muted);
+  }
+  .awards__note a { border-bottom: 1px solid currentColor; padding-bottom: 1px; margin-left: 4px; }
+  @media (max-width: 640px) {
+    .awards { grid-template-columns: 1fr; gap: 28px; }
+  }
 
   .reach-facts {
     max-width: 760px;
