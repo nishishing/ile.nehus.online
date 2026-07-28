@@ -16,16 +16,16 @@ export const journalPosts: readonly JournalPost[] = [
     publishedAt: "2026-08-01",
     publishedAtLabel: "August 1, 2026",
     summary:
-      "創業7周年を迎える株式会社ingは、運営する美容室4店舗（iLe原宿・nehus原宿・nehus名古屋・nehus長岡）を、すべて『iLe』ブランドに統一いたします。",
+      "創業6周年を迎える株式会社ingは、運営する美容室4店舗（iLe原宿・nehus原宿・nehus名古屋・nehus長岡）を、すべて『iLe』ブランドに統一いたします。",
   },
   {
     slug: "story-seven-years",
     category: "story",
     categoryLabel: "STORY",
-    title: "7年で、船が島になった。",
+    title: "6年で、船が島になった。",
     publishedAt: "2026-07-28",
     publishedAtLabel: "July 28, 2026",
     summary:
-      "原宿の小さな iLe から始まり、各地に船を出し、それぞれの土地で確かな島となるまでの7年間の物語。",
+      "原宿の小さな iLe から始まり、各地に船を出し、それぞれの土地で確かな島となるまでの6年間の物語。",
   },
 ];
