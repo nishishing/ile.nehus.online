@@ -100,6 +100,43 @@ export const site: SiteConfig = {
     countries: ["日本", "韓国", "台湾", "香港", "メキシコ", "マレーシア"],
     ambassadors: "約70名",
   },
+  // KAMI CHARISMA 受賞歴 — 確定ファクト集§7準拠。grade は各年の正式呼称そのまま
+  // (ヘアカラー部門は 2024アワードから「星」→「色」)。年をまたいで統一しない。
+  kamiCharisma: {
+    organizer: "KAMI CHARISMA 実行委員会",
+    organizerNote:
+      "会長 麻生太郎・副会長 小渕優子。運営法人名は公式サイトに記載がありません。",
+    url: "https://www.kami-charisma.com/",
+    personal: [
+      {
+        name: "酒井 元樹",
+        awards: [
+          { year: "2023アワード", grade: "一つ星★" },
+          { year: "2024アワード", grade: "二つ色CC" },
+          { year: "2025アワード", grade: "三つ色CCC" },
+          { year: "2026アワード", grade: "三つ色CCC" },
+        ],
+      },
+      {
+        name: "西村 涼",
+        awards: [
+          { year: "2023アワード", grade: "一つ星★" },
+          { year: "2024アワード", grade: "一つ色C" },
+          { year: "2025アワード", grade: "一つ色C" },
+          { year: "2026アワード", grade: "一つ色C" },
+        ],
+      },
+    ],
+    salon: [
+      { year: "2023アワード", detail: "iLe. 一冠（カラー）" },
+      { year: "2024アワード", detail: "iLe. 二冠（カラー／トリートメント&スパ）" },
+      { year: "2025アワード", detail: "iLe. 一冠（カラー）" },
+      {
+        year: "2026アワード",
+        detail: "iLe. 一冠（カラー）／ nehus 二冠（カラー／トリートメント&スパ）",
+      },
+    ],
+  },
   founderName: "西村 涼",
   founderNameLatin: "Nishimura Ryo",
   foundedAt: "2020-08-01",
