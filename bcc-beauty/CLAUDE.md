@@ -119,7 +119,7 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 | stylebase | 開業支援 | StyleBase 開業支援 | LINE |
 | mutas | 不動産 | ムータス | LINE |
 | real-estate-salon | 不動産 | 美容室専門の不動産屋 | LINE |
-| plum-plan | 内装業者 | PLUM PLAN | LINE `lin.ee/u4V8BIt` |
+| plum-plan | 内装業者 | PLUM PLAN | LINE `lin.ee/u4V8BIt` + 公式サイト `lacompany.jp/plamplan/` |
 | layer-design-works | 内装業者 | Layer Design Works | LINE + 施工写真 + 資料 |
 | sunny-side-life | 内装業者 | SUNNY SIDE LIFE | LINE |
 | imamura-fp | 財務 | 税務調査対策×保険（今村FP） | LINE |
@@ -179,6 +179,12 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 ---
 
 ## Changelog（新しい順）
+
+- **2026-07-30** — PLUM PLAN の詳細ページに**公式サイトへの導線を追加**（オーナー指示）。
+  `RICH['plum-plan']` を `links` 方式に変更し、「PLUM PLAN専用の公式LINEへ」(濃色・主導線) ＋
+  「公式サイトで施工事例を見る」(<https://lacompany.jp/plamplan/>) の2ボタン構成に。従来の
+  「ほかのサービスを見る」が公式サイトに置き換わった形で、公式LINEボタンと注記はそのまま維持。
+  ※サイト側の表記は **PLAMPLAN / L.A.COMPANY** だが、**ポータルの表示名は「PLUM PLAN」のまま**でオーナー確定（2026-07-30）。
 
 - **2026-07-28（同日・積み残しのクローズ）** — 引き継ぎ書 第4項の「これ1日一回15時だけでいいかな」(2026-07-08) を
   オーナーに確認 → **本人も記憶なし・流すで確定**。DO/DON'T に「クローズ済み・再提起しない／推測で仕組みを作らない」

@@ -428,7 +428,15 @@ const RICH = {
   "stylebase": { lineUrl: "https://lin.ee/PlhUEY9", intro: "美容室の開業を、準備から運営の立ち上げまで支援するサービス。開業に関するご相談を受け付けています。", features: ["美容室の開業支援", "立ち上げ〜運営をサポート", "公式LINEで相談受付"] },
   "mutas": { lineUrl: "https://lin.ee/zneHaGp", intro: "不動産の専属事業提携によるサービス。物件・出店に関するご相談に対応します。", features: ["不動産の専属事業提携", "物件・出店の相談", "公式LINEで相談受付"] },
   "real-estate-salon": { lineUrl: "https://lin.ee/tIoKLH1", intro: "美容室に特化した不動産サービス。テナント・居抜き・M&Aまで幅広く対応します。", features: ["美容室専門の不動産", "テナント・居抜きに対応", "M&Aに対応", "公式LINEで相談受付"] },
-  "plum-plan": { lineUrl: "https://lin.ee/u4V8BIt", intro: "内装・運営から空間設計まで、サロンづくりをトータルでサポートします。", features: ["内装・空間設計をトータルサポート", "運営・立ち上げまで対応", "公式LINEで相談受付"] },
+  "plum-plan": {
+    lineUrl: "https://lin.ee/u4V8BIt",
+    intro: "内装・運営から空間設計まで、サロンづくりをトータルでサポートします。",
+    features: ["内装・空間設計をトータルサポート", "運営・立ち上げまで対応", "公式LINEで相談受付"],
+    links: [
+      { label: "PLUM PLAN専用の公式LINEへ", href: "https://lin.ee/u4V8BIt", primary: true, note: "※詳しい内容・お見積り・ご予約は、PLUM PLAN専用の公式LINEでご案内します（BCCの公式LINEとは別アカウントです）。" },
+      { label: "公式サイトで施工事例を見る", href: "https://lacompany.jp/plamplan/" },
+    ],
+  },
   "layer-design-works": {
     logo: "notion/layer-design-works/logo.jpg",
     lineUrl: "https://lin.ee/DXZM8Px",
