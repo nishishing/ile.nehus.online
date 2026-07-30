@@ -1,4 +1,5 @@
 import type { JournalPost } from "~types/content";
+import { unifyTense } from "~lib/brand-state";
 
 /**
  * Initial journal posts shown on the top page.
@@ -16,7 +17,7 @@ export const journalPosts: readonly JournalPost[] = [
     publishedAt: "2026-08-01",
     publishedAtLabel: "August 1, 2026",
     summary:
-      "創業6周年を迎える株式会社ingは、運営する美容室4店舗（iLe原宿・nehus原宿・nehus名古屋・nehus長岡）を、すべて『iLe』ブランドに統一いたします。",
+      `創業6周年を迎える株式会社ingは、運営する美容室4店舗（iLe原宿・nehus原宿・nehus名古屋・nehus長岡）を、すべて『iLe』ブランドに${unifyTense("統一いたします", "統一いたしました")}。`,
   },
   {
     slug: "story-seven-years",

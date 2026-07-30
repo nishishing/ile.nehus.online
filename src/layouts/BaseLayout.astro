@@ -6,6 +6,7 @@ import Header from "~components/Header.astro";
 import Footer from "~components/Footer.astro";
 import Floating from "~components/Floating.astro";
 import { getJournalPosts } from "~lib/content";
+import { isUnified } from "~lib/brand-state";
 
 // Cloudflare Web Analytics (cookieless). Emitted only when the token is
 // provided at build time — set PUBLIC_CF_BEACON_TOKEN in the Cloudflare
@@ -41,7 +42,7 @@ const latestPost = hideFloating
 ---
 
 <!doctype html>
-<html lang="ja">
+<html lang="ja" style={isUnified ? "--announce-h:0px" : undefined}>
   <head>
     <BaseHead
       title={title}
@@ -62,7 +63,7 @@ const latestPost = hideFloating
   </head>
   <body>
     <a href="#main" class="skip-link">本文へスキップ</a>
-    <AnnounceBar />
+    {!isUnified && <AnnounceBar />}
     <LanguageStrip />
     <Header />
     <main id="main" tabindex="-1">
