@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "~layouts/BaseLayout.astro";
+import { unifyTense } from "~lib/brand-state";
 import Hero from "~components/Hero.astro";
 import Statement from "~components/Statement.astro";
 import SectionHead from "~components/SectionHead.astro";
@@ -45,7 +46,7 @@ const pageSchemas = [
 
 <BaseLayout
   title="船から、島へ。"
-  description="iLe｜美容室 — 原宿・名古屋・長岡。2020年に原宿で創業した株式会社ingは、2026年8月1日、運営する4店舗（旧 iLe / nehus）すべてを iLe ブランドに統一します。"
+  description={`iLe｜美容室 — 原宿・名古屋・長岡。2020年に原宿で創業した株式会社ingは、2026年8月1日、運営する4店舗（旧 iLe / nehus）すべてを iLe ブランドに${unifyTense("統一します", "統一しました")}。`}
 >
   <Fragment slot="head">
     {pageSchemas.map((schema) => (

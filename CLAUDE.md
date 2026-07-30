@@ -500,6 +500,15 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-07-30** — 8/1 ブランド統一の「予告→完了」**自動切替**を実装。`src/lib/brand-state.ts` の
+  `isUnified`（ビルド時 `new Date() >= site.unifiedAt(JST)`）を基準に、(1) 告知バー AnnounceBar を
+  8/1以降 自動非表示＋`--announce-h:0`（BaseLayout） (2) 主要文言の時制を `unifyTense("統一します","統一しました")`
+  で自動切替（index / message / story / llms.txt / journal 統一告知記事）。**店舗の表示名は既に統一後
+  （iLe.＋ / iLe. nagoya / iLe. nagaoka）で変更なし**。⚠️ SSG のため **8/1 以降のビルド**（auto-blog 平日 JST 9時頃）
+  で反映＝当日朝までは予告のまま。即時反映は 8/1 に手動再デプロイ。`isUnified=true` 強制ビルドで
+  告知バー消滅・完了時制を**事前検証済み**。※ company/site.ts description は体言止め・recruit は受身で
+  8/1前後どちらも自然なため対象外。
+
 - **2026-07-28** — ambition 権威性の第2弾: `/expertise` に **KAMI CHARISMA 受賞歴セクション**新設
   （`site.ts` の `kamiCharisma` に構造化＋**JSON-LD Person の `award`** に機械可読で反映＋llms.txt）。
   第三者評価という検証可能な権威で ambition を攻める。**確定ファクト集§7を厳守**:

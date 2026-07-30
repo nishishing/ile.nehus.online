@@ -1,0 +1,41 @@
+name: Brand unification deploy (one-shot 2026-08-01)
+
+# 🗑️ ONE-SHOT — 2026-08-01 のブランド統一「発効」専用ワークフロー。
+#
+# なぜ必要か: サイトは静的(SSG)で、本番反映は main への push 契機の Cloudflare 再ビルド時。
+# 時制/告知バーは brand-state.ts の isUnified(ビルド時 JST 判定)で自動切替されるが、
+# ⚠️ 8/1 は土曜で auto-blog(平日のみ)が走らないため、放置すると 8/1・8/2 が「予告」のまま公開される。
+# そこで JST 8/1 00:05 に一度だけ再ビルドを起こし、isUnified を true に切り替える。
+#
+# 自己削除: 実行時にこのファイル自身を git rm するコミットを push する。よって
+# ・main が変わる → Cloudflare 再デプロイ → isUnified=true(告知バー撤去・「統一しました」)
+# ・このワークフローは削除される → 翌年 8/1 に誤動作しない(消し忘れ防止)
+# 手動保険として workflow_dispatch も可。8/2 以降にファイルが消えているか確認すること。
+
+on:
+  schedule:
+    - cron: "5 15 31 7 *" # 2026-07-31 15:05 UTC = 2026-08-01 00:05 JST(一度きり想定)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: brand-unification-deploy
+  cancel-in-progress: false
+
+jobs:
+  redeploy:
+    name: Flip isUnified to true and self-delete
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Commit (removes this one-shot workflow) to trigger Cloudflare rebuild
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/brand-unification-deploy.yml
+          git commit -m "chore(brand): 8/1 ブランド統一の発効ビルド（isUnified to true）＋一度きりworkflowを自己削除"
+          git push

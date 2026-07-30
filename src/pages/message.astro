@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "~layouts/BaseLayout.astro";
+import { unifyTense } from "~lib/brand-state";
 import PageHero from "~components/PageHero.astro";
 import Prose from "~components/Prose.astro";
 import {
@@ -10,7 +11,7 @@ import {
 import { site } from "~data/site";
 
 const description =
-  "iLe創業者・西村涼からのメッセージ。2026年8月1日、創業6周年を迎え、運営する4店舗すべてを iLe ブランドに統一します。船から、島へ。";
+  `iLe創業者・西村涼からのメッセージ。2026年8月1日、創業6周年を迎え、運営する4店舗すべてを iLe ブランドに${unifyTense("統一します", "統一しました")}。船から、島へ。`;
 
 const pageSchemas = [
   standaloneArticleSchema({
@@ -79,7 +80,7 @@ const pageSchemas = [
       <h2>2026年8月1日、すべてを iLe にします</h2>
 
       <p>
-        創業6周年を迎えるこの日に、運営する4店舗の名前を、すべて「iLe」に統一します。
+        創業6周年を迎えるこの日に、運営する4店舗の名前を、すべて「iLe」に{unifyTense("統一します", "統一しました")}。
         統一されるのは名前だけです。それぞれの店舗の空気も、スタッフも、お客様との関係も、
         これまでと何一つ変わりません。
       </p>

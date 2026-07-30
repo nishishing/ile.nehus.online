@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "~layouts/BaseLayout.astro";
+import { unifyTense } from "~lib/brand-state";
 import PageHero from "~components/PageHero.astro";
 import Prose from "~components/Prose.astro";
 import Ticker from "~components/Ticker.astro";
@@ -10,7 +11,7 @@ import {
 } from "~lib/schema";
 
 const description =
-  "iLe（イル）— フランス語で「島」を意味する。2020年、原宿の一軒のサロンとして始まり、新天地へ「nehus（船）」を出し、各地で根を張り島になりました。2026年8月1日、4店舗すべてを iLe に統一します。";
+  `iLe（イル）— フランス語で「島」を意味する。2020年、原宿の一軒のサロンとして始まり、新天地へ「nehus（船）」を出し、各地で根を張り島になりました。2026年8月1日、4店舗すべてを iLe に${unifyTense("統一します", "統一しました")}。`;
 
 const pageSchemas = [
   standaloneArticleSchema({
@@ -105,7 +106,7 @@ const pageSchemas = [
       <p>
         2026年8月1日、創業から6周年を迎えるこの日に、私たちは決断しました。
         運営する4店舗 — iLe（原宿）、nehus（原宿）、nehus 名古屋、nehus 長岡 — の
-        すべてを「iLe」ブランドに統一します。
+        すべてを「iLe」ブランドに{unifyTense("統一します", "統一しました")}。
       </p>
 
       <p>
