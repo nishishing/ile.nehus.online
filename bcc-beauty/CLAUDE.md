@@ -123,7 +123,7 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 | layer-design-works | 内装業者 | Layer Design Works | LINE + 施工写真 + 資料 |
 | sunny-side-life | 内装業者 | SUNNY SIDE LIFE | LINE |
 | imamura-fp | 財務 | 税務調査対策×保険（今村FP） | LINE |
-| liverty | 福利厚生 | 携帯電話プラン（ソフトバンク・BCC限定） | 公式LINE `lin.ee/WNphK9j`（合言葉「BCC／携帯」）/ 料金シミュレーター/LP/チラシ/Instagram `shoo1004_official` |
+| liverty | 福利厚生 | 携帯電話プラン（ソフトバンク・BCC限定） | 公式LINE `lin.ee/WNphK9j`（合言葉「BCC／携帯」）/ 料金シミュレーター/LP/チラシ ※Instagramボタンは2026-07-08にオーナー指示で削除済み |
 | materials-intro | 材料 | 材料（仕入れ紹介） | LINE + 資料 |
 | drive-blue | 材料 | ドライブブルー | **PWゲート**→発注サイト `irida.stores.jp`（PW 123）+ リジェネ使い方Notion |
 | hairstyle-market | ヘアスタイル販売 | ヘアスタイル販売サイト | Artify `artify.stores.jp` + 資料 |
@@ -179,6 +179,11 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 ---
 
 ## Changelog（新しい順）
+
+- **2026-07-31** — ドキュメント修正: サービス一覧表の liverty 行に残っていた `Instagram shoo1004_official` を
+  削除（**実ページ・`gen.mjs` とも 2026-07-08 のオーナー指示で削除済みで、表だけが古かった**）。
+  あわせて実測: **BCC ポータル全29ページに instagram.com へのリンクは 0 件**。
+  → 店舗 Instagram の @ 変更が起きても **BCC ポータルへの影響はゼロ**（2026-07-31 実測）。
 
 - **2026-07-30** — PLUM PLAN の詳細ページに**公式サイトへの導線を追加**（オーナー指示）。
   `RICH['plum-plan']` を `links` 方式に変更し、「PLUM PLAN専用の公式LINEへ」(濃色・主導線) ＋
