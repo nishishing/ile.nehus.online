@@ -920,13 +920,19 @@ const indexBody = `<header class="hero">
     <div class="sec-head reveal">
       <p class="komoji lbl">Information</p>
       <h2>まずは、<em>ここから</em>。</h2>
-      <p>BCCの全体像はこちら。気になることはオープンチャットで気軽に。</p>
+      <p>BCCの全体像と、いま読んでおきたいコンテンツ。気になることはオープンチャットで気軽に。</p>
     </div>
-    <div class="grid two reveal">
+    <div class="grid reveal">
       <a class="card" href="${ABOUT}">
         <p class="komoji ctag">About</p>
         <h4>BCCとは</h4>
         <p>想い・提供サポート・実績・会社概要。BCCの全体像はこちら。</p>
+        <span class="more">View <span class="arw">→</span></span>
+      </a>
+      <a class="card" href="/stylemanager">
+        <p class="komoji ctag">Pick up</p>
+        <h4>HPBの実データ公開</h4>
+        <p>ライトプランの店が、最上位プラン超え。5店舗の公式レポートをそのまま公開しています。</p>
         <span class="more">View <span class="arw">→</span></span>
       </a>
       <a class="card" href="${OC_URL}" target="_blank" rel="noopener noreferrer">
