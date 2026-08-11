@@ -180,6 +180,12 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 
 ## Changelog（新しい順）
 
+- **2026-08-11** — **StyleManager 告知を BCC 会員へ LINE 一斉配信（オーナーが実施・完了）**。あわせて
+  **トップに常設「おすすめコンテンツ」カードを追加**（オーナー承認）。Information セクションを 2枚→3枚に
+  （`grid two` → `grid` の3カラム。Services と同じレイアウトのため崩れなし）。3枚目は
+  **Pick up ／ HPBの実データ公開 → `/stylemanager`**。ルールどおり料金・絵文字は入れていない。
+  ※このカードは差し替え前提の告知枠。中身を変えるときは `gen.mjs` の indexBody 内の該当カードを直す。
+
 - **2026-07-31** — ドキュメント修正: サービス一覧表の liverty 行に残っていた `Instagram shoo1004_official` を
   削除（**実ページ・`gen.mjs` とも 2026-07-08 のオーナー指示で削除済みで、表だけが古かった**）。
   あわせて実測: **BCC ポータル全29ページに instagram.com へのリンクは 0 件**。
