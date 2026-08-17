@@ -13,7 +13,7 @@
 //   ANTHROPIC_API_KEY=… node scripts/generate-post.mjs            # pick next unused topic
 //   INPUT_TOPIC="…" node scripts/generate-post.mjs                # force a topic
 //   node scripts/generate-post.mjs --mock                         # no API call (pipeline test)
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
 import { join } from "node:path";
 import { marked } from "marked";
 
@@ -55,6 +55,15 @@ if (!chosen) {
   process.exit(0);
 }
 console.log(`generate-post: topic = ${chosen.topic}`);
+
+// 残弾の先行警告 (2026-08-17 COO承認): 枯渇「当日」に知るのでは補充が間に合わず数日空く。
+// このrunで1件消費した後の未使用シード数を出力し、workflowのLINE通知が5件以下で警告を足す。
+const remainingSeeds = topics.filter((t) => !usedTopics.has(t.topic) && t.topic !== chosen.topic).length;
+console.log(`generate-post: remaining seed topics after this run = ${remainingSeeds}`);
+if (process.env.GITHUB_OUTPUT) {
+  appendFileSync(process.env.GITHUB_OUTPUT, `remaining=${remainingSeeds}
+`);
+}
 
 // ---- output schema ---------------------------------------------------------
 const schema = {
