@@ -38,6 +38,7 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       - name: Generate article
+        id: gen
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           INPUT_TOPIC: ${{ inputs.topic }}
@@ -85,6 +86,7 @@ jobs:
           PUBLISHED: ${{ steps.publish.outputs.published }}
           TITLE: ${{ steps.publish.outputs.title }}
           SLUG: ${{ steps.publish.outputs.slug }}
+          REMAINING: ${{ steps.gen.outputs.remaining }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           if [ -z "$LINE_TOKEN" ] || [ -z "$LINE_TO" ]; then
@@ -95,6 +97,9 @@ jobs:
             MSG=$'❌ iLe自動ブログ：投稿に失敗しました（'"$JOB_STATUS"$'）。\nクレジット残高や設定をご確認ください。\n'"$RUN_URL"
           elif [ "$PUBLISHED" = "true" ]; then
             MSG=$'✅ iLe自動ブログ：新しい記事を公開しました。\n'"$TITLE"$'\nhttps://ile-hair-harajuku.com/journal/'"$SLUG"
+            if [ -n "$REMAINING" ] && [ "$REMAINING" -le 5 ] 2>/dev/null; then
+              MSG="$MSG"$'\n⚠️ シードトピック残り'"$REMAINING"$'件です。src/data/seo-topics.json の補充をご検討ください。'
+            fi
           else
             MSG=$'ℹ️ iLe自動ブログ：実行しましたが新規投稿はありませんでした（トピック切れの可能性）。\nsrc/data/seo-topics.json をご確認ください。'
           fi
