@@ -932,7 +932,7 @@ const indexBody = `<header class="hero">
       <a class="card" href="/stylemanager">
         <p class="komoji ctag">Pick up</p>
         <h4>HPBの実データ公開</h4>
-        <p>ライトプランの店が、最上位プラン超え。5店舗の公式レポートをそのまま公開しています。</p>
+        <p>ライトプランの店が、最上位プラン超え。5店舗の公式レポートと、スタイル・ブログ・口コミの運用代行はこちら。</p>
         <span class="more">View <span class="arw">→</span></span>
       </a>
       <a class="card" href="${OC_URL}" target="_blank" rel="noopener noreferrer">
