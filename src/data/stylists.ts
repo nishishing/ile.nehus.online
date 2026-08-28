@@ -206,7 +206,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagoya",
     position: "店長 / スタイリスト",
     specialties: ["ブリーチ", "ハイトーン"],
-    instagram: "k_u_w_a_nehus",
+    instagram: "k_u_w_a_ile",
     portrait: { url: "/staff/kuwamoto-atsushi.jpg", width: 600, height: 750 },
   },
   {
@@ -215,7 +215,7 @@ export const stylists: readonly Stylist[] = [
     nameJa: "大野 翔輝",
     salonSlug: "nagoya",
     position: "スタイリスト",
-    instagram: "shoki.nehus",
+    instagram: "shoki.ile",
     portrait: { url: "/staff/ono-shoki.jpg", width: 600, height: 750 },
   },
   {
@@ -224,7 +224,7 @@ export const stylists: readonly Stylist[] = [
     nameJa: "西村 竜人",
     salonSlug: "nagoya",
     position: "スタイリスト",
-    instagram: "nehus_ryuto",
+    instagram: "ryuto_ile",
     portrait: { url: "/staff/nishimura-ryuto.jpg", width: 600, height: 750 },
   },
   {
@@ -233,7 +233,7 @@ export const stylists: readonly Stylist[] = [
     nameJa: "有森 美里",
     salonSlug: "nagoya",
     position: "アシスタント",
-    instagram: "misato__nehus",
+    instagram: "ile.misa",
     portrait: { url: "/staff/arimori-misato.jpg", width: 600, height: 750 },
   },
   {
@@ -242,7 +242,7 @@ export const stylists: readonly Stylist[] = [
     nameJa: "田野上 佳歩",
     salonSlug: "nagoya",
     position: "アシスタント",
-    instagram: "kaho_nehus",
+    instagram: "kaho__ile",
   },
   {
     slug: "watanabe-shika",
@@ -259,7 +259,7 @@ export const stylists: readonly Stylist[] = [
     nameJa: "進藤 叶羽",
     salonSlug: "nagaoka",
     position: "スタイリスト",
-    instagram: "nehus_kanau",
+    instagram: "ile__nu",
     portrait: { url: "/staff/shindo-kanawa.jpg", width: 600, height: 750 },
   },
   {
@@ -269,7 +269,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagaoka",
     position: "店長 / スタイリスト",
     specialties: ["ブリーチ", "ハイトーン"],
-    instagram: "nehus_ta.kkey",
+    instagram: "ile.takkey",
     portrait: { url: "/staff/takizawa-yoshinori.jpg", width: 600, height: 750 },
   },
   {
@@ -279,7 +279,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagaoka",
     position: "スタイリスト",
     specialties: ["ブリーチ"],
-    instagram: "ogi_short.nehus",
+    instagram: "ile_ogi",
     portrait: { url: "/staff/oginezawa-kyohei.jpg", width: 600, height: 750 },
   },
   {
@@ -288,7 +288,7 @@ export const stylists: readonly Stylist[] = [
     nameJa: "清水 瑞希",
     salonSlug: "nagaoka",
     position: "スタイリスト",
-    instagram: "nehus_mii",
+    instagram: "ile___mii",
     portrait: { url: "/staff/shimizu-mizuki.jpg", width: 600, height: 750 },
   },
   {
@@ -305,7 +305,7 @@ export const stylists: readonly Stylist[] = [
     nameJa: "渡辺 美憂",
     salonSlug: "nagaoka",
     position: "アシスタント",
-    instagram: "nehus_miyuu",
+    instagram: "ile_miyuu",
     portrait: { url: "/staff/watanabe-miyu.jpg", width: 600, height: 750 },
   },
 ];
