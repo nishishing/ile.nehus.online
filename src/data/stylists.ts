@@ -18,7 +18,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-a",
     position: "共同代表",
     profile:
-      "日本におけるバレイヤージュ技術の第一人者。圧倒的なデザインセンスと緻密な塗り分けにより、立体感と透け感を両立させるスペシャリスト。",
+      "バレイヤージュ第一人者。圧倒的なデザインセンスと緻密な塗り分けにより、立体感と透け感を両立させるスペシャリスト。",
     specialties: ["ブリーチ", "ハイトーン", "メンズ"],
     instagram: "nishishing",
     portrait: { url: "/staff/nishimura-ryo.jpg", width: 600, height: 750 },
