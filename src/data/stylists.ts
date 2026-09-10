@@ -9,6 +9,12 @@ import type { Stylist } from "~types/content";
  * grouped by salon, co-reps and stylists ahead of assistants; 在籍 only.
  * Portraits are the salon’s own Hot Pepper photos, self-hosted + desaturated
  * to fit the cool-mono design (placeholders until real shoots land).
+ *
+ * 掲載しない人の記録（消さずに残す。理由が無いと、次に名簿を見た人が
+ * 「漏れ」と判断して足してしまう）:
+ * - 西小野 隼輝 — **美容師としての施術がないため**（back-office）。在籍だが対象外。
+ *   オーナー確定 2026-09-10。⚠️ 出典は前任セッションの引き継ぎ記載であり、
+ *   新セッションがオーナーから直接聞いたものではない（要一言確認）。
  */
 export const stylists: readonly Stylist[] = [
   {
