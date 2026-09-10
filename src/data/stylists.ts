@@ -111,7 +111,7 @@ export const stylists: readonly Stylist[] = [
   {
     slug: "miho-haruki",
     name: "Miho Haruki",
-    nameJa: "美保 春賜",
+    nameJa: "美保 春陽",
     salonSlug: "harajuku-b",
     position: "店長 / スタイリスト",
     specialties: ["ブリーチ", "バレイヤージュ"],
