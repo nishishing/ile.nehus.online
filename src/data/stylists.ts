@@ -115,6 +115,13 @@ export const stylists: readonly Stylist[] = [
     portrait: { url: "/staff/ishiyama-hazuki.jpg", width: 600, height: 750 },
   },
   {
+    slug: "honma-yui",
+    name: "Honma Yui",
+    nameJa: "本間 結衣",
+    salonSlug: "harajuku-a",
+    position: "アシスタント",
+  },
+  {
     slug: "miho-haruki",
     name: "Miho Haruki",
     nameJa: "美保 春陽",
