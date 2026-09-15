@@ -171,6 +171,15 @@ export const stylists: readonly Stylist[] = [
     portrait: { url: "/staff/sonoki-kyotaro.jpg", width: 600, height: 750 },
   },
   {
+    slug: "kitahara-sho",
+    name: "Kitahara Sho",
+    nameJa: "北原 翔",
+    salonSlug: "harajuku-b",
+    position: "店長 / スタイリスト",
+    specialties: ["バレイヤージュ", "ブリーチ"],
+    instagram: "sho_kitahara",
+  },
+  {
     slug: "fukutani-amane",
     name: "Fukutani Amane",
     nameJa: "福谷 天祢",
