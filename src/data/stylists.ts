@@ -36,7 +36,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-a",
     position: "共同代表",
     profile:
-      "独自開発の「エフェクトブリーチ」により、髪の芯を残したまま透明感を引き出すケミカルロジックの権威。感覚ではなく科学に基づいたダメージレスなベース作りは、全国の美容師が指標とする技術スタンダード。",
+      "西村 涼とともに「エフェクトブリーチ」を開発。ケミカル（薬剤設計）の権威として、髪のダメージ履歴に合わせて脱色力を細かく調整する「パーソナル減力」で、断毛を防ぎ髪の芯を残すブリーチを追求する。複雑な履歴の髪のブリーチを専門とし、セミナー講師としても活動。",
     specialties: ["ブリーチ", "ハイトーン"],
     instagram: "sakaimotoki",
     portrait: { url: "/staff/sakai-motoki.jpg", width: 600, height: 750 },
