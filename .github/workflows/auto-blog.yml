@@ -87,13 +87,17 @@ jobs:
           TITLE: ${{ steps.publish.outputs.title }}
           SLUG: ${{ steps.publish.outputs.slug }}
           REMAINING: ${{ steps.gen.outputs.remaining }}
+          EXHAUSTED: ${{ steps.gen.outputs.exhausted }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           if [ -z "$LINE_TOKEN" ] || [ -z "$LINE_TO" ]; then
             echo "LINE secrets not set — skipping notification."
             exit 0
           fi
-          if [ "$JOB_STATUS" != "success" ]; then
+          if [ "$EXHAUSTED" = "true" ]; then
+            # 失敗でも成功でもない「材料切れ」。原因が違うので ❌（クレジット残高等）とも ℹ️ とも分ける。
+            MSG=$'⚠️ iLe自動ブログ：書くテーマが0件のため、今日は記事を作っていません。\n（エラーではなく材料切れです）\nsrc/data/seo-topics.json にテーマの補充が必要です。\n'"$RUN_URL"
+          elif [ "$JOB_STATUS" != "success" ]; then
             MSG=$'❌ iLe自動ブログ：投稿に失敗しました（'"$JOB_STATUS"$'）。\nクレジット残高や設定をご確認ください。\n'"$RUN_URL"
           elif [ "$PUBLISHED" = "true" ]; then
             MSG=$'✅ iLe自動ブログ：新しい記事を公開しました。\n'"$TITLE"$'\nhttps://ile-hair-harajuku.com/journal/'"$SLUG"
@@ -109,3 +113,11 @@ jobs:
             -d "$(jq -nc --arg to "$LINE_TO" --arg text "$MSG" \
                   '{to:$to, messages:[{type:"text", text:$text}]}')" \
             || echo "LINE push failed (non-fatal)."
+
+      # 🔴 シード切れの run を「success（緑）」で終わらせない（2026-09-15）。
+      #    通知を送った後に落とす＝LINE は ⚠️ 材料切れ、Actions 画面は赤、の両方で見える。
+      - name: Fail when seed topics are exhausted
+        if: steps.gen.outputs.exhausted == 'true'
+        run: |
+          echo "::error title=Seed topics exhausted::src/data/seo-topics.json に未使用テーマが0件。記事は生成していません。"
+          exit 1

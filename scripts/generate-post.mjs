@@ -50,8 +50,15 @@ if (process.env.INPUT_TOPIC && process.env.INPUT_TOPIC.trim()) {
   chosen = topics.find((t) => !usedTopics.has(t.topic));
 }
 if (!chosen) {
-  // Nothing to do — not an error; the Action sees no file change and skips commit.
-  console.log("generate-post: all seed topics already covered — nothing to generate.");
+  // シード切れ。記事は書けない。
+  // 🔴 これを「成功（異常なし）」と同じ出力にしない（2026-09-15）。
+  //    旧実装は exit 0 だけで、Actions は success・LINE は「新規投稿なし（トピック切れの可能性）」の
+  //    ℹ️ だった。9/14 に残り0件になった後、「異常なし」と「材料が無くて何もしていない」が
+  //    見分けられなかった。ここで exhausted=true を出し、workflow 側で ⚠️ 通知＋run を赤にする。
+  console.log("generate-post: SEED TOPICS EXHAUSTED — 0 unused topics in src/data/seo-topics.json. Nothing was generated.");
+  if (process.env.GITHUB_OUTPUT) {
+    appendFileSync(process.env.GITHUB_OUTPUT, `exhausted=true\nremaining=0\n`);
+  }
   process.exit(0);
 }
 console.log(`generate-post: topic = ${chosen.topic}`);
