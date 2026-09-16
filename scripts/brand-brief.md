@@ -40,7 +40,37 @@ live brand site automatically, so it must be factually safe and on-brand.
   reputable and use full `https://` URLs (use sparingly, 0–1 per article).
 - **Headings:** use Markdown `##` and `###` only — never a top-level `#`
   (the page already renders the title as the H1).
-- Write in natural Japanese (です・ます調). Length ~1,000–1,600 字.
+- Write in natural Japanese (です・ます調). Length ~1,200–1,800 字.
 - Weave the given SEO keywords in naturally — never keyword-stuff.
 - End with a soft, non-pushy line that points readers to iLe (e.g. a relevant
   internal link), without hard-selling.
+
+## Depth requirements — why this matters (2026-09-16)
+
+Measured on 2026-09-16 against 12 weeks of AI-visibility data: for informational
+questions ("ブリーチで髪が傷むのはなぜ？"), AI assistants answer by citing
+**university labs, chemical manufacturers and other salons' columns** — and iLe
+was cited in **0 of 12 runs**. Reviewing all 81 published articles: **zero**
+contained a figure, a named mechanism, or a first-party detail. Generic
+explanations do not get cited. Depth does.
+
+So, in every article:
+
+1. **Name the mechanism precisely.** Use the correct hair-science vocabulary
+   where it is genuinely relevant: キューティクル / コルテックス / メラニン /
+   アルカリ剤 / 過酸化水素 / ジスルフィド結合（S-S結合）/ システイン酸 /
+   CMC / ポーラス毛 / 等電点. This is general hair science — it is **not** a
+   claim about iLe, so it does not need a source. Explain it plainly in です・ます
+   調; do not just drop jargon.
+2. **Include at least one first-party detail of iLe's method** (these are
+   confirmed facts, listed above, and no other salon can write them):
+   ダメージ履歴の**10段階診断** / 過酸化水素濃度の**ミリ単位の調整**（パーソナル減力）/
+   断毛を防ぎ髪の芯を残す設計 / 複雑履歴（黒染め・セルフカラー）への対応 /
+   色落ちの過程まで設計する考え方.
+3. **Answer first.** Open with 1–2 sentences that directly answer the article's
+   question, then explain. Quotable answers get quoted.
+4. **Figures stay forbidden unless sourced.** The "Do NOT invent facts" rule is
+   unchanged: no percentages, counts, durations or prices from your own head.
+   If a figure is genuinely necessary, it must come from a reputable external
+   source that you cite inline with a full `https://` URL (still 0–1 external
+   links per article). **When in doubt, describe the mechanism without a number.**
