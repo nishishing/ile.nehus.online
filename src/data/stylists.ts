@@ -314,6 +314,14 @@ export const stylists: readonly Stylist[] = [
     portrait: { url: "/staff/shimizu-mizuki.jpg", width: 600, height: 750 },
   },
   {
+    slug: "takahashi-yuta",
+    name: "Takahashi Yuta",
+    nameJa: "高橋 雄太",
+    salonSlug: "nagaoka",
+    position: "ヘルプスタイリスト",
+    instagram: "uta",
+  },
+  {
     slug: "watanabe-miyu",
     name: "Watanabe Miyu",
     nameJa: "渡辺 美憂",
