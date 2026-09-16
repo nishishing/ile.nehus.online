@@ -37,7 +37,7 @@ export function organizationSchema() {
       "バレイヤージュ",
       "ハイライト",
       "デザインカラー",
-      "ダメージレスブリーチ",
+      "ブリーチのダメージコントロール",
       "複雑履歴のブリーチ",
     ],
     founder: site.representatives.map((r) => {
