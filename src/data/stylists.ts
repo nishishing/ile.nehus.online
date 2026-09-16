@@ -265,6 +265,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagoya",
     position: "アシスタント",
     instagram: "kaho__ile",
+    portrait: { url: "/staff/tanogami-yoshiho.jpg", width: 600, height: 750 },
   },
   {
     slug: "watanabe-shika",
