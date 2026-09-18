@@ -86,6 +86,7 @@ export const stylists: readonly Stylist[] = [
     nameJa: "小坂 龍太",
     salonSlug: "harajuku-a",
     position: "スタイリスト",
+    instagram: "kosakanaction",
   },
   {
     slug: "inoe-mizuki",
