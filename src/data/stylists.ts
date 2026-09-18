@@ -81,6 +81,13 @@ export const stylists: readonly Stylist[] = [
     portrait: { url: "/staff/kanehara-sangi.jpg", width: 600, height: 750 },
   },
   {
+    slug: "kosaka-ryuta",
+    name: "Kosaka Ryuta",
+    nameJa: "小坂 龍太",
+    salonSlug: "harajuku-a",
+    position: "スタイリスト",
+  },
+  {
     slug: "inoe-mizuki",
     name: "Inoe Mizuki",
     nameJa: "井上 心月",
