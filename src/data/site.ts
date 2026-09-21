@@ -29,10 +29,6 @@ export const site: SiteConfig = {
       ],
       press: [
         {
-          label: "HAIRCAMP 講師ページ（美容師向けオンライン学習）",
-          url: "https://haircamp.jp/sakaimotoki/",
-        },
-        {
           label: "b-ex palette セミナー「ブリーチロングリタッチ パーフェクトテクニック」",
           url: "https://bexpalette.beautyexperience.com/contents/307",
         },
@@ -66,6 +62,11 @@ export const site: SiteConfig = {
         {
           label: "inborn インタビュー（株式会社スタイラーズ）",
           url: "https://stylers-inborn.com/%E2%91%A8-ile-interview/",
+        },
+        // 両名が実名で登場する第三者記事。酒井側にも同じものを持たせている。
+        {
+          label: "リクエストQJ SALON REPORT — 酒井元樹／西村涼 共同経営インタビュー",
+          url: "https://www.qjnavi.jp/special/trend/ile_sakainishimura/",
         },
       ],
     },

@@ -10,6 +10,7 @@
  */
 
 import { site } from "~data/site";
+import { salons } from "~data/salons";
 import type { Salon, JournalPost, FaqItem } from "~types/content";
 
 /** Make a `{ url, ... }`-shaped image absolute (local paths get the site
@@ -29,6 +30,16 @@ export function organizationSchema() {
     url: site.url,
     logo: `${site.url}/logo.svg`,
     foundingDate: site.foundedAt,
+    // E-E-A-T: 第三者が iLe について書いた記事と、店舗の外部プロフィールを
+    // 機械可読で結ぶ。自社の主張ではなく「外から書かれた事実」を辿れる形にする。
+    // （2026-09-16 実測: AI は地域の候補を HPB のページから作っていた）
+    subjectOf: site.press?.length
+      ? site.press.map((p) => ({
+          "@type": "WebPage",
+          name: p.label,
+          url: p.url,
+        }))
+      : undefined,
     // E-E-A-T: the brand's authority comes from its named experts.
     knowsAbout: [
       "エフェクトブリーチ",
@@ -79,9 +90,14 @@ export function organizationSchema() {
     },
     telephone: site.contactTel ? "+81-" + site.contactTel.replace(/^0/, "").replace(/-/g, "-") : undefined,
     email: site.contactEmail,
-    sameAs: site.instagramHandle
-      ? [`https://www.instagram.com/${site.instagramHandle}/`]
-      : [],
+    // 店舗の外部プロフィール（HPB）も結ぶ。2026-09-21 実測で、AI は地域の
+    // 候補リストを HPB のページから作っていた＝外部プロフィールとの結び付きが効く。
+    sameAs: [
+      ...(site.instagramHandle
+        ? [`https://www.instagram.com/${site.instagramHandle}/`]
+        : []),
+      ...salons.map((s) => s.hotPepperUrl).filter((u): u is string => !!u),
+    ],
     description: site.description,
   };
 }
