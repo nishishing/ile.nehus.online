@@ -13,6 +13,7 @@ const outDir = path.join(here, "out");
 const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const W = 1080, H = 1350;
 
+const bold = (t) => esc(t).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");  // **ここ** を太字に
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const STYLE = `
@@ -40,6 +41,16 @@ const STYLE = `
   li+li{border-top:1px solid #e2dfd4}
   li:before{content:"";position:absolute;left:0;top:34px;width:14px;height:1px;background:#8a6f38}
   .spacer{flex:1}
+  .choose{margin-top:44px;border-top:1px solid #d6d2c5}
+  .choose .row{padding:30px 0;border-bottom:1px solid #e2dfd4}
+  .choose .when{font-size:28px;line-height:1.5;color:#3a382f}
+  .choose .pick{margin-top:8px;font-size:36px;line-height:1.35;font-weight:600;color:#8a6f38}
+  .choose .pick:before{content:"→ ";font-family:Georgia,serif}
+  .steps{margin-top:56px;border-top:1px solid rgba(214,210,197,.3)}
+  .steps .step{display:flex;gap:26px;align-items:baseline;padding:26px 0;border-bottom:1px solid rgba(214,210,197,.18)}
+  .steps .no{font-family:Georgia,serif;font-size:30px;color:#8a6f38;font-weight:600;flex:none}
+  .steps .txt{font-size:29px;line-height:1.6;color:#b9b4a6}
+  .steps .txt b{color:#f4f2ec;font-weight:600}
   .cta-note{margin-top:44px;font-size:30px;line-height:1.7;color:#d6d2c5}
   .foot{margin-top:44px;display:flex;justify-content:space-between;align-items:baseline}
   .brand{font-family:Georgia,serif;font-size:30px;letter-spacing:.14em;font-weight:600}
@@ -56,9 +67,18 @@ function slideHtml(d, s, i, total) {
     ? `<div class="cat">${esc(d.categoryEn || "")}<span>${esc(d.category || "")}</span></div>
        <div class="rule"></div><h1>${esc(d.title || "")}</h1>
        <p class="lead">${esc(d.lead || "")}</p><div class="spacer"></div>`
+    // 最後の面。どのサービスを選ぶか・どう辿り着くかを具体的に置く
     : s.type === "cta"
-    ? `<div class="spacer"></div><h2>${esc(s.heading || "")}</h2>
-       <p class="cta-note">${esc(s.note || "詳しくはプロフィールのリンクから")}</p><div class="spacer"></div>`
+    ? `<h2>${esc(s.heading || "")}</h2>
+       ${s.note ? `<p class="cta-note">${esc(s.note)}</p>` : ""}
+       <div class="steps">${(s.steps || []).map((t, n) => `<div class="step"><span class="no">${String(n + 1).padStart(2, "0")}</span><span class="txt">${bold(t)}</span></div>`).join("")}</div>
+       <div class="spacer"></div>`
+    // 同じカテゴリに複数あるので、迷わないように「条件 → サービス名」で並べる
+    : s.type === "choose"
+    ? `<div class="label">${esc(s.label || "どれを選ぶ？")}</div><div class="rule"></div>
+       <h2>${esc(s.heading || "")}</h2>
+       <div class="choose">${(s.pairs || []).map((p) => `<div class="row"><div class="when">${esc(p.when)}</div><div class="pick">${esc(p.pick)}</div></div>`).join("")}</div>
+       <div class="spacer"></div>`
     : `<div class="num">${String(i - 1).padStart(2, "0")}</div>
        <div class="label">${esc(s.label || "")}</div><div class="rule"></div>
        <h2>${esc(s.heading || "")}</h2>
