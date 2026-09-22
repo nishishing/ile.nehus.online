@@ -18,45 +18,57 @@ const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replac
 
 const STYLE = `
   *{box-sizing:border-box;margin:0;padding:0}
-  body{width:${W}px;height:${H}px;background:#f4f2ec;color:#14130f;
+  /* 既存フィードに合わせる: 白＋淡い水色の方眼、太い黒見出し（オーナー確定 2026-09-22） */
+  body{width:${W}px;height:${H}px;color:#111418;background:#ffffff;
+    background-image:linear-gradient(#e6eff7 1px,transparent 1px),linear-gradient(90deg,#e6eff7 1px,transparent 1px);
+    background-size:54px 54px;
     font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;-webkit-font-smoothing:antialiased}
-  .card{width:100%;height:100%;padding:96px 88px;display:flex;flex-direction:column;position:relative;overflow:hidden}
-  .card.dark{background:#14130f;color:#f4f2ec}
-  .mark{position:absolute;right:-40px;bottom:-90px;font-family:Georgia,serif;font-weight:600;
-    font-size:420px;line-height:1;color:rgba(20,19,15,.035)}
-  .dark .mark{color:rgba(244,242,236,.05)}
-  .cat{font-family:Georgia,serif;font-size:26px;letter-spacing:.34em;text-transform:uppercase;color:#8a6f38}
-  .cat span{display:block;font-family:inherit;font-size:20px;letter-spacing:.2em;color:#8d897b;margin-top:10px}
-  .dark .cat span{color:#a8a496}
-  .rule{width:64px;height:1px;background:#8a6f38;margin:36px 0 44px}
-  h1{font-size:66px;line-height:1.35;font-weight:600;letter-spacing:.01em}
-  h2{font-size:52px;line-height:1.4;font-weight:600;letter-spacing:.01em}
-  .lead{margin-top:34px;font-size:30px;line-height:1.85;color:#3a382f;font-weight:400}
-  .dark .lead{color:#d6d2c5}
-  .body{margin-top:36px;font-size:32px;line-height:1.95;color:#3a382f}
-  .num{font-family:Georgia,serif;font-size:96px;line-height:1;color:#8a6f38;font-weight:600}
-  .label{margin-top:22px;font-size:24px;letter-spacing:.22em;color:#8d897b}
-  ul{list-style:none;margin-top:52px;border-top:1px solid #d6d2c5;padding-top:36px}
-  li{font-size:32px;line-height:1.6;padding:22px 0 22px 36px;position:relative;color:#3a382f}
-  li+li{border-top:1px solid #e2dfd4}
-  li:before{content:"";position:absolute;left:0;top:34px;width:14px;height:1px;background:#8a6f38}
+  .card{width:100%;height:100%;padding:92px 84px;display:flex;flex-direction:column;position:relative}
+  .card.dark{background:#111418;background-image:none;color:#ffffff}
+  .mark{display:none}
+  /* 上部の帯: BCC ワードマーク＋「美容室経営者向け」 */
+  .top{display:flex;flex-direction:column;align-items:center;gap:18px}
+  .top .bcc{font-family:Georgia,serif;font-size:40px;font-weight:700;letter-spacing:.2em}
+  .top .bcc span{display:block;font-size:13px;letter-spacing:.24em;color:#8a93a0;margin-top:6px;font-family:inherit}
+  .top .eyebrow{font-size:27px;letter-spacing:.1em;color:#111418}
+  .top .eyebrow i{color:#9fb3c8;font-style:normal;padding:0 14px}
+  .dark .top .eyebrow{color:#ffffff}
+  .dark .top .eyebrow i{color:#5b6672}
+  .cat{margin-top:56px;font-size:24px;letter-spacing:.2em;color:#6b7684}
+  .cat span{display:none}
+  .rule{width:72px;height:3px;background:#111418;margin:28px 0 36px}
+  .dark .rule{background:#ffffff}
+  h1{font-size:74px;line-height:1.3;font-weight:800;letter-spacing:.01em}
+  h2{font-size:58px;line-height:1.36;font-weight:800;letter-spacing:.01em}
+  .lead{margin-top:32px;font-size:30px;line-height:1.85;color:#49525e}
+  .dark .lead{color:#c9d1da}
+  .body{margin-top:32px;font-size:32px;line-height:1.9;color:#49525e}
+  .num{font-family:Georgia,serif;font-size:92px;line-height:1;color:#111418;font-weight:700}
+  .label{margin-top:18px;font-size:25px;letter-spacing:.16em;color:#6b7684}
+  ul{list-style:none;margin-top:48px;border-top:2px solid #111418;padding-top:34px}
+  li{font-size:33px;line-height:1.55;padding:24px 0 24px 38px;position:relative;font-weight:500}
+  li+li{border-top:1px solid #dbe3ec}
+  li:before{content:"";position:absolute;left:0;top:36px;width:18px;height:3px;background:#111418}
   .spacer{flex:1}
-  .choose{margin-top:44px;border-top:1px solid #d6d2c5}
-  .choose .row{padding:30px 0;border-bottom:1px solid #e2dfd4}
-  .choose .when{font-size:28px;line-height:1.5;color:#3a382f}
-  .choose .pick{margin-top:8px;font-size:36px;line-height:1.35;font-weight:600;color:#8a6f38}
+  .choose{margin-top:44px;border-top:2px solid #111418}
+  .choose .row{padding:30px 0;border-bottom:1px solid #dbe3ec}
+  .choose .when{font-size:28px;line-height:1.5;color:#6b7684}
+  .choose .pick{margin-top:8px;font-size:38px;line-height:1.35;font-weight:800;color:#111418}
   .choose .pick:before{content:"→ ";font-family:Georgia,serif}
-  .steps{margin-top:56px;border-top:1px solid rgba(214,210,197,.3)}
-  .steps .step{display:flex;gap:26px;align-items:baseline;padding:26px 0;border-bottom:1px solid rgba(214,210,197,.18)}
-  .steps .no{font-family:Georgia,serif;font-size:30px;color:#8a6f38;font-weight:600;flex:none}
-  .steps .txt{font-size:29px;line-height:1.6;color:#b9b4a6}
-  .steps .txt b{color:#f4f2ec;font-weight:600}
-  .cta-note{margin-top:44px;font-size:30px;line-height:1.7;color:#d6d2c5}
-  .foot{margin-top:44px;display:flex;justify-content:space-between;align-items:baseline}
-  .brand{font-family:Georgia,serif;font-size:30px;letter-spacing:.14em;font-weight:600}
-  .foot .small{font-size:19px;letter-spacing:.18em;color:#a8a496;text-transform:uppercase}
-  .dark .foot .small{color:#8d897b}
-  .pager{font-size:19px;letter-spacing:.18em;color:#a8a496}
+  .cta-note{margin-top:30px;font-size:29px;line-height:1.7;color:#c9d1da}
+  .steps{margin-top:54px;border-top:2px solid rgba(255,255,255,.7)}
+  .steps .step{display:flex;gap:26px;align-items:baseline;padding:26px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+  .steps .no{font-family:Georgia,serif;font-size:30px;color:#ffffff;font-weight:700;flex:none}
+  .steps .txt{font-size:29px;line-height:1.6;color:#aeb8c4}
+  .steps .txt b{color:#ffffff;font-weight:700}
+  .foot{margin-top:40px;display:flex;justify-content:space-between;align-items:baseline;
+    border-top:1px solid #dbe3ec;padding-top:24px}
+  .dark .foot{border-top-color:rgba(255,255,255,.2)}
+  .brand{font-size:24px;letter-spacing:.14em;font-weight:700;color:#6b7684}
+  .dark .brand{color:#aeb8c4}
+  .foot .small{font-size:22px;letter-spacing:.06em;color:#111418;font-weight:600}
+  .dark .foot .small{color:#ffffff}
+  .pager{font-size:20px;letter-spacing:.16em;color:#9aa5b1}
 `;
 
 // 面ごとの組み方。d=下書き全体, s=その面, i/total=ページ番号
@@ -86,7 +98,10 @@ function slideHtml(d, s, i, total) {
        ${s.items ? `<ul>${s.items.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}<div class="spacer"></div>`;
   return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><style>${STYLE}</style></head>
 <body><div class="card${dark ? " dark" : ""}">
-  <div class="mark">${esc((d.categoryEn || "BCC").slice(0, 1))}</div>
+  <div class="top">
+    <div class="bcc">BCC<span>BEAUTY CO-OPERATIVE CHAIN</span></div>
+    <div class="eyebrow"><i>＼</i>美容室経営者向け<i>／</i></div>
+  </div>
   ${head}
   <div class="foot"><div class="brand">BCC</div><div class="small">${esc(d.service || "beauty Cooperative Chain")}</div><div class="pager">${esc(pager)}</div></div>
 </div></body></html>`;
