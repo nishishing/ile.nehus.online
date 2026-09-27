@@ -21,6 +21,7 @@ const ROOT = process.cwd();
 const BRIEF = join(ROOT, "scripts/brand-brief.md");
 const TOPICS = join(ROOT, "src/data/seo-topics.json");
 const STORE = join(ROOT, "src/data/blog-generated.json");
+const IMAGE_POOL = join(ROOT, "src/data/journal-image-pool.json");
 const MODEL = "claude-opus-4-8";
 const MOCK = process.argv.includes("--mock") || process.env.GENERATE_MOCK === "1";
 
@@ -185,6 +186,42 @@ const post = {
   topic: chosen.topic,
   keywords: article.keywords_used ?? chosen.keywords ?? [],
 };
+
+// ---- アイキャッチ -----------------------------------------------------------
+// 自社4店(ile/nehus/sakae/nagaoka)の HPB スタイル写真を、リポジトリ内のプールから
+// 記事に合うものを選んで付ける。🔴 他社サロンの写真は入れない（別の店の作品・別の店の顧客）。
+// CI からは Mac のテンプレ置き場が見えないので、プールを先にリポジトリへ置いてある。
+const pool = read(IMAGE_POOL);
+const usedImages = new Set(store.map((p) => p.eyecatch?.url).filter(Boolean));
+const free = pool.filter((p) => !usedImages.has(p.file));
+const postText = `${post.title} ${post.topic} ${post.summary} ${post.keywords.join(" ")}`;
+// 地域記事は店舗を合わせる（名古屋→sakae / 長岡→nagaoka / 原宿・表参道→ile,nehus）
+const region = /名古屋|栄/.test(postText) ? ["sakae"]
+  : /長岡|新潟/.test(postText) ? ["nagaoka"]
+  : /原宿|表参道/.test(postText) ? ["ile", "nehus"] : null;
+const scored = free
+  .map((img) => {
+    let score = img.keywords.filter((k) => postText.includes(k)).length;
+    if (region) score += region.includes(img.store) ? 3 : -2;
+    return { img, score };
+  })
+  .sort((a, b) => b.score - a.score);
+const picked = scored[0]?.score > 0 ? scored[0].img : free[0];
+if (picked) {
+  const hit = picked.keywords.filter((k) => postText.includes(k)).slice(0, 2);
+  post.eyecatch = { url: picked.file, width: picked.width, height: picked.height };
+  post.eyecatchAlt = hit.length ? `${hit.join("・")}のヘアスタイル` : "iLe のヘアカラースタイル";
+}
+const remainingImages = Math.max(0, free.length - (picked ? 1 : 0));
+console.log(`generate-post: eyecatch = ${post.eyecatch?.url ?? "(なし)"} / remaining images = ${remainingImages}`);
+if (process.env.GITHUB_OUTPUT) {
+  appendFileSync(process.env.GITHUB_OUTPUT, `remaining_images=${remainingImages}\n`);
+}
+if (!picked) {
+  // 🔴 画像プールが尽きた。記事は出すが、気づけるように警告する
+  //    （シード切れと同じ考え方: 黙って「画像なし」を増やさない）
+  console.log("generate-post: IMAGE POOL EXHAUSTED — 記事は作ったが、付けられる写真が無い。");
+}
 
 store.push(post);
 writeFileSync(STORE, JSON.stringify(store, null, 2) + "\n");
