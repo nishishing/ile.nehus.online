@@ -35,7 +35,13 @@
       "ミルクティーベージュ",
       "ミルクティーベージュ ブリーチ 回数",
       "ベージュ 色持ち"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/milk-tea-beige-bleach-basics.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチ・ベージュのヘアスタイル"
   },
   {
     "slug": "black-dye-selfcolor-to-hightone",
@@ -95,7 +101,13 @@
       "原宿 ブリーチ",
       "原宿 ハイトーン 美容室",
       "ブリーチ 上手い 美容院"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/choosing-harajuku-bleach-salon.jpg",
+      "width": 1000,
+      "height": 1333
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "inner-color-design-color-face-framing",
@@ -133,7 +145,13 @@
       "ブリーチ後 ケア",
       "ハイトーン ホームケア",
       "ムラサキシャンプー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleach-aftercare-home.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイトーン・ブリーチのヘアスタイル"
   },
   {
     "slug": "bleach-or-no-bleach-color",
@@ -149,7 +167,13 @@
       "ブリーチなし カラー",
       "ブリーチあり なし 違い",
       "透明感 カラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleach-or-no-bleach-color.jpg",
+      "width": 960,
+      "height": 1280
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "retouch-frequency-hightone",
@@ -187,7 +211,13 @@
       "名古屋 ブリーチ",
       "名古屋 ハイトーン 美容室",
       "名古屋 ブリーチ 上手い"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/nagoya-bleach-salon-guide.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイトーン・ブリーチのヘアスタイル"
   },
   {
     "slug": "nagaoka-bleach-color",
@@ -203,7 +233,13 @@
       "長岡 美容室 ブリーチ",
       "長岡 ハイトーン",
       "新潟 ブリーチ"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/nagaoka-bleach-color.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイトーン・ブリーチのヘアスタイル"
   },
   {
     "slug": "what-is-greige",
@@ -219,7 +255,13 @@
       "グレージュ",
       "グレージュ ブリーチ",
       "グレージュ 色落ち"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/what-is-greige.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "グレージュ・ブリーチのヘアスタイル"
   },
   {
     "slug": "wolf-cut-high-tone-design",
@@ -235,7 +277,13 @@
       "ウルフカット ブリーチ",
       "ウルフ ハイトーン",
       "レイヤーカット カラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/wolf-cut-high-tone-design.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイトーン・ブリーチのヘアスタイル"
   },
   {
     "slug": "white-color-process-and-cautions",
@@ -251,7 +299,13 @@
       "ホワイトカラー",
       "ホワイトブリーチ",
       "ハイトーン 白っぽく"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/white-color-process-and-cautions.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチ・ホワイトのヘアスタイル"
   },
   {
     "slug": "bleach-color-cool-warm-tones",
@@ -267,7 +321,13 @@
       "寒色 カラー",
       "暖色 ブリーチ",
       "ブリーチカラー 色味"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleach-color-cool-warm-tones.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "color-longevity-wash-dry-basics",
@@ -283,7 +343,13 @@
       "カラー 色持ち",
       "色落ち 防ぐ",
       "ヘアカラー 長持ち"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/color-longevity-wash-dry-basics.jpg",
+      "width": 960,
+      "height": 1280
+    },
+    "eyecatchAlt": "iLe のヘアカラースタイル"
   },
   {
     "slug": "highlight-balayage-dimensional-color-guide",
@@ -299,7 +365,13 @@
       "ハイライト",
       "バレイヤージュ",
       "立体感 カラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/highlight-balayage-dimensional-color-guide.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイライト・バレイヤージュのヘアスタイル"
   },
   {
     "slug": "subtle-design-color-for-office",
@@ -315,7 +387,13 @@
       "さりげない インナーカラー",
       "オフィス ハイトーン",
       "ばれにくい デザインカラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/subtle-design-color-for-office.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "インナーカラー・ハイトーンのヘアスタイル"
   },
   {
     "slug": "bleach-day-flow-before-after-care",
@@ -331,7 +409,13 @@
       "ブリーチ 当日 流れ",
       "ブリーチ 施術時間",
       "ブリーチ 前後 注意"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleach-day-flow-before-after-care.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "bleach-once-brightness-reality",
@@ -347,7 +431,13 @@
       "ブリーチ 1回 明るさ",
       "ハイトーン 一回",
       "ブリーチ 回数 目安"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleach-once-brightness-reality.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイトーン・ブリーチのヘアスタイル"
   },
   {
     "slug": "mens-high-tone-bleach-color-start-guide",
@@ -363,7 +453,13 @@
       "メンズ ブリーチ",
       "メンズ ハイトーン",
       "men ブリーチカラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/mens-high-tone-bleach-color-start-guide.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイトーン・ブリーチのヘアスタイル"
   },
   {
     "slug": "ash-color-transparency-fade-care",
@@ -379,7 +475,13 @@
       "アッシュ",
       "アッシュカラー ブリーチ",
       "アッシュ 色落ち"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/ash-color-transparency-fade-care.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "アッシュ・ブリーチのヘアスタイル"
   },
   {
     "slug": "irida-bonding-plex-shampoo-treatment",
@@ -419,7 +521,13 @@
       "ラベンダーカラー",
       "ラベンダーアッシュ",
       "黄ばみ 抑える"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/lavender-color-yellow-control.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "アッシュ・ブリーチのヘアスタイル"
   },
   {
     "slug": "silver-white-silver-bleach-design",
@@ -435,7 +543,13 @@
       "シルバーカラー",
       "ホワイトシルバー",
       "ブリーチ 何回"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/silver-white-silver-bleach-design.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "シルバー・ブリーチのヘアスタイル"
   },
   {
     "slug": "pink-beige-high-tone-guide",
@@ -451,7 +565,13 @@
       "ピンクベージュ",
       "ピンクカラー ブリーチ",
       "暖色 ハイトーン"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/pink-beige-high-tone-guide.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイトーン・ピンクのヘアスタイル"
   },
   {
     "slug": "olive-matte-color-transparency",
@@ -467,7 +587,13 @@
       "オリーブカラー",
       "マットカラー",
       "赤み 消す"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/olive-matte-color-transparency.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "オリーブのヘアスタイル"
   },
   {
     "slug": "korean-high-tone-transparent-color-guide",
@@ -483,7 +609,13 @@
       "韓国 ヘアカラー",
       "韓国風 ハイトーン",
       "透明感 カラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/korean-high-tone-transparent-color-guide.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "what-is-personal-genryoku",
@@ -501,7 +633,13 @@
       "ブリーチ ダメージ 抑える",
       "過酸化水素 濃度",
       "ブリーチ 断毛 防ぐ"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/what-is-personal-genryoku.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "what-is-effect-bleach-by-developer",
@@ -519,7 +657,13 @@
       "エフェクトブリーチ サロン",
       "ブリーチ ダメージレス",
       "iLe 原宿"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/what-is-effect-bleach-by-developer.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "earring-color-guide",
@@ -535,7 +679,13 @@
       "イヤリングカラー",
       "耳 カラー",
       "さりげない デザインカラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/earring-color-guide.jpg",
+      "width": 842,
+      "height": 1123
+    },
+    "eyecatchAlt": "iLe のヘアカラースタイル"
   },
   {
     "slug": "highlight-thickness-amount-difference",
@@ -551,7 +701,13 @@
       "ハイライト 太さ",
       "ハイライト 量",
       "ハイライト 種類"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/highlight-thickness-amount-difference.jpg",
+      "width": 909,
+      "height": 1212
+    },
+    "eyecatchAlt": "ハイライトのヘアスタイル"
   },
   {
     "slug": "lowlight-dimension-calm-haircolor",
@@ -567,7 +723,13 @@
       "ローライト",
       "ローライト ハイライト",
       "立体感 髪色"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/lowlight-dimension-calm-haircolor.jpg",
+      "width": 1072,
+      "height": 1430
+    },
+    "eyecatchAlt": "ハイライトのヘアスタイル"
   },
   {
     "slug": "gradation-color-grow-out",
@@ -583,7 +745,13 @@
       "グラデーションカラー",
       "毛先 カラー",
       "伸びかけ カラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/gradation-color-grow-out.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "グラデーションのヘアスタイル"
   },
   {
     "slug": "purple-shampoo-usage-frequency",
@@ -621,7 +789,13 @@
       "ブリーチ毛 トリートメント",
       "ハイトーン ヘアケア",
       "洗い流さない トリートメント"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleached-hair-treatment-homecare-guide.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイトーン・ブリーチのヘアスタイル"
   },
   {
     "slug": "bleach-hair-split-ends-breakage-care",
@@ -637,7 +811,13 @@
       "枝毛 ケア",
       "切れ毛 原因",
       "ブリーチ毛 ダメージ"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleach-hair-split-ends-breakage-care.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "hair-improvement-and-bleach-balance",
@@ -653,7 +833,13 @@
       "髪質改善 ブリーチ",
       "酸熱トリートメント ブリーチ",
       "髪質改善 両立"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/hair-improvement-and-bleach-balance.jpg",
+      "width": 1072,
+      "height": 1430
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "on-color-after-bleach",
@@ -669,7 +855,13 @@
       "オンカラー とは",
       "ブリーチ オンカラー",
       "カラー 工程"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/on-color-after-bleach.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "rainy-season-frizz-hightone-care",
@@ -685,7 +877,13 @@
       "梅雨 髪 うねり",
       "湿気 ヘアケア",
       "ハイトーン まとまり"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/rainy-season-frizz-hightone-care.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイトーン・ブリーチのヘアスタイル"
   },
   {
     "slug": "summer-uv-haircolor-fade-care",
@@ -701,7 +899,13 @@
       "紫外線 髪 退色",
       "夏 ヘアカラー",
       "UV ヘアケア"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/summer-uv-haircolor-fade-care.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "iLe のヘアカラースタイル"
   },
   {
     "slug": "bridal-hightone-color-timing",
@@ -717,7 +921,13 @@
       "ブライダル ヘアカラー",
       "結婚式 髪色",
       "前撮り カラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bridal-hightone-color-timing.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "iLe のヘアカラースタイル"
   },
   {
     "slug": "seijinshiki-sotsugyoshiki-design-color",
@@ -733,7 +943,13 @@
       "成人式 髪色",
       "卒業式 カラー",
       "振袖 ヘアカラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/seijinshiki-sotsugyoshiki-design-color.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "iLe のヘアカラースタイル"
   },
   {
     "slug": "office-dark-hair-high-tone",
@@ -749,7 +965,13 @@
       "暗髪 透明感",
       "暗めハイトーン",
       "職場 髪色"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/office-dark-hair-high-tone.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチ・暗髪のヘアスタイル"
   },
   {
     "slug": "blue-black-cool-dark-hair",
@@ -765,7 +987,13 @@
       "ブルーブラック",
       "寒色 暗髪",
       "暗髪 色落ち"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/blue-black-cool-dark-hair.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "暗髪のヘアスタイル"
   },
   {
     "slug": "mens-highlight-mesh-dimension",
@@ -781,7 +1009,13 @@
       "メンズ ハイライト",
       "メンズ メッシュ",
       "メンズ デザインカラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/mens-highlight-mesh-dimension.jpg",
+      "width": 960,
+      "height": 1280
+    },
+    "eyecatchAlt": "ハイライト・メンズのヘアスタイル"
   },
   {
     "slug": "mens-gray-blending-highlight",
@@ -797,7 +1031,13 @@
       "メンズ 白髪 ぼかし",
       "白髪 ハイライト",
       "メンズ 白髪 カラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/mens-gray-blending-highlight.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイライト・メンズのヘアスタイル"
   },
   {
     "slug": "grey-hair-highlight-guide",
@@ -813,7 +1053,13 @@
       "白髪 ハイライト",
       "白髪ぼかし",
       "白髪 デザインカラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/grey-hair-highlight-guide.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイライトのヘアスタイル"
   },
   {
     "slug": "double-color-transparency-mechanism",
@@ -829,7 +1075,13 @@
       "ダブルカラー",
       "ダブルカラー とは",
       "ブリーチ オンカラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/double-color-transparency-mechanism.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "bleach-day-preparation-tips",
@@ -845,7 +1097,13 @@
       "ブリーチ 当日 注意",
       "ブリーチ 前 シャンプー",
       "ブリーチ 準備"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleach-day-preparation-tips.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "counseling-how-to-tell-ideal-haircolor",
@@ -861,7 +1119,13 @@
       "美容室 カウンセリング",
       "なりたい髪色 伝え方",
       "カラー オーダー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/counseling-how-to-tell-ideal-haircolor.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "iLe のヘアカラースタイル"
   },
   {
     "slug": "brightness-level-and-how-to-communicate",
@@ -877,7 +1141,13 @@
       "明るさレベル",
       "トーン 髪色",
       "ブリーチ レベル"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/brightness-level-and-how-to-communicate.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "straightening-perm-history-bleach-care",
@@ -893,7 +1163,13 @@
       "縮毛矯正 ブリーチ",
       "パーマ ブリーチ",
       "施術履歴 カラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/straightening-perm-history-bleach-care.jpg",
+      "width": 1050,
+      "height": 1280
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "omotesando-design-color-salon-guide",
@@ -909,7 +1185,13 @@
       "表参道 美容室",
       "表参道 デザインカラー",
       "表参道 ブリーチ"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/omotesando-design-color-salon-guide.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "sakae-nagoya-hightone-salon-guide",
@@ -925,7 +1207,13 @@
       "栄 美容室",
       "栄 ブリーチ",
       "名古屋 ハイトーン"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/sakae-nagoya-hightone-salon-guide.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "transparent-color-personal-color",
@@ -941,7 +1229,13 @@
       "パーソナルカラー ヘアカラー",
       "ブルベ イエベ 髪色",
       "透明感 似合う"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/transparent-color-personal-color.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "bleach-basics-for-beginners",
@@ -957,7 +1251,13 @@
       "ブリーチ 初めて",
       "ブリーチ 基礎",
       "ハイトーン 初心者"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleach-basics-for-beginners.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイトーン・ブリーチのヘアスタイル"
   },
   {
     "slug": "black-hair-to-hightone-flow",
@@ -973,7 +1273,13 @@
       "黒髪 ブリーチ",
       "黒髪 ハイトーン",
       "ブリーチ 流れ"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/black-hair-to-hightone-flow.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイトーン・ブリーチのヘアスタイル"
   },
   {
     "slug": "color-retouch-timing",
@@ -989,7 +1295,13 @@
       "カラー お直し",
       "リタッチ タイミング",
       "色落ち 直す"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/color-retouch-timing.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "care-bleach-difference-and-choosing",
@@ -1005,7 +1317,13 @@
       "ケアブリーチ とは",
       "ケアブリーチ 違い",
       "ブリーチ 痛まない"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/care-bleach-difference-and-choosing.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "self-vs-salon-bleach-difference",
@@ -1021,7 +1339,13 @@
       "セルフブリーチ 失敗",
       "ブリーチ セルフ サロン 違い",
       "ブリーチ ムラ"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/self-vs-salon-bleach-difference.jpg",
+      "width": 1018,
+      "height": 1357
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "bleach-mura-onaoshi-guide",
@@ -1037,7 +1361,13 @@
       "ブリーチ ムラ 直し",
       "カラー 失敗 直したい",
       "ブリーチ お直し"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleach-mura-onaoshi-guide.jpg",
+      "width": 1072,
+      "height": 1430
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "hightone-frequency-annual-cost",
@@ -1053,7 +1383,13 @@
       "ハイトーン 頻度",
       "ブリーチ 間隔",
       "ハイトーン 維持費"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/hightone-frequency-annual-cost.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "short-bob-high-tone-styling",
@@ -1069,7 +1405,13 @@
       "ショート ハイトーン",
       "ボブ ブリーチカラー",
       "ショート 似合わせ"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/short-bob-high-tone-styling.jpg",
+      "width": 850,
+      "height": 1133
+    },
+    "eyecatchAlt": "ショート・ブリーチのヘアスタイル"
   },
   {
     "slug": "long-balayage-growing-out-design",
@@ -1085,7 +1427,13 @@
       "ロング バレイヤージュ",
       "伸ばしかけ カラー",
       "ロング ハイトーン"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/long-balayage-growing-out-design.jpg",
+      "width": 1072,
+      "height": 1430
+    },
+    "eyecatchAlt": "バレイヤージュ・ロングのヘアスタイル"
   },
   {
     "slug": "face-framing-color-guide",
@@ -1101,7 +1449,13 @@
       "フェイスフレーミング",
       "前髪 インナーカラー",
       "顔まわり カラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/face-framing-color-guide.jpg",
+      "width": 960,
+      "height": 1280
+    },
+    "eyecatchAlt": "インナーカラーのヘアスタイル"
   },
   {
     "slug": "suso-color-point-color-guide",
@@ -1117,7 +1471,13 @@
       "裾カラー",
       "毛先 カラー",
       "ポイントカラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/suso-color-point-color-guide.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "autumn-winter-high-tone-design-color",
@@ -1133,7 +1493,13 @@
       "秋 ハイトーン",
       "冬 カラー 人気",
       "秋冬 ヘアカラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/autumn-winter-high-tone-design-color.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "winter-dryness-static-bleached-hair-care",
@@ -1149,7 +1515,13 @@
       "冬 髪 乾燥",
       "静電気 髪 対策",
       "ブリーチ毛 保湿"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/winter-dryness-static-bleached-hair-care.jpg",
+      "width": 1108,
+      "height": 1477
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "hair-iron-temperature-hightone-damage-care",
@@ -1165,7 +1537,13 @@
       "アイロン 温度 傷む",
       "ブリーチ毛 コテ",
       "ヘアアイロン ダメージ"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/hair-iron-temperature-hightone-damage-care.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "job-hunting-hair-color-tone-down",
@@ -1181,7 +1559,13 @@
       "就活 髪色 レベル",
       "トーンダウン",
       "就活 暗染め"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/job-hunting-hair-color-tone-down.jpg",
+      "width": 959,
+      "height": 1280
+    },
+    "eyecatchAlt": "iLe のヘアカラースタイル"
   },
   {
     "slug": "student-hightone-holiday-plan",
@@ -1197,7 +1581,13 @@
       "夏休み ハイトーン",
       "学生 ブリーチ",
       "黒染め 戻し"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/student-hightone-holiday-plan.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "escape-gray-dye-to-highlights",
@@ -1213,7 +1603,13 @@
       "白髪染め やめたい",
       "白髪染め から ハイライト",
       "脱白髪染め"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/escape-gray-dye-to-highlights.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ハイライトのヘアスタイル"
   },
   {
     "slug": "mens-balayage-order-guide",
@@ -1229,7 +1625,13 @@
       "メンズ バレイヤージュ",
       "メンズ ハイトーン 頼み方",
       "バレイヤージュ 似合わせ"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/mens-balayage-order-guide.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "バレイヤージュ・メンズのヘアスタイル"
   },
   {
     "slug": "layer-cut-high-tone-movement",
@@ -1245,7 +1647,13 @@
       "レイヤーカット ハイトーン",
       "レイヤー カラー 相性",
       "レイヤー 透け感"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/layer-cut-high-tone-movement.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "iLe のヘアカラースタイル"
   },
   {
     "slug": "scalp-sensitive-bleach-protection",
@@ -1261,7 +1669,13 @@
       "ブリーチ しみる",
       "頭皮 保護 カラー",
       "カラー 頭皮 痛い"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/scalp-sensitive-bleach-protection.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "hightone-eyebrow-makeup-balance",
@@ -1277,7 +1691,13 @@
       "ハイトーン メイク",
       "眉毛 髪色 合わせる",
       "金髪 眉"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/hightone-eyebrow-makeup-balance.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "iLe のヘアカラースタイル"
   },
   {
     "slug": "first-visit-guide-reservation-counseling",
@@ -1293,7 +1713,13 @@
       "美容院 初めて 不安",
       "カウンセリング 流れ",
       "初来店 準備"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/first-visit-guide-reservation-counseling.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "iLe のヘアカラースタイル"
   },
   {
     "slug": "bleach-system-treatment-role",
@@ -1309,7 +1735,13 @@
       "システムトリートメント",
       "ブリーチ トリートメント 同時",
       "サロントリートメント 効果"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleach-system-treatment-role.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "fine-soft-hair-bleach-design",
@@ -1325,7 +1757,13 @@
       "細い髪 ブリーチ",
       "猫っ毛 ハイトーン",
       "柔らかい髪 カラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/fine-soft-hair-bleach-design.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "bleach-redness-orange-color-selection",
@@ -1341,7 +1779,13 @@
       "赤み 残る ブリーチ",
       "オレンジ味 消す 髪色",
       "硬い髪 ハイトーン"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleach-redness-orange-color-selection.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "kusege-hightone-design-color",
@@ -1357,7 +1801,13 @@
       "くせ毛 ハイトーン",
       "くせ毛 ブリーチ",
       "うねり デザインカラー"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/kusege-hightone-design-color.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "bleached-hair-color-fade-reasons",
@@ -1373,7 +1823,13 @@
       "カラー すぐ抜ける",
       "ブリーチ毛 色が入らない",
       "色持ち 悪い 原因"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleached-hair-color-fade-reasons.jpg",
+      "width": 1050,
+      "height": 1280
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "how-to-choose-hair-color-photos",
@@ -1389,7 +1845,13 @@
       "美容院 写真 見せ方",
       "髪色 写真 加工",
       "理想の髪色 伝え方"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/how-to-choose-hair-color-photos.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "iLe のヘアカラースタイル"
   },
   {
     "slug": "pool-sea-chlorine-seawater-hightone-fade",
@@ -1405,7 +1867,13 @@
       "プール 髪色 抜ける",
       "海水 ブリーチ毛",
       "塩素 退色"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/pool-sea-chlorine-seawater-hightone-fade.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "bleach-hair-styling-products-guide",
@@ -1421,7 +1889,13 @@
       "ブリーチ毛 スタイリング剤",
       "ハイトーン オイル 選び方",
       "バーム ブリーチ毛"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/bleach-hair-styling-products-guide.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   },
   {
     "slug": "highlight-innercolor-hair-arrange",
@@ -1437,7 +1911,13 @@
       "ハイライト アレンジ",
       "インナーカラー まとめ髪",
       "ハイトーン お呼ばれ アレンジ"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/highlight-innercolor-hair-arrange.jpg",
+      "width": 180,
+      "height": 240
+    },
+    "eyecatchAlt": "インナーカラー・ハイライトのヘアスタイル"
   },
   {
     "slug": "toned-down-hair-to-high-tone-color-residue",
@@ -1453,6 +1933,12 @@
       "トーンダウン 後 ブリーチ",
       "暗くした髪 明るくしたい",
       "髪 色残り"
-    ]
+    ],
+    "eyecatch": {
+      "url": "/journal/toned-down-hair-to-high-tone-color-residue.jpg",
+      "width": 960,
+      "height": 1280
+    },
+    "eyecatchAlt": "ブリーチのヘアスタイル"
   }
 ]
