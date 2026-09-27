@@ -87,6 +87,7 @@ jobs:
           TITLE: ${{ steps.publish.outputs.title }}
           SLUG: ${{ steps.publish.outputs.slug }}
           REMAINING: ${{ steps.gen.outputs.remaining }}
+          REMAINING_IMAGES: ${{ steps.gen.outputs.remaining_images }}
           EXHAUSTED: ${{ steps.gen.outputs.exhausted }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
@@ -103,6 +104,10 @@ jobs:
             MSG=$'✅ iLe自動ブログ：新しい記事を公開しました。\n'"$TITLE"$'\nhttps://ile-hair-harajuku.com/journal/'"$SLUG"
             if [ -n "$REMAINING" ] && [ "$REMAINING" -le 5 ] 2>/dev/null; then
               MSG="$MSG"$'\n⚠️ シードトピック残り'"$REMAINING"$'件です。src/data/seo-topics.json の補充をご検討ください。'
+            fi
+            # 写真プールの残弾も同じ形で先行警告する（尽きると記事が画像なしで増える）
+            if [ -n "$REMAINING_IMAGES" ] && [ "$REMAINING_IMAGES" -le 5 ] 2>/dev/null; then
+              MSG="$MSG"$'\n⚠️ アイキャッチ用の写真が残り'"$REMAINING_IMAGES"$'枚です。自社4店のHPBスタイル写真からの補充が必要です。'
             fi
           else
             MSG=$'ℹ️ iLe自動ブログ：実行しましたが新規投稿はありませんでした（トピック切れの可能性）。\nsrc/data/seo-topics.json をご確認ください。'
