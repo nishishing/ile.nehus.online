@@ -8,7 +8,9 @@ import { existsSync, statSync } from "node:fs";
 import { join, extname } from "node:path";
 import sharp from "sharp";
 
-const DIRS = ["staff", "salons", "gallery", "hero", "irida", "journal"].map((d) => join("public", d));
+// ⚠️ readdir は再帰しない。サブフォルダは個別に並べる（2026-09-29: journal/pool を入れ忘れて
+//    auto-blog がプール写真を付けた記事で avif/webp のリンク切れ 302件 → 9/28 の記事が出なかった）
+const DIRS = ["staff", "salons", "gallery", "hero", "irida", "journal", "journal/pool"].map((d) => join("public", d));
 const AVIF = { quality: 50, effort: 4 };
 const WEBP = { quality: 72 };
 
