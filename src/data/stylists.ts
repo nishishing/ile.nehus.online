@@ -95,6 +95,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-a",
     position: "アシスタント",
     instagram: "ile._._.puq",
+    portrait: { url: "/staff/inoe-mizuki.jpg", width: 600, height: 750 },
   },
   {
     slug: "horibe-mihana",
@@ -103,6 +104,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-a",
     position: "アシスタント",
     instagram: "ile.mh38",
+    portrait: { url: "/staff/horibe-mihana.jpg", width: 600, height: 750 },
   },
   {
     slug: "karino-yuri",
@@ -194,6 +196,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-b",
     position: "アシスタント",
     instagram: "ile.amn_",
+    portrait: { url: "/staff/fukutani-amane.jpg", width: 600, height: 750 },
   },
   {
     slug: "kawahara-ichika",
@@ -202,6 +205,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-b",
     position: "アシスタント",
     instagram: "ile.chik333",
+    portrait: { url: "/staff/kawahara-ichika.jpg", width: 600, height: 750 },
   },
   {
     slug: "yukimatsu-hisa",
@@ -210,6 +214,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-b",
     position: "アシスタント",
     instagram: "ile._.hisa",
+    portrait: { url: "/staff/yukimatsu-hisa.jpg", width: 600, height: 750 },
   },
   {
     slug: "nakauchi-hanae",
