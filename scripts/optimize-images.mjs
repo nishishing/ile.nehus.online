@@ -11,7 +11,9 @@ import sharp from "sharp";
 // ⚠️ readdir は再帰しない。サブフォルダは個別に並べる（2026-09-29: journal/pool を入れ忘れて
 //    auto-blog がプール写真を付けた記事で avif/webp のリンク切れ 302件 → 9/28 の記事が出なかった）
 const DIRS = ["staff", "salons", "gallery", "hero", "irida", "journal", "journal/pool"].map((d) => join("public", d));
-const AVIF = { quality: 50, effort: 4 };
+// effort は圧縮の手間。4→2 で CPU 時間が約6分の1（270s→46s・手元実測）、容量は同じ（10.1MB→10.0MB）。
+// 🔴 Cloudflare Workers Builds の上限は20分。effort=4 のとき journal/pool 追加後のビルドが約13分まで伸びた（2026-09-29）
+const AVIF = { quality: 50, effort: 2 };
 const WEBP = { quality: 72 };
 
 const fresh = (src, out) =>
