@@ -84,7 +84,7 @@ const pageSchemas = [
         </h3>
         <div class="stylists-grid">
           {reps.map((stylist, i) => (
-            <StylistCard stylist={stylist} index={i} />
+            <StylistCard stylist={stylist} index={i} headingLevel={4} />
           ))}
         </div>
       </div>
@@ -98,7 +98,7 @@ const pageSchemas = [
         </h3>
         <div class="stylists-grid">
           {members.map((stylist, i) => (
-            <StylistCard stylist={stylist} index={gi * 6 + i} />
+            <StylistCard stylist={stylist} index={gi * 6 + i} headingLevel={4} />
           ))}
         </div>
       </div>
