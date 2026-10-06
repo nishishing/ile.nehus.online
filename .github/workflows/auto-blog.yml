@@ -68,7 +68,13 @@ jobs:
           TITLE=$(node -e "const a=require('./src/data/blog-generated.json');console.log(a[a.length-1].title)")
           SLUG=$(node -e "const a=require('./src/data/blog-generated.json');console.log(a[a.length-1].slug)")
           git commit -m "content(blog): auto-publish column — ${TITLE}"
-          git push origin HEAD:main
+          # 実行中に main が進んでいたら（他の PR のマージ等）取り込み直して押す。
+          # 2026-10-06: checkout の2秒後に #133 がマージされ、push が rejected で記事が公開されなかった。
+          for i in 1 2 3; do
+            git push origin HEAD:main && break
+            [ "$i" = 3 ] && exit 1
+            git pull --rebase origin main
+          done
           {
             echo "published=true"
             echo "title=${TITLE}"
