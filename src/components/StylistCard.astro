@@ -7,8 +7,11 @@ import Picture from "~components/Picture.astro";
 interface Props {
   stylist: Stylist;
   index: number;
+  /** 親の見出しが h3 のページ（トップの店舗グループ）では 4 を渡す。既定は 3（親が h2 のページ） */
+  headingLevel?: 3 | 4;
 }
-const { stylist, index } = Astro.props;
+const { stylist, index, headingLevel = 3 } = Astro.props;
+const Heading = `h${headingLevel}` as "h3" | "h4";
 const salon = await getSalonBySlug(stylist.salonSlug);
 const salonLabel = salon ? salon.nameLatin.split(" ")[0] : stylist.salonSlug;
 const areaLabel = stylist.position
@@ -29,7 +32,7 @@ const areaLabel = stylist.position
       />
     )}
   </div>
-  <h3 class="stylist__name">{stylist.name}</h3>
+  <Heading class="stylist__name">{stylist.name}</Heading>
   <p class="stylist__salon" set:html={brandLabel(salonLabel)}></p>
   <p class="stylist__area">{areaLabel}</p>
 </article>
