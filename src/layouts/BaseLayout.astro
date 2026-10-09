@@ -5,6 +5,7 @@ import AnnounceBar from "~components/AnnounceBar.astro";
 import Header from "~components/Header.astro";
 import Footer from "~components/Footer.astro";
 import Floating from "~components/Floating.astro";
+import Motion from "~components/Motion.astro";
 import { getJournalPosts } from "~lib/content";
 import { isUnified } from "~lib/brand-state";
 
@@ -71,5 +72,6 @@ const latestPost = hideFloating
     </main>
     <Footer />
     {latestPost && <Floating post={latestPost} />}
+    <Motion />
   </body>
 </html>

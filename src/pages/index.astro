@@ -9,6 +9,7 @@ import StylistCard from "~components/StylistCard.astro";
 import InfoStrip from "~components/InfoStrip.astro";
 import JournalCard from "~components/JournalCard.astro";
 import Ticker from "~components/Ticker.astro";
+import Recognition from "~components/Recognition.astro";
 
 import { getSalons, getStylists, getJournalPosts } from "~lib/content";
 
@@ -107,6 +108,8 @@ const pageSchemas = [
       <a href="/stylists">View all stylists →</a>
     </p>
   </section>
+
+  <Recognition />
 
   <InfoStrip />
 

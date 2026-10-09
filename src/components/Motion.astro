@@ -1,0 +1,62 @@
+---
+// スクロールに合わせて、見出し・カード・写真を下からふわっと出す（オーナー依頼 2026-10-10「モーション感が欲しい」）。
+// - 中身は最初から HTML に全部ある。隠すのは JS が「まだ画面に入っていない要素」に印を付けたときだけ
+//   → JS が無い環境・AI/検索のクローラー・印刷では、普通に全部見える
+// - 読み込み時点で画面に入っている要素（ヒーロー等）は動かさない（表示の遅れ・ちらつきを出さない）
+// - OS の「視差効果を減らす」が有効なら何もしない
+---
+
+<script>
+  const SELECTOR = [
+    "main section > *:not(.salons-grid):not(.stylists-grid):not(.journal-grid):not(.stylists-store):not(.recog-grid)",
+    "main .stylists-store__h",
+    "main .salons-grid > *",
+    "main .stylists-grid > *",
+    "main .journal-grid > *",
+    "main .recog-grid > *",
+  ].join(",");
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+    );
+    const fold = window.innerHeight;
+    document.querySelectorAll<HTMLElement>(SELECTOR).forEach((el) => {
+      if (el.getBoundingClientRect().top < fold) return;
+      // 同じ並びのカードは少しずつ遅らせる（4枚ごとに戻す）
+      const index = el.parentElement ? Array.from(el.parentElement.children).indexOf(el) : 0;
+      el.style.setProperty("--reveal-i", String(Math.max(index, 0) % 4));
+      el.setAttribute("data-reveal", "");
+      io.observe(el);
+    });
+  }
+</script>
+
+<style is:global>
+  [data-reveal] {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0);
+    transition:
+      opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: calc(var(--reveal-i, 0) * 90ms);
+  }
+  [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+  @media print {
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
