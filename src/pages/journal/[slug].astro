@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "~layouts/BaseLayout.astro";
 import PageHero from "~components/PageHero.astro";
+import { brandLabel } from "~lib/brand";
 import Prose from "~components/Prose.astro";
 import Picture from "~components/Picture.astro";
 import { getJournalPosts } from "~lib/content";
@@ -47,7 +48,13 @@ const pageSchemas = [
 
   <PageHero
     eyebrow={`— ${post.categoryLabel} / ${post.publishedAtLabel}`}
-    title={post.title.toUpperCase()}
+    title={
+      // 題名は大文字で見せるが「iLe」だけはブランド表記のまま（2026-10-10 オーナー確認）
+      post.title
+        .split(/(iLe\.?[+＋]?)/)
+        .map((part, i) => (i % 2 ? brandLabel(part) : part.toUpperCase()))
+        .join("")
+    }
   />
 
   {post.eyecatch?.url && (
