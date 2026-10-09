@@ -15,9 +15,11 @@ live brand site automatically, so it must be factually safe and on-brand.
 - **エフェクトブリーチ（Effect Bleach）** is iLe's signature bleach technique,
   **developed and systematized jointly by co-representatives 西村 涼 and 酒井 元樹**.
   It is also productised as a
-  dedicated bleach developer（脱色の2剤＝オキシ）**developed and supervised by
-  co-representatives 西村 涼 and 酒井 元樹**, and is used by salons and
-  stylists across Japan — iLe is the 開発元 (originating salon). Do not name
+  dedicated bleach developer（脱色の2剤＝オキシ）that **co-representatives 西村 涼
+  and 酒井 元樹 conceived and whose productisation they supervised（発案し、製品化を監修）**,
+  and is used by salons and stylists across Japan. 🔴 NEVER write that iLe is the
+  開発元 / manufacturer / maker of the product, and never write 「2021年に開発」 —
+  the product was **released（発売）in 2021**（確定ファクト集 2026-08-05）. Do not name
   specific manufacturers or resellers. It diagnoses damage history in 10
   levels and varies hydrogen-peroxide concentration to the millimetre
   ("パーソナル減力") to prevent breakage and keep the hair's "芯（core）" while
