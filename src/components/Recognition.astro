@@ -1,0 +1,193 @@
+---
+// トップの「受賞・メディア」まとめ（オーナー依頼 2026-10-10）。
+// 中身はすべて site.ts（確定ファクト集§3・§7 準拠）から組み立てる。数字や年をここに直書きしない。
+// 詳細は /expertise に集約済みなので、ここは入口として要点だけを置く。
+// 🔴 Effect Bleach は「共同代表2名が発案し、製品化を監修」で書く。「iLe が開発元」とは書かない（2026-08-05）。
+import SectionHead from "~components/SectionHead.astro";
+import { site } from "~data/site";
+
+const kami = site.kamiCharisma;
+const people = (kami?.personal ?? []).map((p) => {
+  const first = p.awards[0];
+  const last = p.awards[p.awards.length - 1];
+  return {
+    name: p.name,
+    span: `${first.year.replace("アワード", "")}〜${last.year}`,
+    count: p.awards.length,
+    latest: last.grade,
+  };
+});
+const salonFirst = kami?.salon[0]?.year;
+const eb = site.effectBleach;
+const book = site.book;
+const bookYear = book?.datePublished?.slice(0, 4);
+---
+
+<section class="section section--recognition" aria-labelledby="recognition-h">
+  <div id="recognition-h">
+    <SectionHead small="— Awards &amp; Media" title="Recognition" />
+  </div>
+
+  <ul class="recog-grid">
+    {kami && (
+      <li class="recog">
+        <p class="recog__k">KAMI CHARISMA</p>
+        <h3 class="recog__h">ヘアカラー部門で毎年受賞</h3>
+        <ul class="recog__rows">
+          {people.map((p) => (
+            <li>
+              <span class="recog__who">{p.name}</span>
+              <span class="recog__what">{p.span} {p.count}年連続（最新 {p.latest}）</span>
+            </li>
+          ))}
+          {salonFirst && (
+            <li>
+              <span class="recog__who">サロン iLe.</span>
+              <span class="recog__what">{salonFirst}から毎年受賞</span>
+            </li>
+          )}
+        </ul>
+      </li>
+    )}
+
+    {book && (
+      <li class="recog">
+        <p class="recog__k">Publication</p>
+        <h3 class="recog__h">共著書『{book.title}』</h3>
+        <p class="recog__body">
+          酒井 元樹・西村 涼 共著／{book.publisher}（{bookYear}年）。
+          複雑な履歴の髪のブリーチを、理論から体系化した一冊です。
+        </p>
+      </li>
+    )}
+
+    {eb && (
+      <li class="recog">
+        <p class="recog__k">Effect Bleach</p>
+        <h3 class="recog__h">{eb.countries.length}か国に広がる技術</h3>
+        <p class="recog__body">
+          共同代表の2名が発案し、製品化を監修。{eb.developedYear}年の発売以降、
+          {eb.countries.join("・")}に広がり、アンバサダーは{eb.ambassadors}です。
+        </p>
+      </li>
+    )}
+
+    {site.press?.length && (
+      <li class="recog">
+        <p class="recog__k">Media</p>
+        <h3 class="recog__h">掲載記事</h3>
+        <ul class="recog__links">
+          {site.press.map((p) => (
+            <li>
+              <a href={p.url} target="_blank" rel="noopener">{p.label} ↗</a>
+            </li>
+          ))}
+        </ul>
+      </li>
+    )}
+  </ul>
+
+  <p class="recog-more">
+    <a href="/expertise">受賞・メディア掲載をすべて見る →</a>
+  </p>
+</section>
+
+<style>
+  .section--recognition {
+    padding: 110px 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .recog-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1180px;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 900px) {
+    .recog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .recog {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    padding: 40px 36px;
+  }
+  .recog__k {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-fg-muted);
+    margin: 0 0 14px;
+  }
+  .recog__h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.4;
+    margin: 0 0 20px;
+  }
+  .recog__body {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--color-fg);
+    margin: 0;
+  }
+  .recog__rows,
+  .recog__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .recog__rows li {
+    display: grid;
+    grid-template-columns: 7.5em 1fr;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .recog__who {
+    color: var(--color-fg-muted);
+  }
+  @media (max-width: 599px) {
+    .recog {
+      padding: 32px 24px;
+    }
+    .recog__rows li {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+  }
+  .recog__links li {
+    padding: 10px 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .recog__links a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border-strong);
+  }
+  .recog__links a:hover {
+    border-bottom-color: currentColor;
+  }
+  .recog-more {
+    text-align: center;
+    margin: 56px 0 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+  }
+  .recog-more a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 4px;
+  }
+</style>
