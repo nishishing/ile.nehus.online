@@ -87,6 +87,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "harajuku-a",
     position: "スタイリスト",
     instagram: "kosakanaction",
+    portrait: { url: "/staff/kosaka-ryuta.jpg", width: 600, height: 750 },
   },
   {
     slug: "inoe-mizuki",
