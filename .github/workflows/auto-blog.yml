@@ -81,6 +81,18 @@ jobs:
             echo "slug=${SLUG}"
           } >> "$GITHUB_OUTPUT"
 
+      # 公開した記事を検索エンジンへ知らせる（IndexNow・2026-10-12）。
+      # 公式サイトが AI の使う検索に載っていなかったため。失敗しても公開は止めない。
+      - name: Notify search engines (IndexNow)
+        if: steps.publish.outputs.published == 'true'
+        continue-on-error: true
+        env:
+          SLUG: ${{ steps.publish.outputs.slug }}
+        run: |
+          # Cloudflare の反映（実測 2〜3分）を待ってから通知する
+          sleep 240
+          node scripts/indexnow.mjs "https://ile-hair-harajuku.com/journal/${SLUG}" "https://ile-hair-harajuku.com/journal"
+
       # Notify LINE on every run. Skips silently if the LINE_* secrets are not
       # set, so the pipeline still works without them.
       - name: Notify LINE
