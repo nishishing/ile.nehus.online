@@ -62,7 +62,10 @@ mostly **assets** (photos / logo / OGP) + microCMS.
   so on the site, ALWAYS say 共同代表, never a sole 代表取締役.)
   - 酒井 元樹 — **エフェクトブリーチ共同開発者** / ケミカルの権威.
   - 西村 涼 — **エフェクトブリーチ共同開発者** / バレイヤージュ第一人者 / 創業者. Authors the /message & /story.
-  - **エフェクトブリーチは、技術・理論（10段階診断/パーソナル減力）も薬剤
+  - 🔴 **「10段階（の履歴）診断」「過酸化水素の濃度をミリ単位で調整」「パーソナル減力」は使わない**
+    （オーナー決定 2026-10-14「10段階の履歴診断っていうのは僕もよくわかってないやつなのでかえて」→ 3つとも削除）。
+    言い換えは「髪の状態やこれまでの履歴を見ながら薬剤を調整」など、言い切らない表現。記事 `what-is-personal-genryoku` は取り下げ（/effect-bleach へ 301）
+  - **エフェクトブリーチは、技術・理論も薬剤
     （脱色の2剤＝オキシ）も、西村 涼・酒井 元樹の両名が共同で開発・体系化・監修**
     （オーナー確認 2026-07-26。当初「技術＝酒井単独」としていたのを訂正）。全国の
     サロン・美容師にも広がっている＝iLe は「開発元」。**どの箇所も「酒井単独開発」と
@@ -196,7 +199,7 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 │   │   ├── stylists.ts        Real roster: 32 staff (2 co-reps + 16 stylists + 14 assistants)
 │   │   ├── journal.ts         Seed posts
 │   │   ├── faq.ts             23 LLMO-critical Q&A (brand / salon / access / technique / recruit)
-│   │   └── glossary.ts        16 DefinedTerm entries (iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / パーソナル減力 / バレイヤージュ / ハイライト / ケアブリーチ / 白髪ぼかし / インナーカラー / ダブルカラー / …)
+│   │   └── glossary.ts        16 DefinedTerm entries (iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / バレイヤージュ / ハイライト / ケアブリーチ / 白髪ぼかし / インナーカラー / ダブルカラー / …)
 │   ├── components/            Astro components
 │   ├── layouts/BaseLayout.astro
 │   └── pages/                 content pages (see "Pages shipped")
@@ -241,7 +244,7 @@ labels. Italics in Libre Caslon Text are used for brand keywords
 | `/stylists/[slug]` | Person | **32 generated**; Person → worksFor → HairSalon |
 | `/journal` + `/journal/[slug]` | Breadcrumb / Article | seed posts |
 | `/faq` | **FAQPage** | 23 Q&A — brand / salon (初めて・メンズ含む) / **access** (原宿/名古屋/長岡の最寄駅) / **technique** (バレイヤージュ・ケアブリーチ・色落ち・白髪ぼかし・大人世代 等) / recruit。冒頭にカテゴリのジャンプindex |
-| `/glossary` | **DefinedTerm** | iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / パーソナル減力 / バレイヤージュ / ハイライト / ケアブリーチ / 白髪ぼかし / インナーカラー / ダブルカラー / iLe.online / … |
+| `/glossary` | **DefinedTerm** | iLe / nehus / 船から島へ / 酒井元樹 / 西村涼 / エフェクトブリーチ / バレイヤージュ / ハイライト / ケアブリーチ / 白髪ぼかし / インナーカラー / ダブルカラー / iLe.online / … |
 | `/irida` | **Brand + Product + Breadcrumb** | 自社プレミアムヘアケア「Irida（イリーダ）」。Bonding Plex シャンプー&トリートメント等。購入は STORES（`https://ileing.stores.jp`）。footer nav に IRIDA |
 | `/recruit` | **3× JobPosting + Breadcrumb** | 作り込み済（2026-07-03）+ **実給与データ掲載（2026-07-04、オーナー提供の採用資料より）**: 統計バンド / Why iLe 3本柱 / iLe Academy 節 / **給与セクション**（東京・名古屋と長岡の歩合テーブル、完全歩合+最低保証、最高月収 スタイリスト180万・アシスタント50万）/ **福利厚生・休日**（国保・厚生年金・店販手当・月8〜10休 等12項目）/ 職種3件 / 応募の流れ / CTA。JobPosting description・jobBenefits にも反映 |
 | `/contact` `/ile-online` `/privacy` `/terms` | Breadcrumb | |
@@ -602,7 +605,7 @@ The user has asked that this file be kept up to date whenever things change.
   （「エフェクトブリーチとは」検索面の奪還が狙い。パーソナル減力記事へ内部リンク）。
   build 89 pages／4バリデータ 0エラー。
 
-- **2026-07-03** — SEOコラム +1本（オーナー指示・AI定点観測の未出現クエリ対策）:
+- **2026-07-03** — SEOコラム +1本（⚠️ 2026-10-14 取り下げ・上の決定を参照）（オーナー指示・AI定点観測の未出現クエリ対策）:
   「パーソナル減力」解説記事 `what-is-personal-genryoku`（`blog-generated.json`）。初回のAI
   visibility 実測で「パーソナル減力というブリーチの考え方」に未出現だったため、glossary の
   DefinedTerm と整合する自己完結の定義段落＋10段階診断/ミリ単位減力/断毛防止を brand-brief

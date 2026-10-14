@@ -8,3 +8,6 @@
 /directors/ /expertise 301
 /salon-list /salons 301
 /salon-list/ /salons 301
+
+# 2026-10-14 オーナー決定で取り下げた記事 → エフェクトブリーチのページへ
+/journal/what-is-personal-genryoku /effect-bleach 301
