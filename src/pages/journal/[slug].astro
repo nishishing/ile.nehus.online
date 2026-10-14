@@ -21,6 +21,26 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 
+// あわせて読みたい（2026-10-14）: 記事どうしのリンクが101本中100本で0だった。
+// キーワードの語の重なり（珍しい語ほど重く）で近い記事を3本選ぶ。足りなければ新しい順で埋める。
+const allPosts = (await getJournalPosts()).filter((p) => p.slug !== post.slug);
+const tokens = (p: typeof post) =>
+  new Set((p.keywords ?? []).flatMap((k) => k.split(/\s+/)).filter((t) => t.length > 1));
+const docFreq = new Map<string, number>();
+for (const p of [post, ...allPosts]) for (const t of tokens(p)) docFreq.set(t, (docFreq.get(t) ?? 0) + 1);
+const total = allPosts.length + 1;
+const mine = tokens(post);
+const related = allPosts
+  .map((p) => ({
+    p,
+    score: [...tokens(p)]
+      .filter((t) => mine.has(t))
+      .reduce((s, t) => s + Math.log(total / (docFreq.get(t) ?? 1)), 0),
+  }))
+  .sort((a, b) => b.score - a.score || b.p.publishedAt.localeCompare(a.p.publishedAt))
+  .slice(0, 3)
+  .map((r) => r.p);
+
 const description =
   post.summary ?? `${post.title}｜iLe Journal — ${post.publishedAtLabel}`;
 
@@ -77,6 +97,23 @@ const pageSchemas = [
       {post.body && <div set:html={post.body} />}
     </Prose>
   </article>
+
+  {related.length > 0 && (
+    <nav class="journal-related" aria-labelledby="related-h">
+      <h2 id="related-h" class="journal-related__h">あわせて読みたい</h2>
+      <ul class="journal-related__list">
+        {related.map((r) => (
+          <li>
+            <a href={`/journal/${r.slug}`}>
+              <span class="journal-related__title" set:html={brandLabel(r.title)} />
+              <span class="journal-related__date">{r.publishedAtLabel}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="journal-related__all"><a href="/journal">記事の一覧へ →</a></p>
+    </nav>
+  )}
 </BaseLayout>
 
 <style>
@@ -96,6 +133,60 @@ const pageSchemas = [
     padding: 110px 32px 140px;
     position: relative;
     z-index: 1;
+  }
+  .journal-related {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 32px 120px;
+    position: relative;
+    z-index: 1;
+  }
+  .journal-related__h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 20px;
+  }
+  .journal-related__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .journal-related__list li {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .journal-related__list a {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 0;
+    color: inherit;
+    text-decoration: none;
+  }
+  .journal-related__list a:hover .journal-related__title {
+    text-decoration: underline;
+  }
+  .journal-related__title {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .journal-related__date {
+    flex: none;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--color-fg-muted);
+    padding-top: 4px;
+  }
+  .journal-related__all {
+    margin: 28px 0 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+  }
+  .journal-related__all a {
+    color: inherit;
   }
   /* When an eyecatch precedes the article, tighten the top padding a touch. */
   .journal-eyecatch + .journal-article {
