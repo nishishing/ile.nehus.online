@@ -1,0 +1,206 @@
+---
+/**
+ * /styles — スタイルギャラリー（2026-10-14・オーナー依頼「内容量をもう少し充実させたい」）。
+ * 写真は自社店舗の HOT PEPPER Beauty スタイル写真（journal-image-pool.json と同じ60枚）。
+ * 🔴 他社サロンの写真は使わない（他店の作品・他店の顧客）。写真ごとの説明データは無いので、
+ *    説明文を推測で作らず、店舗名だけを添える。
+ */
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import Picture from "~components/Picture.astro";
+import { brandLabel } from "~lib/brand";
+import { getSalons } from "~lib/content";
+import { breadcrumbSchema, jsonLd } from "~lib/schema";
+import pool from "../data/journal-image-pool.json";
+
+const salons = await getSalons();
+// プールの store 値 → 店舗
+const STORE_TO_SALON: Record<string, string> = { ile: "harajuku-a", nehus: "harajuku-b" };
+const groups = salons
+  .map((salon) => ({
+    salon,
+    photos: pool.filter((p) => STORE_TO_SALON[p.store] === salon.slug),
+  }))
+  .filter((g) => g.photos.length > 0);
+
+const description =
+  "iLe（イル）の原宿の店舗で手がけたヘアスタイルの写真。ブリーチ・ハイトーン・バレイヤージュ・デザインカラーなど。最新のスタイルは各店の HOT PEPPER Beauty でもご覧いただけます。";
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Styles", url: "/styles" },
+  ]),
+];
+---
+
+<BaseLayout title="Styles — ヘアスタイル写真" description={description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero eyebrow="— Hair Styles" title="STYLES" />
+
+  <section class="styles-intro" aria-label="このページについて">
+    <p>
+      iLe の店舗で実際に手がけたスタイルの一部です。最新のスタイルや担当者は、
+      各店の HOT PEPPER Beauty でもご覧いただけます。
+    </p>
+    <nav class="styles-filter" aria-label="店舗で絞り込む" data-styles-filter hidden>
+      <button type="button" data-filter="all" aria-pressed="true">すべて</button>
+      {groups.map(({ salon }) => (
+        <button type="button" data-filter={salon.slug} aria-pressed="false" set:html={brandLabel(salon.name)} />
+      ))}
+    </nav>
+  </section>
+
+  {groups.map(({ salon, photos }) => (
+    <section class="styles-group" data-group={salon.slug} aria-labelledby={`styles-${salon.slug}`}>
+      <h2 id={`styles-${salon.slug}`} class="styles-group__h">
+        <span set:html={brandLabel(salon.name)} />
+        <span class="styles-group__city">{salon.cityShort}</span>
+      </h2>
+      <ul class="styles-grid">
+        {photos.map((p) => (
+          <li class="styles-grid__item">
+            <Picture
+              class="styles-grid__img"
+              src={p.file}
+              width={p.width}
+              height={p.height}
+              alt={`${salon.name}（${salon.cityShort}）で手がけたヘアスタイル`}
+              loading="lazy"
+              sizes="(min-width: 1100px) 25vw, (min-width: 700px) 33vw, 50vw"
+            />
+          </li>
+        ))}
+      </ul>
+      {salon.hotPepperUrl && (
+        <p class="styles-group__more">
+          <a href={`${salon.hotPepperUrl}style/`} target="_blank" rel="noopener">
+            <span set:html={brandLabel(salon.name)} /> のスタイルをもっと見る（HOT PEPPER Beauty）↗
+          </a>
+        </p>
+      )}
+    </section>
+  ))}
+</BaseLayout>
+
+<script>
+  // 店舗で絞り込む（JS が無ければボタンは出さず、全部見える）
+  const nav = document.querySelector<HTMLElement>("[data-styles-filter]");
+  if (nav) {
+    nav.hidden = false;
+    const buttons = nav.querySelectorAll<HTMLButtonElement>("button[data-filter]");
+    const groups = document.querySelectorAll<HTMLElement>("[data-group]");
+    buttons.forEach((btn) =>
+      btn.addEventListener("click", () => {
+        const f = btn.dataset.filter;
+        buttons.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+        groups.forEach((g) => (g.hidden = f !== "all" && g.dataset.group !== f));
+      }),
+    );
+  }
+</script>
+
+<style>
+  .styles-intro {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 80px 32px 40px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.9;
+  }
+  .styles-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .styles-filter button {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    padding: 10px 18px;
+    border: 1px solid var(--color-border-strong);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+  .styles-filter button[aria-pressed="true"] {
+    background: var(--color-ink);
+    color: var(--color-white);
+    border-color: var(--color-ink);
+  }
+  .styles-group {
+    padding: 40px 32px 80px;
+    position: relative;
+    z-index: 1;
+  }
+  .styles-group__h {
+    max-width: 1400px;
+    margin: 0 auto 28px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 34px);
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .styles-group__city {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--color-fg-muted);
+  }
+  .styles-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1400px;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 700px) {
+    .styles-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (min-width: 1100px) {
+    .styles-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .styles-grid__item {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: var(--color-pearl);
+  }
+  .styles-grid__item :global(.styles-grid__img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .styles-grid__item:hover :global(.styles-grid__img) {
+    transform: scale(1.03);
+  }
+  .styles-group__more {
+    max-width: 1400px;
+    margin: 28px auto 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+  }
+  .styles-group__more a {
+    color: inherit;
+  }
+</style>
