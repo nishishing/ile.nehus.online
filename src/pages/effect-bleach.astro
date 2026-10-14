@@ -28,13 +28,6 @@ const principles = [
   },
 ];
 
-// Customer voices (from the existing site's reviews)
-const voices = [
-  "独自のエフェクトブリーチで、驚くほどサラサラな仕上がりになりました。",
-  "ブリーチ特有のパサつきがなく、艶と透明感に大満足です。",
-  "色の抜け方が本当に綺麗で、色落ちしてもムラになりません。",
-];
-
 // Menu (price guide carried over from the existing site; tax/■店舗により変動の可能性)
 const menu = [
   { name: "エフェクトブリーチ ＋ カラー（全頭）", price: "¥18,700〜" },
@@ -162,14 +155,6 @@ const pageSchemas = [
           <em>色落ちの美しさ</em>までを設計に含めます。
         </p>
       </div>
-    </div>
-  </section>
-
-  <section class="eb-voices" aria-label="Customer voices">
-    <div class="eb-voices__grid">
-      {voices.map((v) => (
-        <blockquote class="eb-voice">“{v}”</blockquote>
-      ))}
     </div>
   </section>
 
