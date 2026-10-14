@@ -11,3 +11,8 @@
 
 # 2026-10-14 オーナー決定で取り下げた記事 → エフェクトブリーチのページへ
 /journal/what-is-personal-genryoku /effect-bleach 301
+
+# 2026-10-14 Search Console の 404 から: 退社したスタッフのページ・旧 WordPress のタグ
+/stylists/yokoyama-ichika /stylists 301
+/tag/nehus /story 301
+/tag/nehus/ /story 301
