@@ -175,6 +175,7 @@ export const navFooter = [
   { label: "SALONS", href: "/salons" },
   { label: "STYLISTS", href: "/stylists" },
   { label: "MENU", href: "/menu" },
+  { label: "STYLES", href: "/styles" },
   { label: "EFFECT BLEACH", href: "/effect-bleach" },
   { label: "TECHNOLOGY", href: "/technology" },
   { label: '<span class="brand-token">irida</span>', href: "/irida" },

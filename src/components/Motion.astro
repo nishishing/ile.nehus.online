@@ -8,12 +8,13 @@
 
 <script>
   const SELECTOR = [
-    "main section > *:not(.salons-grid):not(.stylists-grid):not(.journal-grid):not(.stylists-store):not(.recog-grid)",
+    "main section > *:not(.salons-grid):not(.stylists-grid):not(.journal-grid):not(.stylists-store):not(.recog-grid):not(.styles-grid)",
     "main .stylists-store__h",
     "main .salons-grid > *",
     "main .stylists-grid > *",
     "main .journal-grid > *",
     "main .recog-grid > *",
+    "main .styles-grid > *",
   ].join(",");
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
