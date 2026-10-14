@@ -8,6 +8,7 @@ const SITE_URL = process.env.PUBLIC_SITE_URL ?? "https://ile-hair-harajuku.com";
 
 // サイトマップに記事の公開日を lastmod として載せる（2026-10-14）。
 // 検索エンジン（Bing / IndexNow 系）が「どのページが新しいか」を判断する材料になる。
+/** @type {{ slug: string; publishedAt: string; updatedAt?: string }[]} */
 const generatedPosts = JSON.parse(
   readFileSync(new URL("./src/data/blog-generated.json", import.meta.url), "utf8"),
 );
