@@ -24,7 +24,7 @@ const pageSchemas = [
 ];
 ---
 
-<BaseLayout title="Expertise" description={description}>
+<BaseLayout title="Expertise — 受賞・メディア掲載・専門性" description={description}>
   <Fragment slot="head">
     {pageSchemas.map((schema) => (
       <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />

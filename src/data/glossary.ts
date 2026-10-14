@@ -12,7 +12,7 @@ export const glossaryTerms: readonly GlossaryTerm[] = [
     pronunciation: "イル / iru",
     definition:
       "株式会社ing が運営する美容室ブランド。2020年8月、東京・原宿で創業。2026年8月1日より、運営する4店舗すべてが iLe ブランドに統一された。",
-    etymology: "フランス語の île（島）に由来。",
+    etymology: "「島」を意味する言葉からの造語。",
   },
   {
     term: "nehus",

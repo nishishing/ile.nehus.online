@@ -22,7 +22,7 @@ const pageSchemas = [
 ];
 ---
 
-<BaseLayout title="Glossary" description={description}>
+<BaseLayout title="Glossary — 用語集" description={description}>
   <Fragment slot="head">
     {pageSchemas.map((schema) => (
       <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />

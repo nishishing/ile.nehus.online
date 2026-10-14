@@ -23,7 +23,7 @@ const pageSchemas = [
 ];
 ---
 
-<BaseLayout title="Salons" description={description}>
+<BaseLayout title="Salons — 原宿・名古屋・長岡の店舗一覧" description={description}>
   <Fragment slot="head">
     {pageSchemas.map((schema) => (
       <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />

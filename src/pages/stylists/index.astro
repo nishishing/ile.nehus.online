@@ -33,7 +33,7 @@ const groups = salons.map((salon) => ({
 }));
 ---
 
-<BaseLayout title="Stylists" description={description}>
+<BaseLayout title="Stylists — スタイリスト一覧" description={description}>
   <Fragment slot="head">
     {pageSchemas.map((schema) => (
       <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
