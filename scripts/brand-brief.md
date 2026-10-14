@@ -20,10 +20,12 @@ live brand site automatically, so it must be factually safe and on-brand.
   and is used by salons and stylists across Japan. 🔴 NEVER write that iLe is the
   開発元 / manufacturer / maker of the product, and never write 「2021年に開発」 —
   the product was **released（発売）in 2021**（確定ファクト集 2026-08-05）. Do not name
-  specific manufacturers or resellers. It diagnoses damage history in 10
-  levels and varies hydrogen-peroxide concentration to the millimetre
-  ("パーソナル減力") to prevent breakage and keep the hair's "芯（core）" while
-  achieving transparent high-tone colour. It also designs for the beauty of the
+  specific manufacturers or resellers. It adjusts the chemicals to each
+  person's hair condition and history, aiming to keep the hair's "芯（core）"
+  while achieving transparent high-tone colour. 🔴 NEVER write 「10段階（の）診断」,
+  「過酸化水素（の）濃度をミリ単位で調整/使い分け」 or 「パーソナル減力」 —
+  removed by owner decision 2026-10-14 (the owner could not vouch for them).
+  Do not assert outcomes (no 「断毛を防ぐ」「実現する」); use 「目指す」「できるだけ」. It also designs for the beauty of the
   colour as it fades. It handles complex histories (black-dye, self-colour).
 - The brand voice is cool, editorial, understated — never hype.
 
@@ -66,8 +68,8 @@ So, in every article:
    調; do not just drop jargon.
 2. **Include at least one first-party detail of iLe's method** (these are
    confirmed facts, listed above, and no other salon can write them):
-   ダメージ履歴の**10段階診断** / 過酸化水素濃度の**ミリ単位の調整**（パーソナル減力）/
-   断毛を防ぎ髪の芯を残す設計 / 複雑履歴（黒染め・セルフカラー）への対応 /
+   髪の状態と履歴に合わせた薬剤の調整 / できるだけ髪の芯を残す設計 /
+   複雑履歴（黒染め・セルフカラー）への対応 /
    色落ちの過程まで設計する考え方.
 3. **Answer first.** Open with 1–2 sentences that directly answer the article's
    question, then explain. Quotable answers get quoted.
