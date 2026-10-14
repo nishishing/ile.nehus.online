@@ -2,29 +2,15 @@
 import BaseLayout from "~layouts/BaseLayout.astro";
 import PageHero from "~components/PageHero.astro";
 import { breadcrumbSchema, jsonLd } from "~lib/schema";
+import { getSalons } from "~lib/content";
+import { brandLabel } from "~lib/brand";
 
+// 2026-10-14 オーナー決定: 出どころを確かめられない感想4件（旧サイトから引き継いだとされるもの）を外し、
+// 各店の HOT PEPPER Beauty の実際の口コミへ案内する形にした。感想の文面をここに書かない。
 const description =
-  "iLe（イル）に寄せられたお客様の声。エフェクトブリーチの仕上がり、艶と透明感、ダメージを抑えたハイトーンへの感想。";
+  "iLe（イル）の口コミ・お客様の声。原宿・名古屋・長岡の各店にお寄せいただいた口コミは、HOT PEPPER Beauty の各店ページでご覧いただけます。";
 
-// Voices carried over from the existing site's reviews.
-const voices = [
-  {
-    body: "独自のエフェクトブリーチで、驚くほどサラサラな仕上がりになりました。ブリーチをしたとは思えない手触りです。",
-    meta: "ハイトーンカラー / 原宿",
-  },
-  {
-    body: "名古屋店でも、全く変わらない艶と透明感に大満足です。ブリーチ特有のパサつきがありません。",
-    meta: "エフェクトブリーチ / 名古屋",
-  },
-  {
-    body: "初めてのエフェクトブリーチでしたが、色の抜け方が本当に綺麗で、色落ちしてもムラになりませんでした。",
-    meta: "ダブルカラー / 原宿",
-  },
-  {
-    body: "他店で「これ以上は切れる」と言われたハイダメージ毛でしたが、相談しながら理想のトーンに近づけてもらえました。",
-    meta: "ケアブリーチ / 長岡",
-  },
-];
+const salons = await getSalons();
 
 const pageSchemas = [
   breadcrumbSchema([
@@ -47,20 +33,19 @@ const pageSchemas = [
     <p class="voice-lead">
       iLe では、髪の履歴を見極めて薬剤を設計する<a href="/effect-bleach">エフェクトブリーチ</a>を軸に、
       ダメージをできるだけ抑えたハイトーンと、色落ちの美しさまで含めたカラー設計を大切にしています。
-      実際にご来店いただいたお客様から寄せられた声の一部をご紹介します。
+      実際にご来店いただいたお客様の口コミは、各店の HOT PEPPER Beauty でご覧いただけます。
     </p>
-    <div class="voice-grid">
-      {voices.map((v) => (
-        <figure class="voice-card">
-          <blockquote class="voice-card__body">“{v.body}”</blockquote>
-          <figcaption class="voice-card__meta">— {v.meta}</figcaption>
-        </figure>
+    <ul class="voice-grid">
+      {salons.map((salon) => salon.hotPepperUrl && (
+        <li class="voice-card">
+          <p class="voice-card__body" set:html={brandLabel(salon.name)} />
+          <a class="voice-card__meta" href={`${salon.hotPepperUrl}review/`} target="_blank" rel="noopener">
+            口コミを見る（HOT PEPPER Beauty）↗
+          </a>
+        </li>
       ))}
-    </div>
+    </ul>
 
-    <p class="voice-note">
-      ※ お客様からいただいた感想を編集してご紹介しています。最新の口コミは各店の Hot Pepper Beauty ページでもご覧いただけます。
-    </p>
     <nav class="voice-links" aria-label="関連ページ">
       <a href="/effect-bleach">エフェクトブリーチとは</a>
       <a href="/menu">メニュー・料金</a>
@@ -90,6 +75,9 @@ const pageSchemas = [
     border-bottom: 1px solid currentColor;
   }
   .voice-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
