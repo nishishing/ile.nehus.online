@@ -31,10 +31,18 @@ const pageSchemas = [
     { name: salon.nameLatin, url: `/salons/${salon.slug}` },
   ]),
 ];
+
+// 題名に街の名前を日本語で入れる（2026-10-14・検索語「原宿 美容室」等に合わせる）
+const AREA_JA: Record<string, string> = {
+  "harajuku-a": "原宿",
+  "harajuku-b": "原宿・表参道",
+  nagoya: "名古屋・栄",
+  nagaoka: "新潟・長岡",
+};
 ---
 
 <BaseLayout
-  title={salon.nameLatin}
+  title={`${salon.name}｜${AREA_JA[salon.slug] ?? salon.cityShort}の美容室`}
   description={salon.seoDescription ?? salon.description}
 >
   <Fragment slot="head">

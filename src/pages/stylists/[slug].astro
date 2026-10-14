@@ -17,9 +17,16 @@ export async function getStaticPaths() {
 
 const { stylist, index } = Astro.props;
 const salon = await getSalonBySlug(stylist.salonSlug);
+const AREA_JA: Record<string, string> = {
+  "harajuku-a": "原宿",
+  "harajuku-b": "原宿・表参道",
+  nagoya: "名古屋・栄",
+  nagaoka: "新潟・長岡",
+};
 
 const description = stylist.profile
-  ?? `${stylist.name}（${stylist.nameJa ?? ""}）— iLe ${salon?.cityShort ?? ""} のスタイリスト${stylist.position ? `／${stylist.position}` : ""}。`;
+  ? `${stylist.nameJa ?? stylist.name}（${salon?.name ?? "iLe"}${stylist.position ? `・${stylist.position}` : ""}）｜${stylist.profile}`
+  : `${stylist.nameJa ? `${stylist.nameJa}（${stylist.name}）` : stylist.name}— ${salon?.name ?? "iLe"}（${AREA_JA[stylist.salonSlug] ?? ""}）の${stylist.position ?? "スタイリスト"}。原宿・名古屋・長岡の美容室 iLe。`;
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -47,7 +54,7 @@ const pageSchemas = [
 ];
 ---
 
-<BaseLayout title={stylist.name} description={description}>
+<BaseLayout title={`${stylist.nameJa ? `${stylist.nameJa}（${stylist.name}）` : stylist.name} — ${AREA_JA[stylist.salonSlug] ?? ""} ${salon?.name ?? "iLe"}${stylist.position ? ` ${stylist.position}` : ""}`} description={description}>
   <Fragment slot="head">
     {pageSchemas.map((schema) => (
       <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />

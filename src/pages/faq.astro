@@ -35,7 +35,7 @@ const groupedFaq = categories.map((cat) => ({
 }));
 ---
 
-<BaseLayout title="FAQ" description={description}>
+<BaseLayout title="FAQ — よくある質問" description={description}>
   <Fragment slot="head">
     {pageSchemas.map((schema) => (
       <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />

@@ -14,7 +14,7 @@ const pageSchemas = [
 ];
 ---
 
-<BaseLayout title="Terms of Use" description={description}>
+<BaseLayout title="Terms of Use — 利用規約" description={description}>
   <Fragment slot="head">
     {pageSchemas.map((schema) => (
       <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />

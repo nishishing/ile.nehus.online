@@ -21,7 +21,7 @@ const sorted = [...journalPosts].sort((a, b) =>
 );
 ---
 
-<BaseLayout title="Journal" description={description}>
+<BaseLayout title="Journal — ブリーチ・ハイトーンのコラム" description={description}>
   <Fragment slot="head">
     {pageSchemas.map((schema) => (
       <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />

@@ -15,7 +15,7 @@ const pageSchemas = [
 ];
 ---
 
-<BaseLayout title="iLe.online" description={description}>
+<BaseLayout title="iLe.online — オンラインサロン" description={description}>
   <Fragment slot="head">
     {pageSchemas.map((schema) => (
       <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />

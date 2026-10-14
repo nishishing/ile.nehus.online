@@ -14,7 +14,7 @@ const pageSchemas = [
 ];
 ---
 
-<BaseLayout title="Privacy Policy" description={description} noindex={false}>
+<BaseLayout title="Privacy Policy — プライバシーポリシー" description={description} noindex={false}>
   <Fragment slot="head">
     {pageSchemas.map((schema) => (
       <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
