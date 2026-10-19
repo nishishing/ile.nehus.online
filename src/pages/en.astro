@@ -1,0 +1,242 @@
+---
+/**
+ * /en — English guide page (2026-10-19, owner choice「英語のページを作る」).
+ * 🔴 Facts only (確定ファクト集 / site.ts / salons.ts). Do NOT state anything unconfirmed —
+ *    e.g. whether staff speak English, English menus, or per-salon specialities.
+ * 🔴 Effect Bleach: "conceived by the co-representatives, who supervised its productisation".
+ *    Never "developed by iLe" / "iLe is the maker". Released in 2021.
+ * 🔴 No "10-level diagnosis", "millimetre adjustment" or "personal genryoku" (owner decision 2026-10-14).
+ */
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import { brandLabel } from "~lib/brand";
+import { getSalons } from "~lib/content";
+import { site } from "~data/site";
+import { breadcrumbSchema, jsonLd } from "~lib/schema";
+
+const salons = await getSalons();
+
+// English area names and directions (translations of salons.ts `access`).
+const EN: Record<string, { area: string; access: string }> = {
+  "harajuku-a": {
+    area: "Harajuku, Tokyo",
+    access: "2 min walk from Meiji-jingumae Station / 7 min walk from Harajuku Station",
+  },
+  "harajuku-b": {
+    area: "Harajuku / Omotesando, Tokyo",
+    access: "5 min walk from Meiji-jingumae Station / 7 min walk from Harajuku Station",
+  },
+  nagoya: {
+    area: "Sakae, Nagoya",
+    access: "9 min walk from Sakae Station / 6 min walk from Yabacho Station",
+  },
+  nagaoka: {
+    area: "Nagaoka, Niigata",
+    access: "Behind AEON Nagaoka (Koshoji area)",
+  },
+};
+
+const kami = site.kamiCharisma;
+const eb = site.effectBleach;
+const book = site.book;
+const sakai = kami?.personal.find((p) => p.name.startsWith("酒井"));
+const sakaiLatest = sakai?.awards.at(-1)?.year.replace("アワード", "");
+
+const description =
+  "iLe is a hair salon founded in Harajuku, Tokyo in 2020, with four salons in Harajuku, Nagoya and Nagaoka. Known for bleach, high-tone colour and balayage built around Effect Bleach, conceived by our co-representatives.";
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "English", url: "/en" },
+  ]),
+];
+---
+
+<BaseLayout
+  title="iLe — Hair Salon in Harajuku, Tokyo｜Bleach, High-Tone Color & Balayage"
+  description={description}
+  lang="en"
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="ja" href={`${site.url}/`} />
+    <link rel="alternate" hreflang="en" href={`${site.url}/en`} />
+    <link rel="alternate" hreflang="x-default" href={`${site.url}/`} />
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero eyebrow="— English" title="HAIR SALON IN HARAJUKU" />
+
+  <section class="en-section">
+    <div class="en-inner">
+      <h2 class="en-h">About iLe</h2>
+      <p>
+        <span set:html={brandLabel("iLe")} /> (pronounced “iru”) is a hair salon brand operated by {site.companyNameLatin},
+        founded in Harajuku, Tokyo in August 2020. We run four salons — two in Harajuku, one in
+        Sakae (Nagoya) and one in Nagaoka (Niigata) — focusing on bleach, high-tone colour, balayage and
+        design colour.
+      </p>
+    </div>
+  </section>
+
+  {eb && (
+    <section class="en-section">
+      <div class="en-inner">
+        <h2 class="en-h">Effect Bleach</h2>
+        <p>
+          Effect Bleach is a bleach system conceived by our co-representatives, Motoki Sakai and Ryo Nishimura,
+          who also supervised its productisation. Since its release in {eb.developedYear}, it has spread to
+          {" "}{eb.countries.length} countries (Japan, South Korea, Taiwan, Hong Kong, Mexico and Malaysia),
+          with about {eb.ambassadors.replace(/[^0-9]/g, "")} ambassador stylists.
+        </p>
+        <p>
+          Bleaching always carries some risk to the hair. We look at each person’s hair condition and colour
+          history, adjust the products accordingly, and aim to keep the hair as healthy as we can.
+        </p>
+        <p><a href="/effect-bleach">Effect Bleach (Japanese) →</a></p>
+      </div>
+    </section>
+  )}
+
+  <section class="en-section">
+    <div class="en-inner">
+      <h2 class="en-h">Recognition</h2>
+      <ul class="en-list">
+        {kami && sakai && (
+          <li>
+            KAMI CHARISMA, Hair Colour category — Motoki Sakai: awarded every year from the 2023 to the
+            {" "}{sakaiLatest} Award. Ryo Nishimura: also awarded in the same category. The salon iLe. has been
+            awarded every year since the 2023 Award.
+          </li>
+        )}
+        {book && (
+          <li>
+            Co-authored book: <cite>{book.title}</cite> ({book.publisher}, {book.datePublished.slice(0, 4)}) by
+            Motoki Sakai and Ryo Nishimura.
+          </li>
+        )}
+      </ul>
+      <p><a href="/expertise">Awards & media (Japanese) →</a></p>
+    </div>
+  </section>
+
+  <section class="en-section">
+    <div class="en-inner">
+      <h2 class="en-h">Our salons</h2>
+      <div class="en-salons">
+        {salons.map((salon) => (
+          <article class="en-salon">
+            <h3 class="en-salon__name" set:html={brandLabel(salon.name)} />
+            <p class="en-salon__area">{EN[salon.slug]?.area}</p>
+            <dl class="en-salon__specs">
+              <div><dt>Address</dt><dd lang="ja">{salon.address}</dd></div>
+              {EN[salon.slug]?.access && <div><dt>Access</dt><dd>{EN[salon.slug].access}</dd></div>}
+              <div><dt>Hours</dt><dd>{salon.hours.replace(/\s*—\s*/, "–")}{salon.holidays === "年中無休" ? " (open every day)" : ""}</dd></div>
+              {salon.phone && <div><dt>Phone</dt><dd>+81 {salon.phone.replace(/^0/, "")}</dd></div>}
+            </dl>
+            <p class="en-salon__links">
+              {salon.hotPepperUrl && (
+                <a href={salon.hotPepperUrl} target="_blank" rel="noopener">Book on Hot Pepper Beauty (Japanese) ↗</a>
+              )}
+              <a href={`/salons/${salon.slug}`}>Salon page (Japanese) →</a>
+            </p>
+          </article>
+        ))}
+      </div>
+      <p class="en-note">
+        Online booking is available on Hot Pepper Beauty (Japanese). Instagram:
+        {" "}<a href="https://instagram.com/ile.801" target="_blank" rel="noopener">@ile.801</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .en-section {
+    padding: 72px 32px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .en-section:last-of-type {
+    padding-bottom: 120px;
+  }
+  .en-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 1.9;
+  }
+  .en-h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(26px, 3vw, 34px);
+    margin: 0 0 18px;
+  }
+  .en-inner a {
+    color: inherit;
+    border-bottom: 1px solid currentColor;
+  }
+  .en-list {
+    padding-left: 1.2em;
+  }
+  .en-salons {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 760px) {
+    .en-salons {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .en-salon {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    padding: 28px 26px;
+  }
+  .en-salon__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 24px;
+    margin: 0;
+  }
+  .en-salon__area {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--color-fg-muted);
+    margin: 4px 0 16px;
+  }
+  .en-salon__specs {
+    margin: 0 0 14px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .en-salon__specs div {
+    display: grid;
+    grid-template-columns: 5.5em 1fr;
+    gap: 8px;
+    padding: 6px 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .en-salon__specs dt {
+    color: var(--color-fg-muted);
+  }
+  .en-salon__specs dd {
+    margin: 0;
+  }
+  .en-salon__links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    font-size: 13px;
+  }
+  .en-note {
+    margin-top: 28px;
+    font-size: 13px;
+    color: var(--color-fg-muted);
+  }
+</style>

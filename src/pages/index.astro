@@ -49,6 +49,9 @@ const pageSchemas = [
   description="iLe（イル）は原宿・名古屋・長岡に4店舗を構える美容室。共同代表の2名が発案したエフェクトブリーチを軸に、複雑な履歴の髪でも透明感のあるハイトーン、バレイヤージュ、デザインカラーを提案します。"
 >
   <Fragment slot="head">
+    <link rel="alternate" hreflang="ja" href="https://ile-hair-harajuku.com/" />
+    <link rel="alternate" hreflang="en" href="https://ile-hair-harajuku.com/en" />
+    <link rel="alternate" hreflang="x-default" href="https://ile-hair-harajuku.com/" />
     {pageSchemas.map((schema) => (
       <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
     ))}
