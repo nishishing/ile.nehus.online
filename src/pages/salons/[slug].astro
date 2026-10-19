@@ -8,6 +8,7 @@ import Picture from "~components/Picture.astro";
 import {
   localBusinessSchema,
   breadcrumbSchema,
+  faqPageSchema,
   jsonLd,
 } from "~lib/schema";
 
@@ -39,6 +40,52 @@ const AREA_JA: Record<string, string> = {
   nagoya: "名古屋・栄",
   nagaoka: "新潟・長岡",
 };
+
+// 地域向けの案内とよくある質問（2026-10-19 オーナー選択「店舗ページを地域向けに厚くする」）。
+// 🔴 中身は salons.ts / stylists.ts の事実と、全店共通の確定事項だけで組み立てる。
+//    店ごとの得意メニュー・受賞の店舗別の割り当て・英語対応など、確かめていないことは書かない。
+const area = AREA_JA[salon.slug] ?? salon.cityShort;
+const staffCount = salonStylists.length;
+const salonFaq = [
+  {
+    question: `${salon.name}でエフェクトブリーチは受けられますか？`,
+    answer:
+      "はい。エフェクトブリーチは原宿・名古屋・長岡の全 iLe 店舗で対応しています。髪の状態やこれまでの履歴によって、できる明るさやプランが変わるため、施術前のカウンセリングでご相談ください。",
+  },
+  {
+    question: `${salon.name}への行き方を教えてください。`,
+    answer: `${salon.address}${salon.access ? `。${salon.access}` : ""}。`,
+  },
+  {
+    question: "営業時間と定休日は？",
+    answer: `営業時間は ${salon.hours.replace(/\s*—\s*/, "〜")} です。${salon.holidays ? `定休日は${salon.holidays === "年中無休" ? "なく、年中無休で営業しています" : salon.holidays}。` : ""}`,
+  },
+  {
+    question: "予約はどうすればいいですか？",
+    answer: `HOT PEPPER Beauty の${salon.name}のページからご予約いただけます。${salon.phone ? `店舗の電話番号は ${salon.phone} です。` : ""}`,
+  },
+  {
+    question: "料金の目安はどこで見られますか？",
+    answer:
+      "メニューと料金の目安は、このサイトの「メニュー・料金」ページに載せています。最新の価格・所要時間・クーポンは、HOT PEPPER Beauty の各店ページでご確認ください。",
+  },
+  {
+    question: "口コミは見られますか？",
+    answer: `${salon.name}の口コミは、HOT PEPPER Beauty の口コミページでご覧いただけます。`,
+  },
+];
+// 答えのあとに出すリンク（同じ順番）
+const salonFaqLinks: (null | { href: string; label: string; external?: boolean })[] = [
+  { href: "/effect-bleach", label: "エフェクトブリーチについて" },
+  null,
+  null,
+  salon.hotPepperUrl ? { href: salon.hotPepperUrl, label: "HOT PEPPER Beauty で予約する", external: true } : null,
+  { href: "/menu", label: "メニュー・料金" },
+  salon.hotPepperUrl ? { href: `${salon.hotPepperUrl}review/`, label: "口コミを見る（HOT PEPPER Beauty）", external: true } : null,
+];
+const allSchemas = [...pageSchemas, faqPageSchema(salonFaq)];
+
+
 ---
 
 <BaseLayout
@@ -46,7 +93,7 @@ const AREA_JA: Record<string, string> = {
   description={salon.seoDescription ?? salon.description}
 >
   <Fragment slot="head">
-    {pageSchemas.map((schema) => (
+    {allSchemas.map((schema) => (
       <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
     ))}
   </Fragment>
@@ -104,6 +151,41 @@ const AREA_JA: Record<string, string> = {
             </dd>
           </div>
         )}
+      </dl>
+    </div>
+  </section>
+
+  <section class="salon-area" aria-labelledby="salon-area-h">
+    <div class="salon-area__inner">
+      <h2 id="salon-area-h" class="salon-area__h">{area}の美容室 <span set:html={brandLabel(salon.name)} /></h2>
+      <p class="salon-area__lead">
+        <span set:html={brandLabel(salon.name)} />は、iLe が{area}で運営する美容室です。
+        共同代表の2名が発案した<a href="/effect-bleach">エフェクトブリーチ</a>を軸に、ブリーチ・ハイトーン・バレイヤージュ・デザインカラーをご提案しています。
+        {staffCount > 0 && `在籍スタッフは${staffCount}名です。`}
+      </p>
+    </div>
+  </section>
+
+  <section class="salon-faq" aria-labelledby="salon-faq-h">
+    <div class="salon-area__inner">
+      <h2 id="salon-faq-h" class="salon-area__h">よくある質問</h2>
+      <dl class="salon-faq__list">
+        {salonFaq.map((f, i) => (
+          <div class="salon-faq__item">
+            <dt><h3 class="salon-faq__q">{f.question}</h3></dt>
+            <dd class="salon-faq__a">
+              <p>{f.answer}</p>
+              {salonFaqLinks[i] && (
+                <a
+                  href={salonFaqLinks[i]!.href}
+                  {...(salonFaqLinks[i]!.external ? { target: "_blank", rel: "noopener" } : {})}
+                >
+                  {salonFaqLinks[i]!.label} {salonFaqLinks[i]!.external ? "↗" : "→"}
+                </a>
+              )}
+            </dd>
+          </div>
+        ))}
       </dl>
     </div>
   </section>
@@ -242,6 +324,60 @@ const AREA_JA: Record<string, string> = {
     padding-bottom: 1px;
   }
 
+  .salon-area,
+  .salon-faq {
+    padding: 0 32px 80px;
+    position: relative;
+    z-index: 1;
+  }
+  .salon-area__inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .salon-area__h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 32px);
+    margin: 0 0 20px;
+  }
+  .salon-area__lead {
+    font-size: 15px;
+    line-height: 2;
+    margin: 0;
+  }
+  .salon-area__lead a,
+  .salon-faq__a a {
+    color: inherit;
+    border-bottom: 1px solid currentColor;
+  }
+  .salon-faq__list {
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .salon-faq__item {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .salon-faq__q {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0 0 8px;
+  }
+  .salon-faq__a {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--color-fg-muted);
+  }
+  .salon-faq__a p {
+    margin: 0 0 6px;
+  }
+  .salon-faq__a a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
   .salon-stylists {
     padding: 110px 32px;
     background: var(--color-pearl);
