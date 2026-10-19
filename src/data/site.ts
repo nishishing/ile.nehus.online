@@ -208,7 +208,7 @@ export interface Language {
 }
 export const languages: readonly Language[] = [
   { code: "JP", href: "/", current: true, available: true },
-  { code: "EN", href: "/en/", current: false, available: false },
+  { code: "EN", href: "/en", current: false, available: true },
   { code: "ZH", href: "/zh/", current: false, available: false },
   { code: "KR", href: "/kr/", current: false, available: false },
 ];

@@ -1,5 +1,8 @@
 ---
-import { languages } from "~data/site";
+import { languages as base } from "~data/site";
+// いま開いているページの言語を「現在」にする（2026-10-19 英語ページ追加）
+const isEn = Astro.url.pathname === "/en" || Astro.url.pathname.startsWith("/en/");
+const languages = base.map((l) => ({ ...l, current: isEn ? l.code === "EN" : l.code === "JP" }));
 ---
 
 <div class="lang-strip">

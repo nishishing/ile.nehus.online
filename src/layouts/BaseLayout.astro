@@ -23,6 +23,8 @@ interface Props {
   ogType?: "website" | "article";
   noindex?: boolean;
   hideFloating?: boolean;
+  /** ページの言語（2026-10-19 英語ページ追加）。既定は日本語 */
+  lang?: "ja" | "en";
 }
 
 const {
@@ -32,6 +34,7 @@ const {
   ogType,
   noindex,
   hideFloating = false,
+  lang = "ja",
 } = Astro.props;
 
 // Floating CTA features the most recent journal post (same ordering as /journal).
@@ -43,7 +46,7 @@ const latestPost = hideFloating
 ---
 
 <!doctype html>
-<html lang="ja" style={isUnified ? "--announce-h:0px" : undefined}>
+<html lang={lang} style={isUnified ? "--announce-h:0px" : undefined}>
   <head>
     <BaseHead
       title={title}
@@ -51,6 +54,7 @@ const latestPost = hideFloating
       ogImage={ogImage}
       ogType={ogType}
       noindex={noindex}
+      lang={lang}
     />
     <slot name="head" />
     {cfBeaconToken && (

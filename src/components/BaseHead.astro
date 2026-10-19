@@ -22,6 +22,7 @@ interface Props {
   ogType?: "website" | "article";
   noindex?: boolean;
   canonical?: string;
+  lang?: "ja" | "en";
 }
 
 const {
@@ -31,6 +32,7 @@ const {
   ogType = "website",
   noindex = false,
   canonical,
+  lang = "ja",
 } = Astro.props;
 
 const pageTitle = buildPageTitle(title);
@@ -56,7 +58,7 @@ import "~/styles/global.css";
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:image" content={ogImageUrl} />
-<meta property="og:locale" content="ja_JP" />
+<meta property="og:locale" content={lang === "en" ? "en_US" : "ja_JP"} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={pageTitle} />
