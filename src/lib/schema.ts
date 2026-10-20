@@ -213,6 +213,13 @@ export function localBusinessSchema(salon: Salon) {
     parentOrganization: { "@id": `${site.url}/#organization` },
     foundingDate: salon.openedAt,
     description: salon.description,
+    // 同じお店の Google マップ・HOT PEPPER Beauty を「同一の店舗」として示す（2026-10-20）。
+    // ChatGPT・Gemini が公式サイト・地図・予約サイトの情報を1つの店につなげやすくするため。
+    hasMap: salon.googleMapsUrl,
+    sameAs: [salon.googleMapsUrl, salon.hotPepperUrl].filter(Boolean),
+    identifier: salon.googlePlaceId
+      ? { "@type": "PropertyValue", propertyID: "GooglePlaceID", value: salon.googlePlaceId }
+      : undefined,
   };
 }
 

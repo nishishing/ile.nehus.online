@@ -30,6 +30,10 @@ export interface Salon {
   holidays?: string;
   phone?: string;
   hotPepperUrl?: string;
+  /** Google マップの店舗ページ（GBP・Google担当2 が API から取得 2026-10-20） */
+  googleMapsUrl?: string;
+  /** Google の placeId（同上） */
+  googlePlaceId?: string;
   mapLat?: number;
   mapLng?: number;
   description: string;
