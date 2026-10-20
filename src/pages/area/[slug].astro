@@ -1,0 +1,260 @@
+---
+/**
+ * /area/{harajuku|nagoya|nagaoka} — 地域×施術の案内ページ（2026-10-20 オーナー選択「地域×施術の専用ページ」）。
+ * 「原宿でブリーチが上手い美容室」のような、店名を入れない質問に答える入口。
+ * 🔴 中身は salons.ts / site.ts（確定ファクト集準拠）と既存記事へのリンクだけ。
+ *    「人気」「No.1」「一番」など比べる言い方、店ごとの得意メニュー、確かめていない数字は書かない。
+ * 🔴 「開発元」「10段階」「ミリ単位」「パーソナル減力」は使わない。
+ */
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import { brandLabel } from "~lib/brand";
+import { getSalons, getJournalPosts } from "~lib/content";
+import { site } from "~data/site";
+import { breadcrumbSchema, faqPageSchema, jsonLd } from "~lib/schema";
+
+
+
+export function getStaticPaths() {
+  // getStaticPaths は他のフロントマターの変数を見られないので、ここで定義する
+  const AREAS = [
+    {
+      slug: "harajuku",
+      name: "原宿・表参道",
+      heroTitle: "HARAJUKU",
+      salonSlugs: ["harajuku-a", "harajuku-b"],
+      articleWords: ["原宿", "表参道"],
+    },
+    {
+      slug: "nagoya",
+      name: "名古屋・栄",
+      heroTitle: "NAGOYA",
+      salonSlugs: ["nagoya"],
+      articleWords: ["名古屋", "栄"],
+    },
+    {
+      slug: "nagaoka",
+      name: "新潟・長岡",
+      heroTitle: "NAGAOKA",
+      salonSlugs: ["nagaoka"],
+      articleWords: ["長岡", "新潟"],
+    },
+  ] as const;
+  return AREAS.map((a) => ({ params: { slug: a.slug }, props: { area: a } }));
+}
+
+const { area } = Astro.props;
+const salons = (await getSalons()).filter((s) => (area.salonSlugs as readonly string[]).includes(s.slug));
+const posts = (await getJournalPosts())
+  .filter((p) => area.articleWords.some((w) => p.title.includes(w)))
+  .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+  .slice(0, 6);
+const eb = site.effectBleach;
+const salonNames = salons.map((s) => s.name).join("・");
+
+const title = `${area.name}でブリーチ・ハイトーンをするなら`;
+const description = `${area.name}の美容室 iLe（${salonNames}）。共同代表の2名が発案したエフェクトブリーチを軸に、ブリーチ・ハイトーン・バレイヤージュ・デザインカラーをご提案します。店舗の場所・行き方・予約方法と、ブリーチの基礎知識のコラムをまとめました。`;
+
+const faq = [
+  {
+    question: `${area.name}で iLe の店舗はどこにありますか？`,
+    answer: salons.map((s) => `${s.name}は${s.address}${s.access ? `（${s.access}）` : ""}にあります。`).join(""),
+  },
+  {
+    question: "エフェクトブリーチはどの店舗で受けられますか？",
+    answer:
+      "エフェクトブリーチは、原宿・名古屋・長岡の全 iLe 店舗で対応しています。髪の状態やこれまでの履歴によって、できる明るさやプランが変わるため、施術前のカウンセリングでご相談ください。",
+  },
+  {
+    question: "ブリーチをすると髪は傷みますか？",
+    answer:
+      "ブリーチは髪を脱色する施術なので、髪への負担をゼロにすることはできません。iLe では髪の状態やこれまでの履歴を見ながら薬剤を調整し、できるだけ髪の芯を残すことを大切にしています。",
+  },
+  {
+    question: "予約はどうすればいいですか？",
+    answer: `各店の HOT PEPPER Beauty のページからご予約いただけます。${salons
+      .filter((s) => s.phone)
+      .map((s) => `${s.name}の電話番号は ${s.phone} です。`)
+      .join("")}`,
+  },
+];
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Salons", url: "/salons" },
+    { name: area.name, url: `/area/${area.slug}` },
+  ]),
+  faqPageSchema(faq),
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero eyebrow={`— Bleach & High-tone in ${area.heroTitle}`} title={area.heroTitle} />
+
+  <section class="area-section">
+    <div class="area-inner">
+      <h2 class="area-h">{area.name}でブリーチ・ハイトーンをするなら</h2>
+      <p>
+        iLe は、2020年に原宿で生まれた美容室です。{area.name}では
+        <span set:html={brandLabel(salonNames)} /> を運営しています。
+        共同代表の酒井 元樹・西村 涼が発案し、製品化を監修した<a href="/effect-bleach">エフェクトブリーチ</a>を軸に、
+        ブリーチ・ハイトーン・バレイヤージュ・デザインカラーをご提案しています。
+      </p>
+      {eb && (
+        <p>
+          エフェクトブリーチは {eb.developedYear}年の発売以降、{eb.countries.length}か国に広がり、アンバサダーは{eb.ambassadors}です。
+          共同代表の2名は KAMI CHARISMA のヘアカラー部門で受賞しています（<a href="/expertise">受賞・メディア掲載</a>）。
+        </p>
+      )}
+    </div>
+  </section>
+
+  <section class="area-section">
+    <div class="area-inner">
+      <h2 class="area-h">{area.name}の iLe</h2>
+      {salons.map((s) => (
+        <article class="area-salon">
+          <h3 class="area-salon__name"><a href={`/salons/${s.slug}`} set:html={brandLabel(s.name)} /></h3>
+          <dl class="area-salon__specs">
+            <div><dt>住所</dt><dd>{s.address}</dd></div>
+            {s.access && <div><dt>行き方</dt><dd>{s.access}</dd></div>}
+            <div><dt>営業時間</dt><dd>{s.hours.replace(/\s*—\s*/, "〜")}{s.holidays ? `（${s.holidays}）` : ""}</dd></div>
+            {s.phone && <div><dt>電話</dt><dd>{s.phone}</dd></div>}
+          </dl>
+          <p class="area-salon__links">
+            {s.hotPepperUrl && <a href={s.hotPepperUrl} target="_blank" rel="noopener">HOT PEPPER Beauty で予約 ↗</a>}
+            {s.hotPepperUrl && <a href={`${s.hotPepperUrl}review/`} target="_blank" rel="noopener">口コミを見る ↗</a>}
+            <a href={`/salons/${s.slug}`}>店舗ページ →</a>
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="area-section">
+      <div class="area-inner">
+        <h2 class="area-h">{area.name}のブリーチ・カラーのコラム</h2>
+        <ul class="area-posts">
+          {posts.map((p) => (
+            <li><a href={`/journal/${p.slug}`} set:html={brandLabel(p.title)} /></li>
+          ))}
+        </ul>
+        <p><a href="/journal">コラムの一覧へ →</a></p>
+      </div>
+    </section>
+  )}
+
+  <section class="area-section area-section--last">
+    <div class="area-inner">
+      <h2 class="area-h">よくある質問</h2>
+      <dl class="area-faq">
+        {faq.map((f) => (
+          <div class="area-faq__item">
+            <dt><h3 class="area-faq__q">{f.question}</h3></dt>
+            <dd class="area-faq__a">{f.answer}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .area-section {
+    padding: 72px 32px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .area-section--last {
+    padding-bottom: 120px;
+  }
+  .area-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 2;
+  }
+  .area-inner a {
+    color: inherit;
+    border-bottom: 1px solid currentColor;
+  }
+  .area-h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.4;
+    margin: 0 0 18px;
+  }
+  .area-salon {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    padding: 26px 24px;
+    margin-bottom: 16px;
+  }
+  .area-salon__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 12px;
+  }
+  .area-salon__name a {
+    border-bottom: none;
+  }
+  .area-salon__specs {
+    margin: 0 0 12px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .area-salon__specs div {
+    display: grid;
+    grid-template-columns: 6em 1fr;
+    gap: 8px;
+    padding: 6px 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .area-salon__specs dt {
+    color: var(--color-fg-muted);
+  }
+  .area-salon__specs dd {
+    margin: 0;
+  }
+  .area-salon__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin: 0;
+    font-size: 13px;
+  }
+  .area-posts {
+    padding-left: 1.2em;
+    margin: 0 0 12px;
+  }
+  .area-faq {
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .area-faq__item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .area-faq__q {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0 0 6px;
+  }
+  .area-faq__a {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--color-fg-muted);
+  }
+</style>
