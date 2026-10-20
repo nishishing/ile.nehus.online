@@ -91,6 +91,7 @@ for (const post of todo) {
       continue;
     }
     post.faq = faq;
+    post.updatedAt = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10); // 中身を足した日（JST）
     ok += 1;
     console.log(`backfill-faq: ✓ ${post.slug}`);
   } catch (e) {

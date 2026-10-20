@@ -70,6 +70,8 @@ export interface JournalPost {
   subtitle?: string;
   publishedAt: string; // ISO date
   publishedAtLabel: string; // "August 1, 2026"
+  /** 公開後に中身（題名・要約・本文・FAQ）を直した日（YYYY-MM-DD）。構造化データの dateModified とサイトマップの lastmod に使う */
+  updatedAt?: string;
   body?: string;
   summary?: string;
   eyecatchAlt?: string;

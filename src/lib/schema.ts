@@ -233,7 +233,8 @@ export function articleSchema(post: JournalPost) {
     description: post.summary,
     image,
     datePublished: post.publishedAt,
-    dateModified: post.publishedAt,
+    // 中身（本文・FAQ など）を直した日。無ければ公開日（2026-10-21）
+    dateModified: post.updatedAt ?? post.publishedAt,
     author: { "@id": `${site.url}/#organization` },
     publisher: { "@id": `${site.url}/#organization` },
     inLanguage: "ja-JP",
