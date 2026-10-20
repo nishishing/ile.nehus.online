@@ -96,6 +96,7 @@ export function organizationSchema() {
       ...(site.instagramHandle
         ? [`https://www.instagram.com/${site.instagramHandle}/`]
         : []),
+      ...(site.youtubeChannelUrl ? [site.youtubeChannelUrl] : []),
       ...salons.map((s) => s.hotPepperUrl).filter((u): u is string => !!u),
     ],
     description: site.description,
