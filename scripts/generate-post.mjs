@@ -82,8 +82,18 @@ const schema = {
     slug: { type: "string" },
     body_markdown: { type: "string" },
     keywords_used: { type: "array", items: { type: "string" } },
+    // 記事の最後の「よくある質問」3つ（2026-10-20 オーナー選択「記事を AI が引用しやすい形に」）
+    faq: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: { question: { type: "string" }, answer: { type: "string" } },
+        required: ["question", "answer"],
+        additionalProperties: false,
+      },
+    },
   },
-  required: ["title", "description", "slug", "body_markdown", "keywords_used"],
+  required: ["title", "description", "slug", "body_markdown", "keywords_used", "faq"],
   additionalProperties: false,
 };
 
@@ -98,6 +108,11 @@ async function generate() {
       body_markdown:
         "## はじめに\n\nこれは generate-post のパイプライン検証用に用意したダミー本文です。実際の記事では、ブリーチやハイトーンカラーに関するテーマを iLe の視点でていねいに掘り下げていきます。\n\n## ブリーチの考え方\n\nブリーチは「色を抜く」だけの施術ではなく、数ヶ月先の状態まで見据えた設計が大切だと考えています。髪の状態を見極め、負担を最小限に抑えながらデザインしていきます。\n\n### ポイント\n\n- 履歴を読み解くことから始める\n- 透明感と手触りの両立を目指す\n- 色落ちの過程まで設計する\n\n詳しくは[エフェクトブリーチ](/effect-bleach)のページをご覧ください。仕上がりのご相談は[店舗一覧](/salons)からどうぞ。",
       keywords_used: chosen.keywords ?? [],
+      faq: [
+        { question: "テスト用の質問1は？", answer: "テスト用の答えです。髪の状態によって変わるため、施術前にご相談ください。" },
+        { question: "テスト用の質問2は？", answer: "テスト用の答えです。ブリーチはダメージをゼロにはできないため、状態を見て判断します。" },
+        { question: "テスト用の質問3は？", answer: "テスト用の答えです。詳しくはエフェクトブリーチのページをご覧ください。" },
+      ],
     };
   }
 
@@ -129,7 +144,10 @@ async function generate() {
           (kw ? `必ず自然に織り込むSEOキーワード: ${kw}\n` : "") +
           `\n出力は指定のJSONスキーマに従ってください。` +
           `body_markdown は ## / ### の見出しのみ（# は使わない）、本文1,000〜1,600字程度。` +
-          `description はメタ説明用に60〜120字。slug は内容を表す英小文字ハイフン区切り。`,
+          `description はメタ説明用に60〜120字。slug は内容を表す英小文字ハイフン区切り。` +
+          `faq は、この記事を読む人が AI や検索で実際に聞きそうな質問をちょうど3つと、その答え（各80〜160字・本文の内容に沿う）。` +
+          `質問は「〜とは？」「〜はどのくらい？」のような自然な問いの形に。答えの1文目で問いに直接答える。` +
+          `faq には iLe の数字・受賞・店舗ごとの情報・価格を書かない。リンクや Markdown 記法は使わない。`,
       },
     ],
   });
@@ -154,6 +172,19 @@ function validate(a) {
   if (/^\s*#\s/m.test(a.body_markdown) || /^\s*#[^#]/m.test(a.body_markdown))
     fail("body uses a top-level # heading (must start at ##)");
   if (a.body_markdown.length < 200) fail("body too short");
+  // よくある質問は3つちょうど（2026-10-20）
+  if (!Array.isArray(a.faq) || a.faq.length !== 3) fail(`faq must have exactly 3 items (got ${a.faq?.length})`);
+  for (const f of a.faq) {
+    if (typeof f.question !== "string" || f.question.trim().length < 5) fail("faq question missing/too short");
+    if (typeof f.answer !== "string" || f.answer.trim().length < 30 || f.answer.length > 260)
+      fail(`faq answer length ${f.answer?.length} out of range (30–260)`);
+    if (/\]\(|https?:\/\//.test(f.answer)) fail("faq answer must not contain links");
+  }
+  // 🔴 オーナー決定で使わない表現（2026-08-05「開発元」・2026-10-14「10段階診断」「ミリ単位の調整」「パーソナル減力」）
+  const banned = /開発元|10段階|ミリ単位|パーソナル減力|フランス語で「?島/;
+  const all = [a.title, a.description, a.body_markdown, ...a.faq.flatMap((f) => [f.question, f.answer])].join("\n");
+  const hit = all.match(banned);
+  if (hit) fail(`banned expression in article: ${hit[0]}`);
   // internal links must point at known, real pages
   const allowed = new Set(["/effect-bleach", "/salons", "/stylists", "/menu", "/faq", "/story"]);
   for (const m of a.body_markdown.matchAll(/\]\((\/[^)\s]*)\)/g)) {
@@ -185,6 +216,7 @@ const post = {
   body: marked.parse(article.body_markdown, { async: false }),
   topic: chosen.topic,
   keywords: article.keywords_used ?? chosen.keywords ?? [],
+  faq: article.faq.map((f) => ({ question: f.question.trim(), answer: f.answer.trim() })),
 };
 
 // ---- アイキャッチ -----------------------------------------------------------

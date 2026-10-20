@@ -1,0 +1,63 @@
+name: Backfill FAQ
+
+# 既存の自動ブログ記事に「よくある質問」3つを後から付ける（2026-10-20）。手動実行だけ。
+# build と validate を通ったときだけ main に commit する（auto-blog と同じ関所）。
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "先頭から何件だけ処理するか（空なら全件）"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-blog # 自動ブログと同時に blog-generated.json を書かない
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Backfill FAQ
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BACKFILL_LIMIT: ${{ inputs.limit }}
+        run: node scripts/backfill-faq.mjs
+
+      - name: Build
+        run: npm run build
+        env:
+          PUBLIC_SITE_URL: https://ile-hair-harajuku.com
+
+      - name: Validate
+        run: npm run validate
+
+      - name: Commit & push
+        run: |
+          if git diff --quiet -- src/data/blog-generated.json; then
+            echo "変化なし"
+            exit 0
+          fi
+          git config user.name "ile-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add src/data/blog-generated.json
+          git commit -m "content(blog): 既存記事に「よくある質問」を追加（backfill-faq）"
+          for i in 1 2 3; do
+            git push origin HEAD:main && break
+            [ "$i" = 3 ] && exit 1
+            git pull --rebase origin main
+          done
