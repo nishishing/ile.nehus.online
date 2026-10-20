@@ -79,6 +79,8 @@ export interface JournalPost {
    *  Used to dedupe topics across runs; not rendered. */
   topic?: string;
   keywords?: readonly string[];
+  /** 記事の最後の「よくある質問」（2026-10-20〜）。FAQPage の構造化データにもなる */
+  faq?: readonly { question: string; answer: string }[];
 }
 
 export interface FaqItem {

@@ -8,6 +8,7 @@ import { getJournalPosts } from "~lib/content";
 import {
   articleSchema,
   breadcrumbSchema,
+  faqPageSchema,
   jsonLd,
 } from "~lib/schema";
 
@@ -52,6 +53,8 @@ const pageSchemas = [
     { name: post.title, url: `/journal/${post.slug}` },
   ]),
 ];
+// 記事の「よくある質問」を FAQPage としても出す（2026-10-20）
+const allSchemas = post.faq?.length ? [...pageSchemas, faqPageSchema([...post.faq])] : pageSchemas;
 ---
 
 <BaseLayout
@@ -61,7 +64,7 @@ const pageSchemas = [
   ogImage={post.ogImage?.url ?? post.eyecatch?.url}
 >
   <Fragment slot="head">
-    {pageSchemas.map((schema) => (
+    {allSchemas.map((schema) => (
       <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
     ))}
   </Fragment>
@@ -98,6 +101,20 @@ const pageSchemas = [
     </Prose>
   </article>
 
+  {post.faq && post.faq.length > 0 && (
+    <section class="journal-faq" aria-labelledby="journal-faq-h">
+      <h2 id="journal-faq-h" class="journal-related__h">よくある質問</h2>
+      <dl class="journal-faq__list">
+        {post.faq.map((f) => (
+          <div class="journal-faq__item">
+            <dt><h3 class="journal-faq__q">{f.question}</h3></dt>
+            <dd class="journal-faq__a">{f.answer}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )}
+
   {related.length > 0 && (
     <nav class="journal-related" aria-labelledby="related-h">
       <h2 id="related-h" class="journal-related__h">あわせて読みたい</h2>
@@ -133,6 +150,33 @@ const pageSchemas = [
     padding: 110px 32px 140px;
     position: relative;
     z-index: 1;
+  }
+  .journal-faq {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+    position: relative;
+    z-index: 1;
+  }
+  .journal-faq__list {
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .journal-faq__item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .journal-faq__q {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0 0 6px;
+  }
+  .journal-faq__a {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--color-fg-muted);
   }
   .journal-related {
     max-width: 760px;
