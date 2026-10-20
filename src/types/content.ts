@@ -193,4 +193,5 @@ export interface SiteConfig {
   ogImage: string;
   twitterHandle?: string;
   instagramHandle?: string;
+  youtubeChannelUrl?: string;
 }

@@ -159,6 +159,8 @@ export const site: SiteConfig = {
     "iLe｜美容室 — 原宿・名古屋・長岡。船から、島へ。2026年8月1日、4店舗すべてを iLe に統一。",
   ogImage: "/og-default.jpg",
   instagramHandle: "ile.801",
+  // 公式 YouTube「iLe.nehus. / イル.ネハス.」（ハンドル @ile.nehus.）。sameAs には変わらないチャンネル ID の URL を使う（2026-10-21 動画事業担当経由・実在確認済み）
+  youtubeChannelUrl: "https://www.youtube.com/channel/UCI9LvdMwLwOoCNMMhuh-pvw",
 };
 
 export const navPrimary = [
