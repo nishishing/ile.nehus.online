@@ -9,7 +9,9 @@
 import BaseLayout from "~layouts/BaseLayout.astro";
 import PageHero from "~components/PageHero.astro";
 import { brandLabel } from "~lib/brand";
-import { getSalons, getJournalPosts } from "~lib/content";
+import Picture from "~components/Picture.astro";
+import { getSalons, getJournalPosts, getStylists } from "~lib/content";
+import pool from "../../data/journal-image-pool.json";
 import { site } from "~data/site";
 import { breadcrumbSchema, faqPageSchema, jsonLd } from "~lib/schema";
 
@@ -49,6 +51,14 @@ const posts = (await getJournalPosts())
   .filter((p) => area.articleWords.some((w) => p.title.includes(w)))
   .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
   .slice(0, 6);
+// 在籍スタイリストと写真（2026-10-21 オーナー選択「地域ページに写真とスタイリスト」）。
+// 🔴 名簿は stylists.ts（staff-public.json 準拠）のまま。アシスタントは載せない。写真は自社 HPB の写真（/styles と同じプール）だけ
+const STORE_TO_SALON: Record<string, string> = { ile: "harajuku-a", nehus: "harajuku-b" };
+const areaStylists = (await getStylists()).filter(
+  (st) => (area.salonSlugs as readonly string[]).includes(st.salonSlug ?? "") && !/アシスタント/.test(st.position ?? ""),
+);
+const areaPhotos = pool.filter((ph) => (area.salonSlugs as readonly string[]).includes(STORE_TO_SALON[ph.store] ?? "")).slice(0, 8);
+const salonNameBySlug = new Map<string, string>(salons.map((s) => [s.slug, s.name]));
 const eb = site.effectBleach;
 const salonNames = salons.map((s) => s.name).join("・");
 
@@ -137,6 +147,54 @@ const pageSchemas = [
       ))}
     </div>
   </section>
+
+  {areaPhotos.length > 0 && (
+    <section class="area-section">
+      <div class="area-inner">
+        <h2 class="area-h">{area.name}の iLe で手がけたスタイル</h2>
+        <ul class="area-photos">
+          {areaPhotos.map((ph) => (
+            <li>
+              <Picture
+                src={ph.file}
+                width={ph.width}
+                height={ph.height}
+                alt={`${salonNameBySlug.get(STORE_TO_SALON[ph.store] ?? "") ?? "iLe"}（${area.name}）で手がけたヘアスタイル`}
+                loading="lazy"
+                sizes="(min-width: 900px) 200px, 45vw"
+              />
+            </li>
+          ))}
+        </ul>
+        <p><a href="/styles">スタイル写真をもっと見る →</a></p>
+      </div>
+    </section>
+  )}
+
+  {areaStylists.length > 0 && (
+    <section class="area-section">
+      <div class="area-inner">
+        <h2 class="area-h">{area.name}のスタイリスト</h2>
+        {salons.map((s) => {
+          const list = areaStylists.filter((st) => st.salonSlug === s.slug);
+          return list.length > 0 && (
+            <div class="area-staff">
+              <h3 class="area-staff__salon" set:html={brandLabel(s.name)} />
+              <ul class="area-staff__list">
+                {list.map((st) => (
+                  <li>
+                    <a href={`/stylists/${st.slug}`}>{st.nameJa ?? st.name}</a>
+                    {st.position && <span class="area-staff__pos">{st.position}</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
+        <p><a href="/stylists">スタイリスト一覧へ →</a></p>
+      </div>
+    </section>
+  )}
 
   {posts.length > 0 && (
     <section class="area-section">
@@ -232,6 +290,49 @@ const pageSchemas = [
     gap: 8px 18px;
     margin: 0;
     font-size: 13px;
+  }
+  .area-photos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+  }
+  .area-photos :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+  }
+  @media (max-width: 700px) {
+    .area-photos {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .area-staff {
+    margin-bottom: 18px;
+  }
+  .area-staff__salon {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 18px;
+    margin: 0 0 6px;
+  }
+  .area-staff__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+  }
+  .area-staff__pos {
+    margin-left: 6px;
+    font-size: 12px;
+    color: var(--color-fg-muted);
   }
   .area-posts {
     padding-left: 1.2em;
