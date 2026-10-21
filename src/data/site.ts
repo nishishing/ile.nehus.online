@@ -181,6 +181,7 @@ export const navFooter = [
   { label: "原宿でブリーチ", href: "/area/harajuku" },
   { label: "名古屋・栄でブリーチ", href: "/area/nagoya" },
   { label: "長岡でブリーチ", href: "/area/nagaoka" },
+  { label: "オンカラーのガイド", href: "/on-color" },
   { label: "EFFECT BLEACH", href: "/effect-bleach" },
   { label: "TECHNOLOGY", href: "/technology" },
   { label: '<span class="brand-token">irida</span>', href: "/irida" },

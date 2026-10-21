@@ -32,6 +32,7 @@ const EXPERTISE = `## 専門性・実績
 // テーマなので、AIが「お役立ち系」の質問に答える際の出典として常に見えるようにする。
 const GUIDES = `## お役立ちガイド（よくある疑問への回答）
 
+- [オンカラーのガイド](${u("/on-color")}): ブリーチ後に色を重ねる工程の基本・色の選び方・黄ばみと色落ち・ホームケア・お直しの記事をテーマ別にまとめたページ
 - [ブリーチで髪が傷む仕組みと抑え方](${u("/journal/why-bleach-damages-hair-and-how-to-minimize")}): なぜ傷むのか、どう負担を抑えるか
 - [ブリーチカラーの色落ちを楽しむ](${u("/journal/enjoy-bleach-color-fading")}): 退色の過程ときれいな抜け方
 - [根元リタッチの頻度と通い方](${u("/journal/retouch-frequency-hightone")}): ハイトーンを維持するメンテナンス頻度

@@ -1,0 +1,304 @@
+---
+/**
+ * /on-color — オンカラーのまとめページ（2026-10-21 オーナー選択「両方進める」）。
+ * Copilot の引用で iLe がいちばん出ている話題（オンカラーの記事 3か月193回・「オンカラーとは」の引用シェア43%）を、
+ * 関連記事26本と用語集・エフェクトブリーチにつなぐ入口。
+ * 🔴 中身は既存記事の内容と確定ファクト集の範囲だけ。記事の説明は各記事の summary をそのまま使う。
+ *    「人気」「No.1」など比べる言い方、価格・回数・時間などの数字、薬剤の配合は書かない。
+ * 🔴 「開発元」「10段階」「ミリ単位」「パーソナル減力」は使わない。
+ */
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import { brandLabel } from "~lib/brand";
+import { getJournalPosts } from "~lib/content";
+import { site } from "~data/site";
+import { onColorGuide, onColorSlugs } from "~data/on-color-guide";
+import { breadcrumbSchema, faqPageSchema, jsonLd } from "~lib/schema";
+
+const posts = await getJournalPosts();
+const bySlug = new Map(posts.map((p) => [p.slug, p]));
+const missing = onColorSlugs.filter((s) => !bySlug.has(s));
+if (missing.length) throw new Error(`on-color: 記事が見つからない ${missing.join(", ")}`);
+const pick = (slugs: readonly string[]) => slugs.map((s) => bySlug.get(s)!);
+
+const title = "オンカラーとは？ブリーチ後の色選び・色持ち・お直しのガイド";
+const description =
+  "オンカラーは、ブリーチで明るくした髪に狙った色を重ねる工程です。下地の色との関係、色の選び方、黄ばみや色落ちの理由、ホームケア、お直しのタイミングまで、iLe のコラムをテーマ別にまとめました。";
+
+const faq = [
+  {
+    question: "オンカラーとは？",
+    answer:
+      "オンカラーとは、ブリーチで色素を抜いて明るくした髪に、狙った色を重ねる工程のことです。ブリーチだけでは黄みやオレンジみが残るため、そこへ色をのせて仕上がりに近づけます。ブリーチが土台づくり、オンカラーが色を描く工程です。",
+  },
+  {
+    question: "オンカラーとダブルカラーの違いは？",
+    answer:
+      "ダブルカラーは、髪を明るくする工程と色をのせる工程を同じ日に2段階で行う施術（ブリーチ＋オンカラー）のことです。オンカラーは、そのうちの色をのせる工程を指します。",
+  },
+  {
+    question: "オンカラーの色がすぐ抜けるのはなぜ？",
+    answer:
+      "ブリーチで髪の内部やキューティクルの状態が変わり、色素をとどめる力が落ちているためです。重ねた色素が先に流れ出ると、土台の黄色みが再び見えてきます。",
+  },
+  {
+    question: "ブリーチ後の黄ばみはどう抑えればいい？",
+    answer:
+      "黄色の反対色である紫〜青紫を少し重ねて、黄色みを打ち消すのが基本の考え方です。紫シャンプーもこの仕組みで、毎日ではなく黄ばみが気になってきたら通常のシャンプーと交互に使うのが扱いやすい形です。入れすぎると暗く濁って見えます。",
+  },
+  {
+    question: "オンカラーのお直しはいつがいい？",
+    answer:
+      "色味が求めるトーンから外れてきたときと、根元が伸びて明るさの差が気になってきたときが目安です。根元の伸びが気になり始めたら、早めに相談するほうが全体のバランスを整えやすくなります。",
+  },
+  {
+    question: "iLe ではオンカラーをどう考えていますか？",
+    answer:
+      "土台が整うほど、のせる色は澄んで見えます。iLe はエフェクトブリーチで、髪の状態やこれまでの履歴を見ながら薬剤を調整し、できるだけ髪の芯を残しながら土台を整え、色が抜けていく過程まで含めて色を設計します。ブリーチである以上、髪への負担をゼロにはできません。",
+  },
+];
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Journal", url: "/journal" },
+    { name: "オンカラー", url: "/on-color" },
+  ]),
+  faqPageSchema(faq),
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: title,
+    description,
+    url: `${site.url}/on-color`,
+    inLanguage: "ja-JP",
+    publisher: { "@id": `${site.url}/#organization` },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: onColorSlugs.length,
+      itemListElement: onColorSlugs.map((s, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${site.url}/journal/${s}`,
+        name: bySlug.get(s)!.title,
+      })),
+    },
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero eyebrow="— Guide to On Color" title="ON COLOR" />
+
+  <section class="oc-section">
+    <div class="oc-inner">
+      <h2 class="oc-h">オンカラーとは</h2>
+      <p>
+        オンカラーとは、ブリーチで色素を抜いて明るくした髪に、狙った色を重ねる工程のことです。
+        ブリーチだけでは黄みやオレンジみが残るため、そこへ色をのせて、はじめてイメージに近い仕上がりになります。
+        ブリーチが「土台づくり」、オンカラーが「色を描く」工程です。
+      </p>
+      <p>
+        同じ色をのせても、下地の明るさや色みが違えば見え方は変わります。
+        iLe は<a href="/effect-bleach">エフェクトブリーチ</a>で、髪の状態やこれまでの履歴を見ながら薬剤を調整し、
+        できるだけ髪の芯を残しながら土台を整えることを大切にしています。
+        このページでは、オンカラーにまつわる iLe のコラムをテーマ別にまとめました。
+      </p>
+      <nav class="oc-toc" aria-label="このページの目次">
+        <ul>
+          {onColorGuide.map((s) => (
+            <li><a href={`#${s.id}`}>{s.heading}</a></li>
+          ))}
+          <li><a href="#faq">よくある質問</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  {onColorGuide.map((s) => (
+    <section class="oc-section" id={s.id}>
+      <div class="oc-inner">
+        <h2 class="oc-h">{s.heading}</h2>
+        <p>{s.lead}</p>
+        {"groups" in s ? (
+          s.groups.map((g) => (
+            <div class="oc-group">
+              <h3 class="oc-group__h">{g.heading}</h3>
+              <ul class="oc-posts">
+                {pick(g.slugs).map((p) => (
+                  <li>
+                    <a href={`/journal/${p.slug}`} set:html={brandLabel(p.title)} />
+                    {p.summary && <p class="oc-posts__sum">{p.summary}</p>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        ) : (
+          <ul class="oc-posts">
+            {pick(s.slugs).map((p) => (
+              <li>
+                <a href={`/journal/${p.slug}`} set:html={brandLabel(p.title)} />
+                {p.summary && <p class="oc-posts__sum">{p.summary}</p>}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
+  ))}
+
+  <section class="oc-section" id="faq">
+    <div class="oc-inner">
+      <h2 class="oc-h">よくある質問</h2>
+      <dl class="oc-faq">
+        {faq.map((f) => (
+          <div class="oc-faq__item">
+            <dt><h3 class="oc-faq__q">{f.question}</h3></dt>
+            <dd class="oc-faq__a">{f.answer}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="oc-section oc-section--last">
+    <div class="oc-inner">
+      <h2 class="oc-h">iLe でオンカラーを相談する</h2>
+      <p>
+        iLe は原宿・名古屋・長岡に4店舗あります。髪の状態や履歴によってできる明るさや色は変わるため、
+        まずはカウンセリングでご相談ください。
+      </p>
+      <ul class="oc-links">
+        <li><a href="/effect-bleach">エフェクトブリーチについて</a></li>
+        <li><a href="/area/harajuku">原宿・表参道の店舗</a></li>
+        <li><a href="/area/nagoya">名古屋・栄の店舗</a></li>
+        <li><a href="/area/nagaoka">新潟・長岡の店舗</a></li>
+        <li><a href="/styles">スタイル写真</a></li>
+        <li><a href="/glossary">用語集</a></li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .oc-section {
+    padding: 72px 32px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .oc-section--last {
+    padding-bottom: 120px;
+  }
+  .oc-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 2;
+  }
+  .oc-inner a {
+    color: inherit;
+    border-bottom: 1px solid currentColor;
+  }
+  .oc-h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.4;
+    margin: 0 0 18px;
+  }
+  .oc-salon {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    padding: 26px 24px;
+    margin-bottom: 16px;
+  }
+  .oc-salon__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 12px;
+  }
+  .oc-salon__name a {
+    border-bottom: none;
+  }
+  .oc-salon__specs {
+    margin: 0 0 12px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .oc-salon__specs div {
+    display: grid;
+    grid-template-columns: 6em 1fr;
+    gap: 8px;
+    padding: 6px 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .oc-salon__specs dt {
+    color: var(--color-fg-muted);
+  }
+  .oc-salon__specs dd {
+    margin: 0;
+  }
+  .oc-salon__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin: 0;
+    font-size: 13px;
+  }
+  .oc-posts {
+    padding-left: 1.2em;
+    margin: 0 0 12px;
+  }
+  .oc-faq {
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .oc-faq__item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .oc-faq__q {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0 0 6px;
+  }
+  .oc-faq__a {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--color-fg-muted);
+  }
+  .oc-toc ul,
+  .oc-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    padding: 0;
+    margin: 18px 0 0;
+    list-style: none;
+    font-size: 13px;
+  }
+  .oc-group__h {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 22px 0 8px;
+  }
+  .oc-posts li {
+    margin-bottom: 10px;
+  }
+  .oc-posts__sum {
+    margin: 2px 0 0;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--color-fg-muted);
+  }
+</style>
