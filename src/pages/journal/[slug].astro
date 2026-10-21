@@ -5,6 +5,7 @@ import { brandLabel } from "~lib/brand";
 import Prose from "~components/Prose.astro";
 import Picture from "~components/Picture.astro";
 import { getJournalPosts } from "~lib/content";
+import { onColorSlugs } from "~data/on-color-guide";
 import {
   articleSchema,
   breadcrumbSchema,
@@ -128,6 +129,9 @@ const allSchemas = post.faq?.length ? [...pageSchemas, faqPageSchema([...post.fa
           </li>
         ))}
       </ul>
+      {onColorSlugs.includes(post.slug) && (
+        <p class="journal-related__all"><a href="/on-color">オンカラーの記事をテーマ別に見る →</a></p>
+      )}
       <p class="journal-related__all"><a href="/journal">記事の一覧へ →</a></p>
     </nav>
   )}
