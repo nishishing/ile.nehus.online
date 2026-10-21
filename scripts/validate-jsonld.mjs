@@ -31,15 +31,16 @@ function walk(dir) {
 // resolve an absolute SITE url to a dist path that should exist
 function assetExists(url) {
   if (!url.startsWith(SITE)) return null; // external, skip
-  let path = url.slice(SITE.length) || "/";
+  // ページ内の目印（/glossary#on-color 等・2026-10-21〜）は、ページがあり、その id もあるかで見る
+  const [rawPath, frag] = url.slice(SITE.length).split("#");
+  let path = rawPath || "/";
   if (ASSET_RE.test(path)) return existsSync(join(DIST, path));
   // page url -> directory index
   path = path.replace(/\/$/, "");
-  return (
-    existsSync(join(DIST, path, "index.html")) ||
-    existsSync(join(DIST, `${path}.html`)) ||
-    (path === "" && existsSync(join(DIST, "index.html")))
-  );
+  const file = [join(DIST, path, "index.html"), join(DIST, `${path}.html`)].find((f) => existsSync(f));
+  if (!file) return false;
+  if (!frag) return true;
+  return readFileSync(file, "utf8").includes(`id="${frag}"`);
 }
 
 // ---- pass 1: gather every node and @id ------------------------------------

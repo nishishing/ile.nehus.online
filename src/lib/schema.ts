@@ -290,6 +290,10 @@ export interface GlossaryTerm {
   pronunciation?: string;
   definition: string;
   etymology?: string;
+  /** ページ内の目印（/glossary#id）。DefinedTerm の url にもなる（2026-10-21〜） */
+  id?: string;
+  /** 詳しく書いた記事・ページ。定義の下に「詳しく」として出す */
+  related?: readonly { href: string; label: string }[];
 }
 export function definedTermSchema(t: GlossaryTerm) {
   return {
@@ -298,6 +302,7 @@ export function definedTermSchema(t: GlossaryTerm) {
     name: t.term,
     alternateName: t.pronunciation,
     description: t.definition,
+    url: t.id ? `${site.url}/glossary#${t.id}` : undefined,
     inDefinedTermSet: {
       "@type": "DefinedTermSet",
       name: "iLe 用語集",

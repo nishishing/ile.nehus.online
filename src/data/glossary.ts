@@ -95,6 +95,76 @@ export const glossaryTerms: readonly GlossaryTerm[] = [
     definition:
       "ブリーチ（脱色）とオンカラー（発色）を同日に行う施術の総称。一度のカラーでは出せない透明感やハイトーンを実現する。iLe ではエフェクトブリーチでベースを整えたうえでオンカラーを重ね、色落ちの美しさまで設計する。髪の状態によってはブリーチを複数回行う「ダブルエフェクトブリーチ」もある。",
   },
+  // ---- 「〜とは」で検索される言葉（2026-10-21 オーナー選択「用語集に「〜とは」を足す」）----
+  // 🔴 定義は既存のコラムに書いてある内容だけ。数字・価格・薬剤の配合は書かない
+  {
+    term: "オンカラー",
+    pronunciation: "オンカラー / on color",
+    id: "on-color",
+    definition:
+      "ブリーチで色素を抜いて明るくした髪に、狙った色を重ねる工程。ブリーチだけでは黄みやオレンジみが残るため、そこへ色をのせて仕上がりに近づける。ブリーチが土台づくり、オンカラーが色を描く工程にあたり、同じ日に両方を行う施術をダブルカラーと呼ぶ。",
+    related: [
+      { href: "/journal/on-color-after-bleach", label: "ブリーチ後のオンカラーとは？" },
+      { href: "/on-color", label: "オンカラーのガイド" },
+    ],
+  },
+  {
+    term: "アンダーカラー",
+    pronunciation: "アンダーカラー / under color",
+    id: "under-color",
+    definition:
+      "カラー剤をのせる前の、髪そのものの土台の色。最終的な発色は上にのせる色とこの下地の掛け合わせで決まるため、同じカラー剤でも土台が違うと仕上がりが変わる。ブリーチを進めると、下地の色は赤み・オレンジ・黄み・淡い黄色へと段階的に変わっていく。",
+    related: [{ href: "/journal/undercolor-base-tone-basics", label: "アンダーカラー（下地の色）とは？" }],
+  },
+  {
+    term: "補色",
+    pronunciation: "ほしょく / complementary color",
+    id: "complementary-color",
+    definition:
+      "色の輪の反対側にある色。髪色では、気になる色みに反対の色を少し重ねて打ち消すために使う。ハイトーンの黄みには紫〜青紫を重ねるのが基本で、紫シャンプーやアッシュ系のカラーもこの考え方による。入れすぎると暗く濁って見える。",
+    related: [{ href: "/journal/hightone-yellow-undertone-correction", label: "ハイトーンの黄ばみはなぜ出る？補色で整える考え方" }],
+  },
+  {
+    term: "紫シャンプー（ムラシャン）",
+    pronunciation: "むらさきシャンプー / purple shampoo",
+    id: "purple-shampoo",
+    definition:
+      "黄色の補色である紫の色素を薄く重ねて黄みを打ち消し、透明感を戻すためのカラーシャンプー。色を足すための道具で、傷んだ部分を直すものではない。毎日ではなく、黄ばみが気になってきたら通常のシャンプーと交互に使うのが扱いやすい。",
+    related: [{ href: "/journal/purple-shampoo-usage-frequency", label: "紫シャンプー（ムラシャン）の正しい使い方と頻度" }],
+  },
+  {
+    term: "退色（色落ち）",
+    pronunciation: "たいしょく / fading",
+    id: "fading",
+    definition:
+      "重ねた色素が髪から少しずつ抜け、色みが変わっていくこと。ブリーチ毛は色素をとどめる力が落ちているため退色しやすく、色素が抜けると土台の黄みが再び見えてくる。iLe は、色が抜けていく過程の美しさまで含めて色を設計する。",
+    related: [
+      { href: "/journal/enjoy-bleach-color-fading", label: "ブリーチカラーの色落ちを楽しむ" },
+      { href: "/journal/bleached-hair-color-fade-reasons", label: "ブリーチ後に色がすぐ抜ける・入りにくいのはなぜ？" },
+    ],
+  },
+  {
+    term: "ハイトーン",
+    pronunciation: "ハイトーン / high tone",
+    id: "high-tone",
+    definition:
+      "地毛より大きく明るくした髪色の呼び方。ブリーチで土台を明るくしてから色を重ねてつくることが多い。ブリーチは髪を脱色する施術なので、髪への負担をゼロにはできない。iLe はエフェクトブリーチで、髪の状態やこれまでの履歴を見ながら薬剤を調整し、できるだけ髪の芯を残すことを大切にしている。",
+    related: [
+      { href: "/journal/why-bleach-damages-hair-and-how-to-minimize", label: "ブリーチで髪が傷む仕組みと、ダメージを抑えるための考え方" },
+      { href: "/effect-bleach", label: "エフェクトブリーチ" },
+    ],
+  },
+  {
+    term: "リタッチ",
+    pronunciation: "リタッチ / retouch",
+    id: "retouch",
+    definition:
+      "伸びてきた根元の部分だけを染め直すこと。ハイトーンでは、根元の地毛との明るさの差が目立ってきたときが目安になる。根元の伸びが気になり始めたら早めに相談するほうが、全体のバランスを整えやすい。",
+    related: [
+      { href: "/journal/retouch-frequency-hightone", label: "根元のリタッチはどのくらいの頻度？" },
+      { href: "/journal/color-retouch-timing", label: "色落ち後のお直しはいつ？" },
+    ],
+  },
   {
     term: "iLe.online",
     pronunciation: "イル ドット オンライン",

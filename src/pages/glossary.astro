@@ -42,7 +42,7 @@ const pageSchemas = [
 
     <dl class="glossary-list">
       {glossaryTerms.map((t, idx) => (
-        <div class="glossary-item">
+        <div class="glossary-item" id={t.id}>
           <dt class="glossary-item__term">
             <span class="glossary-item__num">{String(idx + 1).padStart(2, "0")}</span>
             <span class="glossary-item__name">{t.term}</span>
@@ -55,6 +55,13 @@ const pageSchemas = [
             {t.etymology && (
               <p class="glossary-item__etym">
                 <span class="glossary-item__etym-label">Etymology:</span> {t.etymology}
+              </p>
+            )}
+            {t.related?.length && (
+              <p class="glossary-item__related">
+                詳しく：{t.related.map((r, i) => (
+                  <>{i > 0 && "／"}<a href={r.href}>{r.label}</a></>
+                ))}
               </p>
             )}
           </dd>
@@ -160,5 +167,16 @@ const pageSchemas = [
     text-transform: uppercase;
     color: var(--color-fg-subtle);
     margin-right: 8px;
+  }
+  .glossary-item__related {
+    font-size: 13px;
+    color: var(--color-fg-muted);
+  }
+  .glossary-item__related a {
+    color: inherit;
+    border-bottom: 1px solid currentColor;
+  }
+  .glossary-item {
+    scroll-margin-top: 96px;
   }
 </style>
