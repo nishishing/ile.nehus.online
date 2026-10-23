@@ -1,0 +1,254 @@
+---
+/**
+ * テーマ別のまとめページの共通部品（2026-10-23〜。/balayage・/hair-history で使う。/on-color と同じ作り）。
+ * 🔴 記事の説明は各記事の summary をそのまま使う（新しい事実を足さない）。本文・FAQ は呼び出し側で確定ファクトと既存記事の範囲に限る。
+ */
+import BaseLayout from "~layouts/BaseLayout.astro";
+import PageHero from "~components/PageHero.astro";
+import { brandLabel } from "~lib/brand";
+import { getJournalPosts } from "~lib/content";
+import { site } from "~data/site";
+import { breadcrumbSchema, faqPageSchema, jsonLd } from "~lib/schema";
+
+export interface GuideSection {
+  id: string;
+  heading: string;
+  lead: string;
+  slugs: readonly string[];
+}
+interface Props {
+  slug: string;
+  title: string;
+  description: string;
+  eyebrow: string;
+  heroTitle: string;
+  breadcrumbName: string;
+  introHeading: string;
+  /** 段落ごとの HTML（サイト内リンク用）。外部入力は入れない */
+  intro: readonly string[];
+  sections: readonly GuideSection[];
+  faq: readonly { question: string; answer: string }[];
+  ctaHeading: string;
+  ctaText: string;
+  links: readonly { href: string; label: string }[];
+}
+const p = Astro.props;
+const posts = await getJournalPosts();
+const bySlug = new Map(posts.map((x) => [x.slug, x]));
+const allSlugs = p.sections.flatMap((s) => s.slugs);
+const missing = allSlugs.filter((s) => !bySlug.has(s));
+if (missing.length) throw new Error(`${p.slug}: 記事が見つからない ${missing.join(", ")}`);
+
+const pageSchemas = [
+  breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Journal", url: "/journal" },
+    { name: p.breadcrumbName, url: `/${p.slug}` },
+  ]),
+  faqPageSchema([...p.faq]),
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: p.title,
+    description: p.description,
+    url: `${site.url}/${p.slug}`,
+    inLanguage: "ja-JP",
+    publisher: { "@id": `${site.url}/#organization` },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: allSlugs.length,
+      itemListElement: allSlugs.map((s, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${site.url}/journal/${s}`,
+        name: bySlug.get(s)!.title,
+      })),
+    },
+  },
+];
+---
+
+<BaseLayout title={p.title} description={p.description}>
+  <Fragment slot="head">
+    {pageSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={jsonLd(schema)} is:inline />
+    ))}
+  </Fragment>
+
+  <PageHero eyebrow={p.eyebrow} title={p.heroTitle} />
+
+  <section class="oc-section">
+    <div class="oc-inner">
+      <h2 class="oc-h">{p.introHeading}</h2>
+      {p.intro.map((html) => <p set:html={html} />)}
+      <nav class="oc-toc" aria-label="このページの目次">
+        <ul>
+          {p.sections.map((s) => (
+            <li><a href={`#${s.id}`}>{s.heading}</a></li>
+          ))}
+          <li><a href="#faq">よくある質問</a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  {p.sections.map((s) => (
+    <section class="oc-section" id={s.id}>
+      <div class="oc-inner">
+        <h2 class="oc-h">{s.heading}</h2>
+        <p>{s.lead}</p>
+        <ul class="oc-posts">
+          {s.slugs.map((slug) => {
+            const post = bySlug.get(slug)!;
+            return (
+              <li>
+                <a href={`/journal/${post.slug}`} set:html={brandLabel(post.title)} />
+                {post.summary && <p class="oc-posts__sum">{post.summary}</p>}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  ))}
+
+  <section class="oc-section" id="faq">
+    <div class="oc-inner">
+      <h2 class="oc-h">よくある質問</h2>
+      <dl class="oc-faq">
+        {p.faq.map((f) => (
+          <div class="oc-faq__item">
+            <dt><h3 class="oc-faq__q">{f.question}</h3></dt>
+            <dd class="oc-faq__a">{f.answer}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="oc-section oc-section--last">
+    <div class="oc-inner">
+      <h2 class="oc-h">{p.ctaHeading}</h2>
+      <p>{p.ctaText}</p>
+      <ul class="oc-links">
+        {p.links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .oc-section {
+    padding: 72px 32px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .oc-section--last {
+    padding-bottom: 120px;
+  }
+  .oc-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 2;
+  }
+  .oc-inner a {
+    color: inherit;
+    border-bottom: 1px solid currentColor;
+  }
+  .oc-h {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.4;
+    margin: 0 0 18px;
+  }
+  .oc-salon {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    padding: 26px 24px;
+    margin-bottom: 16px;
+  }
+  .oc-salon__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 12px;
+  }
+  .oc-salon__name a {
+    border-bottom: none;
+  }
+  .oc-salon__specs {
+    margin: 0 0 12px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .oc-salon__specs div {
+    display: grid;
+    grid-template-columns: 6em 1fr;
+    gap: 8px;
+    padding: 6px 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .oc-salon__specs dt {
+    color: var(--color-fg-muted);
+  }
+  .oc-salon__specs dd {
+    margin: 0;
+  }
+  .oc-salon__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin: 0;
+    font-size: 13px;
+  }
+  .oc-posts {
+    padding-left: 1.2em;
+    margin: 0 0 12px;
+  }
+  .oc-faq {
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .oc-faq__item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .oc-faq__q {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0 0 6px;
+  }
+  .oc-faq__a {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--color-fg-muted);
+  }
+  .oc-toc ul,
+  .oc-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    padding: 0;
+    margin: 18px 0 0;
+    list-style: none;
+    font-size: 13px;
+  }
+  .oc-group__h {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 22px 0 8px;
+  }
+  .oc-posts li {
+    margin-bottom: 10px;
+  }
+  .oc-posts__sum {
+    margin: 2px 0 0;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--color-fg-muted);
+  }
+</style>
