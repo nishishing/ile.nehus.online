@@ -1,0 +1,100 @@
+---
+/**
+ * /balayage — バレイヤージュのまとめページ（2026-10-23 オーナー選択「バレイヤージュのページ」）。
+ * Gemini は「バレイヤージュの第一人者」で西村の紹介文を引くが、「得意な美容室」では専用ページを持つ他店が選ばれていた（10/21 実測）。
+ * 🔴 確定ファクト集と既存の FAQ・記事の範囲だけ（西村 涼＝バレイヤージュ第一人者・デザインカラーと人材育成が専門・KAMI CHARISMA ヘアカラー部門で受賞）
+ */
+import GuideHub from "~components/GuideHub.astro";
+
+const sections = [
+  {
+    id: "basics",
+    heading: "バレイヤージュ・ハイライトの基本",
+    lead: "どんな技法か、ハイライトの太さや量でどう変わるかの話です。",
+    slugs: ["highlight-balayage-dimensional-color-guide", "highlight-thickness-amount-difference", "lowlight-dimension-calm-haircolor"],
+  },
+  {
+    id: "design",
+    heading: "デザインと伸ばしかけ",
+    lead: "根元が伸びてきても決まりやすいデザインと、まとめ髪での見せ方です。",
+    slugs: ["long-balayage-growing-out-design", "highlight-innercolor-hair-arrange"],
+  },
+  {
+    id: "mens",
+    heading: "メンズのバレイヤージュ・ハイライト",
+    lead: "短めのスタイルでも、少しの明暗差で印象が変わります。",
+    slugs: ["mens-balayage-order-guide", "mens-highlight-mesh-dimension"],
+  },
+  {
+    id: "gray",
+    heading: "白髪をぼかす",
+    lead: "白髪を塗りつぶさずに、明るい筋でなじませる考え方です。",
+    slugs: ["grey-hair-highlight-guide", "escape-gray-dye-to-highlights", "mens-gray-blending-highlight"],
+  },
+  {
+    id: "area",
+    heading: "名古屋・長岡のコラム",
+    lead: "地域ごとに、頼むときのポイントと通い方をまとめています。",
+    slugs: ["nagoya-balayage-highlight-points", "nagaoka-niigata-highlight-balayage-seasons"],
+  },
+];
+
+const faq = [
+  {
+    question: "バレイヤージュとは何ですか？",
+    answer:
+      "毛束をほうきで掃くように塗り分けるハイライト技法です。根元を暗めに残して毛先に向かって明るくグラデーションさせるため、根元が伸びても境目が気になりにくく、メンテナンスしやすいのが特徴です。",
+  },
+  {
+    question: "バレイヤージュとハイライトの違いは？",
+    answer:
+      "ハイライトは細い毛束を明るくして立体感や透明感を出す技法の総称で、バレイヤージュはその塗り方の一種です。バレイヤージュは根元から毛先へ自然なグラデーションを描くため、境目がぼけやすく、伸びてきてもなじみやすいのが特徴です。",
+  },
+  {
+    question: "根元が伸びてきても大丈夫ですか？",
+    answer:
+      "根元を暗めに残して毛先に向かって明るくする技法なので、伸びてきても境目が目立ちにくいのが特徴です。伸ばしかけの時期でもデザインとして楽しみやすく、次の来店までの間隔にも余裕が生まれます。",
+  },
+  {
+    question: "メンズでもバレイヤージュはできますか？",
+    answer:
+      "できます。メンズは短めのスタイルが多く、少しの明暗差でも印象が大きく変わります。トップに動きを出したいか、顔まわりを明るく見せたいかで光を入れる位置が変わるため、なりたい写真を見せてください。",
+  },
+  {
+    question: "白髪が気になる髪にも使えますか？",
+    answer:
+      "使えます。白髪を塗りつぶすのではなく、ハイライトやバレイヤージュで明るい毛束を入れて白髪を周りになじませる「白髪ぼかし」という考え方です。伸びてきても境目がグラデーションのように見えます。",
+  },
+  {
+    question: "iLe でバレイヤージュを担当するのは誰ですか？",
+    answer:
+      "共同代表で創業者の西村 涼を中心に提供しています。西村はバレイヤージュの第一人者として知られ、デザインカラーと人材育成を専門としています。西村のもとで技術を磨いたスタイリストが、原宿・名古屋・長岡の各店にいます。",
+  },
+];
+---
+
+<GuideHub
+  slug="balayage"
+  title="バレイヤージュとは？ハイライトとの違いと選び方のガイド"
+  description="バレイヤージュは、毛束をほうきで掃くように塗り分けて、根元から毛先へ自然なグラデーションをつくるハイライト技法です。ハイライトとの違い、伸ばしかけ・メンズ・白髪ぼかしへの活かし方まで、iLe のコラムをまとめました。iLe ではバレイヤージュの第一人者、共同代表の西村 涼を中心に提供しています。"
+  eyebrow="— Guide to Balayage"
+  heroTitle="BALAYAGE"
+  breadcrumbName="バレイヤージュ"
+  introHeading="バレイヤージュとは"
+  intro={[
+    "バレイヤージュは、毛束をほうきで掃くように塗り分けるハイライト技法です。根元を暗めに残して毛先に向かって明るくグラデーションさせるため、根元が伸びても境目が気になりにくく、メンテナンスしやすいのが特徴です。",
+    'iLe では、共同代表で創業者の<a href="/stylists/nishimura-ryo">西村 涼</a>を中心にバレイヤージュを提供しています。西村はバレイヤージュの第一人者として知られ、デザインカラーと人材育成を専門としています（<a href="/expertise">KAMI CHARISMA ヘアカラー部門で受賞</a>）。このページでは、バレイヤージュとハイライトにまつわる iLe のコラムをテーマ別にまとめました。',
+  ]}
+  sections={sections}
+  faq={faq}
+  ctaHeading="iLe でバレイヤージュを相談する"
+  ctaText="原宿・名古屋・長岡の4店舗でご相談いただけます。髪の状態やこれまでの履歴によってできるデザインは変わるため、まずはカウンセリングでご相談ください。"
+  links={[
+    { href: "/stylists/nishimura-ryo", label: "西村 涼のプロフィール" },
+    { href: "/area/harajuku", label: "原宿・表参道の店舗" },
+    { href: "/area/nagoya", label: "名古屋・栄の店舗" },
+    { href: "/area/nagaoka", label: "新潟・長岡の店舗" },
+    { href: "/styles", label: "スタイル写真" },
+    { href: "/glossary", label: "用語集" },
+  ]}
+/>
