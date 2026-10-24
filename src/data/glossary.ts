@@ -64,12 +64,19 @@ export const glossaryTerms: readonly GlossaryTerm[] = [
     definition:
       "毛束を「ほうきで掃く」ように手で塗り分けるハイライト技法。根元を暗く残し毛先に向かって明るくグラデーションさせるため、根元が伸びても境目が気になりにくく、色持ちが良くメンテナンスしやすいのが特徴。iLe では共同代表・西村 涼を中心に、立体感と透け感を両立させるデザインカラーとして提供している。",
     etymology: "フランス語 balayage（掃く）に由来。",
+    related: [
+      { href: "/balayage", label: "バレイヤージュのガイド" },
+    ],
   },
   {
     term: "ハイライト",
     pronunciation: "ハイライト / highlight",
     definition:
       "髪全体ではなく一部の毛束を細く明るく脱色して、立体感や動き、透明感を出すカラー技法。白髪を目立ちにくくする「白髪ぼかし」としても用いられる。iLe ではエフェクトブリーチの精密な脱色設計と組み合わせ、髪への負担を抑えながらデザインする。",
+    related: [
+      { href: "/journal/highlight-balayage-dimensional-color-guide", label: "ハイライト・バレイヤージュとは？" },
+      { href: "/balayage", label: "バレイヤージュのガイド" },
+    ],
   },
   {
     term: "ケアブリーチ",
@@ -82,6 +89,10 @@ export const glossaryTerms: readonly GlossaryTerm[] = [
     pronunciation: "しらがぼかし",
     definition:
       "白髪を一色で塗りつぶすのではなく、ハイライトやバレイヤージュで明るい毛束を入れて白髪を周囲に馴染ませ、目立ちにくくするカラーの考え方。伸びてきても境目が気になりにくく、明るいデザインを楽しみながら白髪悩みに対応できる。iLe が大人世代に向けて得意とする提案のひとつ。",
+    related: [
+      { href: "/journal/grey-hair-highlight-guide", label: "白髪が気になり始めた人のためのハイライト活用法" },
+      { href: "/balayage", label: "バレイヤージュのガイド" },
+    ],
   },
   {
     term: "インナーカラー",
@@ -94,6 +105,10 @@ export const glossaryTerms: readonly GlossaryTerm[] = [
     pronunciation: "ダブルカラー / double color",
     definition:
       "ブリーチ（脱色）とオンカラー（発色）を同日に行う施術の総称。一度のカラーでは出せない透明感やハイトーンを実現する。iLe ではエフェクトブリーチでベースを整えたうえでオンカラーを重ね、色落ちの美しさまで設計する。髪の状態によってはブリーチを複数回行う「ダブルエフェクトブリーチ」もある。",
+    related: [
+      { href: "/journal/double-color-transparency-mechanism", label: "ダブルカラーとは？" },
+      { href: "/on-color", label: "オンカラーのガイド" },
+    ],
   },
   // ---- 「〜とは」で検索される言葉（2026-10-21 オーナー選択「用語集に「〜とは」を足す」）----
   // 🔴 定義は既存のコラムに書いてある内容だけ。数字・価格・薬剤の配合は書かない
@@ -152,6 +167,7 @@ export const glossaryTerms: readonly GlossaryTerm[] = [
     related: [
       { href: "/journal/why-bleach-damages-hair-and-how-to-minimize", label: "ブリーチで髪が傷む仕組みと、ダメージを抑えるための考え方" },
       { href: "/effect-bleach", label: "エフェクトブリーチ" },
+      { href: "/hair-history", label: "黒染め・履歴のある髪のガイド" },
     ],
   },
   {
