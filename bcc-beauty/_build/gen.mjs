@@ -11,6 +11,7 @@ mkdirSync(OUT, { recursive: true });
 const LINE_URL = "https://lin.ee/aQTLZGG";
 const OC_URL = "https://line.me/ti/g2/Mzs6FgiX6-gHl9kRAesPADRvcjVkVdlc-wPdCg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default";
 const LP_URL = "https://drive-blue.online/test/";
+const SALOPIT_URL = "https://salopit.vercel.app"; // 別サイト（別の人が作成・この担当は中身を触らない）。2026-10-23 オーナー指示でトップ上部から案内
 const ABOUT = "/about"; // 自前の説明LP（旧: LP_URL 外部）
 
 const categories = ["開業支援", "不動産", "内装業者", "財務", "福利厚生", "材料", "ヘアスタイル販売", "教育", "集客", "予約サービス"];
@@ -116,6 +117,19 @@ html.js .reveal.in{opacity:1;transform:none}
 .scrollcue span{text-transform:uppercase;letter-spacing:.26em;font-size:.64rem}
 .scrollcue .line{width:1px;height:40px;background:linear-gradient(var(--hair),transparent);animation:cue 2s ease-in-out infinite}
 @keyframes cue{0%,100%{opacity:.25;transform:scaleY(.55)}50%{opacity:1;transform:scaleY(1)}}
+
+/* feature (サロピット) */
+.feature{padding:72px 0 0}
+.feat{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:30px;background:var(--surface);border:1px solid var(--line);padding:36px 40px;transition:.35s cubic-bezier(.2,.7,.2,1)}
+a.feat:hover{background:#fff;border-color:var(--hair)}
+.feat .fmark{width:72px;height:72px;border-radius:14px;background:var(--ink);display:grid;place-items:center;font-family:var(--font-serif);font-weight:600;font-size:1.5rem;color:var(--gold);letter-spacing:.04em}
+.feat .ctag{margin:0 0 8px}
+.feat h3{font-family:var(--font-jp);font-weight:600;font-size:clamp(1.15rem,2.2vw,1.4rem);margin:0 0 10px;letter-spacing:.03em;line-height:1.5}
+.feat p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.9}
+.feat .more{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;white-space:nowrap}
+.feat .more .arw{transition:transform .3s}
+a.feat:hover .more .arw{transform:translateX(8px)}
+@media(max-width:760px){.feat{grid-template-columns:1fr;gap:18px;padding:30px 24px}.feat .fmark{width:56px;height:56px;font-size:1.2rem}}
 
 /* sections */
 section{padding:108px 0}
@@ -908,6 +922,7 @@ const indexBody = `<header class="hero">
     <p class="hero-sub">開業・集客・運営に必要な外部パートナーを、カテゴリ別に厳選してご紹介します。</p>
     <div class="hero-cta">
       <a class="primary" href="#services">View services</a>
+      <a class="ghost" href="${SALOPIT_URL}" target="_blank" rel="noopener noreferrer">Salopit tool</a>
       <a class="ghost" href="${OC_URL}" target="_blank" rel="noopener noreferrer">Open chat</a>
     </div>
   </div>
@@ -915,6 +930,20 @@ const indexBody = `<header class="hero">
 </header>
 
 <main>
+
+  <section class="feature">
+    <div class="container reveal">
+      <a class="feat" href="${SALOPIT_URL}" target="_blank" rel="noopener noreferrer">
+        <div class="fmark">SP</div>
+        <div>
+          <p class="komoji ctag">New &mdash; SALOPIT TOOL</p>
+          <h3>サロピット｜施術の現場で使う道具箱</h3>
+          <p>参考レシピ・配合計算・お助けチャットなど、施術中にそのまま開ける美容師向けのツールです。</p>
+        </div>
+        <span class="more">開く <span class="arw">→</span></span>
+      </a>
+    </div>
+  </section>
 
   <section class="container">
     <div class="sec-head reveal">
