@@ -5,39 +5,8 @@
  * 🔴 確定ファクト集と既存の FAQ・記事の範囲だけ（西村 涼＝バレイヤージュ第一人者・デザインカラーと人材育成が専門・KAMI CHARISMA ヘアカラー部門で受賞）
  */
 import GuideHub from "~components/GuideHub.astro";
+import { balayageSections as sections } from "~data/balayage-guide";
 
-const sections = [
-  {
-    id: "basics",
-    heading: "バレイヤージュ・ハイライトの基本",
-    lead: "どんな技法か、ハイライトの太さや量でどう変わるかの話です。",
-    slugs: ["highlight-balayage-dimensional-color-guide", "highlight-thickness-amount-difference", "lowlight-dimension-calm-haircolor"],
-  },
-  {
-    id: "design",
-    heading: "デザインと伸ばしかけ",
-    lead: "根元が伸びてきても決まりやすいデザインと、まとめ髪での見せ方です。",
-    slugs: ["long-balayage-growing-out-design", "highlight-innercolor-hair-arrange"],
-  },
-  {
-    id: "mens",
-    heading: "メンズのバレイヤージュ・ハイライト",
-    lead: "短めのスタイルでも、少しの明暗差で印象が変わります。",
-    slugs: ["mens-balayage-order-guide", "mens-highlight-mesh-dimension"],
-  },
-  {
-    id: "gray",
-    heading: "白髪をぼかす",
-    lead: "白髪を塗りつぶさずに、明るい筋でなじませる考え方です。",
-    slugs: ["grey-hair-highlight-guide", "escape-gray-dye-to-highlights", "mens-gray-blending-highlight"],
-  },
-  {
-    id: "area",
-    heading: "名古屋・長岡のコラム",
-    lead: "地域ごとに、頼むときのポイントと通い方をまとめています。",
-    slugs: ["nagoya-balayage-highlight-points", "nagaoka-niigata-highlight-balayage-seasons"],
-  },
-];
 
 const faq = [
   {
