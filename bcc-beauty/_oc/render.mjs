@@ -53,7 +53,10 @@ function cardHtml(d) {
 function check(d) {
   const all = [d.hook, d.sub, ...(d.points || []), d.text].join("\n");
   const errs = [];
-  if (/無料|[0-9０-９][0-9０-９,，]*円/.test(all.replace(/0円開業/g, ""))) errs.push("料金・「無料」が入っています");
+  // 料金は「約」を付けた目安なら書いてよい（オープンチャットだけの例外・2026-10-27 オーナー「料金は約にしましょう」）
+  const noApprox = all.replace(/0円開業/g, "").replace(/約[0-9０-９][0-9０-９,，.．]*万?円/g, "");
+  if (/無料/.test(all)) errs.push("「無料」が入っています");
+  if (/[0-9０-９][0-9０-９,，.．]*万?円/.test(noApprox)) errs.push("料金は「約〇〇円」の目安で書く（実額のままは不可）");
   if (/[Ѐ-ӿ]/.test(all)) errs.push("キリル文字が混ざっています");
   if (!/^https:\/\//m.test(d.text || "")) errs.push("本文にリンクがありません");
   if ((d.points || []).length > 3) errs.push("要点は3つまで（画像で読めなくなる）");
