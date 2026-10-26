@@ -366,6 +366,9 @@ function pageDoc(title, desc, body, path = "", navHtml = nav, footerHtml = foote
 <style>
 ${STYLE}
 </style>
+<!-- 訪問者の計測: Vercel Web Analytics（2026-10-26 オーナー「これ計測できるようにしといて！」）。Vercel の管理画面で Analytics を有効にしないと何も集計されない -->
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 ${navHtml}
