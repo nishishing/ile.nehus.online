@@ -35,6 +35,10 @@
   URL は `gen.mjs` の `SALOPIT_URL`。**中身（サロピット側）は引き続き触らない**。サロピットの説明文を直すときは
   公開ページで見える範囲だけを根拠にし、料金・「無料」は書かない。
   ⚠️ 以前ここには「BCC の Web は bcc-beauty 一つだけ」と書いてあった。**その前提は外れた**（記録として残す）。
+- 📊 **訪問者の計測 = Vercel Web Analytics**（2026-10-26 オーナー「**これ計測できるようにしといて！**」）。
+  全ページの `<head>` に `/_vercel/insights/script.js` を入れている（`gen.mjs` の `pageDoc`）。
+  **Vercel の管理画面（プロジェクト `bcc` → Analytics）で有効にしないと集計されない**。数字はその画面で見る。
+  cookie を使わない方式なので同意バナーは不要。Google アナリティクスは入れていない。
 - BCCは iLe本サイト（`src/` のAstro）とは**完全に独立**。`bcc-beauty/` 配下で閉じている。
   初期構築の PR は #53（2026-07-23 に main へ squash merge 済み。マージ前 HEAD はタグ
   `bcc-v1-pre-merge-20260723` で保全）。
