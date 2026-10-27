@@ -1041,9 +1041,10 @@ const splitName = (name) => {
 const wb = (t) => esc(t).replace(/ \/ /g, " /<wbr> ").replace(/・/g, "・<wbr>");
 // 見出しの下の小さな行＝サービスの種類（2026-10-27 オーナー「タイトルが一番上にあって、その下の文字は…自動化ツールなのか、コンサルなのかとかにしましょうかね！」）。
 // 中身は各サービスの desc・資料の範囲で付けた（誇張しない）。無いサービスはビルドで止める
+// StyleManager とスタイルポストは同じタグ「自動化ツール」で隣に並べる（2026-10-27 オーナー「スタイルマネージャーとスタイルポストは自動化ツールにしましょう！…その2つは同じタグなので、よく並べてください！」）
 const KIND = {
-  "stylemanager": "PV爆上げ ホットペッパー自動化ツール", "tete-lab": "集客コンサル", "atsukyakumania": "集客コンサル", "ones": "集客サポート",
-  "stylepost": "投稿サポート", "freed": "TikTokコンサル・運用代行", "instagram": "コンサル・運用代行", "gita": "美容室専門 TikTokコンサル", "biyoushijuku": "コンサル",
+  "stylemanager": "自動化ツール", "tete-lab": "集客コンサル", "atsukyakumania": "集客コンサル", "ones": "集客サポート",
+  "stylepost": "自動化ツール", "freed": "TikTokコンサル・運用代行", "instagram": "コンサル・運用代行", "gita": "美容室専門 TikTokコンサル", "biyoushijuku": "コンサル",
   "salon-start": "開業サポート", "next-beauty-tech": "融資・事業計画の相談", "stylebase": "開業サポート",
   "mutas": "不動産", "real-estate-salon": "不動産",
   "plum-plan": "内装・空間設計", "layer-design-works": "内装施工", "sunny-side-life": "内装・空間づくり",
@@ -1073,7 +1074,7 @@ const PRICE = {
 };
 // カードの説明は短い箇条書き（2026-10-27 オーナー「端的に箇条書きでいいと思ってます！」）。中身は desc の範囲（誇張しない）
 const POINTS = {
-  "stylemanager": ["スタイル・ブログ・口コミを代行", "5店舗の実データ公開中"],
+  "stylemanager": ["PV爆上げのホットペッパー自動化", "スタイル・ブログ・口コミを代行"],
   "tete-lab": ["ホットペッパー完全攻略", "WEB集客の支援"],
   "atsukyakumania": ["ホットペッパー集客", "Google（MEO/SEO）対策"],
   "ones": ["ホットペッパー中心", "ミニモの集客も"],
