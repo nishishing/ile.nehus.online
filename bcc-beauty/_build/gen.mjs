@@ -60,14 +60,15 @@ const enOf = {
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const STYLE = `:root{
-  --bg:#f4f2ec;
-  --surface:#fbfaf6;
-  --ink:#14130f;
-  --soft-ink:#3a382f;
-  --muted:#8d897b;
-  --line:#e2dfd4;
-  --hair:#d6d2c5;
-  --gold:#8a6f38;
+  --bg:#f3f7fc;
+  --surface:#ffffff;
+  --ink:#0f1a2b;
+  --soft-ink:#2c3a52;
+  --muted:#5f6c82;
+  --line:#e1e8f1;
+  --hair:#c9d5e4;
+  --gold:#1f63d6; /* 差し色（名前は旧ゴールドのまま・2026-10-27 青へ変更） */
+  --tint:#e8f0fd;
   --radius:6px;
   --max:1080px;
   --font-serif:'Cormorant Garamond',Georgia,serif;
@@ -87,11 +88,11 @@ html.js .reveal{opacity:0;transform:translateY(16px);transition:opacity 1s cubic
 html.js .reveal.in{opacity:1;transform:none}
 
 /* nav */
-.nav{position:sticky;top:0;z-index:40;background:rgba(244,242,236,.8);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.86);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid var(--line)}
 .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0}
 .brand{font-family:var(--font-serif);font-weight:600;letter-spacing:.06em;font-size:1.45rem}
 .nav-links{display:flex;align-items:center;gap:30px}
-.nav-links a{color:var(--soft-ink);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.nav-links a{color:var(--soft-ink);font-size:.84rem;letter-spacing:.06em;font-weight:600}
 .nav-links a:hover{color:var(--ink)}
 .btn-join{border:1px solid var(--ink);color:var(--ink);padding:9px 20px;border-radius:999px;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;transition:.25s}
 .btn-join:hover{background:var(--ink);color:var(--surface)}
@@ -99,11 +100,11 @@ html.js .reveal.in{opacity:1;transform:none}
 
 /* hero */
 .hero{position:relative;overflow:hidden;min-height:min(92vh,820px);display:grid;place-items:center;text-align:center;padding:96px 0}
-.hero::before{content:"";position:absolute;inset:0;z-index:0;background:radial-gradient(60% 50% at 50% 38%,rgba(20,19,15,.035),transparent 70%)}
-.hero-mark{position:absolute;z-index:0;bottom:-6%;left:50%;transform:translateX(-50%);font-family:var(--font-serif);font-weight:600;font-size:min(40vw,520px);line-height:1;color:rgba(20,19,15,.035);user-select:none;letter-spacing:.02em;white-space:nowrap}
+.hero::before{content:"";position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(31,99,214,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(31,99,214,.07) 1px,transparent 1px);background-size:28px 28px;-webkit-mask-image:radial-gradient(80% 70% at 50% 45%,#000 40%,transparent 100%);mask-image:radial-gradient(80% 70% at 50% 45%,#000 40%,transparent 100%)}
+.hero-mark{position:absolute;z-index:0;bottom:-6%;left:50%;transform:translateX(-50%);font-family:var(--font-serif);font-weight:600;font-size:min(40vw,520px);line-height:1;color:rgba(31,99,214,.05);user-select:none;letter-spacing:.02em;white-space:nowrap}
 .hero-inner{position:relative;z-index:2;padding:0 20px;max-width:880px}
 .hero .eyebrow{display:block;text-transform:uppercase;letter-spacing:.34em;font-size:.72rem;color:var(--muted);font-weight:500;margin:0 0 30px}
-.hero h1{font-family:var(--font-jp);font-weight:500;font-size:clamp(2.2rem,6.2vw,4.4rem);line-height:1.28;letter-spacing:.02em;margin:0}
+.hero h1{font-family:var(--font-jp);font-weight:700;font-size:clamp(2.2rem,6.2vw,4.4rem);line-height:1.28;letter-spacing:.02em;margin:0}
 .hero .rule{width:54px;height:1px;background:var(--gold);opacity:.7;margin:34px auto}
 .hero .kicker{font-family:var(--font-serif);font-style:italic;font-weight:500;font-size:clamp(1.2rem,2.6vw,1.7rem);color:var(--soft-ink);margin:0;letter-spacing:.01em}
 .hero-sub{margin:22px auto 0;font-size:clamp(.95rem,1.6vw,1.05rem);color:var(--muted);max-width:540px;line-height:2}
@@ -130,6 +131,59 @@ a.feat:hover{background:#fff;border-color:var(--hair)}
 .feat .more .arw{transition:transform .3s}
 a.feat:hover .more .arw{transform:translateX(8px)}
 @media(max-width:760px){.feat{grid-template-columns:1fr;gap:18px;padding:30px 24px}.feat .fmark{width:56px;height:56px;font-size:1.2rem}}
+
+/* お悩みから選ぶ */
+.finder{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px;max-width:980px;margin:0 auto;border-top:1px solid var(--hair)}
+.frow{padding:22px 0;border-bottom:1px solid var(--line)}
+.fwhen{margin:0;color:var(--muted);font-size:.9rem}
+.fpick{margin:6px 0 0;font-weight:600;font-size:1.02rem;line-height:1.6}
+.frow{display:block;color:var(--ink)}
+.fpick span{border-bottom:1px solid var(--gold);padding-bottom:1px}
+a.frow:hover .fpick{color:var(--gold)}
+.fpick span::after{content:" →";color:var(--gold);font-weight:400}
+.fnum{display:none}
+.fbody{display:block}
+/* パソコン: 押せるカードを2列（スマホは下の max-width:760px のまま・2026-10-27 オーナー「パソコンバージョンは…見せ方が弱い」） */
+@media(min-width:761px){
+  .finder{border-top:0;gap:18px;max-width:none}
+  #find .sec-head h2{font-weight:700;font-size:2.6rem}
+  #find .sec-head p{font-size:1.02rem;color:var(--soft-ink)}
+  .frow{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 26px;transition:.25s}
+  .frow::after{content:"→";color:var(--gold);font-size:1.3rem;font-weight:700;transition:transform .25s}
+  a.frow:hover{border-color:var(--gold);box-shadow:0 10px 28px rgba(31,99,214,.10);transform:translateY(-2px)}
+  a.frow:hover::after{transform:translateX(4px)}
+  .fnum{display:grid;place-items:center;width:64px;height:64px;border-radius:14px;background:var(--tint);color:var(--gold);font-size:1.7rem;font-weight:700;line-height:1}
+  .fnum small{font-size:.7rem;font-weight:600;margin-top:-10px}
+  .fwhen{color:var(--ink);font-size:1.12rem;font-weight:700;line-height:1.5;letter-spacing:.01em}
+  .fpick{margin-top:4px;font-size:.88rem;font-weight:600;color:var(--gold)}
+  .fpick span{border-bottom:0}
+  .fpick span::after{content:""}
+}
+@media(max-width:760px){.finder{grid-template-columns:1fr;border-top:0;gap:10px}.frow{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}}
+@media(max-width:430px){.hero h1{font-size:1.85rem}}
+.hero-cta a.jp{letter-spacing:.06em;text-transform:none;font-size:.9rem;font-weight:600;border-radius:999px}
+.hero .eyebrow.jp{text-transform:none;letter-spacing:.12em;font-size:.86rem;color:var(--gold);font-weight:700;margin-bottom:22px}
+.hero h1 .hl{background:linear-gradient(transparent 62%,var(--tint) 62%)}
+.hero-sub b{color:var(--ink);font-weight:700}
+.hstats{display:flex;justify-content:center;gap:12px;margin:34px auto 0;flex-wrap:wrap}
+.hstats div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 18px;min-width:120px}
+.hstats strong{display:block;font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1.2}
+.hstats span{font-size:.78rem;color:var(--muted)}
+@media(max-width:760px){.hero{min-height:auto;padding:64px 0 72px}.hero-cta{display:flex;flex-direction:column;align-items:stretch;max-width:340px;margin-left:auto;margin-right:auto}.hstats div{min-width:0;flex:1;padding:10px 8px}.hstats strong{font-size:1.25rem}.hstats span{font-size:.7rem}.scrollcue{display:none}}
+
+/* BCCでできること */
+.does{padding:72px 0 24px}
+.does h2{text-align:center;font-weight:700;font-size:clamp(1.4rem,3vw,2rem);margin:0 0 8px;letter-spacing:.03em}
+.does .dlead{text-align:center;color:var(--muted);margin:0 0 34px;font-size:.95rem}
+.dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.dcard{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 24px;transition:.25s}
+a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
+.dcard .dn{width:38px;height:38px;border-radius:50%;background:var(--tint);color:var(--gold);display:grid;place-items:center;font-weight:700}
+.dcard h3{margin:0;font-size:1.1rem;font-weight:700;line-height:1.5}
+.dcard p{margin:0;color:var(--muted);font-size:.88rem;line-height:1.8;flex:1}
+.dcard .go{color:var(--gold);font-weight:700;font-size:.88rem}
+.dcard .new{display:inline-block;margin-left:8px;font-size:.66rem;background:var(--gold);color:#fff;border-radius:999px;padding:2px 8px;vertical-align:3px;letter-spacing:.06em}
+@media(max-width:760px){.dgrid{grid-template-columns:1fr;gap:12px}.dcard{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:4px;padding:18px}.dcard .dn{grid-row:span 3}.dcard p{font-size:.84rem}}
 
 /* sections */
 section{padding:108px 0}
@@ -181,7 +235,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .footer .links{display:flex;gap:30px;flex-wrap:wrap;justify-content:center;margin-top:34px}
 .footer .links a{color:var(--ink);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase}
 .footer .links a:hover{color:var(--gold)}
-.footer .small{color:#a8a496;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;margin-top:46px}
+.footer .small{color:#94a0b4;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;margin-top:46px}
 
 /* detail */
 .detail-hero{padding:88px 0 22px}
@@ -192,6 +246,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .detail .en{font-family:var(--font-serif);font-style:italic;color:var(--gold);font-size:1.15rem;display:block;margin:0 0 26px}
 .lead{color:var(--soft-ink);max-width:680px;font-size:1.02rem;line-height:2}
 .panelbox{border-top:1px solid var(--hair);padding-top:40px;max-width:680px;margin-top:18px}
+.panel-lead{margin:-8px 0 22px;color:var(--soft-ink);font-size:.95rem;line-height:1.9}
 .panelbox h2{font-family:var(--font-jp);font-weight:500;font-size:1.05rem;margin:0 0 24px;letter-spacing:.06em}
 .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .cta-grid.one{grid-template-columns:1fr}
@@ -290,9 +345,9 @@ const nav = `<nav class="nav">
   <div class="container nav-inner">
     <a class="brand" href="/">BCC</a>
     <div class="nav-links">
-      <a class="hide-sp" href="/">Home</a>
-      <a class="hide-sp" href="/#services">Services</a>
-      <a class="hide-sp" href="${ABOUT}">About</a>
+      <a class="hide-sp" href="/">トップ</a>
+      <a class="hide-sp" href="/#services">サービス</a>
+      <a class="hide-sp" href="${ABOUT}">BCCとは</a>
       <a class="btn-join" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャット</a>
     </div>
   </div>
@@ -312,10 +367,10 @@ const footer = `<footer class="footer">
   <div class="container footer-inner reveal">
     <p class="big serif">BCC</p>
     <p class="komoji" style="margin:0 0 26px">beauty Cooperative Chain</p>
-    <p>美容師の開業・集客・運営を支えるインフラ整備サービス。<br>必要な外部パートナーを、カテゴリ別にまとめています。</p>
+    <p>美容室の開業・集客・運営の困りごとを、パートナーのサービスで解決する窓口。<br>必要な外部パートナーを、カテゴリ別にまとめています。</p>
     <div class="links">
-      <a href="${OC_URL}" target="_blank" rel="noopener noreferrer">Open Chat</a>
-      <a href="${ABOUT}">About</a>
+      <a href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャット</a>
+      <a href="${ABOUT}">BCCとは</a>
     </div>
     <p class="small">© BCC — beauty Cooperative Chain</p>
   </div>
@@ -329,7 +384,7 @@ const lpFooter = `<footer class="footer">
     <p>美容師の開業・集客・運営を支える共同体。<br>まずは公式LINEの登録から。</p>
     <div class="links">
       <a href="${LINE_URL}" target="_blank" rel="noopener noreferrer">公式LINE登録</a>
-      <a href="${ABOUT}">About</a>
+      <a href="${ABOUT}">BCCとは</a>
     </div>
     <p class="small">© BCC — beauty Cooperative Chain</p>
   </div>
@@ -579,6 +634,7 @@ for (const s of services) {
   // CTAボタン群を組み立て。公式LINEが無いサービスは連絡ボタンを出さない（オープンチャットのフォールバックは廃止）。
   let ctas = [];
   let note = "";
+  let lead = "";  // ボタンの手前の一言（押すと何ができるか）
   // パスワードゲート：ボタン→パスワード表示→サイトを開く の2段階
   let gateHTML = "";
   if (r.gate) {
@@ -599,7 +655,10 @@ for (const s of services) {
     if (line) ctas.push(`<a class="btn btn-line" href="${line}" target="_blank" rel="noopener noreferrer">${esc(brand)}専用の公式LINEへ</a>`);
     if (doc) ctas.push(`<a class="btn" href="${doc}" target="_blank" rel="noopener noreferrer">資料（詳細）を見る</a>`);
     else if (line) ctas.push(`<a class="btn" href="/#services">ほかのサービスを見る</a>`);
-    if (line) note = `\n        <p class="small" style="margin-top:16px">※詳しい内容・お見積り・ご予約は、${esc(brand)}専用の公式LINEでご案内します（BCCの公式LINEとは別アカウントです）。</p>`;
+    if (line) {
+      lead = `\n        <p class="panel-lead">${esc(brand)}専用の公式LINEで、詳しい内容・お見積り・ご予約の相談ができます。<br>友だち追加して、気になることをそのまま送ってください。</p>`;
+      note = `\n        <p class="small" style="margin-top:16px">※BCCの公式LINEとは別のアカウントです。</p>`;
+    }
     else if (doc) note = `\n        <p class="small" style="margin-top:16px">※詳しい内容は、上の資料をご覧ください。</p>`;
   }
   const grid = ctas.length
@@ -610,7 +669,7 @@ for (const s of services) {
   const panelTitle = r.panelTitle || ((line || (r.links && r.links.length) || r.gate) ? "ご相談・ご予約" : "詳しくはこちら");
   const panel = (gateHTML || grid)
     ? `<div class="panelbox" style="margin-top:38px">
-        <h2>${esc(panelTitle)}</h2>${gateHTML}
+        <h2>${esc(panelTitle)}</h2>${lead}${gateHTML}
         ${grid}${note}
       </div>`
     : "";
@@ -915,43 +974,82 @@ const DATA = categories
   }))
   .filter((c) => c.items.length);
 
+// 「お悩みから選ぶ」（2026-10-27 オーナー「今言った内容もざっくり改善していきたいですね！」）。
+// 🔴 悩み → ジャンルにつなぐ。特定の会社に絞らない（2026-10-27 オーナー「企業を絞っちゃうと…平等じゃないかな」）。
+// cat は categories[] の名前。押すとそのジャンルのタブが開き、全社が同じ並びで出る
+const FINDER = [
+  { when: "開業したい（資金・事業計画・準備）", cat: "開業支援" },
+  { when: "開業する物件を探したい", cat: "不動産" },
+  { when: "内装・お店づくりを相談したい", cat: "内装業者" },
+  { when: "お客様を増やしたい（ホットペッパー・SNS・Google）", cat: "集客" },
+  { when: "無断キャンセル・予約まわりを整えたい", cat: "予約サービス" },
+  { when: "スタッフ教育・採用を仕組みにしたい", cat: "教育" },
+  { when: "税務調査・節税が気になる", cat: "財務" },
+  { when: "スタッフの携帯代・福利厚生を見直したい", cat: "福利厚生" },
+  { when: "材料の仕入れを見直したい", cat: "材料" },
+  { when: "ヘアスタイルを販売したい", cat: "ヘアスタイル販売" },
+];
+const catCount = (c) => { const n = services.filter((v) => v.cat === c).length; if (!n) throw new Error(`FINDER: 不明なジャンル ${c}`); return n; };
+
 const indexBody = `<header class="hero">
   <div class="hero-mark serif">BCC</div>
   <div class="hero-inner">
-    <span class="eyebrow">beauty Cooperative Chain</span>
-    <h1>美容師のインフラを、<br>ひとつに。</h1>
-    <div class="rule"></div>
-    <p class="kicker">From open to grow &mdash; all in one place.</p>
-    <p class="hero-sub">開業・集客・運営に必要な外部パートナーを、カテゴリ別に厳選してご紹介します。</p>
+    <span class="eyebrow jp">美容室オーナー・美容師のための</span>
+    <h1><span style="white-space:nowrap">サロン経営の困りごと、</span><br><span class="hl" style="white-space:nowrap">ここでまとめて相談。</span></h1>
+    <p class="hero-sub">開業・集客・スタッフ・お金・仕入れ。<br><span style="white-space:nowrap"><b>BCCが選んだサービス</b>を、</span><span style="white-space:nowrap">悩みから探せます。</span></p>
     <div class="hero-cta">
-      <a class="primary" href="#services">View services</a>
-      <a class="ghost" href="${SALOPIT_URL}" target="_blank" rel="noopener noreferrer">Salopit tool</a>
-      <a class="ghost" href="${OC_URL}" target="_blank" rel="noopener noreferrer">Open chat</a>
+      <a class="primary jp" href="#find">悩みからサービスを探す</a>
+      <a class="ghost jp" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットで相談</a>
+    </div>
+    <div class="hstats">
+      <div><strong>${services.length}</strong><span>提携サービス</span></div>
+      <div><strong>${DATA.length}</strong><span>ジャンル</span></div>
+      <div><strong>LINE</strong><span>で直接相談</span></div>
     </div>
   </div>
-  <div class="scrollcue"><span>scroll</span><span class="line"></span></div>
 </header>
 
 <main>
 
-  <section class="feature">
+  <section class="does">
     <div class="container reveal">
-      <a class="feat" href="${SALOPIT_URL}" target="_blank" rel="noopener noreferrer">
-        <div class="fmark">SP</div>
-        <div>
-          <p class="komoji ctag">New &mdash; SALOPIT TOOL</p>
-          <h3>サロピット｜施術の現場で使う道具箱</h3>
-          <p>参考レシピ・配合計算・お助けチャットなど、施術中にそのまま開ける美容師向けのツールです。</p>
-        </div>
-        <span class="more">開く <span class="arw">→</span></span>
-      </a>
+      <h2>BCCでできること</h2>
+      <p class="dlead">技術以外の「困った」を、ここで片づけられます。</p>
+      <div class="dgrid">
+        <a class="dcard" href="#find"><span class="dn">1</span><h3>悩みからサービスを探す</h3><p>開業・集客・教育・節税など、BCCが選んだ${services.length}のサービスから選べます。</p><span class="go">悩みから探す →</span></a>
+        <a class="dcard" href="${OC_URL}" target="_blank" rel="noopener noreferrer"><span class="dn">2</span><h3>同業者に、気軽に相談する</h3><p>オープンチャットで情報交換。各サービスへは公式LINEから直接聞けます。</p><span class="go">オープンチャットへ →</span></a>
+        <a class="dcard" href="${SALOPIT_URL}" target="_blank" rel="noopener noreferrer"><span class="dn">3</span><h3>施術ツール「サロピット」<span class="new">NEW</span></h3><p>参考レシピ・配合計算・お助けチャット。施術中にそのまま開けます。</p><span class="go">サロピットを開く →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="find">
+    <div class="sec-head reveal">
+      <p class="komoji lbl">Find</p>
+      <h2>お悩みから、<em>選ぶ</em>。</h2>
+      <p>いま困っていることを選ぶと、そのジャンルのサービスがすべて見られます。</p>
+    </div>
+    <div class="finder reveal">
+${FINDER.map((f) => `      <a class="frow" href="#services" data-cat="${esc(f.cat)}"><span class="fnum">${catCount(f.cat)}<small>件</small></span><span class="fbody"><p class="fwhen">${esc(f.when)}</p><p class="fpick"><span>${esc(f.cat)}のサービス ${catCount(f.cat)}件を見る</span></p></span></a>`).join("\n")}
+    </div>
+  </section>
+
+  <section class="alt" id="services">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="komoji lbl">Services</p>
+        <h2>サービスを、<em>ジャンル</em>で見る。</h2>
+        <p>ジャンルごとにタブで切り替えできます。</p>
+      </div>
+      <div class="tabs reveal" id="tabs"></div>
+      <div id="panels"></div>
     </div>
   </section>
 
   <section class="container">
     <div class="sec-head reveal">
       <p class="komoji lbl">Information</p>
-      <h2>まずは、<em>ここから</em>。</h2>
+      <h2>BCCを、<em>もっと知る</em>。</h2>
       <p>BCCの全体像と、いま読んでおきたいコンテンツ。気になることはオープンチャットで気軽に。</p>
     </div>
     <div class="grid reveal">
@@ -973,18 +1071,6 @@ const indexBody = `<header class="hero">
         <p>同業者の情報交換・最新の共有・先行案内。ご相談もこちら。</p>
         <span class="more">Enter <span class="arw">→</span></span>
       </a>
-    </div>
-  </section>
-
-  <section class="alt" id="services">
-    <div class="container">
-      <div class="sec-head reveal">
-        <p class="komoji lbl">Services</p>
-        <h2>必要なものが、<em>ここに</em>。</h2>
-        <p>業種ごとにタブで切り替えできます。</p>
-      </div>
-      <div class="tabs reveal" id="tabs"></div>
-      <div id="panels"></div>
     </div>
   </section>
 
@@ -1025,14 +1111,21 @@ const DATA = ${JSON.stringify(DATA)};
     tabs.appendChild(b);
   });
   activate(0);
+  // 「お悩みから、選ぶ。」→ 該当ジャンルのタブを開く
+  document.querySelectorAll("[data-cat]").forEach(function(a){
+    a.addEventListener("click",function(){
+      var i=TABS.findIndex(function(t){return t.name===a.getAttribute("data-cat");});
+      if(i>=0) activate(i);
+    });
+  });
 })();
 </script>`;
 
 writeFileSync(
   `${OUT}/index.html`,
   pageDoc(
-    "BCC｜美容師のインフラ整備サービス",
-    "BCC（beauty Cooperative Chain）は、美容師の開業・集客・運営を支えるインフラ整備サービスです。",
+    "BCC｜美容室経営の困りごと、まとめて相談",
+    "BCC（beauty Cooperative Chain）は、美容室の開業・集客・スタッフ・お金・仕入れの困りごとを、厳選したパートナーのサービスにつなぐ相談窓口です。",
     indexBody
   )
 );
