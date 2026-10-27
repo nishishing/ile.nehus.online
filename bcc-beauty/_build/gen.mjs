@@ -1049,7 +1049,7 @@ const wb = (t) => esc(t).replace(/ \/ /g, " /<wbr> ").replace(/・/g, "・<wbr>"
 // StyleManager とスタイルポストは同じタグ「自動化ツール」で隣に並べる（2026-10-27 オーナー「スタイルマネージャーとスタイルポストは自動化ツールにしましょう！…その2つは同じタグなので、よく並べてください！」）
 const KIND = {
   "stylemanager": "自動化ツール", "tete-lab": "集客コンサル", "atsukyakumania": "集客コンサル", "ones": "集客コンサル",
-  "stylepost": "自動化ツール", "freed": "TikTokコンサル・運用代行", "instagram": "コンサル・運用代行", "gita": "美容室専門 TikTokコンサル", "biyoushijuku": "コンサル",
+  "stylepost": "自動化ツール", "freed": "TikTok", "instagram": "Instagram", "gita": "TikTok", "biyoushijuku": "コンサル",
   "salon-start": "開業サポート", "next-beauty-tech": "融資・事業計画の相談", "stylebase": "開業サポート",
   "mutas": "不動産", "real-estate-salon": "不動産",
   "plum-plan": "内装・空間設計", "layer-design-works": "内装施工", "sunny-side-life": "内装・空間づくり",
@@ -1084,9 +1084,9 @@ const POINTS = {
   "atsukyakumania": ["ホットペッパー集客", "Google（MEO/SEO）対策"],
   "ones": ["ホットペッパー中心", "ミニモの集客も"],
   "stylepost": ["HPBのスタイル投稿", "ブログ更新のサポート"],
-  "freed": ["TikTokのコンサル", "運用代行"],
-  "instagram": ["Instagramの設計", "運用までサポート"],
-  "gita": ["美容室に特化", "TikTok戦略の支援"],
+  "freed": ["コンサル", "運用代行"],
+  "instagram": ["コンサル・運用代行", "設計から運用までサポート"],
+  "gita": ["美容室専門のコンサル", "TikTok戦略の支援"],
   "biyoushijuku": ["人間力を磨く", "美容師力のコンサル"],
   "salon-start": ["0円開業の導線設計", "融資・事業計画も相談可"],
   "next-beauty-tech": ["融資の相談", "事業計画づくり"],
@@ -1140,7 +1140,8 @@ const catCount = (c) => { const n = (DATA.find((x) => x.name === c) || { items: 
 // 並びは各グループ内で DATA の順（StyleManager が先頭）。どのグループにも入らない id はビルドで止める
 const SUBGROUPS = {
   "集客": [
-    { label: "ホットペッパー", ids: ["stylemanager", "tete-lab", "atsukyakumania", "ones", "stylepost"] },
+    { label: "ホットペッパー", ids: ["stylemanager", "stylepost", "tete-lab", "atsukyakumania", "ones"] },
+    // SNS は青い小見出しを Instagram／TikTok にして段を分ける（2026-10-27 オーナー「ここはSNSで分けましょう。…インスタなのかTikTokなのか！」）
     { label: "SNS（Instagram・TikTok）", ids: ["instagram", "freed", "gita"] },
     { label: "美容師力・考え方", ids: ["biyoushijuku"] },
   ],
@@ -1166,11 +1167,11 @@ for (const f of FINDER) {
     const left = d.items.filter((it) => !used.includes(it.id)).map((it) => it.id);
     if (left.length) throw new Error(`SUBGROUPS(${f.cat}) に入っていない: ${left.join(", ")}`);
     listHTML = SUBGROUPS[f.cat].map((g) => {
-      const items = d.items.filter((it) => g.ids.includes(it.id));
+      const items = g.ids.map((id) => d.items.find((it) => it.id === id)).filter(Boolean);
       if (items.length !== g.ids.length) throw new Error(`SUBGROUPS(${f.cat}/${g.label}) に不明な id`);
       // 同じ種類ごとに段を分ける（2026-10-27 オーナー「上が2段、下が3段にすれば綺麗に分かれます！」＝自動化ツール2枚／集客コンサル3枚）
       const rows = [];
-      for (const it of items) { const last = rows[rows.length - 1]; if (last && KIND[last[0].id] === KIND[it.id]) last.push(it); else rows.push([it]); }
+      for (const it of items) { const row = rows.find((r) => KIND[r[0].id] === KIND[it.id]); if (row) row.push(it); else rows.push([it]); }
       return `<div class="subgroup"><h2 class="subh">${esc(g.label)}<span>${items.length}件</span></h2>
       ${rows.map((r) => `<div class="krow">${gridOf(r)}</div>`).join("\n      ")}</div>`;
     }).join("\n      ");
