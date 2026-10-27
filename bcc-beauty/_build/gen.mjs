@@ -137,10 +137,10 @@ a.feat:hover .more .arw{transform:translateX(8px)}
 .frow{padding:22px 0;border-bottom:1px solid var(--line)}
 .fwhen{margin:0;color:var(--muted);font-size:.9rem}
 .fpick{margin:6px 0 0;font-weight:600;font-size:1.02rem;line-height:1.6}
-.fpick a{color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:1px}
-.fpick a:hover{color:var(--gold)}
-.fpick a::after{content:" →";color:var(--gold);font-weight:400}
-.fsep{color:var(--hair);padding:0 8px;font-weight:400}
+.frow{display:block;color:var(--ink)}
+.fpick span{border-bottom:1px solid var(--gold);padding-bottom:1px}
+a.frow:hover .fpick{color:var(--gold)}
+.fpick span::after{content:" →";color:var(--gold);font-weight:400}
 @media(max-width:760px){.finder{grid-template-columns:1fr;border-top:0;gap:10px}.frow{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}}
 @media(max-width:430px){.hero h1{font-size:1.85rem}}
 .hero-cta a.jp{letter-spacing:.06em;text-transform:none;font-size:.9rem;font-weight:600;border-radius:999px}
@@ -957,23 +957,21 @@ const DATA = categories
   .filter((c) => c.items.length);
 
 // 「お悩みから選ぶ」（2026-10-27 オーナー「今言った内容もざっくり改善していきたいですね！」）。
-// Instagram 下書きの「選び分け」と同じ軸。ids は services[] の id（表示名は services から引くのでずれない）
+// 🔴 悩み → ジャンルにつなぐ。特定の会社に絞らない（2026-10-27 オーナー「企業を絞っちゃうと…平等じゃないかな」）。
+// cat は categories[] の名前。押すとそのジャンルのタブが開き、全社が同じ並びで出る
 const FINDER = [
-  { when: "初期費用をかけずに開業したい", ids: ["salon-start"] },
-  { when: "融資と事業計画から固めたい", ids: ["next-beauty-tech"] },
-  { when: "開業する物件を探したい・借りたい", ids: ["real-estate-salon"] },
-  { when: "ホットペッパーの掲載を作り込みたい", ids: ["tete-lab"] },
-  { when: "集客を自分で回せるように学びたい", ids: ["atsukyakumania", "ones"] },
-  { when: "スタイル・ブログ更新の手間を減らしたい", ids: ["stylepost"] },
-  { when: "Instagram・TikTok で広げたい", ids: ["instagram", "freed", "gita"] },
-  { when: "無断キャンセルに困っている", ids: ["refundhub"] },
-  { when: "スタッフの携帯代を見直したい", ids: ["liverty"] },
-  { when: "税務調査・節税が気になる", ids: ["imamura-fp"] },
-  { when: "スタッフ教育を仕組みにしたい", ids: ["haircamp", "toko"] },
-  { when: "材料の仕入れを見直したい", ids: ["materials-intro", "drive-blue"] },
+  { when: "開業したい（資金・事業計画・準備）", cat: "開業支援" },
+  { when: "開業する物件を探したい", cat: "不動産" },
+  { when: "内装・お店づくりを相談したい", cat: "内装業者" },
+  { when: "お客様を増やしたい（ホットペッパー・SNS・Google）", cat: "集客" },
+  { when: "無断キャンセル・予約まわりを整えたい", cat: "予約サービス" },
+  { when: "スタッフ教育・採用を仕組みにしたい", cat: "教育" },
+  { when: "税務調査・節税が気になる", cat: "財務" },
+  { when: "スタッフの携帯代・福利厚生を見直したい", cat: "福利厚生" },
+  { when: "材料の仕入れを見直したい", cat: "材料" },
+  { when: "ヘアスタイルを販売したい", cat: "ヘアスタイル販売" },
 ];
-const SHORT = { gita: "ギータ", instagram: "Instagramコンサル", ones: "ONE's 流 集客サポート", "materials-intro": "材料（仕入れ紹介）", toko: "人材育成・採用支援" };
-const nameOf = (id) => { if (SHORT[id]) return SHORT[id]; const x = services.find((v) => v.id === id); if (!x) throw new Error(`FINDER: 不明な id ${id}`); return x.name.split("（")[0]; };
+const catCount = (c) => { const n = services.filter((v) => v.cat === c).length; if (!n) throw new Error(`FINDER: 不明なジャンル ${c}`); return n; };
 
 const indexBody = `<header class="hero">
   <div class="hero-mark serif">BCC</div>
@@ -1011,10 +1009,10 @@ const indexBody = `<header class="hero">
     <div class="sec-head reveal">
       <p class="komoji lbl">Find</p>
       <h2>お悩みから、<em>選ぶ</em>。</h2>
-      <p>いま困っていることを選ぶと、合いそうなサービスが分かります。</p>
+      <p>いま困っていることを選ぶと、そのジャンルのサービスがすべて見られます。</p>
     </div>
     <div class="finder reveal">
-${FINDER.map((f) => `      <div class="frow"><p class="fwhen">${esc(f.when)}</p><p class="fpick">${f.ids.map((id) => `<a href="/${id}">${esc(nameOf(id))}</a>`).join('<span class="fsep">／</span>')}</p></div>`).join("\n")}
+${FINDER.map((f) => `      <a class="frow" href="#services" data-cat="${esc(f.cat)}"><p class="fwhen">${esc(f.when)}</p><p class="fpick"><span>${esc(f.cat)}のサービス ${catCount(f.cat)}件を見る</span></p></a>`).join("\n")}
     </div>
   </section>
 
@@ -1095,6 +1093,13 @@ const DATA = ${JSON.stringify(DATA)};
     tabs.appendChild(b);
   });
   activate(0);
+  // 「お悩みから、選ぶ。」→ 該当ジャンルのタブを開く
+  document.querySelectorAll("[data-cat]").forEach(function(a){
+    a.addEventListener("click",function(){
+      var i=TABS.findIndex(function(t){return t.name===a.getAttribute("data-cat");});
+      if(i>=0) activate(i);
+    });
+  });
 })();
 </script>`;
 

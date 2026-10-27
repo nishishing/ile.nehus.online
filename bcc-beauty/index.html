@@ -100,10 +100,10 @@ a.feat:hover .more .arw{transform:translateX(8px)}
 .frow{padding:22px 0;border-bottom:1px solid var(--line)}
 .fwhen{margin:0;color:var(--muted);font-size:.9rem}
 .fpick{margin:6px 0 0;font-weight:600;font-size:1.02rem;line-height:1.6}
-.fpick a{color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:1px}
-.fpick a:hover{color:var(--gold)}
-.fpick a::after{content:" →";color:var(--gold);font-weight:400}
-.fsep{color:var(--hair);padding:0 8px;font-weight:400}
+.frow{display:block;color:var(--ink)}
+.fpick span{border-bottom:1px solid var(--gold);padding-bottom:1px}
+a.frow:hover .fpick{color:var(--gold)}
+.fpick span::after{content:" →";color:var(--gold);font-weight:400}
 @media(max-width:760px){.finder{grid-template-columns:1fr;border-top:0;gap:10px}.frow{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}}
 @media(max-width:430px){.hero h1{font-size:1.85rem}}
 .hero-cta a.jp{letter-spacing:.06em;text-transform:none;font-size:.9rem;font-weight:600;border-radius:999px}
@@ -338,21 +338,19 @@ a.card:hover .more .arw{transform:translateX(8px)}
     <div class="sec-head reveal">
       <p class="komoji lbl">Find</p>
       <h2>お悩みから、<em>選ぶ</em>。</h2>
-      <p>いま困っていることを選ぶと、合いそうなサービスが分かります。</p>
+      <p>いま困っていることを選ぶと、そのジャンルのサービスがすべて見られます。</p>
     </div>
     <div class="finder reveal">
-      <div class="frow"><p class="fwhen">初期費用をかけずに開業したい</p><p class="fpick"><a href="/salon-start">Salon Start</a></p></div>
-      <div class="frow"><p class="fwhen">融資と事業計画から固めたい</p><p class="fpick"><a href="/next-beauty-tech">NEXT BEAUTY TECH</a></p></div>
-      <div class="frow"><p class="fwhen">開業する物件を探したい・借りたい</p><p class="fpick"><a href="/real-estate-salon">美容室専門の不動産屋</a></p></div>
-      <div class="frow"><p class="fwhen">ホットペッパーの掲載を作り込みたい</p><p class="fpick"><a href="/tete-lab">TETE LAB</a></p></div>
-      <div class="frow"><p class="fwhen">集客を自分で回せるように学びたい</p><p class="fpick"><a href="/atsukyakumania">集客マニア</a><span class="fsep">／</span><a href="/ones">ONE's 流 集客サポート</a></p></div>
-      <div class="frow"><p class="fwhen">スタイル・ブログ更新の手間を減らしたい</p><p class="fpick"><a href="/stylepost">スタイルポスト</a></p></div>
-      <div class="frow"><p class="fwhen">Instagram・TikTok で広げたい</p><p class="fpick"><a href="/instagram">Instagramコンサル</a><span class="fsep">／</span><a href="/freed">フリード</a><span class="fsep">／</span><a href="/gita">ギータ</a></p></div>
-      <div class="frow"><p class="fwhen">無断キャンセルに困っている</p><p class="fpick"><a href="/refundhub">RefundHub</a></p></div>
-      <div class="frow"><p class="fwhen">スタッフの携帯代を見直したい</p><p class="fpick"><a href="/liverty">携帯電話プラン</a></p></div>
-      <div class="frow"><p class="fwhen">税務調査・節税が気になる</p><p class="fpick"><a href="/imamura-fp">税務調査対策 × 保険</a></p></div>
-      <div class="frow"><p class="fwhen">スタッフ教育を仕組みにしたい</p><p class="fpick"><a href="/haircamp">ヘアキャンプスクール</a><span class="fsep">／</span><a href="/toko">人材育成・採用支援</a></p></div>
-      <div class="frow"><p class="fwhen">材料の仕入れを見直したい</p><p class="fpick"><a href="/materials-intro">材料（仕入れ紹介）</a><span class="fsep">／</span><a href="/drive-blue">ドライブブルー</a></p></div>
+      <a class="frow" href="#services" data-cat="開業支援"><p class="fwhen">開業したい（資金・事業計画・準備）</p><p class="fpick"><span>開業支援のサービス 3件を見る</span></p></a>
+      <a class="frow" href="#services" data-cat="不動産"><p class="fwhen">開業する物件を探したい</p><p class="fpick"><span>不動産のサービス 2件を見る</span></p></a>
+      <a class="frow" href="#services" data-cat="内装業者"><p class="fwhen">内装・お店づくりを相談したい</p><p class="fpick"><span>内装業者のサービス 3件を見る</span></p></a>
+      <a class="frow" href="#services" data-cat="集客"><p class="fwhen">お客様を増やしたい（ホットペッパー・SNS・Google）</p><p class="fpick"><span>集客のサービス 8件を見る</span></p></a>
+      <a class="frow" href="#services" data-cat="予約サービス"><p class="fwhen">無断キャンセル・予約まわりを整えたい</p><p class="fpick"><span>予約サービスのサービス 1件を見る</span></p></a>
+      <a class="frow" href="#services" data-cat="教育"><p class="fwhen">スタッフ教育・採用を仕組みにしたい</p><p class="fpick"><span>教育のサービス 3件を見る</span></p></a>
+      <a class="frow" href="#services" data-cat="財務"><p class="fwhen">税務調査・節税が気になる</p><p class="fpick"><span>財務のサービス 1件を見る</span></p></a>
+      <a class="frow" href="#services" data-cat="福利厚生"><p class="fwhen">スタッフの携帯代・福利厚生を見直したい</p><p class="fpick"><span>福利厚生のサービス 1件を見る</span></p></a>
+      <a class="frow" href="#services" data-cat="材料"><p class="fwhen">材料の仕入れを見直したい</p><p class="fpick"><span>材料のサービス 2件を見る</span></p></a>
+      <a class="frow" href="#services" data-cat="ヘアスタイル販売"><p class="fwhen">ヘアスタイルを販売したい</p><p class="fpick"><span>ヘアスタイル販売のサービス 1件を見る</span></p></a>
     </div>
   </section>
 
@@ -433,6 +431,13 @@ const DATA = [{"name":"開業支援","en":"Open","items":[{"id":"salon-start","n
     tabs.appendChild(b);
   });
   activate(0);
+  // 「お悩みから、選ぶ。」→ 該当ジャンルのタブを開く
+  document.querySelectorAll("[data-cat]").forEach(function(a){
+    a.addEventListener("click",function(){
+      var i=TABS.findIndex(function(t){return t.name===a.getAttribute("data-cat");});
+      if(i>=0) activate(i);
+    });
+  });
 })();
 </script>
 <footer class="footer">
