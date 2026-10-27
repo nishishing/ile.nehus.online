@@ -195,6 +195,40 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 @media(max-width:980px){.mgrid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.mgrid{grid-template-columns:repeat(2,1fr);gap:8px}.mcell{padding:12px 12px 14px}.mcat{font-size:.88rem}.mwhen{font-size:.72rem}}
 
+/* 詳細ページ（2026-10-28 全ページ共通の作り込み） */
+.detail-hero .gtag{margin:0 0 12px}
+.dprice{margin:14px 0 0;font-weight:700;color:var(--ink);font-size:1rem}
+.dprice span{display:inline-block;margin-right:8px;font-size:.7rem;font-weight:600;color:var(--gold);background:var(--tint);border-radius:999px;padding:2px 10px;vertical-align:2px}
+.dpoints{list-style:none;padding:0;margin:18px 0 6px;display:flex;flex-wrap:wrap;gap:8px;max-width:720px}
+.dpoints li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 32px;position:relative;font-size:.88rem;font-weight:600;color:var(--soft-ink)}
+.dpoints li::before{content:"";position:absolute;left:13px;top:50%;width:10px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:translateY(-70%) rotate(-45deg)}
+.detail .btn,.dbottom .btn{border-radius:999px;font-size:.86rem;letter-spacing:.06em;text-transform:none;font-weight:700;padding:17px}
+.detail .btn-line,.dbottom .btn-line{background:#06c755;border-color:#06c755;color:#fff}
+.detail .btn-line:hover,.dbottom .btn-line:hover{background:#05b04b;color:#fff}
+.dworry{margin:0 0 50px}
+.dworry-item{margin:0 0 8px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:12px 16px;font-weight:600;color:var(--soft-ink)}
+.dflow{margin-top:50px}
+.dsteps{list-style:none;counter-reset:d;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:780px}
+.dsteps li{counter-increment:d;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.dsteps li::before{content:counter(d);width:30px;height:30px;border-radius:50%;background:var(--tint);color:var(--gold);display:grid;place-items:center;font-weight:700}
+.dsteps strong{font-size:.98rem}
+.dsteps span{color:var(--muted);font-size:.85rem;line-height:1.7}
+@media(max-width:680px){.dsteps{grid-template-columns:1fr}.dsteps li{display:grid;grid-template-columns:auto 1fr;column-gap:12px}.dsteps li::before{grid-row:span 2}}
+.dbottom{padding:60px 0 10px}
+.dbottom-box{max-width:780px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px 28px}
+.dbottom-k{margin:0 0 6px;color:var(--gold);font-weight:700;font-size:.8rem}
+.dbottom-h{margin:0;font-weight:700;font-size:1.15rem;line-height:1.6}
+.dbottom-box .panelbox{max-width:none}
+.dbottom-box .panelbox h2{display:none}
+.dothers{padding:50px 0 30px}
+.dothers-list{display:flex;flex-wrap:wrap;gap:10px;max-width:780px}
+.dothers-list a{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:700;font-size:.9rem}
+.dothers-list a:hover{border-color:var(--gold)}
+.dothers-list small{color:var(--gold);font-weight:600;font-size:.72rem}
+.dsticky{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;justify-content:center}
+.dsticky a{display:block;width:100%;max-width:520px;text-align:center;background:#06c755;color:#fff;font-weight:700;border-radius:999px;padding:14px;font-size:.92rem}
+main.has-dsticky{padding-bottom:84px}
+
 /* ジャンル専用ページ */
 .detail.genre-hero{padding-bottom:8px}
 .detail.genre-hero h1{font-weight:700;margin-bottom:6px}
@@ -683,77 +717,6 @@ function richHTML(r, skipFeatures) {
     h += `\n      <div class="block" style="margin-top:50px"><p class="subhead">実例</p><div class="cases">${cases}</div></div>`;
   }
   return h;
-}
-
-// ---- detail pages ----
-for (const s of services) {
-  const r = RICH[s.id] || {};
-  const logoSrc = r.logo || LOGO[s.id] || null;
-  const logo = logoSrc ? `\n      <img class="svc-logo${DARKLOGO.has(s.id) ? " dark" : ""}" src="${logoSrc}" alt="${esc(s.name)}">` : "";
-  const intro = r.intro || "詳しい内容やお申し込み・ご相談は、下記からお気軽にどうぞ。";
-  const hasCurated = r.cases && r.cases.length; // layer(施工写真つき) は従来の curated 表示
-  const rich = hasCurated ? richHTML(r, false) : richHTML(r, true) + dossierHTML(DOSSIER[s.id]);
-  const doc = (DOC_RICH.has(s.id) && DOC[s.id]) || null;
-  const line = r.lineUrl || null;
-  const brand = ({ "imamura-fp": "今村FP", "toko": "都甲（人材育成）" })[s.id] || s.name.split("（")[0].split("(")[0].trim();
-  // CTAボタン群を組み立て。公式LINEが無いサービスは連絡ボタンを出さない（オープンチャットのフォールバックは廃止）。
-  let ctas = [];
-  let note = "";
-  let lead = "";  // ボタンの手前の一言（押すと何ができるか）
-  // パスワードゲート：ボタン→パスワード表示→サイトを開く の2段階
-  let gateHTML = "";
-  if (r.gate) {
-    const g = r.gate;
-    gateHTML = `\n        <div class="pwgate">
-          <button class="btn btn-line pwgate-btn" type="button">${esc(g.revealLabel)}</button>
-          <div class="pwgate-open" hidden>
-            <p class="pwgate-pw">パスワード <strong>${esc(g.pw)}</strong></p>
-            <a class="btn btn-line" href="${g.href}" target="_blank" rel="noopener noreferrer">${esc(g.openLabel)}</a>
-          </div>
-        </div>`;
-  }
-  if (r.links && r.links.length) {
-    ctas = r.links.map((l) => `<a class="btn${l.primary ? " btn-line" : ""}" href="${l.href}" target="_blank" rel="noopener noreferrer">${esc(l.label)}</a>`);
-    const notes = r.links.filter((l) => l.note).map((l) => esc(l.note));
-    if (notes.length) note = `\n        <p class="small" style="margin-top:16px">${notes.join("　／　")}</p>`;
-  } else {
-    if (line) ctas.push(`<a class="btn btn-line" href="${line}" target="_blank" rel="noopener noreferrer">${esc(brand)}専用の公式LINEへ</a>`);
-    if (doc) ctas.push(`<a class="btn" href="${doc}" target="_blank" rel="noopener noreferrer">資料（詳細）を見る</a>`);
-    else if (line) ctas.push(`<a class="btn" href="/#services">ほかのサービスを見る</a>`);
-    if (line) {
-      lead = `\n        <p class="panel-lead">${esc(brand)}専用の公式LINEで、詳しい内容・お見積り・ご予約の相談ができます。<br>友だち追加して、気になることをそのまま送ってください。</p>`;
-      note = `\n        <p class="small" style="margin-top:16px">※BCCの公式LINEとは別のアカウントです。</p>`;
-    }
-    else if (doc) note = `\n        <p class="small" style="margin-top:16px">※詳しい内容は、上の資料をご覧ください。</p>`;
-  }
-  const grid = ctas.length
-    ? `<div class="cta-grid${ctas.length === 1 ? " one" : ""}"${gateHTML ? ' style="margin-top:14px"' : ""}>
-          ${ctas.join("\n          ")}
-        </div>`
-    : "";
-  const panelTitle = r.panelTitle || ((line || (r.links && r.links.length) || r.gate) ? "ご相談・ご予約" : "詳しくはこちら");
-  const panel = (gateHTML || grid)
-    ? `<div class="panelbox" style="margin-top:38px">
-        <h2>${esc(panelTitle)}</h2>${lead}${gateHTML}
-        ${grid}${note}
-      </div>`
-    : "";
-  const body = `<main>
-  <section class="detail detail-hero">
-    <div class="container reveal">
-      <a class="back" href="/">← トップにもどる</a>
-      <p class="komoji lbl">${esc(enOf[s.cat] || "")} ・ ${esc(s.cat)}</p>
-      <h1>${esc(s.name)}</h1>${logo}
-      <p class="lead">${esc(s.desc)}</p>
-      <p class="lead" style="margin-top:16px">${esc(intro)}</p>
-      ${panel}
-    </div>
-  </section>${rich ? `
-  <section style="padding-top:40px">
-    <div class="container reveal">${rich}</div>
-  </section>` : ""}
-</main>`;
-  writeFileSync(`${OUT}/${s.id}.html`, pageDoc(`${s.name}｜BCC`, s.desc, body, s.id));
 }
 
 // ---- 404 ----
@@ -1254,3 +1217,125 @@ writeFileSync(
     lpFooter,
   ),
 );
+
+// ---- detail pages ----
+// 2026-10-28 オーナー「開いた後の内容をもっと詳しく、マーケティングの観点から公式内にクリックされやすいように誘導できるようにしたい！」「これはここだけじゃなくて全部！」
+// → 全詳細ページ共通で: 種類・料金の目安・できること（POINTS）を見出しの近くに／こんなお悩みに（FINDER）／ご相談の流れ／ページ下にもう一度ボタン／画面下に固定ボタン／同じジャンルのほかのサービス。
+// KIND・POINTS・PRICE・FINDER・DATA を使うのでファイルの最後で呼ぶ
+function renderDetailPages() {
+for (const s of services) {
+  const r = RICH[s.id] || {};
+  const logoSrc = r.logo || LOGO[s.id] || null;
+  const logo = logoSrc ? `\n      <img class="svc-logo${DARKLOGO.has(s.id) ? " dark" : ""}" src="${logoSrc}" alt="${esc(s.name)}">` : "";
+  const intro = r.intro || "詳しい内容やお申し込み・ご相談は、下記からお気軽にどうぞ。";
+  const hasCurated = r.cases && r.cases.length; // layer(施工写真つき) は従来の curated 表示
+  const rich = hasCurated ? richHTML(r, false) : richHTML(r, true) + dossierHTML(DOSSIER[s.id]);
+  const doc = (DOC_RICH.has(s.id) && DOC[s.id]) || null;
+  const line = r.lineUrl || null;
+  const brand = ({ "imamura-fp": "今村FP", "toko": "都甲（人材育成）" })[s.id] || s.name.split("（")[0].split("(")[0].trim();
+  // CTAボタン群を組み立て。公式LINEが無いサービスは連絡ボタンを出さない（オープンチャットのフォールバックは廃止）。
+  let ctas = [];
+  let note = "";
+  let lead = "";  // ボタンの手前の一言（押すと何ができるか）
+  // パスワードゲート：ボタン→パスワード表示→サイトを開く の2段階
+  let gateHTML = "";
+  if (r.gate) {
+    const g = r.gate;
+    gateHTML = `\n        <div class="pwgate">
+          <button class="btn btn-line pwgate-btn" type="button">${esc(g.revealLabel)}</button>
+          <div class="pwgate-open" hidden>
+            <p class="pwgate-pw">パスワード <strong>${esc(g.pw)}</strong></p>
+            <a class="btn btn-line" href="${g.href}" target="_blank" rel="noopener noreferrer">${esc(g.openLabel)}</a>
+          </div>
+        </div>`;
+  }
+  if (r.links && r.links.length) {
+    ctas = r.links.map((l) => `<a class="btn${l.primary ? " btn-line" : ""}" href="${l.href}" target="_blank" rel="noopener noreferrer">${esc(l.label)}</a>`);
+    const notes = r.links.filter((l) => l.note).map((l) => esc(l.note));
+    if (notes.length) note = `\n        <p class="small" style="margin-top:16px">${notes.join("　／　")}</p>`;
+  } else {
+    if (line) ctas.push(`<a class="btn btn-line" href="${line}" target="_blank" rel="noopener noreferrer">${esc(brand)}専用の公式LINEで相談する</a>`);
+    if (doc) ctas.push(`<a class="btn" href="${doc}" target="_blank" rel="noopener noreferrer">資料（詳細）を見る</a>`);
+    // 「ほかのサービスを見る」は公式LINEへのクリックを分散させるので外した（2026-10-28・ページ下に同じジャンルのほかのサービスを置いた）
+    if (line) {
+      lead = `\n        <p class="panel-lead">${esc(brand)}専用の公式LINEで、詳しい内容・お見積り・ご予約の相談ができます。<br>友だち追加して、気になることをそのまま送ってください。</p>`;
+      note = `\n        <p class="small" style="margin-top:16px">※BCCの公式LINEとは別のアカウントです。</p>`;
+    }
+    else if (doc) note = `\n        <p class="small" style="margin-top:16px">※詳しい内容は、上の資料をご覧ください。</p>`;
+  }
+  const grid = ctas.length
+    ? `<div class="cta-grid${ctas.length === 1 ? " one" : ""}"${gateHTML ? ' style="margin-top:14px"' : ""}>
+          ${ctas.join("\n          ")}
+        </div>`
+    : "";
+  const panelTitle = r.panelTitle || ((line || (r.links && r.links.length) || r.gate) ? "ご相談・ご予約" : "詳しくはこちら");
+  const panel = (gateHTML || grid)
+    ? `<div class="panelbox" style="margin-top:38px">
+        <h2>${esc(panelTitle)}</h2>${lead}${gateHTML}
+        ${grid}${note}
+      </div>`
+    : "";
+  // ボタンの行き先（固定ボタン用）。パスワードゲートだけのページは固定ボタンを出さない
+  const primaryLink = (r.links || []).find((l) => l.primary) || null;
+  const mainHref = (r.links && r.links.length) ? (primaryLink ? primaryLink.href : null) : (line || doc || null);
+  const mainLabel = (r.links && r.links.length) ? (primaryLink ? primaryLink.label : "") : (line ? `${brand}に公式LINEで相談する` : "資料（詳細）を見る");
+  const kind = KIND[s.id] ? `<p class="gtag">${esc(KIND[s.id])}</p>` : "";
+  const price = PRICE[s.id] ? `\n      <p class="dprice"><span>料金の目安</span>${esc(PRICE[s.id])}</p>` : "";
+  const points = (POINTS[s.id] || []).length
+    ? `\n      <ul class="dpoints">${POINTS[s.id].map((t) => `<li>${esc(t)}</li>`).join("")}</ul>`
+    : "";
+  const worries = FINDER.filter((f) => f.cat === s.cat).map((f) => f.when);
+  const worryHTML = worries.length
+    ? `\n      <div class="block dworry"><p class="subhead">こんなお悩みに</p>${worries.map((w) => `<p class="dworry-item">${esc(w)}</p>`).join("")}</div>`
+    : "";
+  const flowHTML = line
+    ? `\n      <div class="block dflow"><p class="subhead">ご相談の流れ</p><ol class="dsteps">
+        <li><strong>友だち追加</strong><span>下のボタンから${esc(brand)}専用の公式LINEを追加します。</span></li>
+        <li><strong>気になることを送る</strong><span>料金・内容・自分のサロンに合うかなど、そのまま送ってOKです。</span></li>
+        <li><strong>案内が届く</strong><span>${esc(brand)}から、詳しい内容・お見積り・ご予約のご案内が届きます。</span></li>
+      </ol></div>`
+    : "";
+  const bottomPanel = panel
+    ? `\n  <section class="dbottom">
+    <div class="container reveal">
+      <div class="dbottom-box">
+        <p class="dbottom-k">${esc(KIND[s.id] || s.cat)}</p>
+        <p class="dbottom-h">${esc(splitName(s.name)[0])}について、まずは気軽に聞いてみる</p>
+        ${panel.replace('style="margin-top:38px"', 'style="margin-top:18px;border-top:0;padding-top:0"')}
+      </div>
+    </div>
+  </section>`
+    : "";
+  const others = ((DATA.find((c) => c.name === s.cat) || { items: [] }).items).filter((it) => it.id !== s.id);
+  const othersHTML = others.length
+    ? `\n  <section class="dothers">
+    <div class="container reveal">
+      <p class="subhead">${esc(s.cat)}のほかのサービス</p>
+      <div class="dothers-list">${others.map((it) => `<a href="${it.href || "/" + it.id}"><span>${esc(TITLE[it.id] || splitName(it.name)[0])}</span><small>${esc(KIND[it.id] || "")}</small></a>`).join("")}</div>
+      <a class="back" style="margin:22px 0 0" href="/${genreSlug(s.cat)}">${esc(s.cat)}のサービス一覧へ →</a>
+    </div>
+  </section>`
+    : "";
+  const sticky = mainHref
+    ? `\n<div class="dsticky"><a href="${mainHref}" target="_blank" rel="noopener noreferrer">${esc(mainLabel)}</a></div>`
+    : "";
+  const body = `<main${mainHref ? ' class="has-dsticky"' : ""}>
+  <section class="detail detail-hero">
+    <div class="container reveal">
+      <a class="back" href="/${genreSlug(s.cat)}">← ${esc(s.cat)}のサービス一覧</a>
+      ${kind}
+      <h1>${esc(s.name)}</h1>${logo}${price}${points}
+      <p class="lead">${esc(s.desc)}</p>
+      <p class="lead" style="margin-top:16px">${esc(intro)}</p>
+      ${panel}
+    </div>
+  </section>${(rich || worryHTML || flowHTML) ? `
+  <section style="padding-top:40px">
+    <div class="container reveal">${worryHTML}${rich}${flowHTML}</div>
+  </section>` : ""}${bottomPanel}${othersHTML}
+</main>${sticky}`;
+  writeFileSync(`${OUT}/${s.id}.html`, pageDoc(`${s.name}｜BCC`, s.desc, body, s.id));
+}
+}
+
+renderDetailPages();

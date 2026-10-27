@@ -158,6 +158,40 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 @media(max-width:980px){.mgrid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.mgrid{grid-template-columns:repeat(2,1fr);gap:8px}.mcell{padding:12px 12px 14px}.mcat{font-size:.88rem}.mwhen{font-size:.72rem}}
 
+/* 詳細ページ（2026-10-28 全ページ共通の作り込み） */
+.detail-hero .gtag{margin:0 0 12px}
+.dprice{margin:14px 0 0;font-weight:700;color:var(--ink);font-size:1rem}
+.dprice span{display:inline-block;margin-right:8px;font-size:.7rem;font-weight:600;color:var(--gold);background:var(--tint);border-radius:999px;padding:2px 10px;vertical-align:2px}
+.dpoints{list-style:none;padding:0;margin:18px 0 6px;display:flex;flex-wrap:wrap;gap:8px;max-width:720px}
+.dpoints li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 32px;position:relative;font-size:.88rem;font-weight:600;color:var(--soft-ink)}
+.dpoints li::before{content:"";position:absolute;left:13px;top:50%;width:10px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:translateY(-70%) rotate(-45deg)}
+.detail .btn,.dbottom .btn{border-radius:999px;font-size:.86rem;letter-spacing:.06em;text-transform:none;font-weight:700;padding:17px}
+.detail .btn-line,.dbottom .btn-line{background:#06c755;border-color:#06c755;color:#fff}
+.detail .btn-line:hover,.dbottom .btn-line:hover{background:#05b04b;color:#fff}
+.dworry{margin:0 0 50px}
+.dworry-item{margin:0 0 8px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:12px 16px;font-weight:600;color:var(--soft-ink)}
+.dflow{margin-top:50px}
+.dsteps{list-style:none;counter-reset:d;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:780px}
+.dsteps li{counter-increment:d;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.dsteps li::before{content:counter(d);width:30px;height:30px;border-radius:50%;background:var(--tint);color:var(--gold);display:grid;place-items:center;font-weight:700}
+.dsteps strong{font-size:.98rem}
+.dsteps span{color:var(--muted);font-size:.85rem;line-height:1.7}
+@media(max-width:680px){.dsteps{grid-template-columns:1fr}.dsteps li{display:grid;grid-template-columns:auto 1fr;column-gap:12px}.dsteps li::before{grid-row:span 2}}
+.dbottom{padding:60px 0 10px}
+.dbottom-box{max-width:780px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px 28px}
+.dbottom-k{margin:0 0 6px;color:var(--gold);font-weight:700;font-size:.8rem}
+.dbottom-h{margin:0;font-weight:700;font-size:1.15rem;line-height:1.6}
+.dbottom-box .panelbox{max-width:none}
+.dbottom-box .panelbox h2{display:none}
+.dothers{padding:50px 0 30px}
+.dothers-list{display:flex;flex-wrap:wrap;gap:10px;max-width:780px}
+.dothers-list a{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:700;font-size:.9rem}
+.dothers-list a:hover{border-color:var(--gold)}
+.dothers-list small{color:var(--gold);font-weight:600;font-size:.72rem}
+.dsticky{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;justify-content:center}
+.dsticky a{display:block;width:100%;max-width:520px;text-align:center;background:#06c755;color:#fff;font-weight:700;border-radius:999px;padding:14px;font-size:.92rem}
+main.has-dsticky{padding-bottom:84px}
+
 /* ジャンル専用ページ */
 .detail.genre-hero{padding-bottom:8px}
 .detail.genre-hero h1{font-weight:700;margin-bottom:6px}
@@ -385,21 +419,21 @@ a.card:hover .more .arw{transform:translateX(8px)}
     </div>
   </div>
 </nav>
-<main>
+<main class="has-dsticky">
   <section class="detail detail-hero">
     <div class="container reveal">
-      <a class="back" href="/">← トップにもどる</a>
-      <p class="komoji lbl">Real estate ・ 不動産</p>
+      <a class="back" href="/genre-real-estate">← 不動産のサービス一覧</a>
+      <p class="gtag">不動産</p>
       <h1>美容室専門の不動産屋（テナント・居抜き・M&amp;A）</h1>
       <img class="svc-logo" src="notion/real-estate-salon/logo.jpg" alt="美容室専門の不動産屋（テナント・居抜き・M&amp;A）">
+      <ul class="dpoints"><li>テナント・居抜き</li><li>M&amp;Aまで美容室特化</li></ul>
       <p class="lead">テナント・居抜き・M&amp;Aまで美容室特化で対応。</p>
       <p class="lead" style="margin-top:16px">美容室に特化した不動産サービス。テナント・居抜き・M&amp;Aまで幅広く対応します。</p>
       <div class="panelbox" style="margin-top:38px">
         <h2>ご相談・ご予約</h2>
         <p class="panel-lead">美容室専門の不動産屋専用の公式LINEで、詳しい内容・お見積り・ご予約の相談ができます。<br>友だち追加して、気になることをそのまま送ってください。</p>
-        <div class="cta-grid">
-          <a class="btn btn-line" href="https://lin.ee/tIoKLH1" target="_blank" rel="noopener noreferrer">美容室専門の不動産屋専用の公式LINEへ</a>
-          <a class="btn" href="/#services">ほかのサービスを見る</a>
+        <div class="cta-grid one">
+          <a class="btn btn-line" href="https://lin.ee/tIoKLH1" target="_blank" rel="noopener noreferrer">美容室専門の不動産屋専用の公式LINEで相談する</a>
         </div>
         <p class="small" style="margin-top:16px">※BCCの公式LINEとは別のアカウントです。</p>
       </div>
@@ -407,9 +441,39 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section style="padding-top:40px">
     <div class="container reveal">
-      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">美容室・理容室の開業に特化した不動産サービスです。一般の不動産では対応が難しい給排水・電気容量・ガス容量などの設備条件を専門目線で確認し、物件選定から開業までをトータルサポート。7年間で7,700名以上の利用実績があり、テナント・居抜き・M&amp;Aにも対応します。</p><details class="dacc" open><summary><span>対応サービス</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>物件紹介：1都13県対応、即レス、非公開物件の提案を含む</li><li>インフラ・内装チェック：給排水・電気容量・ガス、セット面数・シャンプー導線の確認、内装工事にも対応</li><li>融資・事業計画サポート：年間108店舗以上の開業支援、融資調達 年間10億円規模、融資成功率99%、日本政策金融公庫・地銀・信金への申請支援</li></ul></div></details><details class="dacc"><summary><span>こんな方に</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>物件がなかなか見つからない</li><li>美容室対応物件かどうか判断できない</li><li>家賃交渉・フリーレントを相談したい</li><li>融資決定後に契約したい</li><li>2店舗目の出店を検討している</li></ul></div></details><details class="dacc"><summary><span>導入の流れ</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ol class="steps"><li>LINEで相談</li><li>希望条件のヒアリング</li><li>物件紹介・内見</li><li>現地調査（インフラ設備確認）</li><li>融資・事業計画のサポート</li><li>物件契約</li><li>内装工事着工</li><li>オープン</li></ol></div></details></div></div>
+      <div class="block dworry"><p class="subhead">こんなお悩みに</p><p class="dworry-item">開業する物件を探したい</p></div>
+      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">美容室・理容室の開業に特化した不動産サービスです。一般の不動産では対応が難しい給排水・電気容量・ガス容量などの設備条件を専門目線で確認し、物件選定から開業までをトータルサポート。7年間で7,700名以上の利用実績があり、テナント・居抜き・M&amp;Aにも対応します。</p><details class="dacc" open><summary><span>対応サービス</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>物件紹介：1都13県対応、即レス、非公開物件の提案を含む</li><li>インフラ・内装チェック：給排水・電気容量・ガス、セット面数・シャンプー導線の確認、内装工事にも対応</li><li>融資・事業計画サポート：年間108店舗以上の開業支援、融資調達 年間10億円規模、融資成功率99%、日本政策金融公庫・地銀・信金への申請支援</li></ul></div></details><details class="dacc"><summary><span>こんな方に</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>物件がなかなか見つからない</li><li>美容室対応物件かどうか判断できない</li><li>家賃交渉・フリーレントを相談したい</li><li>融資決定後に契約したい</li><li>2店舗目の出店を検討している</li></ul></div></details><details class="dacc"><summary><span>導入の流れ</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ol class="steps"><li>LINEで相談</li><li>希望条件のヒアリング</li><li>物件紹介・内見</li><li>現地調査（インフラ設備確認）</li><li>融資・事業計画のサポート</li><li>物件契約</li><li>内装工事着工</li><li>オープン</li></ol></div></details></div>
+      <div class="block dflow"><p class="subhead">ご相談の流れ</p><ol class="dsteps">
+        <li><strong>友だち追加</strong><span>下のボタンから美容室専門の不動産屋専用の公式LINEを追加します。</span></li>
+        <li><strong>気になることを送る</strong><span>料金・内容・自分のサロンに合うかなど、そのまま送ってOKです。</span></li>
+        <li><strong>案内が届く</strong><span>美容室専門の不動産屋から、詳しい内容・お見積り・ご予約のご案内が届きます。</span></li>
+      </ol></div></div>
+  </section>
+  <section class="dbottom">
+    <div class="container reveal">
+      <div class="dbottom-box">
+        <p class="dbottom-k">不動産</p>
+        <p class="dbottom-h">美容室専門の不動産屋について、まずは気軽に聞いてみる</p>
+        <div class="panelbox" style="margin-top:18px;border-top:0;padding-top:0">
+        <h2>ご相談・ご予約</h2>
+        <p class="panel-lead">美容室専門の不動産屋専用の公式LINEで、詳しい内容・お見積り・ご予約の相談ができます。<br>友だち追加して、気になることをそのまま送ってください。</p>
+        <div class="cta-grid one">
+          <a class="btn btn-line" href="https://lin.ee/tIoKLH1" target="_blank" rel="noopener noreferrer">美容室専門の不動産屋専用の公式LINEで相談する</a>
+        </div>
+        <p class="small" style="margin-top:16px">※BCCの公式LINEとは別のアカウントです。</p>
+      </div>
+      </div>
+    </div>
+  </section>
+  <section class="dothers">
+    <div class="container reveal">
+      <p class="subhead">不動産のほかのサービス</p>
+      <div class="dothers-list"><a href="/mutas"><span>ムータス</span><small>不動産</small></a></div>
+      <a class="back" style="margin:22px 0 0" href="/genre-real-estate">不動産のサービス一覧へ →</a>
+    </div>
   </section>
 </main>
+<div class="dsticky"><a href="https://lin.ee/tIoKLH1" target="_blank" rel="noopener noreferrer">美容室専門の不動産屋に公式LINEで相談する</a></div>
 <footer class="footer">
   <div class="container footer-inner reveal">
     <p class="big serif">BCC</p>
