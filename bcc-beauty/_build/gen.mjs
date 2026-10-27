@@ -248,6 +248,8 @@ section{padding:108px 0}
   .grid .cpts{font-size:.76rem;line-height:1.5}
   .grid .cpts li{padding-left:11px;margin-top:3px}
   .grid .cpts li::before{width:5px;height:5px}
+  .grid .cprice{font-size:.72rem}
+  .grid .cprice span{display:block;width:max-content;margin:0 0 2px}
   .grid .card .more{font-size:.68rem;letter-spacing:.08em}
   .grid.one .card{min-height:0}
 }
@@ -265,6 +267,8 @@ a.card:hover{background:#fff;border-color:var(--gold);box-shadow:0 10px 28px rgb
 .cpts{list-style:none;margin:0;padding:0;flex:1;color:var(--soft-ink);font-size:.86rem;line-height:1.6}
 .cpts li{position:relative;padding-left:14px;margin-top:4px}
 .cpts li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.55}
+.cprice{margin:6px 0 0;font-size:.82rem;font-weight:700;color:var(--ink)}
+.cprice span{display:inline-block;margin-right:6px;font-size:.66rem;font-weight:600;color:var(--gold);background:var(--tint);border-radius:999px;padding:1px 8px;vertical-align:1px}
 .card h4 .csub{display:block;margin-top:4px;font-size:.78rem;font-weight:600;color:var(--gold);line-height:1.5;letter-spacing:.01em}
 .card p{margin:0;color:var(--muted);font-size:.88rem;flex:1;line-height:1.85}
 .card .more{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
@@ -1053,6 +1057,19 @@ const titleHTML = (it) => {
   if (!KIND[it.id]) throw new Error(`KIND に種類が無い: ${it.id}`);
   return wb(TITLE[it.id] || splitName(it.name)[0]) + `<span class="csub">${esc(KIND[it.id])}</span>`;
 };
+// 料金が資料に載っているサービスだけ、カードに「〇〇円〜」を小さく出す（2026-10-27 オーナー「料金が見えてるものは、この最初のページにもいくらいくらからみたいなっていうのが小さくてもいいので載ってるといいかもですね！」）。
+// 値は各サービスの「資料の内容」（writeups.json）の一番安いプラン。税の表記も資料どおり。資料の料金を変えたらここも直す
+const PRICE = {
+  "atsukyakumania": "月2万円〜（税抜）",
+  "freed": "月13万円〜（税別・助成金利用時の実質）",
+  "gita": "月15万円〜（税抜）",
+  "instagram": "3か月 7万円〜（税抜）",
+  "ones": "6か月 60万円〜",
+  "haircamp": "1人 月2,100円〜（税別）",
+  "toko": "3万円〜",
+  "liverty": "通信料 月3,280円〜",
+  "tonari-seminar": "5万円〜（講師により異なる）",
+};
 // カードの説明は短い箇条書き（2026-10-27 オーナー「端的に箇条書きでいいと思ってます！」）。中身は desc の範囲（誇張しない）
 const POINTS = {
   "stylemanager": ["スタイル・ブログ・口コミを代行", "5店舗の実データ公開中"],
@@ -1089,7 +1106,8 @@ for (const c of DATA) c.items.sort((x, y) => kindRank(x.id) - kindRank(y.id));
 for (const c of DATA) for (const it of c.items) {
   it.title = titleHTML(it);
   if (!POINTS[it.id]) throw new Error(`POINTS に箇条書きが無い: ${it.id}`);
-  it.pts = `<ul class="cpts">${POINTS[it.id].map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`;
+  it.pts = `<ul class="cpts">${POINTS[it.id].map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` +
+    (PRICE[it.id] ? `<p class="cprice"><span>料金の目安</span>${esc(PRICE[it.id])}</p>` : "");
 }
 const itemCount = DATA.reduce((n, c) => n + c.items.length, 0);
 
