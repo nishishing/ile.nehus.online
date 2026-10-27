@@ -97,6 +97,7 @@ html.js .reveal.in{opacity:1;transform:none}
 .btn-join{border:1px solid var(--ink);color:var(--ink);padding:9px 20px;border-radius:999px;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;transition:.25s}
 .btn-join:hover{background:var(--ink);color:var(--surface)}
 @media(max-width:680px){.nav-links a.hide-sp{display:none}}
+@media(max-width:680px){.nav-links{gap:10px}.nav-links a.nav-about{font-size:.74rem;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);white-space:nowrap}}
 
 /* hero */
 .hero{position:relative;overflow:hidden;min-height:min(92vh,820px);display:grid;place-items:center;text-align:center;padding:96px 0}
@@ -400,7 +401,7 @@ const nav = `<nav class="nav">
     <div class="nav-links">
       <a class="hide-sp" href="/">トップ</a>
       <a class="hide-sp" href="/#services">サービス</a>
-      <a class="hide-sp" href="${ABOUT}">BCCとは</a>
+      <a class="nav-about" href="${ABOUT}">BCCとは</a>
       <a class="btn-join" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャット</a>
     </div>
   </div>
@@ -1252,33 +1253,6 @@ ${FINDER.map((f) => `      <a class="frow" href="/${genreSlug(f.cat)}"><span cla
     </div>
   </section>
 
-  <section class="container">
-    <div class="sec-head reveal">
-      <p class="komoji lbl">Information</p>
-      <h2>BCCを、<em>もっと知る</em>。</h2>
-      <p>BCCの全体像と、いま読んでおきたいコンテンツ。気になることはオープンチャットで気軽に。</p>
-    </div>
-    <div class="grid reveal">
-      <a class="card" href="${ABOUT}">
-        <p class="komoji ctag">About</p>
-        <h4>BCCとは</h4>
-        <p>想い・提供サポート・実績・会社概要。BCCの全体像はこちら。</p>
-        <span class="more">View <span class="arw">→</span></span>
-      </a>
-      <a class="card" href="/stylemanager">
-        <p class="komoji ctag">Pick up</p>
-        <h4>HPBの実データ公開</h4>
-        <p>ライトプランの店が、最上位プラン超え。5店舗の公式レポートと、スタイル・ブログ・口コミの運用代行はこちら。</p>
-        <span class="more">View <span class="arw">→</span></span>
-      </a>
-      <a class="card" href="${OC_URL}" target="_blank" rel="noopener noreferrer">
-        <p class="komoji ctag">Community</p>
-        <h4>オープンチャット</h4>
-        <p>同業者の情報交換・最新の共有・先行案内。ご相談もこちら。</p>
-        <span class="more">Enter <span class="arw">→</span></span>
-      </a>
-    </div>
-  </section>
 
 </main>
 
