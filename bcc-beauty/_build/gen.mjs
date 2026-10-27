@@ -1082,6 +1082,10 @@ const POINTS = {
   "toko": ["人材育成の仕組み化", "採用の仕組み化"],
   "refundhub": ["キャンセル料の請求", "再予約の導線づくり"],
 };
+// 種類ごとに並べる（2026-10-27 オーナー「自動化ツールは自動化ツールで並び替えたりとかした方がいいかな」）。
+// ツール・サイト → コンサル → 運用代行・サポート → その他。同じ種類の中は元の順（安定ソート）
+const kindRank = (id) => { const k = KIND[id] || ""; return /ツール|サイト|プラットフォーム/.test(k) ? 0 : /コンサル/.test(k) ? 1 : /運用代行|サポート/.test(k) ? 2 : 3; };
+for (const c of DATA) c.items.sort((x, y) => kindRank(x.id) - kindRank(y.id));
 for (const c of DATA) for (const it of c.items) {
   it.title = titleHTML(it);
   if (!POINTS[it.id]) throw new Error(`POINTS に箇条書きが無い: ${it.id}`);
