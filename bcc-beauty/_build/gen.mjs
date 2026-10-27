@@ -131,6 +131,19 @@ a.feat:hover{background:#fff;border-color:var(--hair)}
 a.feat:hover .more .arw{transform:translateX(8px)}
 @media(max-width:760px){.feat{grid-template-columns:1fr;gap:18px;padding:30px 24px}.feat .fmark{width:56px;height:56px;font-size:1.2rem}}
 
+/* お悩みから選ぶ */
+.finder{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px;max-width:980px;margin:0 auto;border-top:1px solid var(--hair)}
+.frow{padding:22px 0;border-bottom:1px solid var(--line)}
+.fwhen{margin:0;color:var(--muted);font-size:.9rem}
+.fpick{margin:6px 0 0;font-weight:600;font-size:1.02rem;line-height:1.6}
+.fpick a{color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:1px}
+.fpick a:hover{color:var(--gold)}
+.fpick a::after{content:" →";color:var(--gold);font-weight:400}
+.fsep{color:var(--hair);padding:0 8px;font-weight:400}
+@media(max-width:760px){.finder{grid-template-columns:1fr}}
+@media(max-width:430px){.hero h1{font-size:1.85rem}}
+.hero-cta a.jp{letter-spacing:.08em;text-transform:none;font-size:.86rem}
+
 /* sections */
 section{padding:108px 0}
 .alt{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -192,6 +205,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .detail .en{font-family:var(--font-serif);font-style:italic;color:var(--gold);font-size:1.15rem;display:block;margin:0 0 26px}
 .lead{color:var(--soft-ink);max-width:680px;font-size:1.02rem;line-height:2}
 .panelbox{border-top:1px solid var(--hair);padding-top:40px;max-width:680px;margin-top:18px}
+.panel-lead{margin:-8px 0 22px;color:var(--soft-ink);font-size:.95rem;line-height:1.9}
 .panelbox h2{font-family:var(--font-jp);font-weight:500;font-size:1.05rem;margin:0 0 24px;letter-spacing:.06em}
 .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .cta-grid.one{grid-template-columns:1fr}
@@ -579,6 +593,7 @@ for (const s of services) {
   // CTAボタン群を組み立て。公式LINEが無いサービスは連絡ボタンを出さない（オープンチャットのフォールバックは廃止）。
   let ctas = [];
   let note = "";
+  let lead = "";  // ボタンの手前の一言（押すと何ができるか）
   // パスワードゲート：ボタン→パスワード表示→サイトを開く の2段階
   let gateHTML = "";
   if (r.gate) {
@@ -599,7 +614,10 @@ for (const s of services) {
     if (line) ctas.push(`<a class="btn btn-line" href="${line}" target="_blank" rel="noopener noreferrer">${esc(brand)}専用の公式LINEへ</a>`);
     if (doc) ctas.push(`<a class="btn" href="${doc}" target="_blank" rel="noopener noreferrer">資料（詳細）を見る</a>`);
     else if (line) ctas.push(`<a class="btn" href="/#services">ほかのサービスを見る</a>`);
-    if (line) note = `\n        <p class="small" style="margin-top:16px">※詳しい内容・お見積り・ご予約は、${esc(brand)}専用の公式LINEでご案内します（BCCの公式LINEとは別アカウントです）。</p>`;
+    if (line) {
+      lead = `\n        <p class="panel-lead">${esc(brand)}専用の公式LINEで、詳しい内容・お見積り・ご予約の相談ができます。<br>友だち追加して、気になることをそのまま送ってください。</p>`;
+      note = `\n        <p class="small" style="margin-top:16px">※BCCの公式LINEとは別のアカウントです。</p>`;
+    }
     else if (doc) note = `\n        <p class="small" style="margin-top:16px">※詳しい内容は、上の資料をご覧ください。</p>`;
   }
   const grid = ctas.length
@@ -610,7 +628,7 @@ for (const s of services) {
   const panelTitle = r.panelTitle || ((line || (r.links && r.links.length) || r.gate) ? "ご相談・ご予約" : "詳しくはこちら");
   const panel = (gateHTML || grid)
     ? `<div class="panelbox" style="margin-top:38px">
-        <h2>${esc(panelTitle)}</h2>${gateHTML}
+        <h2>${esc(panelTitle)}</h2>${lead}${gateHTML}
         ${grid}${note}
       </div>`
     : "";
@@ -915,18 +933,37 @@ const DATA = categories
   }))
   .filter((c) => c.items.length);
 
+// 「お悩みから選ぶ」（2026-10-27 オーナー「今言った内容もざっくり改善していきたいですね！」）。
+// Instagram 下書きの「選び分け」と同じ軸。ids は services[] の id（表示名は services から引くのでずれない）
+const FINDER = [
+  { when: "初期費用をかけずに開業したい", ids: ["salon-start"] },
+  { when: "融資と事業計画から固めたい", ids: ["next-beauty-tech"] },
+  { when: "開業する物件を探したい・借りたい", ids: ["real-estate-salon"] },
+  { when: "ホットペッパーの掲載を作り込みたい", ids: ["tete-lab"] },
+  { when: "集客を自分で回せるように学びたい", ids: ["atsukyakumania", "ones"] },
+  { when: "スタイル・ブログ更新の手間を減らしたい", ids: ["stylepost"] },
+  { when: "Instagram・TikTok で広げたい", ids: ["instagram", "freed", "gita"] },
+  { when: "無断キャンセルに困っている", ids: ["refundhub"] },
+  { when: "スタッフの携帯代を見直したい", ids: ["liverty"] },
+  { when: "税務調査・節税が気になる", ids: ["imamura-fp"] },
+  { when: "スタッフ教育を仕組みにしたい", ids: ["haircamp", "toko"] },
+  { when: "材料の仕入れを見直したい", ids: ["materials-intro", "drive-blue"] },
+];
+const SHORT = { gita: "ギータ", instagram: "Instagramコンサル", ones: "ONE's 流 集客サポート", "materials-intro": "材料（仕入れ紹介）", toko: "人材育成・採用支援" };
+const nameOf = (id) => { if (SHORT[id]) return SHORT[id]; const x = services.find((v) => v.id === id); if (!x) throw new Error(`FINDER: 不明な id ${id}`); return x.name.split("（")[0]; };
+
 const indexBody = `<header class="hero">
   <div class="hero-mark serif">BCC</div>
   <div class="hero-inner">
     <span class="eyebrow">beauty Cooperative Chain</span>
-    <h1>美容師のインフラを、<br>ひとつに。</h1>
+    <h1><span style="white-space:nowrap">美容師のインフラを、</span><br><span style="white-space:nowrap">ひとつに。</span></h1>
     <div class="rule"></div>
     <p class="kicker">From open to grow &mdash; all in one place.</p>
     <p class="hero-sub">開業・集客・運営に必要な外部パートナーを、カテゴリ別に厳選してご紹介します。</p>
     <div class="hero-cta">
-      <a class="primary" href="#services">View services</a>
-      <a class="ghost" href="${SALOPIT_URL}" target="_blank" rel="noopener noreferrer">Salopit tool</a>
-      <a class="ghost" href="${OC_URL}" target="_blank" rel="noopener noreferrer">Open chat</a>
+      <a class="primary jp" href="#services">サービス一覧を見る</a>
+      <a class="ghost jp" href="${SALOPIT_URL}" target="_blank" rel="noopener noreferrer">施術ツール「サロピット」</a>
+      <a class="ghost jp" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットで相談</a>
     </div>
   </div>
   <div class="scrollcue"><span>scroll</span><span class="line"></span></div>
@@ -973,6 +1010,17 @@ const indexBody = `<header class="hero">
         <p>同業者の情報交換・最新の共有・先行案内。ご相談もこちら。</p>
         <span class="more">Enter <span class="arw">→</span></span>
       </a>
+    </div>
+  </section>
+
+  <section class="container" id="find">
+    <div class="sec-head reveal">
+      <p class="komoji lbl">Find</p>
+      <h2>お悩みから、<em>選ぶ</em>。</h2>
+      <p>サービスは25あります。いま困っていることから、合いそうなものを選べます。</p>
+    </div>
+    <div class="finder reveal">
+${FINDER.map((f) => `      <div class="frow"><p class="fwhen">${esc(f.when)}</p><p class="fpick">${f.ids.map((id) => `<a href="/${id}">${esc(nameOf(id))}</a>`).join('<span class="fsep">／</span>')}</p></div>`).join("\n")}
     </div>
   </section>
 

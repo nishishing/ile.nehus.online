@@ -93,6 +93,19 @@ a.feat:hover{background:#fff;border-color:var(--hair)}
 a.feat:hover .more .arw{transform:translateX(8px)}
 @media(max-width:760px){.feat{grid-template-columns:1fr;gap:18px;padding:30px 24px}.feat .fmark{width:56px;height:56px;font-size:1.2rem}}
 
+/* お悩みから選ぶ */
+.finder{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px;max-width:980px;margin:0 auto;border-top:1px solid var(--hair)}
+.frow{padding:22px 0;border-bottom:1px solid var(--line)}
+.fwhen{margin:0;color:var(--muted);font-size:.9rem}
+.fpick{margin:6px 0 0;font-weight:600;font-size:1.02rem;line-height:1.6}
+.fpick a{color:var(--ink);border-bottom:1px solid var(--gold);padding-bottom:1px}
+.fpick a:hover{color:var(--gold)}
+.fpick a::after{content:" →";color:var(--gold);font-weight:400}
+.fsep{color:var(--hair);padding:0 8px;font-weight:400}
+@media(max-width:760px){.finder{grid-template-columns:1fr}}
+@media(max-width:430px){.hero h1{font-size:1.85rem}}
+.hero-cta a.jp{letter-spacing:.08em;text-transform:none;font-size:.86rem}
+
 /* sections */
 section{padding:108px 0}
 .alt{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -154,6 +167,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .detail .en{font-family:var(--font-serif);font-style:italic;color:var(--gold);font-size:1.15rem;display:block;margin:0 0 26px}
 .lead{color:var(--soft-ink);max-width:680px;font-size:1.02rem;line-height:2}
 .panelbox{border-top:1px solid var(--hair);padding-top:40px;max-width:680px;margin-top:18px}
+.panel-lead{margin:-8px 0 22px;color:var(--soft-ink);font-size:.95rem;line-height:1.9}
 .panelbox h2{font-family:var(--font-jp);font-weight:500;font-size:1.05rem;margin:0 0 24px;letter-spacing:.06em}
 .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .cta-grid.one{grid-template-columns:1fr}

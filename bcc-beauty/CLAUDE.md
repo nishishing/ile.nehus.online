@@ -140,6 +140,10 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 - 見出しに `料金/プラン/費用/価格/目安` → カード表示（bullet を `：` で名前:内容に分割）
 - それ以外 → 特長リスト（`<ul class="feature-list">`）
 
+### トップの「お悩みから、選ぶ。」（2026-10-27）
+- `FINDER`（`{when, ids[]}`）を並べるだけ。表示名は `services[]` から引く（短くしたいものは `SHORT`）。存在しない id はビルドで止まる。
+- サービスを足したら、当てはまる悩みがあればここにも足す。
+
 ### CTA（ご相談・ご予約パネル）のロジック
 1. `r.gate` があればパスワードゲートwidgetを出す。
 2. `r.links` があればそれをボタン化（`primary`=濃色、最初のnoteを小注記に）。
