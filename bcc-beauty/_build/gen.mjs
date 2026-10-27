@@ -1049,7 +1049,7 @@ const wb = (t) => esc(t).replace(/ \/ /g, " /<wbr> ").replace(/・/g, "・<wbr>"
 // StyleManager とスタイルポストは同じタグ「自動化ツール」で隣に並べる（2026-10-27 オーナー「スタイルマネージャーとスタイルポストは自動化ツールにしましょう！…その2つは同じタグなので、よく並べてください！」）
 const KIND = {
   "stylemanager": "自動化ツール", "tete-lab": "集客コンサル", "atsukyakumania": "集客コンサル", "ones": "集客コンサル",
-  "stylepost": "自動化ツール", "freed": "TikTok", "instagram": "Instagram", "gita": "TikTok", "biyoushijuku": "コンサル",
+  "stylepost": "自動化ツール", "freed": "TikTok", "instagram": "Instagram", "gita": "TikTok", "biyoushijuku": "Instagram",
   "salon-start": "開業サポート", "next-beauty-tech": "融資・事業計画の相談", "stylebase": "開業サポート",
   "mutas": "不動産", "real-estate-salon": "不動産",
   "plum-plan": "内装・空間設計", "layer-design-works": "内装施工", "sunny-side-life": "内装・空間づくり",
@@ -1087,7 +1087,7 @@ const POINTS = {
   "freed": ["コンサル", "運用代行"],
   "instagram": ["コンサル・運用代行", "設計から運用までサポート"],
   "gita": ["美容室専門のコンサル", "TikTok戦略の支援"],
-  "biyoushijuku": ["人間力を磨く", "美容師力のコンサル"],
+  "biyoushijuku": ["Instagram・TikTokの運用指導", "SNS以外も（接客・ブランディング・価格設計）"],
   "salon-start": ["0円開業の導線設計", "融資・事業計画も相談可"],
   "next-beauty-tech": ["融資の相談", "事業計画づくり"],
   "stylebase": ["開業準備から", "運営の立ち上げまで"],
@@ -1142,8 +1142,8 @@ const SUBGROUPS = {
   "集客": [
     { label: "ホットペッパー", ids: ["stylemanager", "stylepost", "tete-lab", "atsukyakumania", "ones"] },
     // SNS は青い小見出しを Instagram／TikTok にして段を分ける（2026-10-27 オーナー「ここはSNSで分けましょう。…インスタなのかTikTokなのか！」）
-    { label: "SNS（Instagram・TikTok）", ids: ["instagram", "freed", "gita"] },
-    { label: "美容師力・考え方", ids: ["biyoushijuku"] },
+    // 美容師塾は SNS の Instagram 段へ（2026-10-27 オーナー「これもインスタグラムのコンサルに近いので、インスタのコンサルっぽい内容と、あとSNS以外のサポートもみたいな感じで」。資料のカリキュラムも SNS運用指導が先頭）
+    { label: "SNS（Instagram・TikTok）", ids: ["instagram", "biyoushijuku", "freed", "gita"] },
   ],
 };
 
