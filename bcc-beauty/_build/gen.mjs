@@ -196,6 +196,11 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 .genre-list{padding-top:36px}
 .grid.one{grid-template-columns:1fr;max-width:520px;margin:0 auto}
 .subgroup+.subgroup{margin-top:40px}
+.krow+.krow{margin-top:14px}
+.subgroup .grid.two{max-width:none;margin:0;grid-template-columns:repeat(3,1fr)}
+@media(max-width:880px){.subgroup .grid.two{grid-template-columns:repeat(2,1fr)}}
+/* 見出しの高さをそろえる（ラベルや料金の段落が伸びないように） */
+.card .ctag,.card .cprice{flex:none}
 .subh{display:flex;align-items:center;gap:10px;font-size:1.15rem;font-weight:700;margin:0 0 14px;padding-left:12px;border-left:4px solid var(--gold);line-height:1.3}
 .subh span{font-size:.78rem;font-weight:600;color:var(--gold);background:var(--tint);border-radius:999px;padding:2px 10px}
 .subgroup .grid.one{margin:0;max-width:none;grid-template-columns:repeat(3,1fr)}
@@ -1043,7 +1048,7 @@ const wb = (t) => esc(t).replace(/ \/ /g, " /<wbr> ").replace(/・/g, "・<wbr>"
 // 中身は各サービスの desc・資料の範囲で付けた（誇張しない）。無いサービスはビルドで止める
 // StyleManager とスタイルポストは同じタグ「自動化ツール」で隣に並べる（2026-10-27 オーナー「スタイルマネージャーとスタイルポストは自動化ツールにしましょう！…その2つは同じタグなので、よく並べてください！」）
 const KIND = {
-  "stylemanager": "自動化ツール", "tete-lab": "集客コンサル", "atsukyakumania": "集客コンサル", "ones": "集客サポート",
+  "stylemanager": "自動化ツール", "tete-lab": "集客コンサル", "atsukyakumania": "集客コンサル", "ones": "集客コンサル",
   "stylepost": "自動化ツール", "freed": "TikTokコンサル・運用代行", "instagram": "コンサル・運用代行", "gita": "美容室専門 TikTokコンサル", "biyoushijuku": "コンサル",
   "salon-start": "開業サポート", "next-beauty-tech": "融資・事業計画の相談", "stylebase": "開業サポート",
   "mutas": "不動産", "real-estate-salon": "不動産",
@@ -1163,8 +1168,11 @@ for (const f of FINDER) {
     listHTML = SUBGROUPS[f.cat].map((g) => {
       const items = d.items.filter((it) => g.ids.includes(it.id));
       if (items.length !== g.ids.length) throw new Error(`SUBGROUPS(${f.cat}/${g.label}) に不明な id`);
+      // 同じ種類ごとに段を分ける（2026-10-27 オーナー「上が2段、下が3段にすれば綺麗に分かれます！」＝自動化ツール2枚／集客コンサル3枚）
+      const rows = [];
+      for (const it of items) { const last = rows[rows.length - 1]; if (last && KIND[last[0].id] === KIND[it.id]) last.push(it); else rows.push([it]); }
       return `<div class="subgroup"><h2 class="subh">${esc(g.label)}<span>${items.length}件</span></h2>
-      ${gridOf(items)}</div>`;
+      ${rows.map((r) => `<div class="krow">${gridOf(r)}</div>`).join("\n      ")}</div>`;
     }).join("\n      ");
   } else {
     listHTML = gridOf(d.items);
