@@ -186,6 +186,15 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 .dcard .new{display:inline-block;margin-left:8px;font-size:.66rem;background:var(--gold);color:#fff;border-radius:999px;padding:2px 8px;vertical-align:3px;letter-spacing:.06em}
 @media(max-width:760px){.dgrid{grid-template-columns:1fr;gap:12px}.dcard{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:4px;padding:18px}.dcard .dn{grid-row:span 3}.dcard p{font-size:.84rem}}
 
+/* 紹介ページ: 登録すると相談できること */
+.mgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:1080px;margin:0 auto}
+.mcell{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 16px 18px;display:flex;flex-direction:column;gap:6px}
+.mcat{color:var(--gold);font-weight:700;font-size:.95rem}
+.mwhen{color:var(--muted);font-size:.8rem;line-height:1.6}
+.mnote{text-align:center;color:var(--muted);font-size:.85rem;margin:26px 0 0}
+@media(max-width:980px){.mgrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.mgrid{grid-template-columns:repeat(2,1fr);gap:8px}.mcell{padding:12px 12px 14px}.mcat{font-size:.88rem}.mwhen{font-size:.72rem}}
+
 /* ジャンル専用ページ */
 .detail.genre-hero{padding-bottom:8px}
 .detail.genre-hero h1{font-weight:700;margin-bottom:6px}
@@ -369,6 +378,8 @@ a.card:hover .more .arw{transform:translateX(8px)}
 .vision p{margin:0;color:var(--soft-ink);font-size:.95rem;line-height:2;max-width:760px}
 .problems{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 @media(max-width:880px){.problems{grid-template-columns:1fr}}
+.problems{gap:14px;background:none;border:0}.problem{border:1px solid var(--line);border-radius:16px}
+@media(max-width:760px){.problems{gap:10px}.problem{padding:20px 22px}.problem h3{margin-bottom:10px}.problem .feature-list li{padding-top:4px;padding-bottom:4px;font-size:.88rem}}
 .problem{background:var(--surface);padding:34px 30px}
 .problem h3{font-family:var(--font-jp);font-weight:600;font-size:1.05rem;margin:0 0 18px;letter-spacing:.02em}
 .pillars{display:grid;gap:38px;max-width:820px;margin:0 auto}
@@ -407,12 +418,12 @@ const nav = `<nav class="nav">
   </div>
 </nav>`;
 
-// 公開LP（/about）用ナビ：サービス一覧（会員限定）へは出さず、公式LINE登録に集約
+// 公開LP（/about）用ナビ：サービス一覧（会員限定）へは出さず、オープンチャットに集約（2026-10-28 オーナー「公式LINEに誘導してるんですけど、オープンチャットに変えたい！」）
 const lpNav = `<nav class="nav">
   <div class="container nav-inner">
     <a class="brand" href="/about">BCC</a>
     <div class="nav-links">
-      <a class="btn-join" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">公式LINE登録</a>
+      <a class="btn-join" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャット</a>
     </div>
   </div>
 </nav>`;
@@ -435,9 +446,9 @@ const lpFooter = `<footer class="footer">
   <div class="container footer-inner reveal">
     <p class="big serif">BCC</p>
     <p class="komoji" style="margin:0 0 26px">beauty Cooperative Chain</p>
-    <p>美容師の開業・集客・運営を支える共同体。<br>まずは公式LINEの登録から。</p>
+    <p>美容師の開業・集客・運営を支える共同体。<br>まずはオープンチャットで気軽にどうぞ。</p>
     <div class="links">
-      <a href="${LINE_URL}" target="_blank" rel="noopener noreferrer">公式LINE登録</a>
+      <a href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャット</a>
       <a href="${ABOUT}">BCCとは</a>
     </div>
     <p class="small">© BCC — beauty Cooperative Chain</p>
@@ -772,152 +783,111 @@ writeFileSync(
 );
 
 // ---- about / 説明LP ----
-const aboutBody = `<header class="hero">
+const aboutBody = () => `<header class="hero">
   <div class="hero-mark serif">BCC</div>
   <div class="hero-inner">
-    <span class="eyebrow">About — beauty Cooperative Chain</span>
-    <h1><span style="white-space:nowrap">美容業界を、</span><span style="white-space:nowrap">もっと強く。</span><span style="white-space:nowrap">もっと面白く。</span></h1>
-    <div class="rule"></div>
-    <p class="kicker">Make the beauty industry stronger, and more fun.</p>
-    <p class="hero-sub">美容師の可能性を広げるために生まれた共同体。材料・教育・SNS・財務など、技術以外の経営課題を、仲間とサポートで解決します。</p>
+    <span class="eyebrow jp">BCCとは</span>
+    <h1><span style="white-space:nowrap">美容業界を、</span><br><span style="white-space:nowrap">もっと強く。</span><span class="hl" style="white-space:nowrap">もっと面白く。</span></h1>
+    <p class="hero-sub">材料・教育・集客・お金・出店。<br><span style="white-space:nowrap"><b>技術以外の経営の困りごと</b>を、</span><span style="white-space:nowrap">仲間とサポートで解決する共同体です。</span></p>
     <div class="hero-cta">
-      <a class="primary" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">BCC公式LINEに登録</a>
+      <a class="primary jp" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットに参加する</a>
     </div>
   </div>
-  <div class="scrollcue"><span>scroll</span><span class="line"></span></div>
 </header>
 
 <main>
 
-  <section class="alt">
-    <div class="container">
-      <div class="sec-head reveal">
-        <p class="komoji lbl">Pick up</p>
-        <h2>注目の、<em>サービス</em>。</h2>
-        <p>会員の反響が大きい2つのサービス。詳細は公式LINE登録後にご覧いただけます。</p>
-      </div>
-      <div class="grid two reveal">
-        <a class="card" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">
-          <p class="komoji ctag">携帯事業</p>
-          <h4>携帯電話プラン（ソフトバンク・BCC限定）</h4>
-          <p>通信料を大幅に削減。最新iPhoneに機種変更でき、スタッフの福利厚生・節税にも活用できます。</p>
-          <span class="more">公式LINEで見る <span class="arw">→</span></span>
-        </a>
-        <a class="card" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">
-          <p class="komoji ctag">仕入れ紹介</p>
-          <h4>材料（仕入れ紹介）</h4>
-          <p>サロン向けに、材料の仕入れ（ディーラー）を特別価格でご紹介。取引内容に応じた特典もあります。</p>
-          <span class="more">公式LINEで見る <span class="arw">→</span></span>
-        </a>
-      </div>
-    </div>
-  </section>
-
   <section class="container">
     <div class="sec-head reveal">
-      <p class="komoji lbl">Vision</p>
-      <h2>私たちの、<em>想い</em>。</h2>
+      <p class="komoji lbl">Challenges</p>
+      <h2>こんなお悩み、<em>ありませんか</em>。</h2>
     </div>
-    <div class="visions reveal">
-      <div class="vision">
-        <span class="vn">01</span>
-        <h3>美容業界を、もっと強く。もっと面白く。</h3>
-        <p>美容師の可能性を広げるために生まれた共同体です。材料・スタッフ教育・SNS・財務など、技術以外の経営課題を、コミュニティのサポートで解決していきます。</p>
-      </div>
-      <div class="vision">
-        <span class="vn">02</span>
-        <h3>美容業界の未来を、私たちの手で変える。</h3>
-        <p>海外では当たり前に使える商材が、国内では規制で使えないことがあります。美容師がもっと自由に、創造的に働ける環境へ。業界そのものを前に進めます。</p>
-      </div>
-      <div class="vision">
-        <span class="vn">03</span>
-        <h3>流行や美学を生み出す“場”と“仲間”をつくりたい。</h3>
-        <p>技術・感性・経営力を、つながり合う起業家のコミュニティで磨く。トレンドと美学が生まれ続ける場所を、仲間とともに育てていきます。</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="alt">
-    <div class="container">
-      <div class="sec-head reveal">
-        <p class="komoji lbl">Challenges</p>
-        <h2>こんなお悩み、<em>ありませんか</em>。</h2>
-      </div>
-      <div class="problems reveal">
-        <div class="problem">
-          <h3>経営の負担を減らしたい</h3>
-          <ul class="feature-list">
-            <li>材料費・運営コストの負担が大きい</li>
-            <li>開業・融資の手続きが不透明</li>
-            <li>税務・保険の相談先がない</li>
-          </ul>
-        </div>
-        <div class="problem">
-          <h3>技術や集客方法を知りたい</h3>
-          <ul class="feature-list">
-            <li>スタッフの教育・育成が難しい</li>
-            <li>最新の技術・薬剤の情報がほしい</li>
-            <li>SNS・採用の方法がわからない</li>
-          </ul>
-        </div>
-        <div class="problem">
-          <h3>人脈やサポートがほしい</h3>
-          <ul class="feature-list">
-            <li>同業の起業家とつながりたい</li>
-            <li>不動産・内装の情報がほしい</li>
-            <li>頼れるサポート体制がほしい</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="container">
-    <div class="sec-head reveal">
-      <p class="komoji lbl">Why BCC</p>
-      <h2>選ばれる、<em>3つの理由</em>。</h2>
-    </div>
-    <div class="pillars reveal">
-      <div class="pillar">
-        <span class="pi">01</span>
-        <div>
-          <h3>美容室経営の負担を軽減する仕組み</h3>
-          <p>ディーラー・メーカーとの直接提携により、材料を特別価格で安定供給。材料費・運営コストを抑えながら、利益を確保できる運営体制づくりを支えます。</p>
-        </div>
-      </div>
-      <div class="pillar">
-        <span class="pi">02</span>
-        <div>
-          <h3>教育・集客・海外展開まで、充実のサポート</h3>
-          <p>オーナー向けの経営研修・技術講習、ホットペッパー／SNSを活用した集客支援、さらに海外展開まで。学びと集客をまとめて後押しします。</p>
-        </div>
-      </div>
-      <div class="pillar">
-        <span class="pi">03</span>
-        <div>
-          <h3>出店から経営まで、徹底サポート</h3>
-          <p>不動産・融資・事業計画から、保険・税務対策・福利厚生まで。経営の知識がなくても安心して進められる環境をご提供します。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="alt">
-    <div class="container">
-      <div class="sec-head reveal">
-        <p class="komoji lbl">Support</p>
-        <h2>提供する、<em>サポート</em>。</h2>
-      </div>
-      <div class="block reveal" style="max-width:720px;margin:0 auto">
+    <div class="problems reveal">
+      <div class="problem">
+        <h3>経営の負担を減らしたい</h3>
         <ul class="feature-list">
-          <li>専用の仕入れルートで、商材を特別価格で提供</li>
-          <li>オーナー向けの経営研修・技術講習</li>
-          <li>ホットペッパー・SNSを活用した集客支援コンサルティング</li>
-          <li>不動産・融資の相談（物件探し・融資支援・事業計画書の作成）</li>
-          <li>店舗運営サポート（保険・税務対策・福利厚生支援）</li>
-          <li>全国の加盟店・アンバサダーとのネットワーク形成</li>
+          <li>材料費・運営コストの負担が大きい</li>
+          <li>開業・融資の手続きが不透明</li>
+          <li>税務・保険の相談先がない</li>
         </ul>
-        <p class="lead" style="margin-top:26px">経営の知識がなくても、安心して取り組める環境をご提供します。</p>
+      </div>
+      <div class="problem">
+        <h3>技術や集客方法を知りたい</h3>
+        <ul class="feature-list">
+          <li>スタッフの教育・育成が難しい</li>
+          <li>最新の技術・薬剤の情報がほしい</li>
+          <li>SNS・採用の方法がわからない</li>
+        </ul>
+      </div>
+      <div class="problem">
+        <h3>人脈やサポートがほしい</h3>
+        <ul class="feature-list">
+          <li>同業の起業家とつながりたい</li>
+          <li>不動産・内装の情報がほしい</li>
+          <li>頼れるサポート体制がほしい</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="does">
+    <div class="container reveal">
+      <h2>BCCで、解決できること。</h2>
+      <p class="dlead">経営の知識がなくても、安心して進められます。</p>
+      <div class="dgrid">
+        <div class="dcard"><span class="dn">1</span><h3>材料を、特別価格で</h3><p>ディーラー・メーカーとの直接提携で、商材を特別価格で安定して仕入れられます。材料費を抑えて、利益を残せる運営に。</p></div>
+        <div class="dcard"><span class="dn">2</span><h3>学びと集客を、まとめて</h3><p>オーナー向けの経営研修・技術講習。ホットペッパー・SNSを使った集客の支援。海外展開まで後押しします。</p></div>
+        <div class="dcard"><span class="dn">3</span><h3>出店から経営まで、まるごと</h3><p>物件探し・融資・事業計画書づくりから、保険・税務対策・福利厚生まで。全国の加盟店・アンバサダーともつながれます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="komoji lbl">Members</p>
+        <h2>BCCで、<em style="white-space:nowrap">相談できること</em>。</h2>
+        <p>BCCが選んだ${DATA.reduce((n, c) => n + c.items.length, 0)}のサービスを、悩みごとに探せます。</p>
+      </div>
+      <div class="mgrid reveal">
+        ${FINDER.map((f) => `<div class="mcell"><span class="mcat">${esc(f.cat)}</span><span class="mwhen">${esc(f.when.replace(/（.*?）/g, ""))}</span></div>`).join("\n        ")}
+      </div>
+      <p class="mnote reveal">各サービスの内容・窓口は、会員の方にご案内しています。まずはオープンチャットで気軽にご相談ください。</p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="sec-head reveal">
+      <p class="komoji lbl">Track record</p>
+      <h2>これまでの、<em>実績</em>。</h2>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><span class="num">755</span><span class="lbl2">会員数（名）</span></div>
+      <div class="stat"><span class="num">23</span><span class="lbl2">加盟ディーラー</span></div>
+      <div class="stat"><span class="num">8</span><span class="lbl2">提携メーカー</span></div>
+      <div class="stat"><span class="num">21</span><span class="lbl2">自社商品</span></div>
+      <div class="stat"><span class="num">4</span><span class="lbl2">海外エリア展開</span></div>
+    </div>
+    <p class="sec-head" style="margin:34px auto 0;color:var(--muted);font-size:.9rem">日本・韓国・香港・台湾でサロン運営／美容業界向けの広告・教育も展開。</p>
+  </section>
+
+  <section class="alt">
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="komoji lbl">Vision</p>
+        <h2>私たちの、<em>想い</em>。</h2>
+      </div>
+      <div class="visions reveal">
+        <div class="vision">
+          <span class="vn">01</span>
+          <h3>美容業界の未来を、私たちの手で変える。</h3>
+          <p>海外では当たり前に使える商材が、国内では規制で使えないことがあります。美容師がもっと自由に、創造的に働ける環境へ。業界そのものを前に進めます。</p>
+        </div>
+        <div class="vision">
+          <span class="vn">02</span>
+          <h3>流行や美学を生み出す“場”と“仲間”をつくりたい。</h3>
+          <p>技術・感性・経営力を、つながり合う起業家のコミュニティで磨く。トレンドと美学が生まれ続ける場所を、仲間とともに育てていきます。</p>
+        </div>
       </div>
     </div>
   </section>
@@ -925,13 +895,13 @@ const aboutBody = `<header class="hero">
   <section class="container">
     <div class="sec-head reveal">
       <p class="komoji lbl">Flow</p>
-      <h2>加盟までの、<em>流れ</em>。</h2>
+      <h2>はじめるまでの、<em>流れ</em>。</h2>
     </div>
     <div class="block reveal" style="max-width:720px;margin:0 auto">
       <ol class="steps">
-        <li>BCC公式LINEに登録</li>
-        <li>会員ページのサービス一覧から、必要なパートナーを選ぶ</li>
-        <li>各サービス専用の窓口に相談</li>
+        <li>オープンチャットに参加</li>
+        <li>悩みを相談・同業者と情報交換</li>
+        <li>必要なサービスの窓口につながる</li>
         <li>導入・利用スタート</li>
       </ol>
     </div>
@@ -940,74 +910,46 @@ const aboutBody = `<header class="hero">
   <section class="alt">
     <div class="container">
       <div class="sec-head reveal">
-        <p class="komoji lbl">Track record</p>
-        <h2>これまでの、<em>実績</em>。</h2>
+        <p class="komoji lbl">FAQ</p>
+        <h2>よくある、<em>ご質問</em>。</h2>
       </div>
-      <div class="stats reveal">
-        <div class="stat"><span class="num">755</span><span class="lbl2">会員数（名）</span></div>
-        <div class="stat"><span class="num">23</span><span class="lbl2">加盟ディーラー</span></div>
-        <div class="stat"><span class="num">8</span><span class="lbl2">提携メーカー</span></div>
-        <div class="stat"><span class="num">21</span><span class="lbl2">自社商品</span></div>
-        <div class="stat"><span class="num">4</span><span class="lbl2">海外エリア展開</span></div>
+      <div class="faq reveal">
+        <div class="qa">
+          <p class="q">フランチャイズとは何が違うの？</p>
+          <p class="a">BCCはフランチャイズではなく「加盟店制度」です。経営の自由度が高いのが特徴です。</p>
+        </div>
+        <div class="qa">
+          <p class="q">どのくらいの費用がかかりますか？</p>
+          <p class="a">BCCへの入会は無料です。各サービスの費用は、実際にご利用いただくサービスごとに、それぞれの窓口で個別にご案内します。</p>
+        </div>
       </div>
-      <p class="sec-head" style="margin:34px auto 0;color:var(--muted);font-size:.9rem">日本・韓国・香港・台湾でサロン運営／美容業界向けの広告・教育も展開。</p>
     </div>
   </section>
 
   <section class="container">
     <div class="sec-head reveal">
-      <p class="komoji lbl">FAQ</p>
-      <h2>よくある、<em>ご質問</em>。</h2>
+      <p class="komoji lbl">Company</p>
+      <h2>会社、<em>概要</em>。</h2>
     </div>
-    <div class="faq reveal">
-      <div class="qa">
-        <p class="q">フランチャイズとは何が違うの？</p>
-        <p class="a">BCCはフランチャイズではなく「加盟店制度」です。経営の自由度が高いのが特徴です。</p>
-      </div>
-      <div class="qa">
-        <p class="q">どのくらいの費用がかかりますか？</p>
-        <p class="a">BCCへの入会は無料です。各サービスの費用は、実際にご利用いただくサービスごとに、それぞれの窓口で個別にご案内します。</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="alt">
-    <div class="container">
-      <div class="sec-head reveal">
-        <p class="komoji lbl">Company</p>
-        <h2>会社、<em>概要</em>。</h2>
-      </div>
-      <dl class="spec reveal">
-        <div class="row"><dt>会社名</dt><dd>合同会社BCC（Beauty Co-operative Chain）</dd></div>
-        <div class="row"><dt>事業内容</dt><dd>美容室向け商材の提供・販売／サロン経営支援（教育・集客・不動産・融資）／国内外のサロン展開・マーケティング支援／アンバサダーネットワークの構築</dd></div>
-        <div class="row"><dt>代表者</dt><dd>西村 涼・瀬野 克・岡本 裕也</dd></div>
-        <div class="row"><dt>事業展開</dt><dd>日本・韓国・香港・台湾</dd></div>
-      </dl>
-    </div>
+    <dl class="spec reveal">
+      <div class="row"><dt>会社名</dt><dd>合同会社BCC（Beauty Co-operative Chain）</dd></div>
+      <div class="row"><dt>事業内容</dt><dd>美容室向け商材の提供・販売／サロン経営支援（教育・集客・不動産・融資）／国内外のサロン展開・マーケティング支援／アンバサダーネットワークの構築</dd></div>
+      <div class="row"><dt>代表者</dt><dd>西村 涼・瀬野 克・岡本 裕也</dd></div>
+      <div class="row"><dt>事業展開</dt><dd>日本・韓国・香港・台湾</dd></div>
+    </dl>
   </section>
 
   <section class="container lp-cta">
     <div class="sec-head reveal" style="margin-bottom:34px">
       <p class="komoji lbl">Get started</p>
       <h2>BCCで、<em>一緒に解決</em>しませんか。</h2>
-      <p>材料費の削減、セミナー参加、融資相談まで。あなたのサロン経営を、まるごとサポートします。まずは公式LINEの登録から。</p>
+      <p>材料費の削減、セミナー参加、融資相談まで。あなたのサロン経営を、まるごとサポートします。まずはオープンチャットから。</p>
     </div>
-    <a class="go reveal" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">BCC公式LINEに登録する</a>
+    <a class="go reveal" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットに参加する</a>
   </section>
 
 </main>`;
 
-writeFileSync(
-  `${OUT}/about.html`,
-  pageDoc(
-    "BCCとは｜beauty Cooperative Chain",
-    "美容師の開業・集客・運営を支える共同体 BCC（beauty Cooperative Chain）の想い・提供サポート・実績・会社概要。",
-    aboutBody,
-    "about",
-    lpNav,
-    lpFooter,
-  ),
-);
 
 // ---- index ----
 const monoOf = (name) => [...name.split("（")[0].split("(")[0].trim()][0] || "·";
@@ -1299,3 +1241,16 @@ writeFileSync(
 );
 
 console.log(`generated ${services.length} detail pages + index into ${OUT}`);
+
+// 紹介ページ（/about）は FINDER・DATA を使うので最後に書き出す
+writeFileSync(
+  `${OUT}/about.html`,
+  pageDoc(
+    "BCCとは｜beauty Cooperative Chain",
+    "美容師の開業・集客・運営を支える共同体 BCC（beauty Cooperative Chain）の想い・提供サポート・実績・会社概要。",
+    aboutBody(),
+    "about",
+    lpNav,
+    lpFooter,
+  ),
+);
