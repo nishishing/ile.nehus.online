@@ -195,6 +195,11 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 .genre-hero .lead strong{color:var(--gold)}
 .genre-list{padding-top:36px}
 .grid.one{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+.subgroup+.subgroup{margin-top:40px}
+.subh{display:flex;align-items:center;gap:10px;font-size:1.15rem;font-weight:700;margin:0 0 14px;padding-left:12px;border-left:4px solid var(--gold);line-height:1.3}
+.subh span{font-size:.78rem;font-weight:600;color:var(--gold);background:var(--tint);border-radius:999px;padding:2px 10px}
+.subgroup .grid.one{margin:0;max-width:none;grid-template-columns:repeat(3,1fr)}
+@media(max-width:880px){.subgroup .grid.one{grid-template-columns:repeat(2,1fr)}}
 .genre-others{margin-top:64px}
 .genre-others h2{font-size:1.15rem;font-weight:700;margin:0 0 16px}
 .gchips{display:flex;flex-wrap:wrap;gap:10px}
@@ -226,11 +231,12 @@ section{padding:108px 0}
 .cat-bar .cnt{margin-left:auto;color:var(--muted);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase}
 
 /* cards */
-.grid{display:grid;gap:1px;grid-template-columns:repeat(3,1fr);background:var(--line);border:1px solid var(--line)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(3,1fr)}
 .grid.two{grid-template-columns:repeat(2,1fr);max-width:760px;margin:0 auto}
 @media(max-width:880px){.grid{grid-template-columns:repeat(2,1fr)}.grid.two{grid-template-columns:repeat(2,1fr)}}
 /* スマホ: カードを2列に詰める（2026-10-27 オーナー「スマホ版だと縦に下に長すぎて…2列か3列にして」） */
 @media(max-width:560px){
+  .grid{gap:10px}
   .grid .card{padding:16px 14px 14px;min-height:0;gap:8px}
   .grid .card .ctag{display:none}
   .grid .cmark{width:40px;height:40px;border-radius:9px}
@@ -242,8 +248,8 @@ section{padding:108px 0}
   .grid.one .card{min-height:0}
 }
 .hero-sub strong,.lead strong{color:var(--gold);font-weight:700}
-.card{position:relative;background:var(--surface);padding:30px 30px 30px;transition:.35s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;gap:14px;min-height:230px}
-a.card:hover{background:#fff}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:30px 30px 30px;transition:.35s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;gap:14px;min-height:230px}
+a.card:hover{background:#fff;border-color:var(--gold);box-shadow:0 10px 28px rgba(31,99,214,.10)}
 .cmark{width:52px;height:52px;border-radius:11px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;overflow:hidden;flex:none}
 .cmark img{width:100%;height:100%;object-fit:contain;padding:8px}
 .cmark.dark{background:var(--ink);border-color:var(--ink)}
@@ -1032,17 +1038,44 @@ const FINDER = [
 const genreSlug = (c) => "genre-" + enOf[c].toLowerCase().replace(/\s+/g, "-");
 const catCount = (c) => { const n = (DATA.find((x) => x.name === c) || { items: [] }).items.length; if (!n) throw new Error(`FINDER: 不明なジャンル ${c}`); return n; };
 
+// ジャンル内の小分け（2026-10-27 オーナー「集客もこの中で、ホットペッパーなのかとかが順番に分かれてると分かりやすいかもしれません！」）。
+// 並びは各グループ内で DATA の順（StyleManager が先頭）。どのグループにも入らない id はビルドで止める
+const SUBGROUPS = {
+  "集客": [
+    { label: "ホットペッパー", ids: ["stylemanager", "tete-lab", "atsukyakumania", "ones", "stylepost"] },
+    { label: "SNS（Instagram・TikTok）", ids: ["instagram", "freed", "gita"] },
+    { label: "美容師力・考え方", ids: ["biyoushijuku"] },
+  ],
+};
+
 // ---- ジャンル専用ページ（お悩みから選ぶ → ここ）----
 for (const f of FINDER) {
   const d = DATA.find((x) => x.name === f.cat);
   const slug = genreSlug(f.cat);
   if (services.some((v) => v.id === slug)) throw new Error(`ジャンルのURLがサービスと重なる: ${slug}`);
-  const cards = d.items.map((it) => {
+  const card = (it) => {
     const mark = it.logo
       ? `<div class="cmark${it.dark ? " dark" : ""}"><img src="${it.logo}" alt=""></div>`
       : `<div class="cmark"><span class="mono">${esc(it.mono)}</span></div>`;
     return `<a class="card" href="${it.href || "/" + it.id}">${mark}<p class="komoji ctag">${esc(d.en || d.name)}</p><h4>${esc(it.name)}</h4><p>${esc(it.desc)}</p><span class="more">詳細 <span class="arw">→</span></span></a>`;
-  }).join("\n        ");
+  };
+  const gridOf = (items) => `<div class="grid${items.length === 1 ? " one" : items.length === 2 ? " two" : ""}">
+        ${items.map(card).join("\n        ")}
+      </div>`;
+  let listHTML;
+  if (SUBGROUPS[f.cat]) {
+    const used = SUBGROUPS[f.cat].flatMap((g) => g.ids);
+    const left = d.items.filter((it) => !used.includes(it.id)).map((it) => it.id);
+    if (left.length) throw new Error(`SUBGROUPS(${f.cat}) に入っていない: ${left.join(", ")}`);
+    listHTML = SUBGROUPS[f.cat].map((g) => {
+      const items = d.items.filter((it) => g.ids.includes(it.id));
+      if (items.length !== g.ids.length) throw new Error(`SUBGROUPS(${f.cat}/${g.label}) に不明な id`);
+      return `<div class="subgroup"><h2 class="subh">${esc(g.label)}<span>${items.length}件</span></h2>
+      ${gridOf(items)}</div>`;
+    }).join("\n      ");
+  } else {
+    listHTML = gridOf(d.items);
+  }
   const others = FINDER.filter((o) => o !== f).map((o) => `<a href="/${genreSlug(o.cat)}">${esc(o.when.split("（")[0])}</a>`).join("");
   const body = `<main>
   <section class="detail detail-hero genre-hero">
@@ -1055,9 +1088,7 @@ for (const f of FINDER) {
   </section>
   <section class="genre-list">
     <div class="container reveal">
-      <div class="grid${d.items.length === 1 ? " one" : d.items.length === 2 ? " two" : ""}">
-        ${cards}
-      </div>
+      ${listHTML}
       <div class="genre-others">
         <h2>ほかのお悩みから探す</h2>
         <div class="gchips">${others}</div>

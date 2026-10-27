@@ -158,6 +158,11 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 .genre-hero .lead strong{color:var(--gold)}
 .genre-list{padding-top:36px}
 .grid.one{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+.subgroup+.subgroup{margin-top:40px}
+.subh{display:flex;align-items:center;gap:10px;font-size:1.15rem;font-weight:700;margin:0 0 14px;padding-left:12px;border-left:4px solid var(--gold);line-height:1.3}
+.subh span{font-size:.78rem;font-weight:600;color:var(--gold);background:var(--tint);border-radius:999px;padding:2px 10px}
+.subgroup .grid.one{margin:0;max-width:none;grid-template-columns:repeat(3,1fr)}
+@media(max-width:880px){.subgroup .grid.one{grid-template-columns:repeat(2,1fr)}}
 .genre-others{margin-top:64px}
 .genre-others h2{font-size:1.15rem;font-weight:700;margin:0 0 16px}
 .gchips{display:flex;flex-wrap:wrap;gap:10px}
@@ -189,11 +194,12 @@ section{padding:108px 0}
 .cat-bar .cnt{margin-left:auto;color:var(--muted);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase}
 
 /* cards */
-.grid{display:grid;gap:1px;grid-template-columns:repeat(3,1fr);background:var(--line);border:1px solid var(--line)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(3,1fr)}
 .grid.two{grid-template-columns:repeat(2,1fr);max-width:760px;margin:0 auto}
 @media(max-width:880px){.grid{grid-template-columns:repeat(2,1fr)}.grid.two{grid-template-columns:repeat(2,1fr)}}
 /* スマホ: カードを2列に詰める（2026-10-27 オーナー「スマホ版だと縦に下に長すぎて…2列か3列にして」） */
 @media(max-width:560px){
+  .grid{gap:10px}
   .grid .card{padding:16px 14px 14px;min-height:0;gap:8px}
   .grid .card .ctag{display:none}
   .grid .cmark{width:40px;height:40px;border-radius:9px}
@@ -205,8 +211,8 @@ section{padding:108px 0}
   .grid.one .card{min-height:0}
 }
 .hero-sub strong,.lead strong{color:var(--gold);font-weight:700}
-.card{position:relative;background:var(--surface);padding:30px 30px 30px;transition:.35s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;gap:14px;min-height:230px}
-a.card:hover{background:#fff}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:30px 30px 30px;transition:.35s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;gap:14px;min-height:230px}
+a.card:hover{background:#fff;border-color:var(--gold);box-shadow:0 10px 28px rgba(31,99,214,.10)}
 .cmark{width:52px;height:52px;border-radius:11px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;overflow:hidden;flex:none}
 .cmark img{width:100%;height:100%;object-fit:contain;padding:8px}
 .cmark.dark{background:var(--ink);border-color:var(--ink)}
@@ -359,17 +365,24 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section class="genre-list">
     <div class="container reveal">
+      <div class="subgroup"><h2 class="subh">ホットペッパー<span>5件</span></h2>
       <div class="grid">
         <a class="card" href="/stylemanager"><div class="cmark"><span class="mono">S</span></div><p class="komoji ctag">Marketing</p><h4>StyleManager｜PV爆上げ ホットペッパー自動化ツール</h4><p>ホットペッパーのスタイル・ブログ・口コミの運用代行。5店舗の実データを公開中。</p><span class="more">詳細 <span class="arw">→</span></span></a>
         <a class="card" href="/tete-lab"><div class="cmark dark"><img src="notion/tete-lab/logo.png" alt=""></div><p class="komoji ctag">Marketing</p><h4>TETE LAB（HPB完全攻略 / WEB集客）</h4><p>HPB完全攻略 / WEB集客の支援。</p><span class="more">詳細 <span class="arw">→</span></span></a>
         <a class="card" href="/atsukyakumania"><div class="cmark"><span class="mono">集</span></div><p class="komoji ctag">Marketing</p><h4>集客マニア（ホットペッパー / Google）</h4><p>ホットペッパー・Google（MEO/SEO）などの集客支援。</p><span class="more">詳細 <span class="arw">→</span></span></a>
         <a class="card" href="/ones"><div class="cmark"><span class="mono">O</span></div><p class="komoji ctag">Marketing</p><h4>ONE's 流 集客サポート</h4><p>ホットペッパー・ミニモ中心の集客支援。</p><span class="more">詳細 <span class="arw">→</span></span></a>
         <a class="card" href="/stylepost"><div class="cmark"><span class="mono">ス</span></div><p class="komoji ctag">Marketing</p><h4>スタイルポスト（HPBスタイル/ブログ）</h4><p>ホットペッパースタイル/ブログのサポート。</p><span class="more">詳細 <span class="arw">→</span></span></a>
+      </div></div>
+      <div class="subgroup"><h2 class="subh">SNS（Instagram・TikTok）<span>3件</span></h2>
+      <div class="grid">
         <a class="card" href="/freed"><div class="cmark"><span class="mono">フ</span></div><p class="komoji ctag">Marketing</p><h4>フリード（TikTokコンサル / 運用代行）</h4><p>TikTokのコンサル・運用代行。</p><span class="more">詳細 <span class="arw">→</span></span></a>
         <a class="card" href="/instagram"><div class="cmark"><span class="mono">I</span></div><p class="komoji ctag">Marketing</p><h4>Instagramコンサル＆運用代行</h4><p>Instagramの設計〜運用までサポート。</p><span class="more">詳細 <span class="arw">→</span></span></a>
-        <a class="card" href="/biyoushijuku"><div class="cmark"><span class="mono">美</span></div><p class="komoji ctag">Marketing</p><h4>美容師塾（人間力・美容師力コンサル）</h4><p>人間力・美容師力のコンサル支援。</p><span class="more">詳細 <span class="arw">→</span></span></a>
         <a class="card" href="/gita"><div class="cmark"><span class="mono">美</span></div><p class="komoji ctag">Marketing</p><h4>美容室専門 TikTokコンサル（ギータ）</h4><p>美容室特化のTikTok戦略支援。</p><span class="more">詳細 <span class="arw">→</span></span></a>
-      </div>
+      </div></div>
+      <div class="subgroup"><h2 class="subh">美容師力・考え方<span>1件</span></h2>
+      <div class="grid one">
+        <a class="card" href="/biyoushijuku"><div class="cmark"><span class="mono">美</span></div><p class="komoji ctag">Marketing</p><h4>美容師塾（人間力・美容師力コンサル）</h4><p>人間力・美容師力のコンサル支援。</p><span class="more">詳細 <span class="arw">→</span></span></a>
+      </div></div>
       <div class="genre-others">
         <h2>ほかのお悩みから探す</h2>
         <div class="gchips"><a href="/genre-open">開業したい</a><a href="/genre-real-estate">開業する物件を探したい</a><a href="/genre-interior">内装・お店づくりを相談したい</a><a href="/genre-reservation">無断キャンセル・予約まわりを整えたい</a><a href="/genre-education">スタッフ教育・採用を仕組みにしたい</a><a href="/genre-finance">税務調査・節税が気になる</a><a href="/genre-benefits">スタッフの携帯代・福利厚生を見直したい</a><a href="/genre-materials">材料の仕入れを見直したい</a><a href="/genre-hairstyle">ヘアスタイルを販売したい</a></div>
