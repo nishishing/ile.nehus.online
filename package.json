@@ -5,7 +5,7 @@
   "description": "Official website of iLe — hair atelier. Four salons, four islands.",
   "private": true,
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.23.4"
   },
   "scripts": {
     "dev": "astro dev",
@@ -24,12 +24,12 @@
     "generate:post": "node scripts/generate-post.mjs"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/sitemap": "^3.5.0",
-    "@tailwindcss/vite": "^4.1.16",
-    "astro": "^5.13.0",
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/sitemap": "^3.7.4",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.4.2",
     "microcms-js-sdk": "^3.2.0",
-    "tailwindcss": "^4.1.16",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.6.0"
   },
   "devDependencies": {
