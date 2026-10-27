@@ -190,7 +190,19 @@ section{padding:108px 0}
 /* cards */
 .grid{display:grid;gap:1px;grid-template-columns:repeat(3,1fr);background:var(--line);border:1px solid var(--line)}
 .grid.two{grid-template-columns:repeat(2,1fr);max-width:760px;margin:0 auto}
-@media(max-width:880px){.grid{grid-template-columns:1fr}.grid.two{grid-template-columns:1fr}}
+@media(max-width:880px){.grid{grid-template-columns:repeat(2,1fr)}.grid.two{grid-template-columns:repeat(2,1fr)}}
+/* スマホ: カードを2列に詰める（2026-10-27 オーナー「スマホ版だと縦に下に長すぎて…2列か3列にして」） */
+@media(max-width:560px){
+  .grid .card{padding:16px 14px 14px;min-height:0;gap:8px}
+  .grid .card .ctag{display:none}
+  .grid .cmark{width:40px;height:40px;border-radius:9px}
+  .grid .cmark img{padding:5px}
+  .grid .cmark .mono{font-size:1.15rem}
+  .grid .card h4{font-size:.9rem;line-height:1.45}
+  .grid .card p{font-size:.76rem;line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .grid .card .more{font-size:.68rem;letter-spacing:.08em}
+  .grid.one .card{min-height:0}
+}
 .hero-sub strong,.lead strong{color:var(--gold);font-weight:700}
 .card{position:relative;background:var(--surface);padding:30px 30px 30px;transition:.35s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;gap:14px;min-height:230px}
 a.card:hover{background:#fff}
