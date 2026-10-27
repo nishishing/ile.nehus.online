@@ -186,6 +186,15 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 .dcard .new{display:inline-block;margin-left:8px;font-size:.66rem;background:var(--gold);color:#fff;border-radius:999px;padding:2px 8px;vertical-align:3px;letter-spacing:.06em}
 @media(max-width:760px){.dgrid{grid-template-columns:1fr;gap:12px}.dcard{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:4px;padding:18px}.dcard .dn{grid-row:span 3}.dcard p{font-size:.84rem}}
 
+/* 紹介ページ: 登録すると相談できること */
+.mgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:1080px;margin:0 auto}
+.mcell{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 16px 18px;display:flex;flex-direction:column;gap:6px}
+.mcat{color:var(--gold);font-weight:700;font-size:.95rem}
+.mwhen{color:var(--muted);font-size:.8rem;line-height:1.6}
+.mnote{text-align:center;color:var(--muted);font-size:.85rem;margin:26px 0 0}
+@media(max-width:980px){.mgrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.mgrid{grid-template-columns:repeat(2,1fr);gap:8px}.mcell{padding:12px 12px 14px}.mcat{font-size:.88rem}.mwhen{font-size:.72rem}}
+
 /* ジャンル専用ページ */
 .detail.genre-hero{padding-bottom:8px}
 .detail.genre-hero h1{font-weight:700;margin-bottom:6px}
@@ -409,12 +418,12 @@ const nav = `<nav class="nav">
   </div>
 </nav>`;
 
-// 公開LP（/about）用ナビ：サービス一覧（会員限定）へは出さず、公式LINE登録に集約
+// 公開LP（/about）用ナビ：サービス一覧（会員限定）へは出さず、オープンチャットに集約（2026-10-28 オーナー「公式LINEに誘導してるんですけど、オープンチャットに変えたい！」）
 const lpNav = `<nav class="nav">
   <div class="container nav-inner">
     <a class="brand" href="/about">BCC</a>
     <div class="nav-links">
-      <a class="btn-join" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">公式LINE登録</a>
+      <a class="btn-join" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャット</a>
     </div>
   </div>
 </nav>`;
@@ -437,9 +446,9 @@ const lpFooter = `<footer class="footer">
   <div class="container footer-inner reveal">
     <p class="big serif">BCC</p>
     <p class="komoji" style="margin:0 0 26px">beauty Cooperative Chain</p>
-    <p>美容師の開業・集客・運営を支える共同体。<br>まずは公式LINEの登録から。</p>
+    <p>美容師の開業・集客・運営を支える共同体。<br>まずはオープンチャットで気軽にどうぞ。</p>
     <div class="links">
-      <a href="${LINE_URL}" target="_blank" rel="noopener noreferrer">公式LINE登録</a>
+      <a href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャット</a>
       <a href="${ABOUT}">BCCとは</a>
     </div>
     <p class="small">© BCC — beauty Cooperative Chain</p>
@@ -774,14 +783,14 @@ writeFileSync(
 );
 
 // ---- about / 説明LP ----
-const aboutBody = `<header class="hero">
+const aboutBody = () => `<header class="hero">
   <div class="hero-mark serif">BCC</div>
   <div class="hero-inner">
     <span class="eyebrow jp">BCCとは</span>
     <h1><span style="white-space:nowrap">美容業界を、</span><br><span style="white-space:nowrap">もっと強く。</span><span class="hl" style="white-space:nowrap">もっと面白く。</span></h1>
     <p class="hero-sub">材料・教育・集客・お金・出店。<br><span style="white-space:nowrap"><b>技術以外の経営の困りごと</b>を、</span><span style="white-space:nowrap">仲間とサポートで解決する共同体です。</span></p>
     <div class="hero-cta">
-      <a class="primary jp" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">BCC公式LINEに登録する</a>
+      <a class="primary jp" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットに参加する</a>
     </div>
   </div>
 </header>
@@ -836,24 +845,14 @@ const aboutBody = `<header class="hero">
   <section class="alt">
     <div class="container">
       <div class="sec-head reveal">
-        <p class="komoji lbl">Pick up</p>
-        <h2>注目の、<em>サービス</em>。</h2>
-        <p>会員の反響が大きい2つのサービス。詳細は公式LINE登録後にご覧いただけます。</p>
+        <p class="komoji lbl">Members</p>
+        <h2>BCCで、<em style="white-space:nowrap">相談できること</em>。</h2>
+        <p>BCCが選んだ${DATA.reduce((n, c) => n + c.items.length, 0)}のサービスを、悩みごとに探せます。</p>
       </div>
-      <div class="grid two reveal">
-        <a class="card" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">
-          <p class="komoji ctag">携帯事業</p>
-          <h4>携帯電話プラン（ソフトバンク・BCC限定）</h4>
-          <p>通信料を大幅に削減。最新iPhoneに機種変更でき、スタッフの福利厚生・節税にも活用できます。</p>
-          <span class="more">公式LINEで見る <span class="arw">→</span></span>
-        </a>
-        <a class="card" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">
-          <p class="komoji ctag">仕入れ紹介</p>
-          <h4>材料（仕入れ紹介）</h4>
-          <p>サロン向けに、材料の仕入れ（ディーラー）を特別価格でご紹介。取引内容に応じた特典もあります。</p>
-          <span class="more">公式LINEで見る <span class="arw">→</span></span>
-        </a>
+      <div class="mgrid reveal">
+        ${FINDER.map((f) => `<div class="mcell"><span class="mcat">${esc(f.cat)}</span><span class="mwhen">${esc(f.when.replace(/（.*?）/g, ""))}</span></div>`).join("\n        ")}
       </div>
+      <p class="mnote reveal">各サービスの内容・窓口は、会員の方にご案内しています。まずはオープンチャットで気軽にご相談ください。</p>
     </div>
   </section>
 
@@ -900,9 +899,9 @@ const aboutBody = `<header class="hero">
     </div>
     <div class="block reveal" style="max-width:720px;margin:0 auto">
       <ol class="steps">
-        <li>BCC公式LINEに登録</li>
-        <li>会員ページのサービス一覧から、必要なパートナーを選ぶ</li>
-        <li>各サービス専用の窓口に相談</li>
+        <li>オープンチャットに参加</li>
+        <li>悩みを相談・同業者と情報交換</li>
+        <li>必要なサービスの窓口につながる</li>
         <li>導入・利用スタート</li>
       </ol>
     </div>
@@ -944,24 +943,13 @@ const aboutBody = `<header class="hero">
     <div class="sec-head reveal" style="margin-bottom:34px">
       <p class="komoji lbl">Get started</p>
       <h2>BCCで、<em>一緒に解決</em>しませんか。</h2>
-      <p>材料費の削減、セミナー参加、融資相談まで。あなたのサロン経営を、まるごとサポートします。まずは公式LINEの登録から。</p>
+      <p>材料費の削減、セミナー参加、融資相談まで。あなたのサロン経営を、まるごとサポートします。まずはオープンチャットから。</p>
     </div>
-    <a class="go reveal" href="${LINE_URL}" target="_blank" rel="noopener noreferrer">BCC公式LINEに登録する</a>
+    <a class="go reveal" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットに参加する</a>
   </section>
 
 </main>`;
 
-writeFileSync(
-  `${OUT}/about.html`,
-  pageDoc(
-    "BCCとは｜beauty Cooperative Chain",
-    "美容師の開業・集客・運営を支える共同体 BCC（beauty Cooperative Chain）の想い・提供サポート・実績・会社概要。",
-    aboutBody,
-    "about",
-    lpNav,
-    lpFooter,
-  ),
-);
 
 // ---- index ----
 const monoOf = (name) => [...name.split("（")[0].split("(")[0].trim()][0] || "·";
@@ -1253,3 +1241,16 @@ writeFileSync(
 );
 
 console.log(`generated ${services.length} detail pages + index into ${OUT}`);
+
+// 紹介ページ（/about）は FINDER・DATA を使うので最後に書き出す
+writeFileSync(
+  `${OUT}/about.html`,
+  pageDoc(
+    "BCCとは｜beauty Cooperative Chain",
+    "美容師の開業・集客・運営を支える共同体 BCC（beauty Cooperative Chain）の想い・提供サポート・実績・会社概要。",
+    aboutBody(),
+    "about",
+    lpNav,
+    lpFooter,
+  ),
+);
