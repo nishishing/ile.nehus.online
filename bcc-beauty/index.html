@@ -104,6 +104,24 @@ a.feat:hover .more .arw{transform:translateX(8px)}
 .fpick span{border-bottom:1px solid var(--gold);padding-bottom:1px}
 a.frow:hover .fpick{color:var(--gold)}
 .fpick span::after{content:" →";color:var(--gold);font-weight:400}
+.fnum{display:none}
+.fbody{display:block}
+/* パソコン: 押せるカードを2列（スマホは下の max-width:760px のまま・2026-10-27 オーナー「パソコンバージョンは…見せ方が弱い」） */
+@media(min-width:761px){
+  .finder{border-top:0;gap:18px;max-width:none}
+  #find .sec-head h2{font-weight:700;font-size:2.6rem}
+  #find .sec-head p{font-size:1.02rem;color:var(--soft-ink)}
+  .frow{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 26px;transition:.25s}
+  .frow::after{content:"→";color:var(--gold);font-size:1.3rem;font-weight:700;transition:transform .25s}
+  a.frow:hover{border-color:var(--gold);box-shadow:0 10px 28px rgba(31,99,214,.10);transform:translateY(-2px)}
+  a.frow:hover::after{transform:translateX(4px)}
+  .fnum{display:grid;place-items:center;width:64px;height:64px;border-radius:14px;background:var(--tint);color:var(--gold);font-size:1.7rem;font-weight:700;line-height:1}
+  .fnum small{font-size:.7rem;font-weight:600;margin-top:-10px}
+  .fwhen{color:var(--ink);font-size:1.12rem;font-weight:700;line-height:1.5;letter-spacing:.01em}
+  .fpick{margin-top:4px;font-size:.88rem;font-weight:600;color:var(--gold)}
+  .fpick span{border-bottom:0}
+  .fpick span::after{content:""}
+}
 @media(max-width:760px){.finder{grid-template-columns:1fr;border-top:0;gap:10px}.frow{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}}
 @media(max-width:430px){.hero h1{font-size:1.85rem}}
 .hero-cta a.jp{letter-spacing:.06em;text-transform:none;font-size:.9rem;font-weight:600;border-radius:999px}
@@ -341,16 +359,16 @@ a.card:hover .more .arw{transform:translateX(8px)}
       <p>いま困っていることを選ぶと、そのジャンルのサービスがすべて見られます。</p>
     </div>
     <div class="finder reveal">
-      <a class="frow" href="#services" data-cat="開業支援"><p class="fwhen">開業したい（資金・事業計画・準備）</p><p class="fpick"><span>開業支援のサービス 3件を見る</span></p></a>
-      <a class="frow" href="#services" data-cat="不動産"><p class="fwhen">開業する物件を探したい</p><p class="fpick"><span>不動産のサービス 2件を見る</span></p></a>
-      <a class="frow" href="#services" data-cat="内装業者"><p class="fwhen">内装・お店づくりを相談したい</p><p class="fpick"><span>内装業者のサービス 3件を見る</span></p></a>
-      <a class="frow" href="#services" data-cat="集客"><p class="fwhen">お客様を増やしたい（ホットペッパー・SNS・Google）</p><p class="fpick"><span>集客のサービス 8件を見る</span></p></a>
-      <a class="frow" href="#services" data-cat="予約サービス"><p class="fwhen">無断キャンセル・予約まわりを整えたい</p><p class="fpick"><span>予約サービスのサービス 1件を見る</span></p></a>
-      <a class="frow" href="#services" data-cat="教育"><p class="fwhen">スタッフ教育・採用を仕組みにしたい</p><p class="fpick"><span>教育のサービス 3件を見る</span></p></a>
-      <a class="frow" href="#services" data-cat="財務"><p class="fwhen">税務調査・節税が気になる</p><p class="fpick"><span>財務のサービス 1件を見る</span></p></a>
-      <a class="frow" href="#services" data-cat="福利厚生"><p class="fwhen">スタッフの携帯代・福利厚生を見直したい</p><p class="fpick"><span>福利厚生のサービス 1件を見る</span></p></a>
-      <a class="frow" href="#services" data-cat="材料"><p class="fwhen">材料の仕入れを見直したい</p><p class="fpick"><span>材料のサービス 2件を見る</span></p></a>
-      <a class="frow" href="#services" data-cat="ヘアスタイル販売"><p class="fwhen">ヘアスタイルを販売したい</p><p class="fpick"><span>ヘアスタイル販売のサービス 1件を見る</span></p></a>
+      <a class="frow" href="#services" data-cat="開業支援"><span class="fnum">3<small>件</small></span><span class="fbody"><p class="fwhen">開業したい（資金・事業計画・準備）</p><p class="fpick"><span>開業支援のサービス 3件を見る</span></p></span></a>
+      <a class="frow" href="#services" data-cat="不動産"><span class="fnum">2<small>件</small></span><span class="fbody"><p class="fwhen">開業する物件を探したい</p><p class="fpick"><span>不動産のサービス 2件を見る</span></p></span></a>
+      <a class="frow" href="#services" data-cat="内装業者"><span class="fnum">3<small>件</small></span><span class="fbody"><p class="fwhen">内装・お店づくりを相談したい</p><p class="fpick"><span>内装業者のサービス 3件を見る</span></p></span></a>
+      <a class="frow" href="#services" data-cat="集客"><span class="fnum">8<small>件</small></span><span class="fbody"><p class="fwhen">お客様を増やしたい（ホットペッパー・SNS・Google）</p><p class="fpick"><span>集客のサービス 8件を見る</span></p></span></a>
+      <a class="frow" href="#services" data-cat="予約サービス"><span class="fnum">1<small>件</small></span><span class="fbody"><p class="fwhen">無断キャンセル・予約まわりを整えたい</p><p class="fpick"><span>予約サービスのサービス 1件を見る</span></p></span></a>
+      <a class="frow" href="#services" data-cat="教育"><span class="fnum">3<small>件</small></span><span class="fbody"><p class="fwhen">スタッフ教育・採用を仕組みにしたい</p><p class="fpick"><span>教育のサービス 3件を見る</span></p></span></a>
+      <a class="frow" href="#services" data-cat="財務"><span class="fnum">1<small>件</small></span><span class="fbody"><p class="fwhen">税務調査・節税が気になる</p><p class="fpick"><span>財務のサービス 1件を見る</span></p></span></a>
+      <a class="frow" href="#services" data-cat="福利厚生"><span class="fnum">1<small>件</small></span><span class="fbody"><p class="fwhen">スタッフの携帯代・福利厚生を見直したい</p><p class="fpick"><span>福利厚生のサービス 1件を見る</span></p></span></a>
+      <a class="frow" href="#services" data-cat="材料"><span class="fnum">2<small>件</small></span><span class="fbody"><p class="fwhen">材料の仕入れを見直したい</p><p class="fpick"><span>材料のサービス 2件を見る</span></p></span></a>
+      <a class="frow" href="#services" data-cat="ヘアスタイル販売"><span class="fnum">1<small>件</small></span><span class="fbody"><p class="fwhen">ヘアスタイルを販売したい</p><p class="fpick"><span>ヘアスタイル販売のサービス 1件を見る</span></p></span></a>
     </div>
   </section>
 
