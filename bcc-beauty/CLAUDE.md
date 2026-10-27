@@ -172,7 +172,7 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 
 ---
 
-## 現在のサービス（25件＋StyleManager＝一覧では26件）と連絡先
+## 現在のサービス（26件＋StyleManager＝一覧では27件）と連絡先
 
 - 🟢 **StyleManager は「集客」の先頭に置く**（オーナー 2026-10-27「**集客に関してスタイルマネージャー作るの忘れてました。一番上に持ってきて表示してほしい！**」）。
   `gen.mjs` で `DATA` の集客に `unshift`（`href: "/stylemanager"`＝転送先の LP へ）。**`services[]` には入れない**（入れると `stylemanager.html` が生成され、`vercel.json` の転送と二重になる）。
@@ -203,7 +203,8 @@ font: Cormorant Garamond(セリフ欧文) / Inter + Zen Kaku Gothic New(和文)
 | stylepost | 集客 | スタイルポスト | LINE |
 | freed | 集客 | フリード（TikTok） | LINE |
 | instagram | 集客 | Instagramコンサル＆運用代行 | LINE |
-| biyoushijuku | 集客 | 美容師塾 | LINE |
+| biyoushijuku | 集客 | 美容師塾（SNS集客コンサル） | LINE ※2026-10-28 資料差し替え（月額35,000円税込・マンツーマン） |
+| miseba | 集客 | MISEBA（美容師のSNS分析アプリ） | 紹介ページ `bigup-dashboard.onrender.com/lp`（LINEなし）※2026-10-28 追加。料金の目安は「10/31までの登録」の値＝**11/1 に月2,750円へ直す** |
 | gita | 集客 | 美容室専門TikTokコンサル（ギータ） | LINE |
 | refundhub | 予約サービス | RefundHub | LINE |
 

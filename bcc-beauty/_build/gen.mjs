@@ -46,7 +46,8 @@ const services = [
   { id:"stylepost", cat:"集客", name:"スタイルポスト（HPBスタイル/ブログ）", desc:"ホットペッパースタイル/ブログのサポート。" },
   { id:"freed", cat:"集客", name:"フリード（TikTokコンサル / 運用代行）", desc:"TikTokのコンサル・運用代行。" },
   { id:"instagram", cat:"集客", name:"Instagramコンサル＆運用代行", desc:"Instagramの設計〜運用までサポート。" },
-  { id:"biyoushijuku", cat:"集客", name:"美容師塾（人間力・美容師力コンサル）", desc:"人間力・美容師力のコンサル支援。" },
+  { id:"biyoushijuku", cat:"集客", name:"美容師塾（SNS集客コンサル）", desc:"美容師専門のマンツーマン集客コンサル。SNSで新規・指名・売上を伸ばす。" }, // 2026-10-28 オーナー「美容師塾内容がちょっと変わってます！」で資料（コンサルLP_実績版_配布用_2026-10.pdf）に差し替え
+  { id:"miseba", cat:"集客", name:"MISEBA（美容師のSNS分析アプリ）", desc:"今伸びている美容師リールの実データで、インスタの新規集客を伸ばす美容師専用アプリ。" }, // 2026-10-28 オーナー「あともう一つ、集客コンテンツ追加！」（資料 MISEBA紹介_配布用_2026-10.pdf・LP）
   { id:"gita", cat:"集客", name:"美容室専門 TikTokコンサル（ギータ）", desc:"美容室特化のTikTok戦略支援。" },
 
   { id:"refundhub", cat:"予約サービス", name:"RefundHub（キャンセル請求・再予約）", desc:"キャンセル請求・再予約の導線づくり。" },
@@ -658,7 +659,8 @@ const RICH = {
   "stylepost": { lineUrl: "https://lin.ee/xJJJzTa", intro: "ホットペッパービューティーのスタイル投稿・ブログ投稿を自動化するサービス。掲載運用の手間を削減します。", features: ["スタイル投稿の自動化", "ブログ投稿の自動化", "公式LINEで相談受付"] },
   "freed": { lineUrl: "https://lin.ee/3Tap1qV", intro: "TikTokのコンサルティングおよび運用代行を行うサービス。動画集客の戦略・運用をサポートします。", features: ["TikTokコンサルティング", "TikTok運用代行", "公式LINEで相談受付"] },
   "instagram": { lineUrl: "https://lin.ee/X4xLPIW", intro: "美容室・美容師向けにInstagramのコンサルティング・運用代行を行うサービス。設計から運用までサポートします。", features: ["Instagram運用代行", "Instagramコンサル", "公式LINEで相談受付"] },
-  "biyoushijuku": { lineUrl: "https://lin.ee/5WuYMGB", intro: "美容師の人間力と美容師力を高めることを目的としたコンサルティング（美容師塾）。土台づくりから伴走します。", features: ["人間力コンサル", "美容師力コンサル", "公式LINEで相談受付"] },
+  "biyoushijuku": { lineUrl: "https://lin.ee/5WuYMGB", intro: "美容師専門の、マンツーマン集客コンサルティング（美容師塾）。今伸びている実データとあなたの数字をもとに、やることを一緒に決めて毎月伴走します。" },
+  "miseba": { panelTitle: "登録・お申し込み", intro: "全国の美容師リールを毎日計測して、いま伸びている型と、あなたの動画の直し方を出す美容師専用のアプリです。", links: [{ label: "MISEBAの紹介ページを見る", href: "https://bigup-dashboard.onrender.com/lp", primary: true, note: "※登録・お支払いは、MISEBAの紹介ページから行います。" }] },
   "gita": { lineUrl: "https://lin.ee/fpFKHWF", intro: "美容室を専門としたTikTokコンサルティングサービス。集客向けのTikTok運用を支援します。", features: ["美容室専門のTikTokコンサル", "集客向けTikTok運用支援", "公式LINEで相談受付"] },
   "refundhub": { lineUrl: "https://lin.ee/74gb9g5", intro: "キャンセル請求と再予約に対応するサービス。キャンセルによる機会損失を抑える導線をつくります。", features: ["キャンセル請求対応", "再予約対応", "公式LINEで相談受付"] },
 };
@@ -955,7 +957,7 @@ const wb = (t) => esc(t).replace(/ \/ /g, " /<wbr> ").replace(/・/g, "・<wbr>"
 // StyleManager とスタイルポストは同じタグ「自動化ツール」で隣に並べる（2026-10-27 オーナー「スタイルマネージャーとスタイルポストは自動化ツールにしましょう！…その2つは同じタグなので、よく並べてください！」）
 const KIND = {
   "stylemanager": "自動化ツール", "tete-lab": "集客コンサル", "atsukyakumania": "集客コンサル", "ones": "集客コンサル",
-  "stylepost": "自動化ツール", "freed": "TikTok", "instagram": "Instagram", "gita": "TikTok", "biyoushijuku": "Instagram",
+  "stylepost": "自動化ツール", "freed": "TikTok", "instagram": "Instagram", "gita": "TikTok", "biyoushijuku": "Instagram", "miseba": "Instagram",
   "salon-start": "開業サポート", "next-beauty-tech": "融資・事業計画の相談", "stylebase": "開業サポート",
   "mutas": "不動産", "real-estate-salon": "不動産",
   "plum-plan": "内装・空間設計", "layer-design-works": "内装施工", "sunny-side-life": "内装・空間づくり",
@@ -977,6 +979,8 @@ const PRICE = {
   "freed": "月13万円〜（税別・助成金利用時の実質）",
   "gita": "月15万円〜（税抜）",
   "instagram": "3か月 7万円〜（税抜）",
+  "biyoushijuku": "月3万5,000円（税込）",
+  "miseba": "月2,200円〜（税込・10/31までの登録）", // 11/1 から新規は月2,750円（資料）。11/1 になったら直す
   "ones": "6か月 60万円〜",
   "haircamp": "1人 月2,100円〜（税別）",
   "toko": "3万円〜",
@@ -993,7 +997,8 @@ const POINTS = {
   "freed": ["コンサル", "運用代行"],
   "instagram": ["コンサル・運用代行", "設計から運用までサポート"],
   "gita": ["美容室専門のコンサル", "TikTok戦略の支援"],
-  "biyoushijuku": ["Instagram・TikTokの運用指導", "SNS以外も（接客・ブランディング・価格設計）"],
+  "biyoushijuku": ["SNSで新規・指名・売上アップ", "数字の診断→集客の道筋づくり", "月1回の面談＋随時フォロー"], // 2026-10-28 新資料に合わせて差し替え
+  "miseba": ["伸びてる美容師リールが毎日わかる", "自分の数字を毎週自動で記録", "動画をシーンごとに添削"],
   "salon-start": ["0円開業の導線設計", "融資・事業計画も相談可"],
   "next-beauty-tech": ["融資の相談", "事業計画づくり"],
   "stylebase": ["開業準備から", "運営の立ち上げまで"],
@@ -1049,7 +1054,7 @@ const SUBGROUPS = {
     { label: "ホットペッパー", ids: ["stylemanager", "stylepost", "tete-lab", "atsukyakumania", "ones"] },
     // SNS は青い小見出しを Instagram／TikTok にして段を分ける（2026-10-27 オーナー「ここはSNSで分けましょう。…インスタなのかTikTokなのか！」）
     // 美容師塾は SNS の Instagram 段へ（2026-10-27 オーナー「これもインスタグラムのコンサルに近いので、インスタのコンサルっぽい内容と、あとSNS以外のサポートもみたいな感じで」。資料のカリキュラムも SNS運用指導が先頭）
-    { label: "SNS（Instagram・TikTok）", ids: ["instagram", "biyoushijuku", "freed", "gita"] },
+    { label: "SNS（Instagram・TikTok）", ids: ["instagram", "biyoushijuku", "miseba", "freed", "gita"] },
   ],
 };
 
