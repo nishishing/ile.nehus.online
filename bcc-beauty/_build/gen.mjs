@@ -172,7 +172,7 @@ a.frow:hover .fpick{color:var(--gold)}
 @media(max-width:760px){.hero{min-height:auto;padding:64px 0 72px}.hero-cta{display:flex;flex-direction:column;align-items:stretch;max-width:340px;margin-left:auto;margin-right:auto}.hstats div{min-width:0;flex:1;padding:10px 8px}.hstats strong{font-size:1.25rem}.hstats span{font-size:.7rem}.scrollcue{display:none}}
 
 /* BCCでできること */
-.does{padding:72px 0 24px}
+.does{padding:48px 0 8px}
 .does h2{text-align:center;font-weight:700;font-size:clamp(1.4rem,3vw,2rem);margin:0 0 8px;letter-spacing:.03em}
 .does .dlead{text-align:center;color:var(--muted);margin:0 0 34px;font-size:.95rem}
 .dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -183,7 +183,9 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 .dcard p{margin:0;color:var(--muted);font-size:.88rem;line-height:1.8;flex:1}
 .dcard .go{color:var(--gold);font-weight:700;font-size:.88rem}
 .dcard .new{display:inline-block;margin-left:8px;font-size:.66rem;background:var(--gold);color:#fff;border-radius:999px;padding:2px 8px;vertical-align:3px;letter-spacing:.06em}
-@media(max-width:760px){.dgrid{grid-template-columns:1fr;gap:12px}.dcard{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:4px;padding:18px}.dcard .dn{grid-row:span 3}.dcard p{font-size:.84rem}}
+.dcard.solo{max-width:720px;margin:0 auto}
+.dcard .dk{color:var(--gold);font-weight:700;font-size:.78rem;letter-spacing:.06em}
+@media(max-width:760px){.dgrid{grid-template-columns:1fr;gap:12px}.dcard{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:4px;padding:18px}.dcard .dn{grid-row:span 3}.dcard.solo{display:flex;padding:20px}.dcard p{font-size:.84rem}}
 
 /* ジャンル専用ページ */
 .detail.genre-hero{padding-bottom:8px}
@@ -1223,13 +1225,7 @@ const indexBody = `<header class="hero">
 
   <section class="does">
     <div class="container reveal">
-      <h2>BCCでできること</h2>
-      <p class="dlead">技術以外の「困った」を、ここで片づけられます。</p>
-      <div class="dgrid">
-        <a class="dcard" href="#find"><span class="dn">1</span><h3>悩みからサービスを探す</h3><p>開業・集客・教育・節税など、BCCが選んだ${itemCount}のサービスから選べます。</p><span class="go">悩みから探す →</span></a>
-        <a class="dcard" href="${OC_URL}" target="_blank" rel="noopener noreferrer"><span class="dn">2</span><h3>同業者に、気軽に相談する</h3><p>オープンチャットで情報交換。各サービスへは公式LINEから直接聞けます。</p><span class="go">オープンチャットへ →</span></a>
-        <a class="dcard" href="${SALOPIT_URL}" target="_blank" rel="noopener noreferrer"><span class="dn">3</span><h3>施術ツール「サロピット」<span class="new">NEW</span></h3><p>参考レシピ・配合計算・お助けチャット。施術中にそのまま開けます。</p><span class="go">サロピットを開く →</span></a>
-      </div>
+      <a class="dcard solo" href="${SALOPIT_URL}" target="_blank" rel="noopener noreferrer"><span class="dk">施術中は、こちらも</span><h3>施術ツール「サロピット」<span class="new">NEW</span></h3><p>参考レシピ・配合計算・お助けチャット。施術中にそのまま開けます。</p><span class="go">サロピットを開く →</span></a>
     </div>
   </section>
 
