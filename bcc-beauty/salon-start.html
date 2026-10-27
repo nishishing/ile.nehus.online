@@ -148,6 +148,22 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 .dcard .new{display:inline-block;margin-left:8px;font-size:.66rem;background:var(--gold);color:#fff;border-radius:999px;padding:2px 8px;vertical-align:3px;letter-spacing:.06em}
 @media(max-width:760px){.dgrid{grid-template-columns:1fr;gap:12px}.dcard{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:4px;padding:18px}.dcard .dn{grid-row:span 3}.dcard p{font-size:.84rem}}
 
+/* ジャンル専用ページ */
+.detail.genre-hero{padding-bottom:8px}
+.detail.genre-hero h1{font-weight:700;margin-bottom:6px}
+.genre-hero .back{display:flex;width:max-content}
+.gsub{margin:0 0 6px;color:var(--muted);font-weight:600}
+@media(max-width:760px){.detail.genre-hero{padding-top:36px}.genre-hero .back{margin-bottom:20px}.genre-list{padding-top:20px}}
+.gtag{display:inline-block;margin:0 0 14px;background:var(--tint);color:var(--gold);font-weight:700;font-size:.85rem;border-radius:999px;padding:4px 14px}
+.genre-hero .lead strong{color:var(--gold)}
+.genre-list{padding-top:36px}
+.grid.one{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+.genre-others{margin-top:64px}
+.genre-others h2{font-size:1.15rem;font-weight:700;margin:0 0 16px}
+.gchips{display:flex;flex-wrap:wrap;gap:10px}
+.gchips a{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:.88rem;color:var(--soft-ink);font-weight:600}
+.gchips a:hover{border-color:var(--gold);color:var(--gold)}
+
 /* sections */
 section{padding:108px 0}
 .alt{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -202,7 +218,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
 
 /* detail */
 .detail-hero{padding:88px 0 22px}
-.back{display:inline-flex;align-items:center;gap:9px;color:var(--muted);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 34px}
+.back{display:inline-flex;align-items:center;gap:9px;color:var(--muted);font-size:.82rem;letter-spacing:.06em;margin:0 0 34px}
 .back:hover{color:var(--ink)}
 .detail .lbl{margin:0 0 18px}
 .detail h1{font-family:var(--font-jp);font-weight:500;font-size:clamp(1.9rem,4.2vw,2.9rem);margin:0 0 8px;letter-spacing:.03em;line-height:1.4}
@@ -323,7 +339,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
 <main>
   <section class="detail detail-hero">
     <div class="container reveal">
-      <a class="back" href="/">← Back to top</a>
+      <a class="back" href="/">← トップにもどる</a>
       <p class="komoji lbl">Open ・ 開業支援</p>
       <h1>Salon Start（0円開業）</h1>
       <p class="lead">0円開業の導線設計。融資・事業計画などの相談に対応。</p>

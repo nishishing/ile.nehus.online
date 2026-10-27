@@ -185,6 +185,22 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 .dcard .new{display:inline-block;margin-left:8px;font-size:.66rem;background:var(--gold);color:#fff;border-radius:999px;padding:2px 8px;vertical-align:3px;letter-spacing:.06em}
 @media(max-width:760px){.dgrid{grid-template-columns:1fr;gap:12px}.dcard{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:4px;padding:18px}.dcard .dn{grid-row:span 3}.dcard p{font-size:.84rem}}
 
+/* ジャンル専用ページ */
+.detail.genre-hero{padding-bottom:8px}
+.detail.genre-hero h1{font-weight:700;margin-bottom:6px}
+.genre-hero .back{display:flex;width:max-content}
+.gsub{margin:0 0 6px;color:var(--muted);font-weight:600}
+@media(max-width:760px){.detail.genre-hero{padding-top:36px}.genre-hero .back{margin-bottom:20px}.genre-list{padding-top:20px}}
+.gtag{display:inline-block;margin:0 0 14px;background:var(--tint);color:var(--gold);font-weight:700;font-size:.85rem;border-radius:999px;padding:4px 14px}
+.genre-hero .lead strong{color:var(--gold)}
+.genre-list{padding-top:36px}
+.grid.one{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+.genre-others{margin-top:64px}
+.genre-others h2{font-size:1.15rem;font-weight:700;margin:0 0 16px}
+.gchips{display:flex;flex-wrap:wrap;gap:10px}
+.gchips a{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:.88rem;color:var(--soft-ink);font-weight:600}
+.gchips a:hover{border-color:var(--gold);color:var(--gold)}
+
 /* sections */
 section{padding:108px 0}
 .alt{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -239,7 +255,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
 
 /* detail */
 .detail-hero{padding:88px 0 22px}
-.back{display:inline-flex;align-items:center;gap:9px;color:var(--muted);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 34px}
+.back{display:inline-flex;align-items:center;gap:9px;color:var(--muted);font-size:.82rem;letter-spacing:.06em;margin:0 0 34px}
 .back:hover{color:var(--ink)}
 .detail .lbl{margin:0 0 18px}
 .detail h1{font-family:var(--font-jp);font-weight:500;font-size:clamp(1.9rem,4.2vw,2.9rem);margin:0 0 8px;letter-spacing:.03em;line-height:1.4}
@@ -676,7 +692,7 @@ for (const s of services) {
   const body = `<main>
   <section class="detail detail-hero">
     <div class="container reveal">
-      <a class="back" href="/">← Back to top</a>
+      <a class="back" href="/">← トップにもどる</a>
       <p class="komoji lbl">${esc(enOf[s.cat] || "")} ・ ${esc(s.cat)}</p>
       <h1>${esc(s.name)}</h1>${logo}
       <p class="lead">${esc(s.desc)}</p>
@@ -976,7 +992,7 @@ const DATA = categories
 
 // 「お悩みから選ぶ」（2026-10-27 オーナー「今言った内容もざっくり改善していきたいですね！」）。
 // 🔴 悩み → ジャンルにつなぐ。特定の会社に絞らない（2026-10-27 オーナー「企業を絞っちゃうと…平等じゃないかな」）。
-// cat は categories[] の名前。押すとそのジャンルのタブが開き、全社が同じ並びで出る
+// cat は categories[] の名前。押すとジャンル専用ページ（/genre-xxx）が開き、全社が同じ並びで出る（2026-10-27 オーナー「別ページで…見やすくした方がいい」）
 const FINDER = [
   { when: "開業したい（資金・事業計画・準備）", cat: "開業支援" },
   { when: "開業する物件を探したい", cat: "不動産" },
@@ -989,7 +1005,44 @@ const FINDER = [
   { when: "材料の仕入れを見直したい", cat: "材料" },
   { when: "ヘアスタイルを販売したい", cat: "ヘアスタイル販売" },
 ];
+const genreSlug = (c) => "genre-" + enOf[c].toLowerCase().replace(/\s+/g, "-");
 const catCount = (c) => { const n = services.filter((v) => v.cat === c).length; if (!n) throw new Error(`FINDER: 不明なジャンル ${c}`); return n; };
+
+// ---- ジャンル専用ページ（お悩みから選ぶ → ここ）----
+for (const f of FINDER) {
+  const d = DATA.find((x) => x.name === f.cat);
+  const slug = genreSlug(f.cat);
+  if (services.some((v) => v.id === slug)) throw new Error(`ジャンルのURLがサービスと重なる: ${slug}`);
+  const cards = d.items.map((it) => {
+    const mark = it.logo
+      ? `<div class="cmark${it.dark ? " dark" : ""}"><img src="${it.logo}" alt=""></div>`
+      : `<div class="cmark"><span class="mono">${esc(it.mono)}</span></div>`;
+    return `<a class="card" href="/${it.id}">${mark}<p class="komoji ctag">${esc(d.en || d.name)}</p><h4>${esc(it.name)}</h4><p>${esc(it.desc)}</p><span class="more">詳細 <span class="arw">→</span></span></a>`;
+  }).join("\n        ");
+  const others = FINDER.filter((o) => o !== f).map((o) => `<a href="/${genreSlug(o.cat)}">${esc(o.when.split("（")[0])}</a>`).join("");
+  const body = `<main>
+  <section class="detail detail-hero genre-hero">
+    <div class="container reveal">
+      <a class="back" href="/#find">← お悩み一覧にもどる</a>
+      <p class="gtag">${esc(f.cat)}</p>
+      <h1>${esc(f.when.split("（")[0])}</h1>${f.when.includes("（") ? `<p class="gsub">${esc(f.when.slice(f.when.indexOf("（") + 1).replace(/）$/, ""))}</p>` : ""}
+      <p class="lead">${esc(f.cat)}のサービスは<strong>${d.items.length}件</strong>あります。気になるものを開くと、内容と相談先（公式LINEなど）が見られます。</p>
+    </div>
+  </section>
+  <section class="genre-list">
+    <div class="container reveal">
+      <div class="grid${d.items.length === 1 ? " one" : d.items.length === 2 ? " two" : ""}">
+        ${cards}
+      </div>
+      <div class="genre-others">
+        <h2>ほかのお悩みから探す</h2>
+        <div class="gchips">${others}</div>
+      </div>
+    </div>
+  </section>
+</main>`;
+  writeFileSync(`${OUT}/${slug}.html`, pageDoc(`${f.cat}のサービス｜BCC`, `${f.when}。BCCの${f.cat}のサービス${d.items.length}件をまとめています。`, body, slug));
+}
 
 const indexBody = `<header class="hero">
   <div class="hero-mark serif">BCC</div>
@@ -1027,10 +1080,10 @@ const indexBody = `<header class="hero">
     <div class="sec-head reveal">
       <p class="komoji lbl">Find</p>
       <h2>お悩みから、<em>選ぶ</em>。</h2>
-      <p>いま困っていることを選ぶと、そのジャンルのサービスがすべて見られます。</p>
+      <p>いま困っていることを選ぶと、そのジャンルのサービスだけをまとめたページが開きます。</p>
     </div>
     <div class="finder reveal">
-${FINDER.map((f) => `      <a class="frow" href="#services" data-cat="${esc(f.cat)}"><span class="fnum">${catCount(f.cat)}<small>件</small></span><span class="fbody"><p class="fwhen">${esc(f.when)}</p><p class="fpick"><span>${esc(f.cat)}のサービス ${catCount(f.cat)}件を見る</span></p></span></a>`).join("\n")}
+${FINDER.map((f) => `      <a class="frow" href="/${genreSlug(f.cat)}"><span class="fnum">${catCount(f.cat)}<small>件</small></span><span class="fbody"><p class="fwhen">${esc(f.when)}</p><p class="fpick"><span>${esc(f.cat)}のサービス ${catCount(f.cat)}件を見る</span></p></span></a>`).join("\n")}
     </div>
   </section>
 
@@ -1111,13 +1164,6 @@ const DATA = ${JSON.stringify(DATA)};
     tabs.appendChild(b);
   });
   activate(0);
-  // 「お悩みから、選ぶ。」→ 該当ジャンルのタブを開く
-  document.querySelectorAll("[data-cat]").forEach(function(a){
-    a.addEventListener("click",function(){
-      var i=TABS.findIndex(function(t){return t.name===a.getAttribute("data-cat");});
-      if(i>=0) activate(i);
-    });
-  });
 })();
 </script>`;
 
