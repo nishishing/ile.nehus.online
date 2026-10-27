@@ -18,7 +18,7 @@ This repo is the source for **iLe**'s official website
 company (**株式会社ing**) unifies its four salons under the single iLe brand
 ("船から、島へ" — *from a ship, to an island*).
 
-The site is built as a **static Astro 5 + Tailwind v4** project deployed via
+The site is built as a **static Astro 7 + Tailwind v4** project deployed via
 **Cloudflare Workers Static Assets**. Design system = **v8 "Cool Mono
 Editorial"** (cool grayscale only). All pages emit Schema.org JSON-LD so
 LLMs (ChatGPT, Claude, Perplexity, Google AI Overviews) can correctly
@@ -98,7 +98,7 @@ on 2026-08-01.
 
 | Layer | Choice | Reason |
 |---|---|---|
-| Framework | **Astro 5** (SSG) | Best CWV, easy Schema.org control |
+| Framework | **Astro 7** (SSG) | Best CWV, easy Schema.org control |
 | Language | TypeScript strict | Type safety |
 | Styling | **Tailwind CSS v4** via `@tailwindcss/vite` | `@theme` directive + per-component `<style>` |
 | Content | **microCMS** (planned) / static `src/data/*` (current) | Japanese-friendly headless CMS |
@@ -111,10 +111,14 @@ on 2026-08-01.
 site is intentionally pure static; the Cloudflare deploy is a Static Assets
 Worker (no JS runtime). Keep it that way unless there's a concrete need.
 
-**Why Astro 5, not 6**: tried Astro 6 first, hit a rolldown ↔
-`@tailwindcss/vite` incompatibility (`Missing field tsconfigPaths on
-BindingViteResolvePluginConfig.resolveOptions`). Downgraded to Astro 5.13+.
-Don't bump back to 6 until that issue is resolved upstream.
+**Astro 7 (2026-10-27〜)**: Astro 5.18.2 was the last 5.x and the security
+fixes (AVIF image optimization RCE, XSS fixes, etc.) exist only in 6.x/7.x, so
+we moved to **astro 7.4.2 + @tailwindcss/vite 4.3 + vite 8**. The old blocker
+(Astro 6 rolldown ↔ `@tailwindcss/vite`: `Missing field tsconfigPaths on
+BindingViteResolvePluginConfig.resolveOptions`) no longer reproduces: check 0
+errors, build 177 pages, validate OK, and a layout comparison of /, salons,
+journal pages was identical (only whitespace-in-text and `&amp;` encoding
+differ in HTML). **Astro 7 needs Node ≥ 22.23.4.**
 
 ---
 
