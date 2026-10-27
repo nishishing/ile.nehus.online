@@ -158,6 +158,40 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 @media(max-width:980px){.mgrid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.mgrid{grid-template-columns:repeat(2,1fr);gap:8px}.mcell{padding:12px 12px 14px}.mcat{font-size:.88rem}.mwhen{font-size:.72rem}}
 
+/* 詳細ページ（2026-10-28 全ページ共通の作り込み） */
+.detail-hero .gtag{margin:0 0 12px}
+.dprice{margin:14px 0 0;font-weight:700;color:var(--ink);font-size:1rem}
+.dprice span{display:inline-block;margin-right:8px;font-size:.7rem;font-weight:600;color:var(--gold);background:var(--tint);border-radius:999px;padding:2px 10px;vertical-align:2px}
+.dpoints{list-style:none;padding:0;margin:18px 0 6px;display:flex;flex-wrap:wrap;gap:8px;max-width:720px}
+.dpoints li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 32px;position:relative;font-size:.88rem;font-weight:600;color:var(--soft-ink)}
+.dpoints li::before{content:"";position:absolute;left:13px;top:50%;width:10px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:translateY(-70%) rotate(-45deg)}
+.detail .btn,.dbottom .btn{border-radius:999px;font-size:.86rem;letter-spacing:.06em;text-transform:none;font-weight:700;padding:17px}
+.detail .btn-line,.dbottom .btn-line{background:#06c755;border-color:#06c755;color:#fff}
+.detail .btn-line:hover,.dbottom .btn-line:hover{background:#05b04b;color:#fff}
+.dworry{margin:0 0 50px}
+.dworry-item{margin:0 0 8px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:12px 16px;font-weight:600;color:var(--soft-ink)}
+.dflow{margin-top:50px}
+.dsteps{list-style:none;counter-reset:d;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:780px}
+.dsteps li{counter-increment:d;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.dsteps li::before{content:counter(d);width:30px;height:30px;border-radius:50%;background:var(--tint);color:var(--gold);display:grid;place-items:center;font-weight:700}
+.dsteps strong{font-size:.98rem}
+.dsteps span{color:var(--muted);font-size:.85rem;line-height:1.7}
+@media(max-width:680px){.dsteps{grid-template-columns:1fr}.dsteps li{display:grid;grid-template-columns:auto 1fr;column-gap:12px}.dsteps li::before{grid-row:span 2}}
+.dbottom{padding:60px 0 10px}
+.dbottom-box{max-width:780px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px 28px}
+.dbottom-k{margin:0 0 6px;color:var(--gold);font-weight:700;font-size:.8rem}
+.dbottom-h{margin:0;font-weight:700;font-size:1.15rem;line-height:1.6}
+.dbottom-box .panelbox{max-width:none}
+.dbottom-box .panelbox h2{display:none}
+.dothers{padding:50px 0 30px}
+.dothers-list{display:flex;flex-wrap:wrap;gap:10px;max-width:780px}
+.dothers-list a{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:700;font-size:.9rem}
+.dothers-list a:hover{border-color:var(--gold)}
+.dothers-list small{color:var(--gold);font-weight:600;font-size:.72rem}
+.dsticky{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;justify-content:center}
+.dsticky a{display:block;width:100%;max-width:520px;text-align:center;background:#06c755;color:#fff;font-weight:700;border-radius:999px;padding:14px;font-size:.92rem}
+main.has-dsticky{padding-bottom:84px}
+
 /* ジャンル専用ページ */
 .detail.genre-hero{padding-bottom:8px}
 .detail.genre-hero h1{font-weight:700;margin-bottom:6px}
@@ -385,20 +419,20 @@ a.card:hover .more .arw{transform:translateX(8px)}
     </div>
   </div>
 </nav>
-<main>
+<main class="has-dsticky">
   <section class="detail detail-hero">
     <div class="container reveal">
-      <a class="back" href="/">← トップにもどる</a>
-      <p class="komoji lbl">Interior ・ 内装業者</p>
+      <a class="back" href="/genre-interior">← 内装業者のサービス一覧</a>
+      <p class="gtag">内装・空間づくり</p>
       <h1>SUNNY SIDE LIFE</h1>
+      <ul class="dpoints"><li>内装の相談先</li><li>空間づくり</li></ul>
       <p class="lead">内装・空間づくりの相談先。</p>
       <p class="lead" style="margin-top:16px">内装・空間づくりのご相談に対応するサービス。施工に関するご相談を受け付けています。</p>
       <div class="panelbox" style="margin-top:38px">
         <h2>ご相談・ご予約</h2>
         <p class="panel-lead">SUNNY SIDE LIFE専用の公式LINEで、詳しい内容・お見積り・ご予約の相談ができます。<br>友だち追加して、気になることをそのまま送ってください。</p>
-        <div class="cta-grid">
-          <a class="btn btn-line" href="https://lin.ee/3xCh6Ix" target="_blank" rel="noopener noreferrer">SUNNY SIDE LIFE専用の公式LINEへ</a>
-          <a class="btn" href="/#services">ほかのサービスを見る</a>
+        <div class="cta-grid one">
+          <a class="btn btn-line" href="https://lin.ee/3xCh6Ix" target="_blank" rel="noopener noreferrer">SUNNY SIDE LIFE専用の公式LINEで相談する</a>
         </div>
         <p class="small" style="margin-top:16px">※BCCの公式LINEとは別のアカウントです。</p>
       </div>
@@ -406,9 +440,39 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section style="padding-top:40px">
     <div class="container reveal">
-      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">SUNNY SIDE LIFE は、理美容室の内装・施工を専門とする会社です。見た目のデザインだけでなく、動線・収納・回転率・コスト・運営まで考えた『売上につながる内装』を提案。物件探し・融資・内装設計・設備手配までワンストップで対応します（公式LINE登録7,800名以上）。</p><details class="dacc" open><summary><span>対応内容</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>美容室・理容室の内装設計・施工</li><li>セット面配置・シャンプー導線・収納計画の設計</li><li>スケルトン物件・居抜き物件の両対応</li><li>M&amp;A（既存店舗買収）に関するアドバイス</li></ul></div></details><details class="dacc"><summary><span>強み</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>年間108店舗以上のサポート実績</li><li>理美容室専門だからこその専門設計</li><li>物件・融資・内装をまとめて相談できる</li><li>スタッフ移動距離・回転率まで考えた売上につながる動線設計</li><li>スピーディーな対応</li></ul></div></details><details class="dacc"><summary><span>内装費用の目安（坪数別）</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><div class="plans"><div class="plan"><span class="pn">10坪</span><span class="pd">550〜850万円</span></div><div class="plan"><span class="pn">15坪</span><span class="pd">750〜1,100万円</span></div><div class="plan"><span class="pn">20坪</span><span class="pd">950〜1,400万円</span></div><div class="plan"><span class="pn">30坪</span><span class="pd">1,300〜1,800万円</span></div><div class="plan"><span class="pd">※設備・仕様により変動</span></div></div></div></details><details class="dacc"><summary><span>施工の流れ</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ol class="steps"><li>問い合わせ・無料相談</li><li>ヒアリング・現地確認</li><li>提案・お見積り</li><li>ご契約</li><li>設計・デザイン</li><li>施工</li><li>お引渡し</li><li>オープン・集客アフターサポート</li></ol></div></details></div></div>
+      <div class="block dworry"><p class="subhead">こんなお悩みに</p><p class="dworry-item">内装・お店づくりを相談したい</p></div>
+      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">SUNNY SIDE LIFE は、理美容室の内装・施工を専門とする会社です。見た目のデザインだけでなく、動線・収納・回転率・コスト・運営まで考えた『売上につながる内装』を提案。物件探し・融資・内装設計・設備手配までワンストップで対応します（公式LINE登録7,800名以上）。</p><details class="dacc" open><summary><span>対応内容</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>美容室・理容室の内装設計・施工</li><li>セット面配置・シャンプー導線・収納計画の設計</li><li>スケルトン物件・居抜き物件の両対応</li><li>M&amp;A（既存店舗買収）に関するアドバイス</li></ul></div></details><details class="dacc"><summary><span>強み</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>年間108店舗以上のサポート実績</li><li>理美容室専門だからこその専門設計</li><li>物件・融資・内装をまとめて相談できる</li><li>スタッフ移動距離・回転率まで考えた売上につながる動線設計</li><li>スピーディーな対応</li></ul></div></details><details class="dacc"><summary><span>内装費用の目安（坪数別）</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><div class="plans"><div class="plan"><span class="pn">10坪</span><span class="pd">550〜850万円</span></div><div class="plan"><span class="pn">15坪</span><span class="pd">750〜1,100万円</span></div><div class="plan"><span class="pn">20坪</span><span class="pd">950〜1,400万円</span></div><div class="plan"><span class="pn">30坪</span><span class="pd">1,300〜1,800万円</span></div><div class="plan"><span class="pd">※設備・仕様により変動</span></div></div></div></details><details class="dacc"><summary><span>施工の流れ</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ol class="steps"><li>問い合わせ・無料相談</li><li>ヒアリング・現地確認</li><li>提案・お見積り</li><li>ご契約</li><li>設計・デザイン</li><li>施工</li><li>お引渡し</li><li>オープン・集客アフターサポート</li></ol></div></details></div>
+      <div class="block dflow"><p class="subhead">ご相談の流れ</p><ol class="dsteps">
+        <li><strong>友だち追加</strong><span>下のボタンからSUNNY SIDE LIFE専用の公式LINEを追加します。</span></li>
+        <li><strong>気になることを送る</strong><span>料金・内容・自分のサロンに合うかなど、そのまま送ってOKです。</span></li>
+        <li><strong>案内が届く</strong><span>SUNNY SIDE LIFEから、詳しい内容・お見積り・ご予約のご案内が届きます。</span></li>
+      </ol></div></div>
+  </section>
+  <section class="dbottom">
+    <div class="container reveal">
+      <div class="dbottom-box">
+        <p class="dbottom-k">内装・空間づくり</p>
+        <p class="dbottom-h">SUNNY SIDE LIFEについて、まずは気軽に聞いてみる</p>
+        <div class="panelbox" style="margin-top:18px;border-top:0;padding-top:0">
+        <h2>ご相談・ご予約</h2>
+        <p class="panel-lead">SUNNY SIDE LIFE専用の公式LINEで、詳しい内容・お見積り・ご予約の相談ができます。<br>友だち追加して、気になることをそのまま送ってください。</p>
+        <div class="cta-grid one">
+          <a class="btn btn-line" href="https://lin.ee/3xCh6Ix" target="_blank" rel="noopener noreferrer">SUNNY SIDE LIFE専用の公式LINEで相談する</a>
+        </div>
+        <p class="small" style="margin-top:16px">※BCCの公式LINEとは別のアカウントです。</p>
+      </div>
+      </div>
+    </div>
+  </section>
+  <section class="dothers">
+    <div class="container reveal">
+      <p class="subhead">内装業者のほかのサービス</p>
+      <div class="dothers-list"><a href="/plum-plan"><span>PLUM PLAN</span><small>内装・空間設計</small></a><a href="/layer-design-works"><span>Layer Design Works</span><small>内装施工</small></a></div>
+      <a class="back" style="margin:22px 0 0" href="/genre-interior">内装業者のサービス一覧へ →</a>
+    </div>
   </section>
 </main>
+<div class="dsticky"><a href="https://lin.ee/3xCh6Ix" target="_blank" rel="noopener noreferrer">SUNNY SIDE LIFEに公式LINEで相談する</a></div>
 <footer class="footer">
   <div class="container footer-inner reveal">
     <p class="big serif">BCC</p>

@@ -158,6 +158,40 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 @media(max-width:980px){.mgrid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.mgrid{grid-template-columns:repeat(2,1fr);gap:8px}.mcell{padding:12px 12px 14px}.mcat{font-size:.88rem}.mwhen{font-size:.72rem}}
 
+/* 詳細ページ（2026-10-28 全ページ共通の作り込み） */
+.detail-hero .gtag{margin:0 0 12px}
+.dprice{margin:14px 0 0;font-weight:700;color:var(--ink);font-size:1rem}
+.dprice span{display:inline-block;margin-right:8px;font-size:.7rem;font-weight:600;color:var(--gold);background:var(--tint);border-radius:999px;padding:2px 10px;vertical-align:2px}
+.dpoints{list-style:none;padding:0;margin:18px 0 6px;display:flex;flex-wrap:wrap;gap:8px;max-width:720px}
+.dpoints li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 32px;position:relative;font-size:.88rem;font-weight:600;color:var(--soft-ink)}
+.dpoints li::before{content:"";position:absolute;left:13px;top:50%;width:10px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:translateY(-70%) rotate(-45deg)}
+.detail .btn,.dbottom .btn{border-radius:999px;font-size:.86rem;letter-spacing:.06em;text-transform:none;font-weight:700;padding:17px}
+.detail .btn-line,.dbottom .btn-line{background:#06c755;border-color:#06c755;color:#fff}
+.detail .btn-line:hover,.dbottom .btn-line:hover{background:#05b04b;color:#fff}
+.dworry{margin:0 0 50px}
+.dworry-item{margin:0 0 8px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:12px 16px;font-weight:600;color:var(--soft-ink)}
+.dflow{margin-top:50px}
+.dsteps{list-style:none;counter-reset:d;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:780px}
+.dsteps li{counter-increment:d;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.dsteps li::before{content:counter(d);width:30px;height:30px;border-radius:50%;background:var(--tint);color:var(--gold);display:grid;place-items:center;font-weight:700}
+.dsteps strong{font-size:.98rem}
+.dsteps span{color:var(--muted);font-size:.85rem;line-height:1.7}
+@media(max-width:680px){.dsteps{grid-template-columns:1fr}.dsteps li{display:grid;grid-template-columns:auto 1fr;column-gap:12px}.dsteps li::before{grid-row:span 2}}
+.dbottom{padding:60px 0 10px}
+.dbottom-box{max-width:780px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px 28px}
+.dbottom-k{margin:0 0 6px;color:var(--gold);font-weight:700;font-size:.8rem}
+.dbottom-h{margin:0;font-weight:700;font-size:1.15rem;line-height:1.6}
+.dbottom-box .panelbox{max-width:none}
+.dbottom-box .panelbox h2{display:none}
+.dothers{padding:50px 0 30px}
+.dothers-list{display:flex;flex-wrap:wrap;gap:10px;max-width:780px}
+.dothers-list a{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:700;font-size:.9rem}
+.dothers-list a:hover{border-color:var(--gold)}
+.dothers-list small{color:var(--gold);font-weight:600;font-size:.72rem}
+.dsticky{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;justify-content:center}
+.dsticky a{display:block;width:100%;max-width:520px;text-align:center;background:#06c755;color:#fff;font-weight:700;border-radius:999px;padding:14px;font-size:.92rem}
+main.has-dsticky{padding-bottom:84px}
+
 /* ジャンル専用ページ */
 .detail.genre-hero{padding-bottom:8px}
 .detail.genre-hero h1{font-weight:700;margin-bottom:6px}
@@ -385,12 +419,13 @@ a.card:hover .more .arw{transform:translateX(8px)}
     </div>
   </div>
 </nav>
-<main>
+<main class="has-dsticky">
   <section class="detail detail-hero">
     <div class="container reveal">
-      <a class="back" href="/">← トップにもどる</a>
-      <p class="komoji lbl">Hairstyle ・ ヘアスタイル販売</p>
+      <a class="back" href="/genre-hairstyle">← ヘアスタイル販売のサービス一覧</a>
+      <p class="gtag">販売プラットフォーム</p>
       <h1>ヘアスタイル販売サイト</h1>
+      <ul class="dpoints"><li>ヘアスタイルを販売</li><li>販売の場を用意</li></ul>
       <p class="lead">ヘアスタイルの販売プラットフォーム。</p>
       <p class="lead" style="margin-top:16px">ヘアスタイルの販売サイト「Artify」をご案内するサービス。AIヘアスタイルのオーダーメイドにも対応しています。</p>
       <div class="panelbox" style="margin-top:38px">
@@ -404,9 +439,26 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section style="padding-top:40px">
     <div class="container reveal">
+      <div class="block dworry"><p class="subhead">こんなお悩みに</p><p class="dworry-item">ヘアスタイルを販売したい</p></div>
       <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">Artify（アーティファイ）が運営するヘアスタイルの販売サイトです。オンラインストアでの販売に加え、AIを活用したヘアスタイルのオーダーメイドにも対応しています。</p><details class="dacc" open><summary><span>提供内容</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>オンラインストア（Artify）でのヘアスタイル販売</li><li>AIヘアスタイルのオーダーメイド制作に対応</li></ul></div></details><details class="dacc"><summary><span>オーダーメイドのご相談</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><p class="lead" style="margin:0">AIヘアスタイルのオーダーメイドを希望される場合は、InstagramのDMからご連絡ください。</p></div></details></div></div>
   </section>
+  <section class="dbottom">
+    <div class="container reveal">
+      <div class="dbottom-box">
+        <p class="dbottom-k">販売プラットフォーム</p>
+        <p class="dbottom-h">ヘアスタイル販売サイトについて、まずは気軽に聞いてみる</p>
+        <div class="panelbox" style="margin-top:18px;border-top:0;padding-top:0">
+        <h2>ヘアスタイル販売サイト</h2>
+        <div class="cta-grid">
+          <a class="btn btn-line" href="https://artify.stores.jp/" target="_blank" rel="noopener noreferrer">ヘアスタイル販売サイトへ（Artify）</a>
+          <a class="btn" href="https://amplified-moss-043.notion.site/286b15ad990a811ea0c9c09889c6ad39" target="_blank" rel="noopener noreferrer">資料（詳細）を見る</a>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
 </main>
+<div class="dsticky"><a href="https://artify.stores.jp/" target="_blank" rel="noopener noreferrer">ヘアスタイル販売サイトへ（Artify）</a></div>
 <footer class="footer">
   <div class="container footer-inner reveal">
     <p class="big serif">BCC</p>

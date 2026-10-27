@@ -158,6 +158,40 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 @media(max-width:980px){.mgrid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.mgrid{grid-template-columns:repeat(2,1fr);gap:8px}.mcell{padding:12px 12px 14px}.mcat{font-size:.88rem}.mwhen{font-size:.72rem}}
 
+/* 詳細ページ（2026-10-28 全ページ共通の作り込み） */
+.detail-hero .gtag{margin:0 0 12px}
+.dprice{margin:14px 0 0;font-weight:700;color:var(--ink);font-size:1rem}
+.dprice span{display:inline-block;margin-right:8px;font-size:.7rem;font-weight:600;color:var(--gold);background:var(--tint);border-radius:999px;padding:2px 10px;vertical-align:2px}
+.dpoints{list-style:none;padding:0;margin:18px 0 6px;display:flex;flex-wrap:wrap;gap:8px;max-width:720px}
+.dpoints li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 32px;position:relative;font-size:.88rem;font-weight:600;color:var(--soft-ink)}
+.dpoints li::before{content:"";position:absolute;left:13px;top:50%;width:10px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:translateY(-70%) rotate(-45deg)}
+.detail .btn,.dbottom .btn{border-radius:999px;font-size:.86rem;letter-spacing:.06em;text-transform:none;font-weight:700;padding:17px}
+.detail .btn-line,.dbottom .btn-line{background:#06c755;border-color:#06c755;color:#fff}
+.detail .btn-line:hover,.dbottom .btn-line:hover{background:#05b04b;color:#fff}
+.dworry{margin:0 0 50px}
+.dworry-item{margin:0 0 8px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:12px 16px;font-weight:600;color:var(--soft-ink)}
+.dflow{margin-top:50px}
+.dsteps{list-style:none;counter-reset:d;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:780px}
+.dsteps li{counter-increment:d;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.dsteps li::before{content:counter(d);width:30px;height:30px;border-radius:50%;background:var(--tint);color:var(--gold);display:grid;place-items:center;font-weight:700}
+.dsteps strong{font-size:.98rem}
+.dsteps span{color:var(--muted);font-size:.85rem;line-height:1.7}
+@media(max-width:680px){.dsteps{grid-template-columns:1fr}.dsteps li{display:grid;grid-template-columns:auto 1fr;column-gap:12px}.dsteps li::before{grid-row:span 2}}
+.dbottom{padding:60px 0 10px}
+.dbottom-box{max-width:780px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px 28px}
+.dbottom-k{margin:0 0 6px;color:var(--gold);font-weight:700;font-size:.8rem}
+.dbottom-h{margin:0;font-weight:700;font-size:1.15rem;line-height:1.6}
+.dbottom-box .panelbox{max-width:none}
+.dbottom-box .panelbox h2{display:none}
+.dothers{padding:50px 0 30px}
+.dothers-list{display:flex;flex-wrap:wrap;gap:10px;max-width:780px}
+.dothers-list a{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:700;font-size:.9rem}
+.dothers-list a:hover{border-color:var(--gold)}
+.dothers-list small{color:var(--gold);font-weight:600;font-size:.72rem}
+.dsticky{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;justify-content:center}
+.dsticky a{display:block;width:100%;max-width:520px;text-align:center;background:#06c755;color:#fff;font-weight:700;border-radius:999px;padding:14px;font-size:.92rem}
+main.has-dsticky{padding-bottom:84px}
+
 /* ジャンル専用ページ */
 .detail.genre-hero{padding-bottom:8px}
 .detail.genre-hero h1{font-weight:700;margin-bottom:6px}
@@ -385,12 +419,14 @@ a.card:hover .more .arw{transform:translateX(8px)}
     </div>
   </div>
 </nav>
-<main>
+<main class="has-dsticky">
   <section class="detail detail-hero">
     <div class="container reveal">
-      <a class="back" href="/">← トップにもどる</a>
-      <p class="komoji lbl">Benefits ・ 福利厚生</p>
+      <a class="back" href="/genre-benefits">← 福利厚生のサービス一覧</a>
+      <p class="gtag">通信費の見直し</p>
       <h1>携帯電話プラン（ソフトバンク・BCC限定）</h1>
+      <p class="dprice"><span>料金の目安</span>通信料 月3,280円〜</p>
+      <ul class="dpoints"><li>ソフトバンクのBCC限定</li><li>通信料削減・最新iPhone</li><li>福利厚生・節税に</li></ul>
       <p class="lead">ソフトバンクのBCC限定プラン。通信料削減・最新iPhone・福利厚生・節税に。</p>
       <p class="lead" style="margin-top:16px">携帯電話を格安にできるご案内。格安SIMではなく「ソフトバンク」のBCC限定プランです。最新のiPhoneに機種変更でき、通信料も削減。スタッフの福利厚生（社用携帯）や節税にも活用できます。</p>
       <div class="panelbox" style="margin-top:38px">
@@ -407,10 +443,30 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section style="padding-top:40px">
     <div class="container reveal">
+      <div class="block dworry"><p class="subhead">こんなお悩みに</p><p class="dworry-item">スタッフの携帯代・福利厚生を見直したい</p></div>
       <div class="block" style="margin-top:50px"><p class="subhead">お客様の声</p><blockquote class="quote">実際に僕がやってみました。ギガ放題・電話かけ放題・テザリングなどオプションが全てついていて、通信料が12,000円から5,000円ほどになりました！ 携帯はiPhone16でしたが、1円でiPhone17に変えて、iPhone16はメルカリで10万円ほどで売れました。スタッフもみんな最新のiPhoneに変えられて、画質も容量も料金も良くなり、従業員満足度もかなり上げることができました！ ソフトバンクショップでは必ずしも案内されないプランなので、ぜひお問い合わせください。</blockquote></div>
       <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">携帯電話を格安にできるご案内です。いわゆる格安SIMではなく「ソフトバンク」のBCC限定プラン。通信料は3,280円〜、最新のiPhone17が1円で持てます。店舗スタッフや代表者のご家族の携帯も対応可能です。</p><details class="dacc" open><summary><span>料金の例（月額）</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><div class="plans"><div class="plan"><span class="pn">代表</span><span class="pd">24,000円 → 5,481円</span></div><div class="plan"><span class="pn">スタッフ</span><span class="pd">12,000円 → 3,281円</span></div></div></div></details><details class="dacc"><summary><span>ポイント</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>格安SIMではなく、ソフトバンクのBCC限定プラン</li><li>通信料3,280円〜／最新iPhone17が1円</li><li>最新のiPhoneに機種変更でき、通信料も削減</li><li>最近iPhoneに機種変更したばかりの方も可能</li><li>通常2万円ほどの事務手数料が無料</li><li>店舗スタッフや代表者のご家族の携帯も対応</li></ul></div></details><details class="dacc"><summary><span>オーナー様のメリット（福利厚生・節税）</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>社用携帯として福利厚生化し、給与天引きにするとスタッフの保険料を下げられ、実質手取りアップも可能</li><li>スタッフ分の携帯代が経費になり、持ち出しなしで節税</li><li>例：スタッフ50人 × 5,000円 ＝ 月25万円 × 12ヶ月 ＝ 年間約300万円の節税（天引きのため会社負担なし）</li></ul></div></details></div></div>
   </section>
+  <section class="dbottom">
+    <div class="container reveal">
+      <div class="dbottom-box">
+        <p class="dbottom-k">通信費の見直し</p>
+        <p class="dbottom-h">携帯電話プランについて、まずは気軽に聞いてみる</p>
+        <div class="panelbox" style="margin-top:18px;border-top:0;padding-top:0">
+        <h2>試算・お問い合わせ</h2>
+        <div class="cta-grid">
+          <a class="btn btn-line" href="https://lin.ee/WNphK9j" target="_blank" rel="noopener noreferrer">携帯プラン専用の公式LINEへ</a>
+          <a class="btn" href="https://liverty-mobile-sim.vercel.app/" target="_blank" rel="noopener noreferrer">スマホ料金シミュレーターで試算</a>
+          <a class="btn" href="https://liverty-salon-lp.vercel.app/" target="_blank" rel="noopener noreferrer">新デザインLPを見る</a>
+          <a class="btn" href="https://liverty-salon-lp.vercel.app/flyer-a4.html" target="_blank" rel="noopener noreferrer">チラシ（A4）を見る</a>
+        </div>
+        <p class="small" style="margin-top:16px">ご連絡時に「BCC／携帯」とお伝えください。芸能関係も担当する担当スタッフが順次対応します。</p>
+      </div>
+      </div>
+    </div>
+  </section>
 </main>
+<div class="dsticky"><a href="https://lin.ee/WNphK9j" target="_blank" rel="noopener noreferrer">携帯プラン専用の公式LINEへ</a></div>
 <footer class="footer">
   <div class="container footer-inner reveal">
     <p class="big serif">BCC</p>

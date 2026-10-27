@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>美容師塾（人間力・美容師力コンサル）｜BCC</title>
-<meta name="description" content="人間力・美容師力のコンサル支援。">
+<title>美容師塾（SNS集客コンサル）｜BCC</title>
+<meta name="description" content="美容師専門のマンツーマン集客コンサル。SNSで新規・指名・売上を伸ばす。">
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://bcc-tau.vercel.app/biyoushijuku">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BCC">
-<meta property="og:title" content="美容師塾（人間力・美容師力コンサル）｜BCC">
-<meta property="og:description" content="人間力・美容師力のコンサル支援。">
+<meta property="og:title" content="美容師塾（SNS集客コンサル）｜BCC">
+<meta property="og:description" content="美容師専門のマンツーマン集客コンサル。SNSで新規・指名・売上を伸ばす。">
 <meta property="og:url" content="https://bcc-tau.vercel.app/biyoushijuku">
 <meta property="og:image" content="https://bcc-tau.vercel.app/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="美容師塾（人間力・美容師力コンサル）｜BCC">
-<meta name="twitter:description" content="人間力・美容師力のコンサル支援。">
+<meta name="twitter:title" content="美容師塾（SNS集客コンサル）｜BCC">
+<meta name="twitter:description" content="美容師専門のマンツーマン集客コンサル。SNSで新規・指名・売上を伸ばす。">
 <meta name="twitter:image" content="https://bcc-tau.vercel.app/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,6 +157,40 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 .mnote{text-align:center;color:var(--muted);font-size:.85rem;margin:26px 0 0}
 @media(max-width:980px){.mgrid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.mgrid{grid-template-columns:repeat(2,1fr);gap:8px}.mcell{padding:12px 12px 14px}.mcat{font-size:.88rem}.mwhen{font-size:.72rem}}
+
+/* 詳細ページ（2026-10-28 全ページ共通の作り込み） */
+.detail-hero .gtag{margin:0 0 12px}
+.dprice{margin:14px 0 0;font-weight:700;color:var(--ink);font-size:1rem}
+.dprice span{display:inline-block;margin-right:8px;font-size:.7rem;font-weight:600;color:var(--gold);background:var(--tint);border-radius:999px;padding:2px 10px;vertical-align:2px}
+.dpoints{list-style:none;padding:0;margin:18px 0 6px;display:flex;flex-wrap:wrap;gap:8px;max-width:720px}
+.dpoints li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 32px;position:relative;font-size:.88rem;font-weight:600;color:var(--soft-ink)}
+.dpoints li::before{content:"";position:absolute;left:13px;top:50%;width:10px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:translateY(-70%) rotate(-45deg)}
+.detail .btn,.dbottom .btn{border-radius:999px;font-size:.86rem;letter-spacing:.06em;text-transform:none;font-weight:700;padding:17px}
+.detail .btn-line,.dbottom .btn-line{background:#06c755;border-color:#06c755;color:#fff}
+.detail .btn-line:hover,.dbottom .btn-line:hover{background:#05b04b;color:#fff}
+.dworry{margin:0 0 50px}
+.dworry-item{margin:0 0 8px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:12px 16px;font-weight:600;color:var(--soft-ink)}
+.dflow{margin-top:50px}
+.dsteps{list-style:none;counter-reset:d;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:780px}
+.dsteps li{counter-increment:d;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.dsteps li::before{content:counter(d);width:30px;height:30px;border-radius:50%;background:var(--tint);color:var(--gold);display:grid;place-items:center;font-weight:700}
+.dsteps strong{font-size:.98rem}
+.dsteps span{color:var(--muted);font-size:.85rem;line-height:1.7}
+@media(max-width:680px){.dsteps{grid-template-columns:1fr}.dsteps li{display:grid;grid-template-columns:auto 1fr;column-gap:12px}.dsteps li::before{grid-row:span 2}}
+.dbottom{padding:60px 0 10px}
+.dbottom-box{max-width:780px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px 28px}
+.dbottom-k{margin:0 0 6px;color:var(--gold);font-weight:700;font-size:.8rem}
+.dbottom-h{margin:0;font-weight:700;font-size:1.15rem;line-height:1.6}
+.dbottom-box .panelbox{max-width:none}
+.dbottom-box .panelbox h2{display:none}
+.dothers{padding:50px 0 30px}
+.dothers-list{display:flex;flex-wrap:wrap;gap:10px;max-width:780px}
+.dothers-list a{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:700;font-size:.9rem}
+.dothers-list a:hover{border-color:var(--gold)}
+.dothers-list small{color:var(--gold);font-weight:600;font-size:.72rem}
+.dsticky{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;justify-content:center}
+.dsticky a{display:block;width:100%;max-width:520px;text-align:center;background:#06c755;color:#fff;font-weight:700;border-radius:999px;padding:14px;font-size:.92rem}
+main.has-dsticky{padding-bottom:84px}
 
 /* ジャンル専用ページ */
 .detail.genre-hero{padding-bottom:8px}
@@ -385,20 +419,21 @@ a.card:hover .more .arw{transform:translateX(8px)}
     </div>
   </div>
 </nav>
-<main>
+<main class="has-dsticky">
   <section class="detail detail-hero">
     <div class="container reveal">
-      <a class="back" href="/">← トップにもどる</a>
-      <p class="komoji lbl">Marketing ・ 集客</p>
-      <h1>美容師塾（人間力・美容師力コンサル）</h1>
-      <p class="lead">人間力・美容師力のコンサル支援。</p>
-      <p class="lead" style="margin-top:16px">美容師の人間力と美容師力を高めることを目的としたコンサルティング（美容師塾）。土台づくりから伴走します。</p>
+      <a class="back" href="/genre-marketing">← 集客のサービス一覧</a>
+      <p class="gtag">Instagram</p>
+      <h1>美容師塾（SNS集客コンサル）</h1>
+      <p class="dprice"><span>料金の目安</span>月3万5,000円（税込）</p>
+      <ul class="dpoints"><li>SNSで新規・指名・売上アップ</li><li>数字の診断→集客の道筋づくり</li><li>月1回の面談＋随時フォロー</li></ul>
+      <p class="lead">美容師専門のマンツーマン集客コンサル。SNSで新規・指名・売上を伸ばす。</p>
+      <p class="lead" style="margin-top:16px">美容師専門の、マンツーマン集客コンサルティング（美容師塾）。今伸びている実データとあなたの数字をもとに、やることを一緒に決めて毎月伴走します。</p>
       <div class="panelbox" style="margin-top:38px">
         <h2>ご相談・ご予約</h2>
         <p class="panel-lead">美容師塾専用の公式LINEで、詳しい内容・お見積り・ご予約の相談ができます。<br>友だち追加して、気になることをそのまま送ってください。</p>
-        <div class="cta-grid">
-          <a class="btn btn-line" href="https://lin.ee/5WuYMGB" target="_blank" rel="noopener noreferrer">美容師塾専用の公式LINEへ</a>
-          <a class="btn" href="/#services">ほかのサービスを見る</a>
+        <div class="cta-grid one">
+          <a class="btn btn-line" href="https://lin.ee/5WuYMGB" target="_blank" rel="noopener noreferrer">美容師塾専用の公式LINEで相談する</a>
         </div>
         <p class="small" style="margin-top:16px">※BCCの公式LINEとは別のアカウントです。</p>
       </div>
@@ -406,9 +441,39 @@ a.card:hover .more .arw{transform:translateX(8px)}
   </section>
   <section style="padding-top:40px">
     <div class="container reveal">
-      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">SHUNKI（シュンキ）が提供する、美容師向けの総合塾・コンサルティングサービスです。SNS運用、カウンセリング・接客、再来率向上、価格設計までを体系的に指導し、受講生の97%が結果を出しています。頑張っているのに結果が出ない美容師を、選ばれる側へと変えるSHUNKIメソッドが特長です。</p><details class="dacc" open><summary><span>実績</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>集客成功率97%</li><li>月売上平均43万円アップ</li><li>月間新規獲得35名（単価28,000円での実績）</li><li>リピート率35%アップ</li></ul></div></details><details class="dacc"><summary><span>カリキュラム</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>SNS運用指導：Instagram・TikTokの分析、予約につながる個別提案、指名されるアカウント作り</li><li>カウンセリング＆接客：会話パターン習得、ヒアリングマニュアル、再来率向上トレーニング</li><li>ブランディング構築：強み発見・言語化・ビジュアル化</li><li>売上・単価アップの価格設計</li><li>キャリアステップ提案：ロードマップ作成、独立シナリオの実現</li></ul></div></details><details class="dacc"><summary><span>サポート体制</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>マンツーマンMTG：月1回60分のZoomコンサル</li><li>無制限チャットサポート：LINE/DMは24時間OK、原則即日返信</li><li>添削サービス：投稿案・メニュー・返信文などを添削</li><li>毎月の目標設定と丁寧なフィードバック</li></ul></div></details></div></div>
+      <div class="block dworry"><p class="subhead">こんなお悩みに</p><p class="dworry-item">お客様を増やしたい（ホットペッパー・SNS・Google）</p></div>
+      <div class="block dossier"><p class="subhead">資料の内容</p><p class="lead dov">美容師専門の、マンツーマン集客コンサルティングです。感覚やネットの一般論ではなく、「今伸びている実データ」と「あなたの数字」を根拠に、やることを一緒に決めて毎月伴走します。SNSで新規・指名・売上を伸ばすことを目指します。</p><details class="dacc" open><summary><span>塾生の実績（例）</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ul class="feature-list"><li>再生数：入塾前の平均 約2,500再生 → 入塾1か月で47.5万再生（ある塾生の1投稿）</li><li>塾生のリール再生数の例：113万・97万・61万・47万・35万・17万・15万・8.8万</li><li>新規：SNS経由で月18人（月間再生48.5万回・投稿36本）</li><li>売上：前月比+34.7%（施術件数 31件→50件）</li><li>月商：100万円超（直近1年で過去最高）</li><li>客単価：2.1万円超</li></ul><p class="lead" style="margin:0">※掲載の数字は、実際に支援した美容師の実績（一部・本人の許可のうえ匿名）です。成果を保証するものではありません。</p></div></details><details class="dacc"><summary><span>進め方の流れ</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><ol class="steps"><li>現状の数字診断：集客・指名・単価・SNSを数字で棚卸しし、どこを伸ばせば売上が変わるかを特定</li><li>集客ロードマップの作成：目標から逆算して、SNS発信の型・プロフィール・予約導線まで一式を設計</li><li>月次の伴走：毎月の面談でKPIと進捗を確認し、次の一手を更新。投稿の添削も随時</li></ol></div></details><details class="dacc"><summary><span>料金</span><span class="dacc-i" aria-hidden="true"></span></summary><div class="dacc-body"><div class="plans"><div class="plan"><span class="pn">月額</span><span class="pd">35,000円（税込）</span></div><div class="plan"><span class="pn">含まれるもの</span><span class="pd">月1回の面談（オンライン可）＋期間中の随時フォロー（LINE等）</span></div><div class="plan"><span class="pn">契約期間・お支払い方法</span><span class="pd">初回のご相談時に案内</span></div></div></div></details></div>
+      <div class="block dflow"><p class="subhead">ご相談の流れ</p><ol class="dsteps">
+        <li><strong>友だち追加</strong><span>下のボタンから美容師塾専用の公式LINEを追加します。</span></li>
+        <li><strong>気になることを送る</strong><span>料金・内容・自分のサロンに合うかなど、そのまま送ってOKです。</span></li>
+        <li><strong>案内が届く</strong><span>美容師塾から、詳しい内容・お見積り・ご予約のご案内が届きます。</span></li>
+      </ol></div></div>
+  </section>
+  <section class="dbottom">
+    <div class="container reveal">
+      <div class="dbottom-box">
+        <p class="dbottom-k">Instagram</p>
+        <p class="dbottom-h">美容師塾について、まずは気軽に聞いてみる</p>
+        <div class="panelbox" style="margin-top:18px;border-top:0;padding-top:0">
+        <h2>ご相談・ご予約</h2>
+        <p class="panel-lead">美容師塾専用の公式LINEで、詳しい内容・お見積り・ご予約の相談ができます。<br>友だち追加して、気になることをそのまま送ってください。</p>
+        <div class="cta-grid one">
+          <a class="btn btn-line" href="https://lin.ee/5WuYMGB" target="_blank" rel="noopener noreferrer">美容師塾専用の公式LINEで相談する</a>
+        </div>
+        <p class="small" style="margin-top:16px">※BCCの公式LINEとは別のアカウントです。</p>
+      </div>
+      </div>
+    </div>
+  </section>
+  <section class="dothers">
+    <div class="container reveal">
+      <p class="subhead">集客のほかのサービス</p>
+      <div class="dothers-list"><a href="/stylemanager"><span>StyleManager</span><small>自動化ツール</small></a><a href="/stylepost"><span>スタイルポスト</span><small>自動化ツール</small></a><a href="/tete-lab"><span>TETE LAB</span><small>集客コンサル</small></a><a href="/atsukyakumania"><span>集客マニア</span><small>集客コンサル</small></a><a href="/ones"><span>ONE's 流 集客サポート</span><small>集客コンサル</small></a><a href="/freed"><span>フリード</span><small>TikTok</small></a><a href="/instagram"><span>Instagramコンサル＆運用代行</span><small>Instagram</small></a><a href="/miseba"><span>MISEBA</span><small>Instagram</small></a><a href="/gita"><span>ギータ</span><small>TikTok</small></a></div>
+      <a class="back" style="margin:22px 0 0" href="/genre-marketing">集客のサービス一覧へ →</a>
+    </div>
   </section>
 </main>
+<div class="dsticky"><a href="https://lin.ee/5WuYMGB" target="_blank" rel="noopener noreferrer">美容師塾に公式LINEで相談する</a></div>
 <footer class="footer">
   <div class="container footer-inner reveal">
     <p class="big serif">BCC</p>

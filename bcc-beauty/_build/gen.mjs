@@ -46,7 +46,8 @@ const services = [
   { id:"stylepost", cat:"集客", name:"スタイルポスト（HPBスタイル/ブログ）", desc:"ホットペッパースタイル/ブログのサポート。" },
   { id:"freed", cat:"集客", name:"フリード（TikTokコンサル / 運用代行）", desc:"TikTokのコンサル・運用代行。" },
   { id:"instagram", cat:"集客", name:"Instagramコンサル＆運用代行", desc:"Instagramの設計〜運用までサポート。" },
-  { id:"biyoushijuku", cat:"集客", name:"美容師塾（人間力・美容師力コンサル）", desc:"人間力・美容師力のコンサル支援。" },
+  { id:"biyoushijuku", cat:"集客", name:"美容師塾（SNS集客コンサル）", desc:"美容師専門のマンツーマン集客コンサル。SNSで新規・指名・売上を伸ばす。" }, // 2026-10-28 オーナー「美容師塾内容がちょっと変わってます！」で資料（コンサルLP_実績版_配布用_2026-10.pdf）に差し替え
+  { id:"miseba", cat:"集客", name:"MISEBA（美容師のSNS分析アプリ）", desc:"今伸びている美容師リールの実データで、インスタの新規集客を伸ばす美容師専用アプリ。" }, // 2026-10-28 オーナー「あともう一つ、集客コンテンツ追加！」（資料 MISEBA紹介_配布用_2026-10.pdf・LP）
   { id:"gita", cat:"集客", name:"美容室専門 TikTokコンサル（ギータ）", desc:"美容室特化のTikTok戦略支援。" },
 
   { id:"refundhub", cat:"予約サービス", name:"RefundHub（キャンセル請求・再予約）", desc:"キャンセル請求・再予約の導線づくり。" },
@@ -194,6 +195,40 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 .mnote{text-align:center;color:var(--muted);font-size:.85rem;margin:26px 0 0}
 @media(max-width:980px){.mgrid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.mgrid{grid-template-columns:repeat(2,1fr);gap:8px}.mcell{padding:12px 12px 14px}.mcat{font-size:.88rem}.mwhen{font-size:.72rem}}
+
+/* 詳細ページ（2026-10-28 全ページ共通の作り込み） */
+.detail-hero .gtag{margin:0 0 12px}
+.dprice{margin:14px 0 0;font-weight:700;color:var(--ink);font-size:1rem}
+.dprice span{display:inline-block;margin-right:8px;font-size:.7rem;font-weight:600;color:var(--gold);background:var(--tint);border-radius:999px;padding:2px 10px;vertical-align:2px}
+.dpoints{list-style:none;padding:0;margin:18px 0 6px;display:flex;flex-wrap:wrap;gap:8px;max-width:720px}
+.dpoints li{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 32px;position:relative;font-size:.88rem;font-weight:600;color:var(--soft-ink)}
+.dpoints li::before{content:"";position:absolute;left:13px;top:50%;width:10px;height:6px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:translateY(-70%) rotate(-45deg)}
+.detail .btn,.dbottom .btn{border-radius:999px;font-size:.86rem;letter-spacing:.06em;text-transform:none;font-weight:700;padding:17px}
+.detail .btn-line,.dbottom .btn-line{background:#06c755;border-color:#06c755;color:#fff}
+.detail .btn-line:hover,.dbottom .btn-line:hover{background:#05b04b;color:#fff}
+.dworry{margin:0 0 50px}
+.dworry-item{margin:0 0 8px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:12px 16px;font-weight:600;color:var(--soft-ink)}
+.dflow{margin-top:50px}
+.dsteps{list-style:none;counter-reset:d;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:780px}
+.dsteps li{counter-increment:d;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.dsteps li::before{content:counter(d);width:30px;height:30px;border-radius:50%;background:var(--tint);color:var(--gold);display:grid;place-items:center;font-weight:700}
+.dsteps strong{font-size:.98rem}
+.dsteps span{color:var(--muted);font-size:.85rem;line-height:1.7}
+@media(max-width:680px){.dsteps{grid-template-columns:1fr}.dsteps li{display:grid;grid-template-columns:auto 1fr;column-gap:12px}.dsteps li::before{grid-row:span 2}}
+.dbottom{padding:60px 0 10px}
+.dbottom-box{max-width:780px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px 28px}
+.dbottom-k{margin:0 0 6px;color:var(--gold);font-weight:700;font-size:.8rem}
+.dbottom-h{margin:0;font-weight:700;font-size:1.15rem;line-height:1.6}
+.dbottom-box .panelbox{max-width:none}
+.dbottom-box .panelbox h2{display:none}
+.dothers{padding:50px 0 30px}
+.dothers-list{display:flex;flex-wrap:wrap;gap:10px;max-width:780px}
+.dothers-list a{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-weight:700;font-size:.9rem}
+.dothers-list a:hover{border-color:var(--gold)}
+.dothers-list small{color:var(--gold);font-weight:600;font-size:.72rem}
+.dsticky{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;justify-content:center}
+.dsticky a{display:block;width:100%;max-width:520px;text-align:center;background:#06c755;color:#fff;font-weight:700;border-radius:999px;padding:14px;font-size:.92rem}
+main.has-dsticky{padding-bottom:84px}
 
 /* ジャンル専用ページ */
 .detail.genre-hero{padding-bottom:8px}
@@ -624,7 +659,8 @@ const RICH = {
   "stylepost": { lineUrl: "https://lin.ee/xJJJzTa", intro: "ホットペッパービューティーのスタイル投稿・ブログ投稿を自動化するサービス。掲載運用の手間を削減します。", features: ["スタイル投稿の自動化", "ブログ投稿の自動化", "公式LINEで相談受付"] },
   "freed": { lineUrl: "https://lin.ee/3Tap1qV", intro: "TikTokのコンサルティングおよび運用代行を行うサービス。動画集客の戦略・運用をサポートします。", features: ["TikTokコンサルティング", "TikTok運用代行", "公式LINEで相談受付"] },
   "instagram": { lineUrl: "https://lin.ee/X4xLPIW", intro: "美容室・美容師向けにInstagramのコンサルティング・運用代行を行うサービス。設計から運用までサポートします。", features: ["Instagram運用代行", "Instagramコンサル", "公式LINEで相談受付"] },
-  "biyoushijuku": { lineUrl: "https://lin.ee/5WuYMGB", intro: "美容師の人間力と美容師力を高めることを目的としたコンサルティング（美容師塾）。土台づくりから伴走します。", features: ["人間力コンサル", "美容師力コンサル", "公式LINEで相談受付"] },
+  "biyoushijuku": { lineUrl: "https://lin.ee/5WuYMGB", intro: "美容師専門の、マンツーマン集客コンサルティング（美容師塾）。今伸びている実データとあなたの数字をもとに、やることを一緒に決めて毎月伴走します。" },
+  "miseba": { panelTitle: "登録・お申し込み", intro: "全国の美容師リールを毎日計測して、いま伸びている型と、あなたの動画の直し方を出す美容師専用のアプリです。", links: [{ label: "MISEBAの紹介ページを見る", href: "https://bigup-dashboard.onrender.com/lp", primary: true, note: "※登録・お支払いは、MISEBAの紹介ページから行います。" }] },
   "gita": { lineUrl: "https://lin.ee/fpFKHWF", intro: "美容室を専門としたTikTokコンサルティングサービス。集客向けのTikTok運用を支援します。", features: ["美容室専門のTikTokコンサル", "集客向けTikTok運用支援", "公式LINEで相談受付"] },
   "refundhub": { lineUrl: "https://lin.ee/74gb9g5", intro: "キャンセル請求と再予約に対応するサービス。キャンセルによる機会損失を抑える導線をつくります。", features: ["キャンセル請求対応", "再予約対応", "公式LINEで相談受付"] },
 };
@@ -683,77 +719,6 @@ function richHTML(r, skipFeatures) {
     h += `\n      <div class="block" style="margin-top:50px"><p class="subhead">実例</p><div class="cases">${cases}</div></div>`;
   }
   return h;
-}
-
-// ---- detail pages ----
-for (const s of services) {
-  const r = RICH[s.id] || {};
-  const logoSrc = r.logo || LOGO[s.id] || null;
-  const logo = logoSrc ? `\n      <img class="svc-logo${DARKLOGO.has(s.id) ? " dark" : ""}" src="${logoSrc}" alt="${esc(s.name)}">` : "";
-  const intro = r.intro || "詳しい内容やお申し込み・ご相談は、下記からお気軽にどうぞ。";
-  const hasCurated = r.cases && r.cases.length; // layer(施工写真つき) は従来の curated 表示
-  const rich = hasCurated ? richHTML(r, false) : richHTML(r, true) + dossierHTML(DOSSIER[s.id]);
-  const doc = (DOC_RICH.has(s.id) && DOC[s.id]) || null;
-  const line = r.lineUrl || null;
-  const brand = ({ "imamura-fp": "今村FP", "toko": "都甲（人材育成）" })[s.id] || s.name.split("（")[0].split("(")[0].trim();
-  // CTAボタン群を組み立て。公式LINEが無いサービスは連絡ボタンを出さない（オープンチャットのフォールバックは廃止）。
-  let ctas = [];
-  let note = "";
-  let lead = "";  // ボタンの手前の一言（押すと何ができるか）
-  // パスワードゲート：ボタン→パスワード表示→サイトを開く の2段階
-  let gateHTML = "";
-  if (r.gate) {
-    const g = r.gate;
-    gateHTML = `\n        <div class="pwgate">
-          <button class="btn btn-line pwgate-btn" type="button">${esc(g.revealLabel)}</button>
-          <div class="pwgate-open" hidden>
-            <p class="pwgate-pw">パスワード <strong>${esc(g.pw)}</strong></p>
-            <a class="btn btn-line" href="${g.href}" target="_blank" rel="noopener noreferrer">${esc(g.openLabel)}</a>
-          </div>
-        </div>`;
-  }
-  if (r.links && r.links.length) {
-    ctas = r.links.map((l) => `<a class="btn${l.primary ? " btn-line" : ""}" href="${l.href}" target="_blank" rel="noopener noreferrer">${esc(l.label)}</a>`);
-    const notes = r.links.filter((l) => l.note).map((l) => esc(l.note));
-    if (notes.length) note = `\n        <p class="small" style="margin-top:16px">${notes.join("　／　")}</p>`;
-  } else {
-    if (line) ctas.push(`<a class="btn btn-line" href="${line}" target="_blank" rel="noopener noreferrer">${esc(brand)}専用の公式LINEへ</a>`);
-    if (doc) ctas.push(`<a class="btn" href="${doc}" target="_blank" rel="noopener noreferrer">資料（詳細）を見る</a>`);
-    else if (line) ctas.push(`<a class="btn" href="/#services">ほかのサービスを見る</a>`);
-    if (line) {
-      lead = `\n        <p class="panel-lead">${esc(brand)}専用の公式LINEで、詳しい内容・お見積り・ご予約の相談ができます。<br>友だち追加して、気になることをそのまま送ってください。</p>`;
-      note = `\n        <p class="small" style="margin-top:16px">※BCCの公式LINEとは別のアカウントです。</p>`;
-    }
-    else if (doc) note = `\n        <p class="small" style="margin-top:16px">※詳しい内容は、上の資料をご覧ください。</p>`;
-  }
-  const grid = ctas.length
-    ? `<div class="cta-grid${ctas.length === 1 ? " one" : ""}"${gateHTML ? ' style="margin-top:14px"' : ""}>
-          ${ctas.join("\n          ")}
-        </div>`
-    : "";
-  const panelTitle = r.panelTitle || ((line || (r.links && r.links.length) || r.gate) ? "ご相談・ご予約" : "詳しくはこちら");
-  const panel = (gateHTML || grid)
-    ? `<div class="panelbox" style="margin-top:38px">
-        <h2>${esc(panelTitle)}</h2>${lead}${gateHTML}
-        ${grid}${note}
-      </div>`
-    : "";
-  const body = `<main>
-  <section class="detail detail-hero">
-    <div class="container reveal">
-      <a class="back" href="/">← トップにもどる</a>
-      <p class="komoji lbl">${esc(enOf[s.cat] || "")} ・ ${esc(s.cat)}</p>
-      <h1>${esc(s.name)}</h1>${logo}
-      <p class="lead">${esc(s.desc)}</p>
-      <p class="lead" style="margin-top:16px">${esc(intro)}</p>
-      ${panel}
-    </div>
-  </section>${rich ? `
-  <section style="padding-top:40px">
-    <div class="container reveal">${rich}</div>
-  </section>` : ""}
-</main>`;
-  writeFileSync(`${OUT}/${s.id}.html`, pageDoc(`${s.name}｜BCC`, s.desc, body, s.id));
 }
 
 // ---- 404 ----
@@ -992,7 +957,7 @@ const wb = (t) => esc(t).replace(/ \/ /g, " /<wbr> ").replace(/・/g, "・<wbr>"
 // StyleManager とスタイルポストは同じタグ「自動化ツール」で隣に並べる（2026-10-27 オーナー「スタイルマネージャーとスタイルポストは自動化ツールにしましょう！…その2つは同じタグなので、よく並べてください！」）
 const KIND = {
   "stylemanager": "自動化ツール", "tete-lab": "集客コンサル", "atsukyakumania": "集客コンサル", "ones": "集客コンサル",
-  "stylepost": "自動化ツール", "freed": "TikTok", "instagram": "Instagram", "gita": "TikTok", "biyoushijuku": "Instagram",
+  "stylepost": "自動化ツール", "freed": "TikTok", "instagram": "Instagram", "gita": "TikTok", "biyoushijuku": "Instagram", "miseba": "Instagram",
   "salon-start": "開業サポート", "next-beauty-tech": "融資・事業計画の相談", "stylebase": "開業サポート",
   "mutas": "不動産", "real-estate-salon": "不動産",
   "plum-plan": "内装・空間設計", "layer-design-works": "内装施工", "sunny-side-life": "内装・空間づくり",
@@ -1014,6 +979,8 @@ const PRICE = {
   "freed": "月13万円〜（税別・助成金利用時の実質）",
   "gita": "月15万円〜（税抜）",
   "instagram": "3か月 7万円〜（税抜）",
+  "biyoushijuku": "月3万5,000円（税込）",
+  "miseba": "月2,200円〜（税込・10/31までの登録）", // 11/1 から新規は月2,750円（資料）。11/1 になったら直す
   "ones": "6か月 60万円〜",
   "haircamp": "1人 月2,100円〜（税別）",
   "toko": "3万円〜",
@@ -1030,7 +997,8 @@ const POINTS = {
   "freed": ["コンサル", "運用代行"],
   "instagram": ["コンサル・運用代行", "設計から運用までサポート"],
   "gita": ["美容室専門のコンサル", "TikTok戦略の支援"],
-  "biyoushijuku": ["Instagram・TikTokの運用指導", "SNS以外も（接客・ブランディング・価格設計）"],
+  "biyoushijuku": ["SNSで新規・指名・売上アップ", "数字の診断→集客の道筋づくり", "月1回の面談＋随時フォロー"], // 2026-10-28 新資料に合わせて差し替え
+  "miseba": ["伸びてる美容師リールが毎日わかる", "自分の数字を毎週自動で記録", "動画をシーンごとに添削"],
   "salon-start": ["0円開業の導線設計", "融資・事業計画も相談可"],
   "next-beauty-tech": ["融資の相談", "事業計画づくり"],
   "stylebase": ["開業準備から", "運営の立ち上げまで"],
@@ -1086,7 +1054,7 @@ const SUBGROUPS = {
     { label: "ホットペッパー", ids: ["stylemanager", "stylepost", "tete-lab", "atsukyakumania", "ones"] },
     // SNS は青い小見出しを Instagram／TikTok にして段を分ける（2026-10-27 オーナー「ここはSNSで分けましょう。…インスタなのかTikTokなのか！」）
     // 美容師塾は SNS の Instagram 段へ（2026-10-27 オーナー「これもインスタグラムのコンサルに近いので、インスタのコンサルっぽい内容と、あとSNS以外のサポートもみたいな感じで」。資料のカリキュラムも SNS運用指導が先頭）
-    { label: "SNS（Instagram・TikTok）", ids: ["instagram", "biyoushijuku", "freed", "gita"] },
+    { label: "SNS（Instagram・TikTok）", ids: ["instagram", "biyoushijuku", "miseba", "freed", "gita"] },
   ],
 };
 
@@ -1254,3 +1222,125 @@ writeFileSync(
     lpFooter,
   ),
 );
+
+// ---- detail pages ----
+// 2026-10-28 オーナー「開いた後の内容をもっと詳しく、マーケティングの観点から公式内にクリックされやすいように誘導できるようにしたい！」「これはここだけじゃなくて全部！」
+// → 全詳細ページ共通で: 種類・料金の目安・できること（POINTS）を見出しの近くに／こんなお悩みに（FINDER）／ご相談の流れ／ページ下にもう一度ボタン／画面下に固定ボタン／同じジャンルのほかのサービス。
+// KIND・POINTS・PRICE・FINDER・DATA を使うのでファイルの最後で呼ぶ
+function renderDetailPages() {
+for (const s of services) {
+  const r = RICH[s.id] || {};
+  const logoSrc = r.logo || LOGO[s.id] || null;
+  const logo = logoSrc ? `\n      <img class="svc-logo${DARKLOGO.has(s.id) ? " dark" : ""}" src="${logoSrc}" alt="${esc(s.name)}">` : "";
+  const intro = r.intro || "詳しい内容やお申し込み・ご相談は、下記からお気軽にどうぞ。";
+  const hasCurated = r.cases && r.cases.length; // layer(施工写真つき) は従来の curated 表示
+  const rich = hasCurated ? richHTML(r, false) : richHTML(r, true) + dossierHTML(DOSSIER[s.id]);
+  const doc = (DOC_RICH.has(s.id) && DOC[s.id]) || null;
+  const line = r.lineUrl || null;
+  const brand = ({ "imamura-fp": "今村FP", "toko": "都甲（人材育成）" })[s.id] || s.name.split("（")[0].split("(")[0].trim();
+  // CTAボタン群を組み立て。公式LINEが無いサービスは連絡ボタンを出さない（オープンチャットのフォールバックは廃止）。
+  let ctas = [];
+  let note = "";
+  let lead = "";  // ボタンの手前の一言（押すと何ができるか）
+  // パスワードゲート：ボタン→パスワード表示→サイトを開く の2段階
+  let gateHTML = "";
+  if (r.gate) {
+    const g = r.gate;
+    gateHTML = `\n        <div class="pwgate">
+          <button class="btn btn-line pwgate-btn" type="button">${esc(g.revealLabel)}</button>
+          <div class="pwgate-open" hidden>
+            <p class="pwgate-pw">パスワード <strong>${esc(g.pw)}</strong></p>
+            <a class="btn btn-line" href="${g.href}" target="_blank" rel="noopener noreferrer">${esc(g.openLabel)}</a>
+          </div>
+        </div>`;
+  }
+  if (r.links && r.links.length) {
+    ctas = r.links.map((l) => `<a class="btn${l.primary ? " btn-line" : ""}" href="${l.href}" target="_blank" rel="noopener noreferrer">${esc(l.label)}</a>`);
+    const notes = r.links.filter((l) => l.note).map((l) => esc(l.note));
+    if (notes.length) note = `\n        <p class="small" style="margin-top:16px">${notes.join("　／　")}</p>`;
+  } else {
+    if (line) ctas.push(`<a class="btn btn-line" href="${line}" target="_blank" rel="noopener noreferrer">${esc(brand)}専用の公式LINEで相談する</a>`);
+    if (doc) ctas.push(`<a class="btn" href="${doc}" target="_blank" rel="noopener noreferrer">資料（詳細）を見る</a>`);
+    // 「ほかのサービスを見る」は公式LINEへのクリックを分散させるので外した（2026-10-28・ページ下に同じジャンルのほかのサービスを置いた）
+    if (line) {
+      lead = `\n        <p class="panel-lead">${esc(brand)}専用の公式LINEで、詳しい内容・お見積り・ご予約の相談ができます。<br>友だち追加して、気になることをそのまま送ってください。</p>`;
+      note = `\n        <p class="small" style="margin-top:16px">※BCCの公式LINEとは別のアカウントです。</p>`;
+    }
+    else if (doc) note = `\n        <p class="small" style="margin-top:16px">※詳しい内容は、上の資料をご覧ください。</p>`;
+  }
+  const grid = ctas.length
+    ? `<div class="cta-grid${ctas.length === 1 ? " one" : ""}"${gateHTML ? ' style="margin-top:14px"' : ""}>
+          ${ctas.join("\n          ")}
+        </div>`
+    : "";
+  const panelTitle = r.panelTitle || ((line || (r.links && r.links.length) || r.gate) ? "ご相談・ご予約" : "詳しくはこちら");
+  const panel = (gateHTML || grid)
+    ? `<div class="panelbox" style="margin-top:38px">
+        <h2>${esc(panelTitle)}</h2>${lead}${gateHTML}
+        ${grid}${note}
+      </div>`
+    : "";
+  // ボタンの行き先（固定ボタン用）。パスワードゲートだけのページは固定ボタンを出さない
+  const primaryLink = (r.links || []).find((l) => l.primary) || null;
+  const mainHref = (r.links && r.links.length) ? (primaryLink ? primaryLink.href : null) : (line || doc || null);
+  const mainLabel = (r.links && r.links.length) ? (primaryLink ? primaryLink.label : "") : (line ? `${brand}に公式LINEで相談する` : "資料（詳細）を見る");
+  const kind = KIND[s.id] ? `<p class="gtag">${esc(KIND[s.id])}</p>` : "";
+  const price = PRICE[s.id] ? `\n      <p class="dprice"><span>料金の目安</span>${esc(PRICE[s.id])}</p>` : "";
+  const points = (POINTS[s.id] || []).length
+    ? `\n      <ul class="dpoints">${POINTS[s.id].map((t) => `<li>${esc(t)}</li>`).join("")}</ul>`
+    : "";
+  const worries = FINDER.filter((f) => f.cat === s.cat).map((f) => f.when);
+  const worryHTML = worries.length
+    ? `\n      <div class="block dworry"><p class="subhead">こんなお悩みに</p>${worries.map((w) => `<p class="dworry-item">${esc(w)}</p>`).join("")}</div>`
+    : "";
+  const flowHTML = line
+    ? `\n      <div class="block dflow"><p class="subhead">ご相談の流れ</p><ol class="dsteps">
+        <li><strong>友だち追加</strong><span>下のボタンから${esc(brand)}専用の公式LINEを追加します。</span></li>
+        <li><strong>気になることを送る</strong><span>料金・内容・自分のサロンに合うかなど、そのまま送ってOKです。</span></li>
+        <li><strong>案内が届く</strong><span>${esc(brand)}から、詳しい内容・お見積り・ご予約のご案内が届きます。</span></li>
+      </ol></div>`
+    : "";
+  const bottomPanel = panel
+    ? `\n  <section class="dbottom">
+    <div class="container reveal">
+      <div class="dbottom-box">
+        <p class="dbottom-k">${esc(KIND[s.id] || s.cat)}</p>
+        <p class="dbottom-h">${esc(splitName(s.name)[0])}について、まずは気軽に聞いてみる</p>
+        ${panel.replace('style="margin-top:38px"', 'style="margin-top:18px;border-top:0;padding-top:0"')}
+      </div>
+    </div>
+  </section>`
+    : "";
+  const others = ((DATA.find((c) => c.name === s.cat) || { items: [] }).items).filter((it) => it.id !== s.id);
+  const othersHTML = others.length
+    ? `\n  <section class="dothers">
+    <div class="container reveal">
+      <p class="subhead">${esc(s.cat)}のほかのサービス</p>
+      <div class="dothers-list">${others.map((it) => `<a href="${it.href || "/" + it.id}"><span>${esc(TITLE[it.id] || splitName(it.name)[0])}</span><small>${esc(KIND[it.id] || "")}</small></a>`).join("")}</div>
+      <a class="back" style="margin:22px 0 0" href="/${genreSlug(s.cat)}">${esc(s.cat)}のサービス一覧へ →</a>
+    </div>
+  </section>`
+    : "";
+  const sticky = mainHref
+    ? `\n<div class="dsticky"><a href="${mainHref}" target="_blank" rel="noopener noreferrer">${esc(mainLabel)}</a></div>`
+    : "";
+  const body = `<main${mainHref ? ' class="has-dsticky"' : ""}>
+  <section class="detail detail-hero">
+    <div class="container reveal">
+      <a class="back" href="/${genreSlug(s.cat)}">← ${esc(s.cat)}のサービス一覧</a>
+      ${kind}
+      <h1>${esc(s.name)}</h1>${logo}${price}${points}
+      <p class="lead">${esc(s.desc)}</p>
+      <p class="lead" style="margin-top:16px">${esc(intro)}</p>
+      ${panel}
+    </div>
+  </section>${(rich || worryHTML || flowHTML) ? `
+  <section style="padding-top:40px">
+    <div class="container reveal">${worryHTML}${rich}${flowHTML}</div>
+  </section>` : ""}${bottomPanel}${othersHTML}
+</main>${sticky}`;
+  writeFileSync(`${OUT}/${s.id}.html`, pageDoc(`${s.name}｜BCC`, s.desc, body, s.id));
+}
+}
+
+renderDetailPages();
