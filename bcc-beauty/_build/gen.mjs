@@ -242,8 +242,12 @@ section{padding:108px 0}
   .grid .cmark{width:40px;height:40px;border-radius:9px}
   .grid .cmark img{padding:5px}
   .grid .cmark .mono{font-size:1.15rem}
-  .grid .card h4{font-size:.9rem;line-height:1.45}
+  .grid .card h4{font-size:.95rem;line-height:1.4}
+  .grid .card h4 .csub{font-size:.7rem;margin-top:3px}
   .grid .card p{font-size:.76rem;line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .grid .cpts{font-size:.76rem;line-height:1.5}
+  .grid .cpts li{padding-left:11px;margin-top:3px}
+  .grid .cpts li::before{width:5px;height:5px}
   .grid .card .more{font-size:.68rem;letter-spacing:.08em}
   .grid.one .card{min-height:0}
 }
@@ -255,7 +259,13 @@ a.card:hover{background:#fff;border-color:var(--gold);box-shadow:0 10px 28px rgb
 .cmark.dark{background:var(--ink);border-color:var(--ink)}
 .cmark .mono{font-family:var(--font-serif);font-weight:600;font-size:1.5rem;color:var(--gold);line-height:1}
 .card .ctag{margin:0}
-.card h4{font-family:var(--font-jp);font-weight:600;font-size:1.08rem;margin:0;line-height:1.55;letter-spacing:.02em}
+.card h4{font-family:var(--font-jp);font-weight:700;font-size:1.08rem;margin:0;line-height:1.5;letter-spacing:.02em}
+/* 言葉の途中で切らず、空白・「/」の位置で折り返す（入り切らない時だけ途中で切る） */
+.card h4,.card h4 .csub{word-break:keep-all;overflow-wrap:anywhere}
+.cpts{list-style:none;margin:0;padding:0;flex:1;color:var(--soft-ink);font-size:.86rem;line-height:1.6}
+.cpts li{position:relative;padding-left:14px;margin-top:4px}
+.cpts li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.55}
+.card h4 .csub{display:block;margin-top:4px;font-size:.78rem;font-weight:600;color:var(--gold);line-height:1.5;letter-spacing:.01em}
 .card p{margin:0;color:var(--muted);font-size:.88rem;flex:1;line-height:1.85}
 .card .more{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
 .card .more .arw{transition:transform .3s}
@@ -1018,6 +1028,65 @@ DATA.find((c) => c.name === "集客").items.unshift({
   dark: false,
   mono: "S",
 });
+// カード見出しの改行をきれいにする（2026-10-27 オーナー「改行をちょっともうちょっときれいにしましょう。例えばタイトル、括弧っていうのが並んでたりするので！」）。
+// 「集客マニア（ホットペッパー / Google）」→ 本体「集客マニア」＋下の小さな行「ホットペッパー / Google」
+const splitName = (name) => {
+  const m = name.match(/^(.+?)\s*[（(｜]\s*(.+?)\s*[）)]?$/);
+  return m ? [m[1], m[2]] : [name, ""];
+};
+const wb = (t) => esc(t).replace(/ \/ /g, " /<wbr> ").replace(/・/g, "・<wbr>");
+// 見出しの下の小さな行＝サービスの種類（2026-10-27 オーナー「タイトルが一番上にあって、その下の文字は…自動化ツールなのか、コンサルなのかとかにしましょうかね！」）。
+// 中身は各サービスの desc・資料の範囲で付けた（誇張しない）。無いサービスはビルドで止める
+const KIND = {
+  "stylemanager": "PV爆上げ ホットペッパー自動化ツール", "tete-lab": "集客コンサル", "atsukyakumania": "集客コンサル", "ones": "集客サポート",
+  "stylepost": "投稿サポート", "freed": "TikTokコンサル・運用代行", "instagram": "コンサル・運用代行", "gita": "美容室専門 TikTokコンサル", "biyoushijuku": "コンサル",
+  "salon-start": "開業サポート", "next-beauty-tech": "融資・事業計画の相談", "stylebase": "開業サポート",
+  "mutas": "不動産", "real-estate-salon": "不動産",
+  "plum-plan": "内装・空間設計", "layer-design-works": "内装施工", "sunny-side-life": "内装・空間づくり",
+  "imamura-fp": "税務・保険の相談", "liverty": "通信費の見直し",
+  "materials-intro": "仕入れ紹介", "drive-blue": "業務用発注サイト", "hairstyle-market": "販売プラットフォーム",
+  "tonari-seminar": "講師紹介", "haircamp": "スクール", "toko": "研修・採用支援", "refundhub": "キャンセル対策",
+};
+// 見出しの差し替え（括弧の中がサービス名のもの）
+const TITLE = { gita: "ギータ" };
+const titleHTML = (it) => {
+  if (!KIND[it.id]) throw new Error(`KIND に種類が無い: ${it.id}`);
+  return wb(TITLE[it.id] || splitName(it.name)[0]) + `<span class="csub">${esc(KIND[it.id])}</span>`;
+};
+// カードの説明は短い箇条書き（2026-10-27 オーナー「端的に箇条書きでいいと思ってます！」）。中身は desc の範囲（誇張しない）
+const POINTS = {
+  "stylemanager": ["スタイル・ブログ・口コミを代行", "5店舗の実データ公開中"],
+  "tete-lab": ["ホットペッパー完全攻略", "WEB集客の支援"],
+  "atsukyakumania": ["ホットペッパー集客", "Google（MEO/SEO）対策"],
+  "ones": ["ホットペッパー中心", "ミニモの集客も"],
+  "stylepost": ["HPBのスタイル投稿", "ブログ更新のサポート"],
+  "freed": ["TikTokのコンサル", "運用代行"],
+  "instagram": ["Instagramの設計", "運用までサポート"],
+  "gita": ["美容室に特化", "TikTok戦略の支援"],
+  "biyoushijuku": ["人間力を磨く", "美容師力のコンサル"],
+  "salon-start": ["0円開業の導線設計", "融資・事業計画も相談可"],
+  "next-beauty-tech": ["融資の相談", "事業計画づくり"],
+  "stylebase": ["開業準備から", "運営の立ち上げまで"],
+  "mutas": ["不動産専門", "事業提携"],
+  "real-estate-salon": ["テナント・居抜き", "M&Aまで美容室特化"],
+  "plum-plan": ["内装・運営", "空間設計までトータル"],
+  "layer-design-works": ["施工パートナー", "業界最安値クラスを目指す"],
+  "sunny-side-life": ["内装の相談先", "空間づくり"],
+  "imamura-fp": ["税務調査対策", "保険で財務の守りを強化"],
+  "liverty": ["ソフトバンクのBCC限定", "通信料削減・最新iPhone", "福利厚生・節税に"],
+  "materials-intro": ["材料の仕入れ紹介", "仕入れの相談"],
+  "drive-blue": ["エフェクトブリーチ・イリーダ", "業務用の発注サイト"],
+  "hairstyle-market": ["ヘアスタイルを販売", "販売の場を用意"],
+  "tonari-seminar": ["セミナー講師の紹介", "マッチング"],
+  "haircamp": ["教育プログラム", "学びを続けやすい"],
+  "toko": ["人材育成の仕組み化", "採用の仕組み化"],
+  "refundhub": ["キャンセル料の請求", "再予約の導線づくり"],
+};
+for (const c of DATA) for (const it of c.items) {
+  it.title = titleHTML(it);
+  if (!POINTS[it.id]) throw new Error(`POINTS に箇条書きが無い: ${it.id}`);
+  it.pts = `<ul class="cpts">${POINTS[it.id].map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`;
+}
 const itemCount = DATA.reduce((n, c) => n + c.items.length, 0);
 
 // 「お悩みから選ぶ」（2026-10-27 オーナー「今言った内容もざっくり改善していきたいですね！」）。
@@ -1057,7 +1126,7 @@ for (const f of FINDER) {
     const mark = it.logo
       ? `<div class="cmark${it.dark ? " dark" : ""}"><img src="${it.logo}" alt=""></div>`
       : `<div class="cmark"><span class="mono">${esc(it.mono)}</span></div>`;
-    return `<a class="card" href="${it.href || "/" + it.id}">${mark}<p class="komoji ctag">${esc(d.en || d.name)}</p><h4>${esc(it.name)}</h4><p>${esc(it.desc)}</p><span class="more">詳細 <span class="arw">→</span></span></a>`;
+    return `<a class="card" href="${it.href || "/" + it.id}">${mark}<p class="komoji ctag">${esc(d.en || d.name)}</p><h4>${it.title}</h4>${it.pts}<span class="more">詳細 <span class="arw">→</span></span></a>`;
   };
   const gridOf = (items) => `<div class="grid${items.length === 1 ? " one" : items.length === 2 ? " two" : ""}">
         ${items.map(card).join("\n        ")}
@@ -1195,7 +1264,7 @@ const DATA = ${JSON.stringify(DATA)};
     var mark = it.logo
       ? '<div class="cmark'+(it.dark?' dark':'')+'"><img src="'+it.logo+'" alt=""></div>'
       : '<div class="cmark"><span class="mono">'+it.mono+'</span></div>';
-    return '<a class="card" href="'+(it.href||'/'+it.id)+'">'+mark+'<p class="komoji ctag">'+(d.en||d.name)+'</p><h4>'+it.name+'</h4><p>'+it.desc+'</p><span class="more">詳細 <span class="arw">→</span></span></a>';
+    return '<a class="card" href="'+(it.href||'/'+it.id)+'">'+mark+'<p class="komoji ctag">'+(d.en||d.name)+'</p><h4>'+it.title+'</h4>'+it.pts+'<span class="more">詳細 <span class="arw">→</span></span></a>';
   }
   function panel(tab){
     if(tab.all){
