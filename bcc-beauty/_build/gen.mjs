@@ -97,6 +97,7 @@ html.js .reveal.in{opacity:1;transform:none}
 .btn-join{border:1px solid var(--ink);color:var(--ink);padding:9px 20px;border-radius:999px;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;transition:.25s}
 .btn-join:hover{background:var(--ink);color:var(--surface)}
 @media(max-width:680px){.nav-links a.hide-sp{display:none}}
+@media(max-width:680px){.nav-links{gap:10px}.nav-links a.nav-about{font-size:.74rem;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);white-space:nowrap}}
 
 /* hero */
 .hero{position:relative;overflow:hidden;min-height:min(92vh,820px);display:grid;place-items:center;text-align:center;padding:96px 0}
@@ -185,6 +186,32 @@ a.dcard:hover{border-color:var(--gold);transform:translateY(-2px)}
 .dcard .new{display:inline-block;margin-left:8px;font-size:.66rem;background:var(--gold);color:#fff;border-radius:999px;padding:2px 8px;vertical-align:3px;letter-spacing:.06em}
 @media(max-width:760px){.dgrid{grid-template-columns:1fr;gap:12px}.dcard{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:4px;padding:18px}.dcard .dn{grid-row:span 3}.dcard p{font-size:.84rem}}
 
+/* ジャンル専用ページ */
+.detail.genre-hero{padding-bottom:8px}
+.detail.genre-hero h1{font-weight:700;margin-bottom:6px}
+.genre-hero .back{display:flex;width:max-content}
+.gsub{margin:0 0 6px;color:var(--muted);font-weight:600}
+@media(max-width:760px){.detail.genre-hero{padding-top:36px}.genre-hero .back{margin-bottom:20px}.genre-list{padding-top:20px}}
+.gtag{display:inline-block;margin:0 0 14px;background:var(--tint);color:var(--gold);font-weight:700;font-size:.85rem;border-radius:999px;padding:4px 14px}
+.genre-hero .lead strong{color:var(--gold)}
+.genre-list{padding-top:36px}
+.grid.one{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+.subgroup+.subgroup{margin-top:40px}
+.krow+.krow{margin-top:14px}
+.subgroup .grid.two{max-width:none;margin:0;grid-template-columns:repeat(3,1fr)}
+@media(max-width:880px){.subgroup .grid.two{grid-template-columns:repeat(2,1fr)}}
+/* 見出しの高さをそろえる（ラベルや料金の段落が伸びないように） */
+.card .ctag,.card .cprice{flex:none}
+.subh{display:flex;align-items:center;gap:10px;font-size:1.15rem;font-weight:700;margin:0 0 14px;padding-left:12px;border-left:4px solid var(--gold);line-height:1.3}
+.subh span{font-size:.78rem;font-weight:600;color:var(--gold);background:var(--tint);border-radius:999px;padding:2px 10px}
+.subgroup .grid.one{margin:0;max-width:none;grid-template-columns:repeat(3,1fr)}
+@media(max-width:880px){.subgroup .grid.one{grid-template-columns:repeat(2,1fr)}}
+.genre-others{margin-top:64px}
+.genre-others h2{font-size:1.15rem;font-weight:700;margin:0 0 16px}
+.gchips{display:flex;flex-wrap:wrap;gap:10px}
+.gchips a{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:.88rem;color:var(--soft-ink);font-weight:600}
+.gchips a:hover{border-color:var(--gold);color:var(--gold)}
+
 /* sections */
 section{padding:108px 0}
 .alt{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -210,18 +237,45 @@ section{padding:108px 0}
 .cat-bar .cnt{margin-left:auto;color:var(--muted);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase}
 
 /* cards */
-.grid{display:grid;gap:1px;grid-template-columns:repeat(3,1fr);background:var(--line);border:1px solid var(--line)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(3,1fr)}
 .grid.two{grid-template-columns:repeat(2,1fr);max-width:760px;margin:0 auto}
-@media(max-width:880px){.grid{grid-template-columns:1fr}.grid.two{grid-template-columns:1fr}}
+@media(max-width:880px){.grid{grid-template-columns:repeat(2,1fr)}.grid.two{grid-template-columns:repeat(2,1fr)}}
+/* スマホ: カードを2列に詰める（2026-10-27 オーナー「スマホ版だと縦に下に長すぎて…2列か3列にして」） */
+@media(max-width:560px){
+  .grid{gap:10px}
+  .grid .card{padding:16px 14px 14px;min-height:0;gap:8px}
+  .grid .card .ctag{display:none}
+  .grid .cmark{width:40px;height:40px;border-radius:9px}
+  .grid .cmark img{padding:5px}
+  .grid .cmark .mono{font-size:1.15rem}
+  .grid .card h4{font-size:.95rem;line-height:1.4}
+  .grid .card h4 .csub{font-size:.7rem;margin-top:3px}
+  .grid .card p{font-size:.76rem;line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .grid .cpts{font-size:.76rem;line-height:1.5}
+  .grid .cpts li{padding-left:11px;margin-top:3px}
+  .grid .cpts li::before{width:5px;height:5px}
+  .grid .cprice{font-size:.72rem}
+  .grid .cprice span{display:block;width:max-content;margin:0 0 2px}
+  .grid .card .more{font-size:.68rem;letter-spacing:.08em}
+  .grid.one .card{min-height:0}
+}
 .hero-sub strong,.lead strong{color:var(--gold);font-weight:700}
-.card{position:relative;background:var(--surface);padding:30px 30px 30px;transition:.35s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;gap:14px;min-height:230px}
-a.card:hover{background:#fff}
+.card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:30px 30px 30px;transition:.35s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;gap:14px;min-height:230px}
+a.card:hover{background:#fff;border-color:var(--gold);box-shadow:0 10px 28px rgba(31,99,214,.10)}
 .cmark{width:52px;height:52px;border-radius:11px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;overflow:hidden;flex:none}
 .cmark img{width:100%;height:100%;object-fit:contain;padding:8px}
 .cmark.dark{background:var(--ink);border-color:var(--ink)}
 .cmark .mono{font-family:var(--font-serif);font-weight:600;font-size:1.5rem;color:var(--gold);line-height:1}
 .card .ctag{margin:0}
-.card h4{font-family:var(--font-jp);font-weight:600;font-size:1.08rem;margin:0;line-height:1.55;letter-spacing:.02em}
+.card h4{font-family:var(--font-jp);font-weight:700;font-size:1.08rem;margin:0;line-height:1.5;letter-spacing:.02em}
+/* 言葉の途中で切らず、空白・「/」の位置で折り返す（入り切らない時だけ途中で切る） */
+.card h4,.card h4 .csub{word-break:keep-all;overflow-wrap:anywhere}
+.cpts{list-style:none;margin:0;padding:0;flex:1;color:var(--soft-ink);font-size:.86rem;line-height:1.6}
+.cpts li{position:relative;padding-left:14px;margin-top:4px}
+.cpts li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.55}
+.cprice{margin:6px 0 0;font-size:.82rem;font-weight:700;color:var(--ink)}
+.cprice span{display:inline-block;margin-right:6px;font-size:.66rem;font-weight:600;color:var(--gold);background:var(--tint);border-radius:999px;padding:1px 8px;vertical-align:1px}
+.card h4 .csub{display:block;margin-top:4px;font-size:.78rem;font-weight:600;color:var(--gold);line-height:1.5;letter-spacing:.01em}
 .card p{margin:0;color:var(--muted);font-size:.88rem;flex:1;line-height:1.85}
 .card .more{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
 .card .more .arw{transition:transform .3s}
@@ -239,7 +293,7 @@ a.card:hover .more .arw{transform:translateX(8px)}
 
 /* detail */
 .detail-hero{padding:88px 0 22px}
-.back{display:inline-flex;align-items:center;gap:9px;color:var(--muted);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 34px}
+.back{display:inline-flex;align-items:center;gap:9px;color:var(--muted);font-size:.82rem;letter-spacing:.06em;margin:0 0 34px}
 .back:hover{color:var(--ink)}
 .detail .lbl{margin:0 0 18px}
 .detail h1{font-family:var(--font-jp);font-weight:500;font-size:clamp(1.9rem,4.2vw,2.9rem);margin:0 0 8px;letter-spacing:.03em;line-height:1.4}
@@ -347,7 +401,7 @@ const nav = `<nav class="nav">
     <div class="nav-links">
       <a class="hide-sp" href="/">トップ</a>
       <a class="hide-sp" href="/#services">サービス</a>
-      <a class="hide-sp" href="${ABOUT}">BCCとは</a>
+      <a class="nav-about" href="${ABOUT}">BCCとは</a>
       <a class="btn-join" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャット</a>
     </div>
   </div>
@@ -676,7 +730,7 @@ for (const s of services) {
   const body = `<main>
   <section class="detail detail-hero">
     <div class="container reveal">
-      <a class="back" href="/">← Back to top</a>
+      <a class="back" href="/">← トップにもどる</a>
       <p class="komoji lbl">${esc(enOf[s.cat] || "")} ・ ${esc(s.cat)}</p>
       <h1>${esc(s.name)}</h1>${logo}
       <p class="lead">${esc(s.desc)}</p>
@@ -973,10 +1027,101 @@ const DATA = categories
       })),
   }))
   .filter((c) => c.items.length);
+// StyleManager（自社商品・2026-08-27 掲載可）を「集客」の先頭に置く（2026-10-27 オーナー「集客に関してスタイルマネージャー作るの忘れてました。一番上に持ってきて表示してほしい！」）。
+// 実体は /stylemanager の転送（vercel.json）なので services[] には入れない＝詳細ページは作らず、href で転送先へ
+DATA.find((c) => c.name === "集客").items.unshift({
+  id: "stylemanager",
+  href: "/stylemanager",
+  name: "StyleManager｜PV爆上げ ホットペッパー自動化ツール", // 名前の後ろはオーナー指定（2026-10-27「タイトルにPV爆上げホットペッパー自動化ツールみたいな文章も入れてほしい！」）
+  desc: "ホットペッパーのスタイル・ブログ・口コミの運用代行。5店舗の実データを公開中。",
+  logo: null,
+  dark: false,
+  mono: "S",
+});
+// カード見出しの改行をきれいにする（2026-10-27 オーナー「改行をちょっともうちょっときれいにしましょう。例えばタイトル、括弧っていうのが並んでたりするので！」）。
+// 「集客マニア（ホットペッパー / Google）」→ 本体「集客マニア」＋下の小さな行「ホットペッパー / Google」
+const splitName = (name) => {
+  const m = name.match(/^(.+?)\s*[（(｜]\s*(.+?)\s*[）)]?$/);
+  return m ? [m[1], m[2]] : [name, ""];
+};
+const wb = (t) => esc(t).replace(/ \/ /g, " /<wbr> ").replace(/・/g, "・<wbr>");
+// 見出しの下の小さな行＝サービスの種類（2026-10-27 オーナー「タイトルが一番上にあって、その下の文字は…自動化ツールなのか、コンサルなのかとかにしましょうかね！」）。
+// 中身は各サービスの desc・資料の範囲で付けた（誇張しない）。無いサービスはビルドで止める
+// StyleManager とスタイルポストは同じタグ「自動化ツール」で隣に並べる（2026-10-27 オーナー「スタイルマネージャーとスタイルポストは自動化ツールにしましょう！…その2つは同じタグなので、よく並べてください！」）
+const KIND = {
+  "stylemanager": "自動化ツール", "tete-lab": "集客コンサル", "atsukyakumania": "集客コンサル", "ones": "集客コンサル",
+  "stylepost": "自動化ツール", "freed": "TikTok", "instagram": "Instagram", "gita": "TikTok", "biyoushijuku": "Instagram",
+  "salon-start": "開業サポート", "next-beauty-tech": "融資・事業計画の相談", "stylebase": "開業サポート",
+  "mutas": "不動産", "real-estate-salon": "不動産",
+  "plum-plan": "内装・空間設計", "layer-design-works": "内装施工", "sunny-side-life": "内装・空間づくり",
+  "imamura-fp": "税務・保険の相談", "liverty": "通信費の見直し",
+  "materials-intro": "仕入れ紹介", "drive-blue": "業務用発注サイト", "hairstyle-market": "販売プラットフォーム",
+  "tonari-seminar": "講師紹介", "haircamp": "スクール", "toko": "研修・採用支援", "refundhub": "キャンセル対策",
+};
+// 見出しの差し替え（括弧の中がサービス名のもの）
+const TITLE = { gita: "ギータ" };
+const titleHTML = (it) => {
+  if (!KIND[it.id]) throw new Error(`KIND に種類が無い: ${it.id}`);
+  return wb(TITLE[it.id] || splitName(it.name)[0]) + `<span class="csub">${esc(KIND[it.id])}</span>`;
+};
+// 料金が資料に載っているサービスだけ、カードに「〇〇円〜」を小さく出す（2026-10-27 オーナー「料金が見えてるものは、この最初のページにもいくらいくらからみたいなっていうのが小さくてもいいので載ってるといいかもですね！」）。
+// 値は各サービスの「資料の内容」（writeups.json）の一番安いプラン。税の表記も資料どおり。資料の料金を変えたらここも直す
+const PRICE = {
+  "stylemanager": "1万円〜", // オーナー指定 2026-10-27「スタイルマネージャーは1万円からにしといて！」（資料ではなくオーナーの値）
+  "atsukyakumania": "月2万円〜（税抜）",
+  "freed": "月13万円〜（税別・助成金利用時の実質）",
+  "gita": "月15万円〜（税抜）",
+  "instagram": "3か月 7万円〜（税抜）",
+  "ones": "6か月 60万円〜",
+  "haircamp": "1人 月2,100円〜（税別）",
+  "toko": "3万円〜",
+  "liverty": "通信料 月3,280円〜",
+  "tonari-seminar": "5万円〜（講師により異なる）",
+};
+// カードの説明は短い箇条書き（2026-10-27 オーナー「端的に箇条書きでいいと思ってます！」）。中身は desc の範囲（誇張しない）
+const POINTS = {
+  "stylemanager": ["PV爆上げのホットペッパー自動化", "スタイル・ブログ・口コミ返信を自動化", "ネイル・まつげサロンにも対応"], // 2・3行目は紹介サイト stylemanager-lp の表記に合わせた（2026-10-27）
+  "tete-lab": ["ホットペッパー完全攻略", "WEB集客の支援"],
+  "atsukyakumania": ["ホットペッパー集客", "Google（MEO/SEO）対策"],
+  "ones": ["ホットペッパー中心", "ミニモの集客も"],
+  "stylepost": ["HPBのスタイル投稿", "ブログ更新のサポート"],
+  "freed": ["コンサル", "運用代行"],
+  "instagram": ["コンサル・運用代行", "設計から運用までサポート"],
+  "gita": ["美容室専門のコンサル", "TikTok戦略の支援"],
+  "biyoushijuku": ["Instagram・TikTokの運用指導", "SNS以外も（接客・ブランディング・価格設計）"],
+  "salon-start": ["0円開業の導線設計", "融資・事業計画も相談可"],
+  "next-beauty-tech": ["融資の相談", "事業計画づくり"],
+  "stylebase": ["開業準備から", "運営の立ち上げまで"],
+  "mutas": ["不動産専門", "事業提携"],
+  "real-estate-salon": ["テナント・居抜き", "M&Aまで美容室特化"],
+  "plum-plan": ["内装・運営", "空間設計までトータル"],
+  "layer-design-works": ["施工パートナー", "業界最安値クラスを目指す"],
+  "sunny-side-life": ["内装の相談先", "空間づくり"],
+  "imamura-fp": ["税務調査対策", "保険で財務の守りを強化"],
+  "liverty": ["ソフトバンクのBCC限定", "通信料削減・最新iPhone", "福利厚生・節税に"],
+  "materials-intro": ["材料の仕入れ紹介", "仕入れの相談"],
+  "drive-blue": ["エフェクトブリーチ・イリーダ", "業務用の発注サイト"],
+  "hairstyle-market": ["ヘアスタイルを販売", "販売の場を用意"],
+  "tonari-seminar": ["セミナー講師の紹介", "マッチング"],
+  "haircamp": ["教育プログラム", "学びを続けやすい"],
+  "toko": ["人材育成の仕組み化", "採用の仕組み化"],
+  "refundhub": ["キャンセル料の請求", "再予約の導線づくり"],
+};
+// 種類ごとに並べる（2026-10-27 オーナー「自動化ツールは自動化ツールで並び替えたりとかした方がいいかな」）。
+// ツール・サイト → コンサル → 運用代行・サポート → その他。同じ種類の中は元の順（安定ソート）
+const kindRank = (id) => { const k = KIND[id] || ""; return /ツール|サイト|プラットフォーム/.test(k) ? 0 : /コンサル/.test(k) ? 1 : /運用代行|サポート/.test(k) ? 2 : 3; };
+for (const c of DATA) c.items.sort((x, y) => kindRank(x.id) - kindRank(y.id));
+for (const c of DATA) for (const it of c.items) {
+  it.title = titleHTML(it);
+  if (!POINTS[it.id]) throw new Error(`POINTS に箇条書きが無い: ${it.id}`);
+  it.pts = `<ul class="cpts">${POINTS[it.id].map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` +
+    (PRICE[it.id] ? `<p class="cprice"><span>料金の目安</span>${esc(PRICE[it.id])}</p>` : "");
+}
+const itemCount = DATA.reduce((n, c) => n + c.items.length, 0);
 
 // 「お悩みから選ぶ」（2026-10-27 オーナー「今言った内容もざっくり改善していきたいですね！」）。
 // 🔴 悩み → ジャンルにつなぐ。特定の会社に絞らない（2026-10-27 オーナー「企業を絞っちゃうと…平等じゃないかな」）。
-// cat は categories[] の名前。押すとそのジャンルのタブが開き、全社が同じ並びで出る
+// cat は categories[] の名前。押すとジャンル専用ページ（/genre-xxx）が開き、全社が同じ並びで出る（2026-10-27 オーナー「別ページで…見やすくした方がいい」）
 const FINDER = [
   { when: "開業したい（資金・事業計画・準備）", cat: "開業支援" },
   { when: "開業する物件を探したい", cat: "不動産" },
@@ -989,7 +1134,73 @@ const FINDER = [
   { when: "材料の仕入れを見直したい", cat: "材料" },
   { when: "ヘアスタイルを販売したい", cat: "ヘアスタイル販売" },
 ];
-const catCount = (c) => { const n = services.filter((v) => v.cat === c).length; if (!n) throw new Error(`FINDER: 不明なジャンル ${c}`); return n; };
+const genreSlug = (c) => "genre-" + enOf[c].toLowerCase().replace(/\s+/g, "-");
+const catCount = (c) => { const n = (DATA.find((x) => x.name === c) || { items: [] }).items.length; if (!n) throw new Error(`FINDER: 不明なジャンル ${c}`); return n; };
+
+// ジャンル内の小分け（2026-10-27 オーナー「集客もこの中で、ホットペッパーなのかとかが順番に分かれてると分かりやすいかもしれません！」）。
+// 並びは各グループ内で DATA の順（StyleManager が先頭）。どのグループにも入らない id はビルドで止める
+const SUBGROUPS = {
+  "集客": [
+    { label: "ホットペッパー", ids: ["stylemanager", "stylepost", "tete-lab", "atsukyakumania", "ones"] },
+    // SNS は青い小見出しを Instagram／TikTok にして段を分ける（2026-10-27 オーナー「ここはSNSで分けましょう。…インスタなのかTikTokなのか！」）
+    // 美容師塾は SNS の Instagram 段へ（2026-10-27 オーナー「これもインスタグラムのコンサルに近いので、インスタのコンサルっぽい内容と、あとSNS以外のサポートもみたいな感じで」。資料のカリキュラムも SNS運用指導が先頭）
+    { label: "SNS（Instagram・TikTok）", ids: ["instagram", "biyoushijuku", "freed", "gita"] },
+  ],
+};
+
+// ---- ジャンル専用ページ（お悩みから選ぶ → ここ）----
+for (const f of FINDER) {
+  const d = DATA.find((x) => x.name === f.cat);
+  const slug = genreSlug(f.cat);
+  if (services.some((v) => v.id === slug)) throw new Error(`ジャンルのURLがサービスと重なる: ${slug}`);
+  const card = (it) => {
+    const mark = it.logo
+      ? `<div class="cmark${it.dark ? " dark" : ""}"><img src="${it.logo}" alt=""></div>`
+      : `<div class="cmark"><span class="mono">${esc(it.mono)}</span></div>`;
+    return `<a class="card" href="${it.href || "/" + it.id}">${mark}<p class="komoji ctag">${esc(d.en || d.name)}</p><h4>${it.title}</h4>${it.pts}<span class="more">詳細 <span class="arw">→</span></span></a>`;
+  };
+  const gridOf = (items) => `<div class="grid${items.length === 1 ? " one" : items.length === 2 ? " two" : ""}">
+        ${items.map(card).join("\n        ")}
+      </div>`;
+  let listHTML;
+  if (SUBGROUPS[f.cat]) {
+    const used = SUBGROUPS[f.cat].flatMap((g) => g.ids);
+    const left = d.items.filter((it) => !used.includes(it.id)).map((it) => it.id);
+    if (left.length) throw new Error(`SUBGROUPS(${f.cat}) に入っていない: ${left.join(", ")}`);
+    listHTML = SUBGROUPS[f.cat].map((g) => {
+      const items = g.ids.map((id) => d.items.find((it) => it.id === id)).filter(Boolean);
+      if (items.length !== g.ids.length) throw new Error(`SUBGROUPS(${f.cat}/${g.label}) に不明な id`);
+      // 同じ種類ごとに段を分ける（2026-10-27 オーナー「上が2段、下が3段にすれば綺麗に分かれます！」＝自動化ツール2枚／集客コンサル3枚）
+      const rows = [];
+      for (const it of items) { const row = rows.find((r) => KIND[r[0].id] === KIND[it.id]); if (row) row.push(it); else rows.push([it]); }
+      return `<div class="subgroup"><h2 class="subh">${esc(g.label)}<span>${items.length}件</span></h2>
+      ${rows.map((r) => `<div class="krow">${gridOf(r)}</div>`).join("\n      ")}</div>`;
+    }).join("\n      ");
+  } else {
+    listHTML = gridOf(d.items);
+  }
+  const others = FINDER.filter((o) => o !== f).map((o) => `<a href="/${genreSlug(o.cat)}">${esc(o.when.split("（")[0])}</a>`).join("");
+  const body = `<main>
+  <section class="detail detail-hero genre-hero">
+    <div class="container reveal">
+      <a class="back" href="/#find">← お悩み一覧にもどる</a>
+      <p class="gtag">${esc(f.cat)}</p>
+      <h1>${esc(f.when.split("（")[0])}</h1>${f.when.includes("（") ? `<p class="gsub">${esc(f.when.slice(f.when.indexOf("（") + 1).replace(/）$/, ""))}</p>` : ""}
+      <p class="lead">${esc(f.cat)}のサービスは<strong>${d.items.length}件</strong>あります。気になるものを開くと、内容と相談先（公式LINEなど）が見られます。</p>
+    </div>
+  </section>
+  <section class="genre-list">
+    <div class="container reveal">
+      ${listHTML}
+      <div class="genre-others">
+        <h2>ほかのお悩みから探す</h2>
+        <div class="gchips">${others}</div>
+      </div>
+    </div>
+  </section>
+</main>`;
+  writeFileSync(`${OUT}/${slug}.html`, pageDoc(`${f.cat}のサービス｜BCC`, `${f.when}。BCCの${f.cat}のサービス${d.items.length}件をまとめています。`, body, slug));
+}
 
 const indexBody = `<header class="hero">
   <div class="hero-mark serif">BCC</div>
@@ -997,15 +1208,6 @@ const indexBody = `<header class="hero">
     <span class="eyebrow jp">美容室オーナー・美容師のための</span>
     <h1><span style="white-space:nowrap">サロン経営の困りごと、</span><br><span class="hl" style="white-space:nowrap">ここでまとめて相談。</span></h1>
     <p class="hero-sub">開業・集客・スタッフ・お金・仕入れ。<br><span style="white-space:nowrap"><b>BCCが選んだサービス</b>を、</span><span style="white-space:nowrap">悩みから探せます。</span></p>
-    <div class="hero-cta">
-      <a class="primary jp" href="#find">悩みからサービスを探す</a>
-      <a class="ghost jp" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットで相談</a>
-    </div>
-    <div class="hstats">
-      <div><strong>${services.length}</strong><span>提携サービス</span></div>
-      <div><strong>${DATA.length}</strong><span>ジャンル</span></div>
-      <div><strong>LINE</strong><span>で直接相談</span></div>
-    </div>
   </div>
 </header>
 
@@ -1016,7 +1218,7 @@ const indexBody = `<header class="hero">
       <h2>BCCでできること</h2>
       <p class="dlead">技術以外の「困った」を、ここで片づけられます。</p>
       <div class="dgrid">
-        <a class="dcard" href="#find"><span class="dn">1</span><h3>悩みからサービスを探す</h3><p>開業・集客・教育・節税など、BCCが選んだ${services.length}のサービスから選べます。</p><span class="go">悩みから探す →</span></a>
+        <a class="dcard" href="#find"><span class="dn">1</span><h3>悩みからサービスを探す</h3><p>開業・集客・教育・節税など、BCCが選んだ${itemCount}のサービスから選べます。</p><span class="go">悩みから探す →</span></a>
         <a class="dcard" href="${OC_URL}" target="_blank" rel="noopener noreferrer"><span class="dn">2</span><h3>同業者に、気軽に相談する</h3><p>オープンチャットで情報交換。各サービスへは公式LINEから直接聞けます。</p><span class="go">オープンチャットへ →</span></a>
         <a class="dcard" href="${SALOPIT_URL}" target="_blank" rel="noopener noreferrer"><span class="dn">3</span><h3>施術ツール「サロピット」<span class="new">NEW</span></h3><p>参考レシピ・配合計算・お助けチャット。施術中にそのまま開けます。</p><span class="go">サロピットを開く →</span></a>
       </div>
@@ -1027,10 +1229,10 @@ const indexBody = `<header class="hero">
     <div class="sec-head reveal">
       <p class="komoji lbl">Find</p>
       <h2>お悩みから、<em>選ぶ</em>。</h2>
-      <p>いま困っていることを選ぶと、そのジャンルのサービスがすべて見られます。</p>
+      <p>いま困っていることを選ぶと、そのジャンルのサービスだけをまとめたページが開きます。</p>
     </div>
     <div class="finder reveal">
-${FINDER.map((f) => `      <a class="frow" href="#services" data-cat="${esc(f.cat)}"><span class="fnum">${catCount(f.cat)}<small>件</small></span><span class="fbody"><p class="fwhen">${esc(f.when)}</p><p class="fpick"><span>${esc(f.cat)}のサービス ${catCount(f.cat)}件を見る</span></p></span></a>`).join("\n")}
+${FINDER.map((f) => `      <a class="frow" href="/${genreSlug(f.cat)}"><span class="fnum">${catCount(f.cat)}<small>件</small></span><span class="fbody"><p class="fwhen">${esc(f.when)}</p><p class="fpick"><span>${esc(f.cat)}のサービス ${catCount(f.cat)}件を見る</span></p></span></a>`).join("\n")}
     </div>
   </section>
 
@@ -1046,33 +1248,6 @@ ${FINDER.map((f) => `      <a class="frow" href="#services" data-cat="${esc(f.ca
     </div>
   </section>
 
-  <section class="container">
-    <div class="sec-head reveal">
-      <p class="komoji lbl">Information</p>
-      <h2>BCCを、<em>もっと知る</em>。</h2>
-      <p>BCCの全体像と、いま読んでおきたいコンテンツ。気になることはオープンチャットで気軽に。</p>
-    </div>
-    <div class="grid reveal">
-      <a class="card" href="${ABOUT}">
-        <p class="komoji ctag">About</p>
-        <h4>BCCとは</h4>
-        <p>想い・提供サポート・実績・会社概要。BCCの全体像はこちら。</p>
-        <span class="more">View <span class="arw">→</span></span>
-      </a>
-      <a class="card" href="/stylemanager">
-        <p class="komoji ctag">Pick up</p>
-        <h4>HPBの実データ公開</h4>
-        <p>ライトプランの店が、最上位プラン超え。5店舗の公式レポートと、スタイル・ブログ・口コミの運用代行はこちら。</p>
-        <span class="more">View <span class="arw">→</span></span>
-      </a>
-      <a class="card" href="${OC_URL}" target="_blank" rel="noopener noreferrer">
-        <p class="komoji ctag">Community</p>
-        <h4>オープンチャット</h4>
-        <p>同業者の情報交換・最新の共有・先行案内。ご相談もこちら。</p>
-        <span class="more">Enter <span class="arw">→</span></span>
-      </a>
-    </div>
-  </section>
 
 </main>
 
@@ -1087,7 +1262,7 @@ const DATA = ${JSON.stringify(DATA)};
     var mark = it.logo
       ? '<div class="cmark'+(it.dark?' dark':'')+'"><img src="'+it.logo+'" alt=""></div>'
       : '<div class="cmark"><span class="mono">'+it.mono+'</span></div>';
-    return '<a class="card" href="/'+it.id+'">'+mark+'<p class="komoji ctag">'+(d.en||d.name)+'</p><h4>'+it.name+'</h4><p>'+it.desc+'</p><span class="more">詳細 <span class="arw">→</span></span></a>';
+    return '<a class="card" href="'+(it.href||'/'+it.id)+'">'+mark+'<p class="komoji ctag">'+(d.en||d.name)+'</p><h4>'+it.title+'</h4>'+it.pts+'<span class="more">詳細 <span class="arw">→</span></span></a>';
   }
   function panel(tab){
     if(tab.all){
@@ -1111,13 +1286,6 @@ const DATA = ${JSON.stringify(DATA)};
     tabs.appendChild(b);
   });
   activate(0);
-  // 「お悩みから、選ぶ。」→ 該当ジャンルのタブを開く
-  document.querySelectorAll("[data-cat]").forEach(function(a){
-    a.addEventListener("click",function(){
-      var i=TABS.findIndex(function(t){return t.name===a.getAttribute("data-cat");});
-      if(i>=0) activate(i);
-    });
-  });
 })();
 </script>`;
 
