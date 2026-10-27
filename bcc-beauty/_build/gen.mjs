@@ -1006,7 +1006,7 @@ const DATA = categories
 DATA.find((c) => c.name === "集客").items.unshift({
   id: "stylemanager",
   href: "/stylemanager",
-  name: "StyleManager（HPBスタイル・ブログ・口コミ運用代行）",
+  name: "StyleManager｜PV爆上げ ホットペッパー自動化ツール", // 名前の後ろはオーナー指定（2026-10-27「タイトルにPV爆上げホットペッパー自動化ツールみたいな文章も入れてほしい！」）
   desc: "ホットペッパーのスタイル・ブログ・口コミの運用代行。5店舗の実データを公開中。",
   logo: null,
   dark: false,
