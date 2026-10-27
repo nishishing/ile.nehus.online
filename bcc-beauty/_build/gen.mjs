@@ -1001,6 +1001,18 @@ const DATA = categories
       })),
   }))
   .filter((c) => c.items.length);
+// StyleManager（自社商品・2026-08-27 掲載可）を「集客」の先頭に置く（2026-10-27 オーナー「集客に関してスタイルマネージャー作るの忘れてました。一番上に持ってきて表示してほしい！」）。
+// 実体は /stylemanager の転送（vercel.json）なので services[] には入れない＝詳細ページは作らず、href で転送先へ
+DATA.find((c) => c.name === "集客").items.unshift({
+  id: "stylemanager",
+  href: "/stylemanager",
+  name: "StyleManager（HPBスタイル・ブログ・口コミ運用代行）",
+  desc: "ホットペッパーのスタイル・ブログ・口コミの運用代行。5店舗の実データを公開中。",
+  logo: null,
+  dark: false,
+  mono: "S",
+});
+const itemCount = DATA.reduce((n, c) => n + c.items.length, 0);
 
 // 「お悩みから選ぶ」（2026-10-27 オーナー「今言った内容もざっくり改善していきたいですね！」）。
 // 🔴 悩み → ジャンルにつなぐ。特定の会社に絞らない（2026-10-27 オーナー「企業を絞っちゃうと…平等じゃないかな」）。
@@ -1018,7 +1030,7 @@ const FINDER = [
   { when: "ヘアスタイルを販売したい", cat: "ヘアスタイル販売" },
 ];
 const genreSlug = (c) => "genre-" + enOf[c].toLowerCase().replace(/\s+/g, "-");
-const catCount = (c) => { const n = services.filter((v) => v.cat === c).length; if (!n) throw new Error(`FINDER: 不明なジャンル ${c}`); return n; };
+const catCount = (c) => { const n = (DATA.find((x) => x.name === c) || { items: [] }).items.length; if (!n) throw new Error(`FINDER: 不明なジャンル ${c}`); return n; };
 
 // ---- ジャンル専用ページ（お悩みから選ぶ → ここ）----
 for (const f of FINDER) {
@@ -1029,7 +1041,7 @@ for (const f of FINDER) {
     const mark = it.logo
       ? `<div class="cmark${it.dark ? " dark" : ""}"><img src="${it.logo}" alt=""></div>`
       : `<div class="cmark"><span class="mono">${esc(it.mono)}</span></div>`;
-    return `<a class="card" href="/${it.id}">${mark}<p class="komoji ctag">${esc(d.en || d.name)}</p><h4>${esc(it.name)}</h4><p>${esc(it.desc)}</p><span class="more">詳細 <span class="arw">→</span></span></a>`;
+    return `<a class="card" href="${it.href || "/" + it.id}">${mark}<p class="komoji ctag">${esc(d.en || d.name)}</p><h4>${esc(it.name)}</h4><p>${esc(it.desc)}</p><span class="more">詳細 <span class="arw">→</span></span></a>`;
   }).join("\n        ");
   const others = FINDER.filter((o) => o !== f).map((o) => `<a href="/${genreSlug(o.cat)}">${esc(o.when.split("（")[0])}</a>`).join("");
   const body = `<main>
@@ -1067,7 +1079,7 @@ const indexBody = `<header class="hero">
       <a class="ghost jp" href="${OC_URL}" target="_blank" rel="noopener noreferrer">オープンチャットで相談</a>
     </div>
     <div class="hstats">
-      <div><strong>${services.length}</strong><span>提携サービス</span></div>
+      <div><strong>${itemCount}</strong><span>提携サービス</span></div>
       <div><strong>${DATA.length}</strong><span>ジャンル</span></div>
       <div><strong>LINE</strong><span>で直接相談</span></div>
     </div>
@@ -1081,7 +1093,7 @@ const indexBody = `<header class="hero">
       <h2>BCCでできること</h2>
       <p class="dlead">技術以外の「困った」を、ここで片づけられます。</p>
       <div class="dgrid">
-        <a class="dcard" href="#find"><span class="dn">1</span><h3>悩みからサービスを探す</h3><p>開業・集客・教育・節税など、BCCが選んだ${services.length}のサービスから選べます。</p><span class="go">悩みから探す →</span></a>
+        <a class="dcard" href="#find"><span class="dn">1</span><h3>悩みからサービスを探す</h3><p>開業・集客・教育・節税など、BCCが選んだ${itemCount}のサービスから選べます。</p><span class="go">悩みから探す →</span></a>
         <a class="dcard" href="${OC_URL}" target="_blank" rel="noopener noreferrer"><span class="dn">2</span><h3>同業者に、気軽に相談する</h3><p>オープンチャットで情報交換。各サービスへは公式LINEから直接聞けます。</p><span class="go">オープンチャットへ →</span></a>
         <a class="dcard" href="${SALOPIT_URL}" target="_blank" rel="noopener noreferrer"><span class="dn">3</span><h3>施術ツール「サロピット」<span class="new">NEW</span></h3><p>参考レシピ・配合計算・お助けチャット。施術中にそのまま開けます。</p><span class="go">サロピットを開く →</span></a>
       </div>
@@ -1152,7 +1164,7 @@ const DATA = ${JSON.stringify(DATA)};
     var mark = it.logo
       ? '<div class="cmark'+(it.dark?' dark':'')+'"><img src="'+it.logo+'" alt=""></div>'
       : '<div class="cmark"><span class="mono">'+it.mono+'</span></div>';
-    return '<a class="card" href="/'+it.id+'">'+mark+'<p class="komoji ctag">'+(d.en||d.name)+'</p><h4>'+it.name+'</h4><p>'+it.desc+'</p><span class="more">詳細 <span class="arw">→</span></span></a>';
+    return '<a class="card" href="'+(it.href||'/'+it.id)+'">'+mark+'<p class="komoji ctag">'+(d.en||d.name)+'</p><h4>'+it.name+'</h4><p>'+it.desc+'</p><span class="more">詳細 <span class="arw">→</span></span></a>';
   }
   function panel(tab){
     if(tab.all){
