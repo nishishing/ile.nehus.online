@@ -89,12 +89,15 @@ html.js .reveal{opacity:0;transform:translateY(16px);transition:opacity 1s cubic
 html.js .reveal.in{opacity:1;transform:none}
 
 /* nav */
-.sem-bar{display:block;background:var(--ink);color:#fff;text-align:center;padding:10px 16px;font-size:.84rem;line-height:1.5;text-decoration:none}
-.sem-bar b{font-weight:700}
-.sem-bar .nw{white-space:nowrap}
-.sem-bar .sem-go{display:inline-block;margin-left:10px;padding:4px 14px;border-radius:999px;background:#06c755;color:#fff;font-weight:700;font-size:.78rem;white-space:nowrap}
-.sem-bar:hover .sem-go{opacity:.88}
-@media(max-width:680px){.sem-bar{font-size:.78rem;padding:9px 12px}.sem-bar .sem-go{display:block;width:max-content;margin:6px auto 0}}
+.sem-card{display:flex;align-items:center;gap:18px;max-width:640px;margin:40px auto 0;padding:16px 18px 16px 22px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px rgba(15,23,42,.08);text-align:left;color:var(--ink);text-decoration:none;transition:transform .2s,box-shadow .2s}
+.sem-card:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(15,23,42,.12)}
+.sem-card .sem-tag{flex:none;font-size:.7rem;font-weight:700;letter-spacing:.08em;color:#fff;background:var(--ink);padding:5px 10px;border-radius:999px}
+.sem-card .sem-txt{flex:1;line-height:1.55}
+.sem-card .sem-txt b{display:block;font-size:1rem}
+.sem-card .sem-txt small{display:block;font-size:.8rem;color:var(--muted,#64748b)}
+.sem-card .nw{white-space:nowrap}
+.sem-card .sem-go{flex:none;padding:10px 16px;border-radius:999px;background:#06c755;color:#fff;font-weight:700;font-size:.82rem;white-space:nowrap}
+@media(max-width:680px){.sem-card{flex-direction:column;align-items:stretch;gap:10px;margin-top:32px;padding:16px;text-align:center}.sem-card .sem-tag{align-self:center}.sem-card .sem-go{text-align:center;padding:12px}}
 .nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.86);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid var(--line)}
 .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0}
 .brand{font-family:var(--font-serif);font-weight:600;letter-spacing:.06em;font-size:1.45rem}
@@ -459,13 +462,15 @@ const nav = `<nav class="nav">
   </div>
 </nav>`;
 
-// トップの一番上のセミナー告知（2026-10-28 オーナー「ページの一番上に、このセミナーに誘導するようなボタンを作ってほしい！」）
+// トップのヒーロー下（「サロン経営の困りごと…」と「BCCでできること」の間）のセミナー告知（2026-10-28 オーナー「ページの一番上に、このセミナーに誘導するようなボタンを作ってほしい！」→「サロンの困りごとをまとめて相談、BCCができることとの間の空白あたりにバナーみたいな感じで」）
 // 申込先はオーナー貼り付けの告知文の BCC公式LINE。開催が終わったら外す（12/7 17時以降は画面でも自動で隠す）
 const SEM_URL = "https://liff.line.me/2011747330-BQph4fkB";
-const semBar = `<a class="sem-bar" id="semBar" href="${SEM_URL}" target="_blank" rel="noopener noreferrer">
-  <span><b class="nw">12/7（月）16:30〜</b> <span class="nw">ONE’s GROUP 集客セミナー</span><span class="nw">｜ダリア渋谷</span></span><span class="sem-go">詳細・参加はこちら</span>
-</a>
-<script>if(Date.now()>Date.parse("2026-12-07T17:00:00+09:00")){var b=document.getElementById("semBar");if(b)b.remove();}</script>`;
+const semBar = `<a class="sem-card" id="semBar" href="${SEM_URL}" target="_blank" rel="noopener noreferrer">
+      <span class="sem-tag">セミナー</span>
+      <span class="sem-txt"><b><span class="nw">ONE’s GROUP</span> <span class="nw">集客セミナー</span></b><small><span class="nw">12/7（月）16:30〜</span>　<span class="nw">ダリア渋谷</span></small></span>
+      <span class="sem-go">詳細・参加はこちら</span>
+    </a>
+    <script>if(Date.now()>Date.parse("2026-12-07T17:00:00+09:00")){var b=document.getElementById("semBar");if(b)b.remove();}</script>`;
 
 // 公開LP（/about）用ナビ：サービス一覧（会員限定）へは出さず、オープンチャットに集約（2026-10-28 オーナー「公式LINEに誘導してるんですけど、オープンチャットに変えたい！」）
 const lpNav = `<nav class="nav">
@@ -1132,6 +1137,7 @@ const indexBody = `<header class="hero">
     <span class="eyebrow jp">美容室オーナー・美容師のための</span>
     <h1><span style="white-space:nowrap">サロン経営の困りごと、</span><br><span class="hl" style="white-space:nowrap">ここでまとめて相談。</span></h1>
     <p class="hero-sub">開業・集客・スタッフ・お金・仕入れ。<br><span style="white-space:nowrap"><b>BCCが選んだサービス</b>を、</span><span style="white-space:nowrap">悩みから探せます。</span></p>
+    ${semBar}
   </div>
 </header>
 
@@ -1218,9 +1224,7 @@ writeFileSync(
   pageDoc(
     "BCC｜美容室経営の困りごと、まとめて相談",
     "BCC（beauty Cooperative Chain）は、美容室の開業・集客・スタッフ・お金・仕入れの困りごとを、厳選したパートナーのサービスにつなぐ相談窓口です。",
-    indexBody,
-    "",
-    semBar + "\n" + nav
+    indexBody
   )
 );
 
