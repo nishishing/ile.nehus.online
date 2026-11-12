@@ -189,6 +189,7 @@ export const stylists: readonly Stylist[] = [
     position: "店長 / スタイリスト",
     specialties: ["バレイヤージュ", "ブリーチ"],
     instagram: "sho_kitahara",
+    portrait: { url: "/staff/kitahara-sho.jpg", width: 600, height: 750 },
   },
   {
     slug: "fukutani-amane",
@@ -335,6 +336,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagaoka",
     position: "ヘルプスタイリスト",
     instagram: "uta",
+    portrait: { url: "/staff/takahashi-yuta.jpg", width: 600, height: 750 },
   },
   {
     slug: "watanabe-miyu",
