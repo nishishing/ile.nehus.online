@@ -131,6 +131,7 @@ export const stylists: readonly Stylist[] = [
     nameJa: "本間 結衣",
     salonSlug: "harajuku-a",
     position: "アシスタント",
+    portrait: { url: "/staff/honma-yui.jpg", width: 600, height: 750 },
   },
   {
     slug: "miho-haruki",
