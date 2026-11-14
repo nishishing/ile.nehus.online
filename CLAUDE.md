@@ -320,12 +320,11 @@ the Workers Static Assets flow we actually used).
 > - ~~**Salon interiors — harajuku-a + nagoya.**~~ ✅ DONE 2026-06-13 — all 4
 >   salons now have owner-supplied interiors (`public/salons/*.jpg`, 1600×680
 >   grayscale). harajuku-b / nagaoka were also replaced with the owner's photos.
-> - **Staff portraits — 7 missing** (`inoe-mizuki`, `horibe-mihana`,
->   `fukutani-amane`, `kawahara-ichika`, `yukimatsu-hisa`, `tanogami-yoshiho`,
->   `yokoyama-ichika`). Grayscale, 600×750 top-anchored, save
+> - ~~**Staff portraits.**~~ ✅ DONE 2026-11-14 — all 35 listed stylists now
+>   have a portrait (the last three — `kitahara-sho`, `takahashi-yuta`,
+>   `honma-yui` — in #173). For new staff: grayscale, 600×750, save
 >   `public/staff/<slug>.jpg`, then add
->   `portrait: { url, width: 600, height: 750 }` to each in
->   `src/data/stylists.ts`.
+>   `portrait: { url, width: 600, height: 750 }` in `src/data/stylists.ts`.
 > - **Effect Bleach before/after** — still open. (real OGP ✅ done 2026-06-15 —
 >   branded `public/og-default.jpg` from the real Harajuku hero photo + boxed
 >   mark + 「船から、島へ」, via `scripts/generate-og.mjs`. iLe logo ✅ done

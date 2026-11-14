@@ -131,6 +131,7 @@ export const stylists: readonly Stylist[] = [
     nameJa: "本間 結衣",
     salonSlug: "harajuku-a",
     position: "アシスタント",
+    portrait: { url: "/staff/honma-yui.jpg", width: 600, height: 750 },
   },
   {
     slug: "miho-haruki",
@@ -189,6 +190,7 @@ export const stylists: readonly Stylist[] = [
     position: "店長 / スタイリスト",
     specialties: ["バレイヤージュ", "ブリーチ"],
     instagram: "sho_kitahara",
+    portrait: { url: "/staff/kitahara-sho.jpg", width: 600, height: 750 },
   },
   {
     slug: "fukutani-amane",
@@ -335,6 +337,7 @@ export const stylists: readonly Stylist[] = [
     salonSlug: "nagaoka",
     position: "ヘルプスタイリスト",
     instagram: "uta",
+    portrait: { url: "/staff/takahashi-yuta.jpg", width: 600, height: 750 },
   },
   {
     slug: "watanabe-miyu",
