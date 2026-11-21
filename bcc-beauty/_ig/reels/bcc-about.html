@@ -1,0 +1,194 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0d1117}
+body{font-family:'Hiragino Kaku Gothic ProN',sans-serif;-webkit-font-smoothing:antialiased}
+.layer{position:absolute;inset:0;overflow:hidden}
+.grid{position:absolute;inset:-200px;background-image:linear-gradient(#e6eff7 2px,transparent 2px),linear-gradient(90deg,#e6eff7 2px,transparent 2px);background-size:72px 72px}
+.dgrid{position:absolute;inset:-200px;background-image:linear-gradient(rgba(120,160,200,.10) 2px,transparent 2px),linear-gradient(90deg,rgba(120,160,200,.10) 2px,transparent 2px);background-size:72px 72px}
+.blob{position:absolute;border-radius:50%;filter:blur(90px)}
+.logo{position:absolute;top:140px;left:0;right:0;text-align:center;font-family:Georgia,serif;font-size:42px;font-weight:700;letter-spacing:.24em;z-index:50}
+/* S1 */
+#s1{background:#0d1117}
+.slam{position:absolute;left:0;right:0;top:760px;text-align:center;font-size:300px;font-weight:900;color:#fff;letter-spacing:-.02em;line-height:1}
+.slam small{display:block;font-size:44px;font-weight:700;color:#7fa7cf;letter-spacing:.3em;margin-bottom:30px}
+.stack{position:absolute;left:0;right:0;top:760px;text-align:center}
+.chip{display:inline-block;margin:10px;padding:18px 38px;border:3px solid rgba(255,255,255,.85);border-radius:999px;color:#fff;font-size:56px;font-weight:800}
+.ask{position:absolute;left:0;right:0;top:1030px;text-align:center;color:#fff;font-size:104px;font-weight:900}
+.ask span{display:inline-block}
+/* S2 */
+#s2 .t{position:absolute;left:90px;right:60px;top:720px;font-size:112px;line-height:1.3;font-weight:900;color:#0d1117}
+#s2 .t .ln{display:block;overflow:hidden;padding-bottom:8px}
+#s2 .t .ln span{display:inline-block}
+.mark{background:linear-gradient(transparent 58%,#bcd8f2 58%);background-repeat:no-repeat}
+/* S3 */
+.orb{position:absolute;left:390px;top:760px;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle at 34% 28%,#ffffff 0,#dbe9f7 18%,#7aa1c9 55%,#1a2c45 100%);
+  box-shadow:0 0 120px rgba(122,161,201,.55),inset -24px -36px 70px rgba(0,0,0,.35);
+  display:flex;align-items:center;justify-content:center;color:#fff;font-family:Georgia,serif;font-size:80px;font-weight:700;letter-spacing:.12em;text-shadow:0 4px 18px rgba(0,0,0,.55);overflow:hidden}
+.orb i{position:absolute;top:-20%;width:40%;height:140%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:rotate(20deg)}
+.p{position:absolute;width:12px;height:12px;border-radius:50%;background:#9cc3ea;box-shadow:0 0 16px #9cc3ea}
+.gnode{position:absolute;left:0;top:0;padding:20px 36px;border-radius:999px;background:#fff;color:#0d1117;font-size:44px;font-weight:900;white-space:nowrap;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.ring{position:absolute;left:540px;top:910px;width:0;height:0}
+.ringline{position:absolute;left:150px;top:610px;width:780px;height:600px;border-radius:50%;border:2px solid rgba(156,195,234,.35)}
+.count{position:absolute;left:0;right:0;top:1380px;text-align:center;color:#fff}
+.count b{font-family:Georgia,serif;font-size:220px;line-height:1;font-weight:700}
+.count span{font-size:64px;font-weight:900;margin-left:10px}
+.count p{margin-top:18px;font-size:48px;font-weight:700;color:#b9cde2}
+/* S4 */
+#s4 svg{position:absolute;inset:0}
+.st{position:absolute;padding:26px 40px;border-radius:28px;background:#fff;border:4px solid #0d1117;font-size:54px;font-weight:900;color:#0d1117;white-space:nowrap;box-shadow:0 26px 60px rgba(13,17,23,.18)}
+.st small{display:block;font-size:30px;font-weight:700;color:#5a6676;margin-bottom:6px}
+.st.dk{background:#0d1117;color:#fff}.st.dk small{color:#9cc3ea}
+#s4 .h{position:absolute;left:0;right:0;top:300px;text-align:center;font-size:76px;font-weight:900;color:#0d1117}
+/* S5 */
+#s5{background:#0d1117}
+.big{position:absolute;left:0;right:0;top:640px;text-align:center;font-family:Georgia,serif;font-size:250px;font-weight:700;color:#fff}
+.tag{position:absolute;left:0;right:0;top:960px;text-align:center;color:#fff;font-size:76px;line-height:1.4;font-weight:900}
+.tag .mk{background:linear-gradient(transparent 60%,#2c4a66 60%)}
+.cta{position:absolute;left:50%;top:1300px;transform:translateX(-50%);padding:34px 64px;border-radius:999px;background:#fff;color:#0d1117;font-size:50px;font-weight:900;white-space:nowrap}
+.flash{position:absolute;inset:0;background:#fff;pointer-events:none;z-index:60}
+</style></head><body>
+
+<div class="layer" id="s1"><div class="dgrid" id="g1"></div>
+  <div class="slam" id="slam"><small id="slamS"></small><span id="slamW"></span></div>
+  <div class="stack" id="stack"></div>
+  <div class="ask" id="ask"></div>
+</div>
+
+<div class="layer" id="s2" style="background:#fff"><div class="grid" id="g2"></div>
+  <div class="blob" id="b1" style="width:700px;height:700px;background:#cfe3f6"></div>
+  <div class="t"><span class="ln"><span id="l1">その悩み、</span></span><span class="ln"><span id="l2"><span class="mark" id="mk">BCCに</span></span></span><span class="ln"><span id="l3">持ってきて。</span></span></div>
+</div>
+
+<div class="layer" id="s3" style="background:#0d1117"><div class="dgrid" id="g3"></div>
+  <div class="blob" id="b2" style="width:900px;height:900px;background:#1f3b5c"></div>
+  <div class="ringline" id="rl"></div>
+  <div id="parts"></div>
+  <div class="ring" id="ringBack"></div>
+  <div class="orb" id="orb"><i id="sweep"></i>BCC</div>
+  <div class="ring" id="ringFront"></div>
+  <div class="count" id="count"><b id="num">0</b><span>の分野</span><p>専門のパートナーにつながる</p></div>
+</div>
+
+<div class="layer" id="s4" style="background:#fff"><div class="grid" id="g4"></div>
+  <div class="h" id="h4">相談から、解決まで。</div>
+  <svg viewBox="0 0 1080 1920"><path id="path" d="M300 640 C 900 640, 900 900, 540 980 S 300 1220, 400 1340 S 820 1420, 760 1560" fill="none" stroke="#0d1117" stroke-width="8" stroke-linecap="round"/><circle id="dot" r="20" fill="#2f6fae"/></svg>
+  <div class="st" id="t1"><small>STEP 1</small>困りごと</div>
+  <div class="st dk" id="t2"><small>STEP 2</small>BCCに相談</div>
+  <div class="st" id="t3"><small>STEP 3</small>合うサービスへ</div>
+  <div class="st dk" id="t4"><small>STEP 4</small>解決！</div>
+</div>
+
+<div class="layer" id="s5"><div class="dgrid" id="g5"></div>
+  <div class="blob" id="b3" style="width:900px;height:900px;background:#1f3b5c"></div>
+  <div class="big" id="big">BCC</div>
+  <div class="tag" id="tag"><span id="tg1">サロン経営の困りごと、</span><br><span class="mk" id="tg2">まとめて相談。</span></div>
+  <div class="cta" id="cta">プロフィールのリンクから</div>
+</div>
+
+<div class="logo" id="logo">BCC</div>
+<div class="flash" id="flash"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const cl=(x,a,b)=>Math.min(1,Math.max(0,(x-a)/(b-a)));
+const eo=x=>1-Math.pow(1-x,3), eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const back=x=>{const c=1.9;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2);};
+const WORDS=[["集客","新規が来ない"],["採用","人が辞める"],["お金","税金・融資"],["開業","物件・内装"]];
+WORDS.forEach(w=>{const c=document.createElement("span");c.className="chip";c.textContent=w[0];$("stack").appendChild(c);});
+const chips=[...$("stack").children];
+const ASK="ぜんぶ、ひとりで？";const askEls=[...ASK].map(ch=>{const s=document.createElement("span");s.textContent=ch;$("ask").appendChild(s);return s;});
+const G=["集客","開業支援","教育","財務","不動産","内装","材料","福利厚生","予約","ヘア販売"];
+const gn=G.map(g=>{const d=document.createElement("div");d.className="gnode";d.textContent=g;return d;});
+const P=[...Array(70)].map((_,i)=>{const d=document.createElement("div");d.className="p";$("parts").appendChild(d);
+  const a=Math.random()*6.283,r=500+Math.random()*700;return {d,x:540+Math.cos(a)*r,y:910+Math.sin(a)*r,del:Math.random()*.5};});
+const path=$("path"),PL=path.getTotalLength();path.style.strokeDasharray=PL;
+const ST=[["t1",0.0],["t2",.33],["t3",.66],["t4",1]];
+function show(id,on){$(id).style.display=on?"block":"none";}
+window.render=function(t){
+  const S=[[0,2.6],[2.6,4.6],[4.6,10.2],[10.2,14.2],[14.2,99]];
+  S.forEach(([a,b],i)=>show("s"+(i+1),t>=a&&t<b));
+  // 切り替えのフラッシュ
+  let fl=0;[2.6,10.2,14.2].forEach(x=>{const d=t-x;if(d>=0&&d<.18)fl=Math.max(fl,1-d/.18);});
+  [0.05,0.5,0.95,1.4].forEach(x=>{const d=t-x;if(d>=0&&d<.1)fl=Math.max(fl,.35*(1-d/.1));});
+  $("flash").style.opacity=fl;
+  $("logo").style.color=(t<2.6||(t>=4.6&&t<10.2)||t>=14.2)?"#fff":"#0d1117";
+  // S1 たたみかけ
+  if(t<2.6){
+    $("g1").style.transform=`translateY(${t*-40}px)`;
+    const k=Math.min(3,Math.floor(t/.45));const lt=t-k*.45;
+    const sh=lt<.12?(1-lt/.12)*18:0;
+    if(t<1.85){
+      const s=lt<.16?2.4-1.4*eo(lt/.16):1+0.04*(lt-.16);
+      $("slam").style.opacity=1;$("slamW").textContent=WORDS[k][0];$("slamS").textContent=WORDS[k][1];
+      $("slam").style.transform=`translate(${(Math.random()-.5)*sh}px,${(Math.random()-.5)*sh}px) scale(${s})`;
+      $("slam").style.filter=`blur(${lt<.12?(1-lt/.12)*14:0}px)`;
+      $("stack").style.opacity=0;$("ask").style.opacity=0;
+    }else{
+      $("slam").style.opacity=0;
+      const u=t-1.85;$("stack").style.opacity=1;$("ask").style.opacity=1;
+      chips.forEach((c,i)=>{const k=back(cl(u,i*.05,i*.05+.3));c.style.transform=`scale(${k})`;c.style.opacity=cl(u,i*.05,i*.05+.1);});
+      askEls.forEach((e,i)=>{const k=cl(u,.15+i*.04,.35+i*.04);e.style.transform=`translateY(${(1-eo(k))*80}px)`;e.style.opacity=k;});
+    }
+  }
+  // S2 円形ワイプで白へ・1行ずつせり上がる
+  if(t>=2.6&&t<4.6){
+    const u=t-2.6;
+    $("s2").style.clipPath=`circle(${eo(cl(u,0,.45))*1300}px at 540px 960px)`;
+    $("g2").style.transform=`translate(${u*-30}px,${u*-50}px)`;
+    $("b1").style.transform=`translate(${200+u*80}px,${600-u*60}px)`;
+    [["l1",.15],["l2",.32],["l3",.49]].forEach(([id,s])=>{const k=eo(cl(u,s,s+.4));$(id).style.transform=`translateY(${(1-k)*140}px)`;});
+    $("mk").style.backgroundSize=`${eo(cl(u,.8,1.2))*100}% 100%`;
+    const z=1+u*.03;document.querySelector("#s2 .t").style.transform=`scale(${z})`;
+  }
+  // S3 粒が集まって球になり、10の分野が3Dで周回
+  if(t>=4.6&&t<10.2){
+    const u=t-4.6;
+    $("g3").style.transform=`perspective(900px) rotateX(55deg) translateY(${u*60}px)`;
+    $("g3").style.transformOrigin="50% 70%";
+    $("b2").style.transform=`translate(90px,${460+Math.sin(u)*40}px)`;
+    P.forEach(p=>{const k=eio(cl(u,p.del,p.del+1.0));const x=p.x+(540-p.x)*k,y=p.y+(910-p.y)*k;p.d.style.transform=`translate(${x-6}px,${y-6}px)`;p.d.style.opacity=1-cl(u,1.2,1.5);});
+    const ok=back(cl(u,1.1,1.6));$("orb").style.transform=`scale(${ok})`;$("orb").style.opacity=cl(u,1.05,1.2);
+    $("sweep").style.left=(-60+((u*70)%220))+"%";
+    $("rl").style.opacity=cl(u,1.6,2.2);$("rl").style.transform=`scale(${.6+.4*eo(cl(u,1.6,2.2))})`;
+    const spin=u*.55;
+    $("ringBack").innerHTML="";$("ringFront").innerHTML="";
+    G.forEach((g,i)=>{
+      const appear=back(cl(u,1.6+i*.08,2.0+i*.08));
+      const a=i/G.length*6.283+spin;const x=Math.cos(a)*370,z=Math.sin(a);const y=z*300;
+      const sc=(.8+.45*(z+1)/2)*appear;
+      const n=gn[i];n.style.transform=`translate(-50%,-50%) translate(${x}px,${y}px) scale(${sc})`;
+      n.style.filter=z<0?`blur(${(-z)*3}px)`:"none";n.style.opacity=(.45+.55*(z+1)/2)*Math.min(1,appear*1.5);
+      (z<0?$("ringBack"):$("ringFront")).appendChild(n);
+    });
+    const cnt=Math.round(10*eo(cl(u,2.6,3.6)));$("num").textContent=cnt;
+    $("count").style.opacity=cl(u,2.5,2.8);$("count").style.transform=`translateY(${(1-eo(cl(u,2.5,3)))*60}px)`;
+    const cam=1+u*.015;$("s3").style.transform=`scale(${cam})`;
+  }
+  // S4 線が描かれ、点がたどる
+  if(t>=10.2&&t<14.2){
+    const u=t-10.2;
+    $("g4").style.transform=`translateY(${u*-60}px)`;
+    $("h4").style.opacity=cl(u,0,.3);$("h4").style.transform=`translateY(${(1-eo(cl(u,0,.4)))*-60}px)`;
+    const k=eio(cl(u,.2,3.2));path.style.strokeDashoffset=PL*(1-k);
+    const pt=path.getPointAtLength(PL*k);$("dot").setAttribute("cx",pt.x);$("dot").setAttribute("cy",pt.y);
+    ST.forEach(([id,f])=>{const q=path.getPointAtLength(PL*f);const e=$(id);const s=back(cl(k,f-.02,f+.1));
+      e.style.left=q.x+"px";e.style.top=q.y+"px";e.style.transform=`translate(-50%,-50%) scale(${s})`;e.style.opacity=cl(k,f-.02,f+.03);});
+    
+  }
+  // S5 締め
+  if(t>=14.2){
+    const u=t-14.2;
+    $("g5").style.transform=`translateY(${u*-30}px)`;$("b3").style.transform=`translate(90px,${400}px) scale(${1+u*.1})`;
+    $("big").style.letterSpacing=(1-eo(cl(u,0,.8)))*1.2+.1+"em";$("big").style.opacity=cl(u,0,.3);
+    $("big").style.filter=`blur(${(1-eo(cl(u,0,.6)))*20}px)`;
+    $("tg1").style.opacity=cl(u,.5,.8);$("tg2").style.opacity=cl(u,.75,1.05);
+    $("tg2").style.backgroundSize=`${eo(cl(u,1,1.4))*100}% 100%`;$("tg2").style.backgroundRepeat="no-repeat";
+    const c=back(cl(u,1.3,1.7));const pulse=1+.035*Math.sin(Math.max(0,u-1.7)*6);
+    $("cta").style.transform=`translateX(-50%) scale(${c*pulse})`;$("cta").style.opacity=cl(u,1.3,1.4);
+  }
+};
+render(0);
+</script></body></html>
