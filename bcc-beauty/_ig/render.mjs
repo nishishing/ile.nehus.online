@@ -14,6 +14,7 @@ const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const W = 1080, H = 1350;
 
 const bold = (t) => esc(t).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");  // **ここ** を太字に
+const nl = (t) => esc(t).replace(/\n/g, "<br>");  // 見出しの \n で改行（変な所で折れないように）
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const STYLE = `
@@ -77,23 +78,23 @@ function slideHtml(d, s, i, total) {
   const pager = i === 1 ? "SWIPE →" : `${i} / ${total}`;
   const head = s.type === "cover"
     ? `<div class="cat">${esc(d.categoryEn || "")}<span>${esc(d.category || "")}</span></div>
-       <div class="rule"></div><h1>${esc(d.title || "")}</h1>
+       <div class="rule"></div><h1>${nl(d.title || "")}</h1>
        <p class="lead">${esc(d.lead || "")}</p><div class="spacer"></div>`
     // 最後の面。どのサービスを選ぶか・どう辿り着くかを具体的に置く
     : s.type === "cta"
-    ? `<h2>${esc(s.heading || "")}</h2>
+    ? `<h2>${nl(s.heading || "")}</h2>
        ${s.note ? `<p class="cta-note">${esc(s.note)}</p>` : ""}
        <div class="steps">${(s.steps || []).map((t, n) => `<div class="step"><span class="no">${String(n + 1).padStart(2, "0")}</span><span class="txt">${bold(t)}</span></div>`).join("")}</div>
        <div class="spacer"></div>`
     // 同じカテゴリに複数あるので、迷わないように「条件 → サービス名」で並べる
     : s.type === "choose"
     ? `<div class="label">${esc(s.label || "どれを選ぶ？")}</div><div class="rule"></div>
-       <h2>${esc(s.heading || "")}</h2>
+       <h2>${nl(s.heading || "")}</h2>
        <div class="choose">${(s.pairs || []).map((p) => `<div class="row"><div class="when">${esc(p.when)}</div><div class="pick">${esc(p.pick)}</div></div>`).join("")}</div>
        <div class="spacer"></div>`
     : `<div class="num">${String(i - 1).padStart(2, "0")}</div>
        <div class="label">${esc(s.label || "")}</div><div class="rule"></div>
-       <h2>${esc(s.heading || "")}</h2>
+       <h2>${nl(s.heading || "")}</h2>
        ${s.body ? `<p class="body">${esc(s.body)}</p>` : ""}
        ${s.items ? `<ul>${s.items.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}<div class="spacer"></div>`;
   return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><style>${STYLE}</style></head>
