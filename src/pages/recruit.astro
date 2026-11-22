@@ -45,37 +45,66 @@ const pillars = [
   },
 ];
 
-const positions = [
+// 応募の窓口（オーナー 2026-11-22）: 新卒＝新卒採用の LINE、中途（スタイリスト・アシスタント）＝中途採用の LINE。
+// 中途はオーナーから管理画面の URL（manager.line.biz/account/@685cqoby）で届いたので、
+// 誰でも開ける友だち追加の URL（line.me/R/ti/p/@685cqoby）にしている。
+const lineNewGrad = "https://lin.ee/uLbyK5P";
+const lineCareer = "https://line.me/R/ti/p/@685cqoby";
+
+type Position = {
+  id: string;
+  label: string;
+  title: string;
+  desc: string;
+  requirements: string;
+  locations: string;
+  pay?: string[];
+  apply: { href: string; label: string };
+  badge?: string;
+  areas?: { area: string; status: string; open?: boolean }[];
+  schemaSalons?: string[];
+  // 全店で締め切るとき: closed: true と closedNote（応募ボタンの代わりに出す文）
+  closed?: boolean;
+  closedNote?: string;
+};
+
+const positions: Position[] = [
+  // 2026-11-22 オーナー「応募がスタイリストとアシスタントで分かれてるんですけど、新卒か中途で分けてください！」
+  // → 以前は スタイリスト／アシスタント／新卒 の3枠。今は 中途／新卒 の2枠（窓口の LINE も中途・新卒で別）。
   {
-    id: "stylist",
-    label: "Stylist",
-    title: "美容師（スタイリスト）",
+    id: "career",
+    label: "Career",
+    title: "中途採用（スタイリスト・アシスタント）",
     desc:
-      "技術と感性を活かして、お客様一人ひとりの「なりたい」に寄り添えるスタイリストを募集しています。ブリーチ・デザインカラーの技術をさらに磨きたい方、エフェクトブリーチを本場で学びたい方を歓迎します。",
-    requirements: "美容師免許をお持ちの方（スタイリスト経験者歓迎）",
+      "美容師としての経験を活かして、iLe で次の章を始めたい方へ。スタイリストはブリーチ・デザインカラーの技術をさらに磨きたい方、エフェクトブリーチを本場で学びたい方を歓迎します。アシスタントはエフェクトブリーチの理論を基礎から体系立てて学び、スタイリストデビューを目指せる環境です。",
+    requirements: "美容師免許をお持ちの方（スタイリスト・アシスタントの経験者歓迎）",
     locations: "原宿（×2）/ 名古屋 / 長岡",
-  },
-  {
-    id: "assistant",
-    label: "Assistant",
-    title: "美容師（アシスタント）",
-    desc:
-      "iLe の島づくりを支える、技術と心を磨くアシスタントを募集しています。エフェクトブリーチの理論を基礎から体系立てて学び、スタイリストデビューを目指せる環境です。",
-    requirements: "美容師免許をお持ちの方（取得見込みを含む）",
-    locations: "原宿（×2）/ 名古屋 / 長岡",
+    // 2026-11-22 オーナー「アシスタントの給与も書いて大丈夫です！」
+    pay: [
+      "スタイリスト：完全歩合制（最低保証あり）— 技術売上の30〜40%＋店販10%",
+      "アシスタント：基本給＋歩合（東京・名古屋 30〜50%／長岡 20〜50%・美容師歴と技術レベルによる）",
+    ],
+    apply: { href: lineCareer, label: "中途採用の公式 LINE から応募する →" },
   },
   {
     id: "newgrad",
     label: "New Grad",
     title: "新卒採用",
     desc:
-      "美容専門学校を卒業予定の方を対象とした新卒採用。サロンワークの基礎から、iLe Academy に体系化された技術理論まで、一歩ずつ確実に学べます。",
+      "美容専門学校を卒業予定の方を対象とした新卒採用。アシスタントとして入社し、サロンワークの基礎から、iLe Academy に体系化された技術理論まで、一歩ずつ確実に学べます。",
     requirements: "美容師免許 取得見込みの方（美容専門学校 卒業見込み）",
-    locations: "全店舗（原宿 / 名古屋 / 長岡）",
-    // 2026-06-30 で一旦締切（オーナー指示 2026-07-04）。次期募集開始時に false へ。
-    closed: true,
-    closedNote:
-      "新卒採用は 2026年6月30日 をもって一旦締め切りました。次期募集はこのページと Instagram（@ile.801）でお知らせします。",
+    locations: "長岡",
+    // 2026-11-22 オーナー: 東京・名古屋は終了、長岡だけ募集中。
+    // （2026-07-04〜11-22 は全店で締切表示だった。全店で締め切るときは closed: true と closedNote を戻す）
+    badge: "長岡のみ募集中",
+    areas: [
+      { area: "東京（原宿）", status: "募集終了" },
+      { area: "名古屋", status: "募集終了" },
+      { area: "長岡", status: "募集中", open: true },
+    ],
+    pay: ["アシスタント：基本給＋歩合 20〜50%（長岡・技術レベルによる）"],
+    schemaSalons: ["nagaoka"],
+    apply: { href: lineNewGrad, label: "新卒採用の公式 LINE から応募する →" },
   },
 ];
 
@@ -83,7 +112,7 @@ const steps = [
   {
     n: "01",
     title: "応募・お問い合わせ",
-    body: "メールに、お名前・希望職種・希望店舗（未定でも構いません）を添えてご連絡ください。ポートフォリオや Instagram アカウントがあれば、ぜひ一緒に。",
+    body: "応募は公式 LINE で受け付けています。中途採用（スタイリスト・アシスタント）は中途採用の公式 LINE、新卒採用は新卒採用の公式 LINE を友だち追加して、お名前・希望職種・希望店舗（未定でも構いません）を送ってください。ポートフォリオや Instagram アカウントがあれば、ぜひ一緒に。",
   },
   {
     n: "02",
@@ -139,7 +168,6 @@ const benefits = [
 
 const holidays = ["月8〜10日休み", "夏季冬季休暇あり", "有給あり"];
 
-const mailSubject = encodeURIComponent("採用応募：");
 const heroSalon = salons[0];
 
 const jobPostingSchemas = positions.filter((p) => !p.closed).map((p) => ({
@@ -152,7 +180,7 @@ const jobPostingSchemas = positions.filter((p) => !p.closed).map((p) => ({
   datePosted: "2026-07-02",
   hiringOrganization: { "@id": `${site.url}/#organization` },
   industry: "美容業",
-  jobLocation: salons.map((s) => ({
+  jobLocation: salons.filter((s) => !p.schemaSalons || p.schemaSalons.includes(s.slug)).map((s) => ({
     "@type": "Place",
     name: s.nameLatin,
     address: {
@@ -163,7 +191,8 @@ const jobPostingSchemas = positions.filter((p) => !p.closed).map((p) => ({
   })),
   applicationContact: {
     "@type": "ContactPoint",
-    email: site.contactEmail,
+    // 応募は公式 LINE（2026-11-22 オーナー「応募はメールではなく公式LINEになります！」）
+    url: p.apply.href,
   },
   directApply: true,
 }));
@@ -318,6 +347,7 @@ const pageSchemas = [
           <h3 class="position__title">
             {p.title}
             {p.closed && <span class="position__closed-badge">締切</span>}
+            {p.badge && <span class="position__open-badge">{p.badge}</span>}
           </h3>
           <p class="position__desc">{p.desc}</p>
           <dl class="position__meta">
@@ -329,19 +359,37 @@ const pageSchemas = [
               <dt>勤務地</dt>
               <dd>{p.locations}</dd>
             </div>
+            {p.areas && (
+              <div>
+                <dt>募集状況</dt>
+                <dd>
+                  <ul class="position__areas">
+                    {p.areas.map((a) => (
+                      <li class={a.open ? "is-open" : undefined}>
+                        <span>{a.area}</span><span class="position__area-status">{a.status}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            )}
             <div>
               <dt>給与・待遇</dt>
-              <dd>上記の<a href="#compensation">給与テーブル</a>のとおり（詳細は面談時にご説明します）</dd>
+              <dd>
+                {p.pay && (
+                  <ul class="position__pay">
+                    {p.pay.map((line) => <li>{line}</li>)}
+                  </ul>
+                )}
+                上記の<a href="#compensation">給与テーブル</a>のとおり（詳細は面談時にご説明します）
+              </dd>
             </div>
           </dl>
           {p.closed ? (
             <p class="position__closed-note">{p.closedNote}</p>
           ) : (
-            <a
-              class="position__apply"
-              href={`mailto:${site.contactEmail}?subject=${mailSubject}${encodeURIComponent(p.title)}`}
-            >
-              この職種に応募する →
+            <a class="position__apply" href={p.apply.href} target="_blank" rel="noopener">
+              {p.apply.label}
             </a>
           )}
         </div>
@@ -372,14 +420,16 @@ const pageSchemas = [
   <!-- CTA -->
   <section class="recruit-cta">
     <p class="recruit-cta__lede">共に、<em>島</em>をつくる。</p>
-    <a
-      class="recruit-cta__btn"
-      href={`mailto:${site.contactEmail}?subject=${mailSubject}`}
-    >
-      {site.contactEmail} →
-    </a>
+    <div class="recruit-cta__btns">
+      <a class="recruit-cta__btn" href={lineCareer} target="_blank" rel="noopener">
+        中途採用の公式 LINE →
+      </a>
+      <a class="recruit-cta__btn" href={lineNewGrad} target="_blank" rel="noopener">
+        新卒採用の公式 LINE（長岡）→
+      </a>
+    </div>
     <p class="recruit-cta__sub">
-      迷っている段階のご相談・サロン見学だけでも歓迎します。
+      迷っている段階のご相談・サロン見学だけでも、公式 LINE から気軽にどうぞ。
     </p>
   </section>
 </BaseLayout>
@@ -668,6 +718,39 @@ const pageSchemas = [
     border: 1px solid var(--color-mist);
     padding: 5px 12px;
   }
+  .position__open-badge {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 14px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    color: var(--color-white);
+    background: var(--color-ink);
+    padding: 5px 12px;
+  }
+  .position__areas {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .position__areas li {
+    display: flex;
+    gap: 14px;
+    color: var(--color-fg-muted);
+  }
+  .position__areas li.is-open {
+    color: inherit;
+    font-weight: 600;
+  }
+  .position__area-status::before {
+    content: "— ";
+  }
+  .position__pay {
+    list-style: none;
+    margin: 0 0 6px;
+    padding: 0;
+  }
   .position__closed-note {
     font-size: 13.5px;
     line-height: 1.9;
@@ -917,6 +1000,12 @@ const pageSchemas = [
   .recruit-cta__lede em {
     font-style: italic;
   }
+  .recruit-cta__btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
   .recruit-cta__btn {
     display: inline-block;
     font-family: var(--font-mono);
@@ -934,6 +1023,10 @@ const pageSchemas = [
   .recruit-cta__sub {
     margin: 26px 0 0;
     font-size: 13px;
+    line-height: 2;
     color: var(--color-fg-muted);
+  }
+  .recruit-cta__sub a {
+    border-bottom: 1px solid currentColor;
   }
 </style>
