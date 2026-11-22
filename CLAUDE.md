@@ -509,6 +509,10 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-11-22** — `public/favicon.ico` を **iLe の枠付きマーク**に差し替え（`favicon.svg` から 32×32 で書き出し）。
+  5/29 の雛形のまま **Astro の初期アイコン**が残っていた。`favicon.svg` に対応しないところ（YouTube のリンク欄・一部の検索結果・古いブラウザ）では
+  これが出ていた（YouTube チャンネルのリンク欄で発見）。インスタリポ担当が代行。
+
 - **2026-11-22** — `/salons`（店舗一覧）の各店に **「HOT PEPPER Beauty で予約する ↗」ボタン**（`salon.hotPepperUrl`・新しいタブ）と
   **「店舗の詳細 →」**（`/salons/<slug>`）を追加（`SalonRow`）。それまで一覧には予約にも詳細にも進むリンクが無かった。
   オーナー依頼「予約のやつつけたいですね！Hot PepperのURL」（店の TikTok・YouTube のプロフィールのリンク先をこのページにするため）。
