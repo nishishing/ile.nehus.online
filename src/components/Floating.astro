@@ -144,11 +144,109 @@ const image = post.ogImage ?? post.eyecatch;
     padding-bottom: 3px;
   }
 
+  /* パソコンでも、縦長の大きなカードはやめて、写真の小窓（72px）＋見出し2行の横長の小さなカードにする
+     （2026-11-22 オーナー「パソコンの画面のものも、チャンネルはもっと小さくてもいいかもです！」）。 */
+  @media (min-width: 641px) {
+    .floating {
+      width: 320px;
+    }
+    .floating__link {
+      display: flex;
+      align-items: center;
+    }
+    .floating__img {
+      flex: none;
+      width: 72px;
+      height: 72px;
+      aspect-ratio: auto;
+    }
+    .floating__body {
+      min-width: 0;
+      padding: 8px 36px 8px 14px;
+    }
+    .floating__eyebrow {
+      font-size: 8.5px;
+      margin: 0 0 5px;
+    }
+    .floating__cat,
+    .floating__date,
+    .floating__more {
+      display: none;
+    }
+    .floating__title {
+      font-size: 14px;
+      line-height: 1.4;
+      margin: 0;
+      -webkit-line-clamp: 2;
+    }
+    .floating__close {
+      top: 6px;
+      right: 8px;
+      font-size: 0;
+      padding: 4px 6px;
+    }
+    .floating__close::after {
+      content: "×";
+      font-size: 15px;
+      font-style: normal;
+    }
+  }
+
+  /* 携帯では、写真の小窓＋題名1行だけの細い帯（高さ40px）にする。
+     縦長のカードのままだと画面の右下を半分近く覆い、店舗の写真や本文・ボタンが見えなかった
+     （2026-11-22 オーナー「右下のチャネル部分がでかすぎて見えない！」「またジャーナルの部分がでかすぎて見えづらい！」）。 */
   @media (max-width: 640px) {
     .floating {
-      width: 200px;
+      width: min(260px, calc(100vw - 24px));
       right: 12px;
       bottom: 12px;
+      border-radius: 20px;
+      box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.5);
+    }
+    .floating__link {
+      display: flex;
+      align-items: center;
+      height: 40px;
+    }
+    .floating__img {
+      flex: none;
+      width: 40px;
+      height: 40px;
+      aspect-ratio: auto;
+    }
+    .floating__img::after {
+      display: none;
+    }
+    .floating__body {
+      min-width: 0;
+      padding: 0 34px 0 10px;
+    }
+    .floating__eyebrow,
+    .floating__cat,
+    .floating__date,
+    .floating__more {
+      display: none;
+    }
+    .floating__title {
+      display: block;
+      font-size: 12px;
+      line-height: 1.3;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .floating__close {
+      top: 50%;
+      transform: translateY(-50%);
+      right: 6px;
+      font-size: 0;
+      padding: 6px 8px;
+    }
+    .floating__close::after {
+      content: "×";
+      font-size: 15px;
+      font-style: normal;
     }
   }
 </style>
