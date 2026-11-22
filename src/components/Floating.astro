@@ -144,11 +144,52 @@ const image = post.ogImage ?? post.eyecatch;
     padding-bottom: 3px;
   }
 
+  /* 携帯では小さな横長の帯にする（写真の小窓＋題名2行）。
+     縦長のカードのままだと画面の右下を半分近く覆い、店舗の写真や本文が見えなかった
+     （2026-11-22 オーナー「右下のチャネル部分がでかすぎて見えない！」）。 */
   @media (max-width: 640px) {
     .floating {
-      width: 200px;
+      width: min(280px, calc(100vw - 24px));
       right: 12px;
       bottom: 12px;
+    }
+    .floating__link {
+      display: flex;
+      align-items: center;
+    }
+    .floating__img {
+      flex: none;
+      width: 64px;
+      aspect-ratio: 1 / 1;
+    }
+    .floating__body {
+      padding: 8px 34px 8px 12px;
+    }
+    .floating__eyebrow {
+      font-size: 8.5px;
+      margin: 0 0 4px;
+    }
+    .floating__cat,
+    .floating__date,
+    .floating__more {
+      display: none;
+    }
+    .floating__title {
+      font-size: 13px;
+      line-height: 1.4;
+      margin: 0;
+      -webkit-line-clamp: 2;
+    }
+    .floating__close {
+      top: 4px;
+      right: 6px;
+      font-size: 0;
+      padding: 4px 6px;
+    }
+    .floating__close::after {
+      content: "×";
+      font-size: 16px;
+      font-style: normal;
     }
   }
 </style>
