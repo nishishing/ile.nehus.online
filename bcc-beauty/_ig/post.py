@@ -2,14 +2,16 @@
 # 使い方:
 #   python3 post.py bcc-about carousel 2026-11-23 20:00 --schedule   … out/bcc-about-1..N.png をカルーセルで予約
 #   python3 post.py bcc-about reel     2026-11-27 20:00 --schedule   … out/bcc-about-reel.mp4 をリールで予約
+#   python3 post.py th-ask1   carousel 2026-11-25 19:00 --schedule --threads … BCC の Threads へ（文は threads_caption・リールは threads_caption_reel）
 #   --draft にすると下書き（SNS へは出ない・API から公開に昇格できないので試し用）
-# 🔴 予約（--schedule）はオーナーが中身と日時を OK にしてから。投稿は月・金 20時（オーナー決定 2026-11-22）
+# 🔴 予約（--schedule）はオーナーが中身と日時を OK にしてから。インスタは月・金 20時（オーナー決定 2026-11-22）／Threads は 19時（2026-11-23）
 # 🔴 鍵（~/.config/post-mesh/api_key）は画面に出さない。curl へは標準入力で渡す
 # ⚠️ インスタの画像は縦横比 4:5〜1.91:1 だけ（カードは 1080x1350＝4:5）
 import json, os, subprocess, sys, glob, mimetypes
 
 API = "https://post-mesh.com/api/v1"
-CONN = "cmwqm6ivf00yt01s6cmldbm46"  # @bcc.beauty.co_opertive.chain（2026-11-22 連携）
+CONN = "cmwqm6ivf00yt01s6cmldbm46"  # インスタ @bcc.beauty.co_opertive.chain（2026-11-22 連携）
+CONN_THREADS = "cmwrosz0200fh01s6j1k6bllc"  # Threads @bcc.beauty.co_opertive.chain（2026-11-22 連携）
 HERE = os.path.dirname(os.path.abspath(__file__))
 AUTH = "Authorization: Bearer " + open(os.path.expanduser("~/.config/post-mesh/api_key")).read().strip()
 
@@ -30,10 +32,16 @@ def upload(path):
 
 def main():
     sid, kind, date, hhmm, mode = sys.argv[1:6]
+    threads = "--threads" in sys.argv[6:]
     d = json.load(open(os.path.join(HERE, "drafts", f"{sid}.json"), encoding="utf-8"))
-    caption = d["caption"] + "\n\n" + " ".join(d.get("hashtags", []))
+    if threads:
+        # Threads はタグ（トピック）が1投稿に1つだけ。文末の #タグ がトピックになる
+        caption = d["threads_caption_reel" if kind == "reel" else "threads_caption"]
+        if d.get("threads_topic"): caption += "\n\n#" + d["threads_topic"]
+    else:
+        caption = d["caption"] + "\n\n" + " ".join(d.get("hashtags", []))
     body = {"scheduled_at": f"{date}T{hhmm}:00+09:00",
-            "targets": [{"connection_id": CONN, "caption": caption, "is_ai_generated": False}]}
+            "targets": [{"connection_id": CONN_THREADS if threads else CONN, "caption": caption, "is_ai_generated": False}]}
     if kind == "carousel":
         files = sorted(glob.glob(os.path.join(HERE, "out", f"{sid}-[0-9]*.png")), key=lambda p: int(p.rsplit("-", 1)[1].split(".")[0]))
         if not 2 <= len(files) <= 10: raise SystemExit(f"画像が {len(files)} 枚（2〜10枚で出す）")
@@ -50,7 +58,7 @@ def main():
     if mode == "--schedule" and res.get("data", {}).get("id"):
         pj = os.path.join(HERE, "posted.json")
         posted = json.load(open(pj)) if os.path.exists(pj) else {}
-        posted.setdefault(sid, date)
+        posted.setdefault(sid + ("@threads-" + kind if threads else ""), date)
         json.dump(posted, open(pj, "w"), ensure_ascii=False, indent=1)
 
 if __name__ == "__main__":
