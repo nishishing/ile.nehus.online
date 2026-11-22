@@ -50,6 +50,13 @@ const bookLabel = isEn ? "BOOK" : "予約";
 </div>
 
 <script>
+  // 下へ読み進めたら、ヘッダーに暗い帯を敷く。ヘッダーの文字（SALONS など・JP/EN）は白なので、
+  // 明るい背景や写真の上では読めなかった（2026-11-22 オーナー「直す」）。一番上（暗い見出しの上）では帯を出さない。
+  const header = document.querySelector(".header");
+  const onScroll = () => header?.classList.toggle("is-scrolled", window.scrollY > 40);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
   const openBtn = document.querySelector("[data-menu-open]");
   const closeBtn = document.querySelector("[data-menu-close]");
   const menu = document.getElementById("mobile-menu");
@@ -87,6 +94,19 @@ const bookLabel = isEn ? "BOOK" : "予約";
     align-items: center;
     gap: 48px;
     color: var(--color-white);
+    transition: background-color 0.25s, box-shadow 0.25s, padding 0.25s;
+  }
+  .header.is-scrolled {
+    background: rgba(22, 23, 26, 0.9);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px -16px rgba(0, 0, 0, 0.6);
+  }
+  /* 帯が出ている間は、ロゴとメニューの四角い地は要らない（帯と同じ色なので外す） */
+  .header.is-scrolled .header__logo,
+  .header.is-scrolled .header__menu-btn {
+    background: transparent;
+    box-shadow: none;
   }
   /* ロゴは白い線なので、明るい背景の上までスクロールすると薄くなって消えていた。
      メニューボタンと同じ暗い地を敷いて、どの背景でも見えるようにする（2026-11-22 オーナー「直す」）。 */
@@ -235,6 +255,11 @@ const bookLabel = isEn ? "BOOK" : "予約";
     .header {
       gap: 16px;
       padding: 18px 20px;
+    }
+    /* 携帯だけ、下げている間は帯を細くする（パソコンは右上の JP/EN と重なるので詰めない） */
+    .header.is-scrolled {
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
     .header__nav {
       display: none;
