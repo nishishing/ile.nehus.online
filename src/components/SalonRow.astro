@@ -62,6 +62,24 @@ const area = areaParts.join(" ");
         </div>
       )}
     </dl>
+    {/* 店舗一覧から直接予約できるように（2026-11-22 オーナー依頼「予約のやつつけたいですね！Hot PepperのURL」）。
+        SNS のプロフィールのリンク先をこのページにするため、1タップで各店の予約へ進めることが目的。 */}
+    <div class="salon-row__actions">
+      {salon.hotPepperUrl && (
+        <a
+          class="salon-row__book"
+          href={salon.hotPepperUrl}
+          target="_blank"
+          rel="noopener"
+          aria-label={`${salon.name}を HOT PEPPER Beauty で予約する（新しいタブで開きます）`}
+        >
+          HOT PEPPER Beauty で予約する ↗
+        </a>
+      )}
+      <a class="salon-row__more" href={`/salons/${salon.slug}`}>
+        店舗の詳細 →
+      </a>
+    </div>
   </div>
 </article>
 
@@ -202,5 +220,40 @@ const area = areaParts.join(" ");
   .salon-row__spec dd em {
     font-family: var(--font-display);
     font-style: italic;
+  }
+  .salon-row__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 28px;
+    margin: 32px 0 0;
+  }
+  .salon-row__book {
+    display: inline-block;
+    padding: 16px 28px;
+    background: var(--color-fg);
+    color: var(--color-fg-on-dark);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  .salon-row__book:hover,
+  .salon-row__book:focus-visible {
+    opacity: 0.8;
+  }
+  .salon-row__more {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: var(--color-fg);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 4px;
+  }
+  .salon-row__more:hover,
+  .salon-row__more:focus-visible {
+    border-bottom-color: var(--color-fg);
   }
 </style>

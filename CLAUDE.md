@@ -509,6 +509,11 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-11-22** — `/salons`（店舗一覧）の各店に **「HOT PEPPER Beauty で予約する ↗」ボタン**（`salon.hotPepperUrl`・新しいタブ）と
+  **「店舗の詳細 →」**（`/salons/<slug>`）を追加（`SalonRow`）。それまで一覧には予約にも詳細にも進むリンクが無かった。
+  オーナー依頼「予約のやつつけたいですね！Hot PepperのURL」（店の TikTok・YouTube のプロフィールのリンク先をこのページにするため）。
+  ボタンはグレースケールのまま（地＝`--color-fg`・字＝`--color-fg-on-dark`）。インスタリポ担当が代行（iLe HP担当のセッション不在）。
+
 - **2026-07-30** — 8/1 ブランド統一の「予告→完了」**自動切替**を実装。`src/lib/brand-state.ts` の
   `isUnified`（ビルド時 `new Date() >= site.unifiedAt(JST)`）を基準に、(1) 告知バー AnnounceBar を
   8/1以降 自動非表示＋`--announce-h:0`（BaseLayout） (2) 主要文言の時制を `unifyTense("統一します","統一しました")`
