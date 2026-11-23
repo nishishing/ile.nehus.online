@@ -1,0 +1,243 @@
+---
+/**
+ * /links — SNS のプロフィールに貼るリンク集（lit.link のような1枚ページ）。
+ *
+ * 2026-11-23 オーナー依頼「1個はまとめサイト、それ以外はホットペッパーのサイトで合計5つにするのはどうかなって
+ * 思ってます。で、最初のまとめサイトに関してはホームページの中に SNS 用のものを作っちゃってもいいかなって
+ * 思ってます。お願いします。できたらリットリンクみたいな感じで。」
+ *
+ * インスタ（@ile.hairsalon）のリンク欄 = ① このページ ② 〜 ⑤ 各店の HOT PEPPER Beauty。
+ * ここには予約・通販（Irida）・求人・SNS をまとめる。
+ * スマホで1本指で押しやすいことを優先し、サイト共通のヘッダー・フッターは付けない（BaseHead だけ使う）。
+ * 予約の URL は src/data/salons.ts の hotPepperUrl をそのまま使う（二重に持たない）。
+ */
+import BaseHead from "~components/BaseHead.astro";
+import { salons } from "~data/salons";
+
+const IRIDA_SHOP = "https://ileing.stores.jp";
+
+// 店の並びと見せ方（名古屋は HPB の店名が「イル 栄」なので「栄」を添える）
+const bookOrder = [
+  { slug: "harajuku-a", label: "iLe. 原宿", note: "神宮前6丁目" },
+  { slug: "harajuku-b", label: "iLe.＋ 原宿", note: "表参道・神宮前3丁目" },
+  { slug: "nagoya", label: "iLe. 名古屋", note: "栄" },
+  { slug: "nagaoka", label: "iLe. 長岡", note: "古正寺" },
+] as const;
+
+const book = bookOrder.map((b) => {
+  const salon = salons.find((s) => s.slug === b.slug);
+  if (!salon?.hotPepperUrl) throw new Error(`hotPepperUrl missing: ${b.slug}`);
+  return { ...b, href: salon.hotPepperUrl };
+});
+
+const more = [
+  { href: IRIDA_SHOP, label: "オンラインショップ", note: "Irida のシャンプー・トリートメント", external: true },
+  { href: "/recruit", label: "求人・採用", note: "スタイリスト・アシスタント・新卒", external: false },
+  { href: "/salons", label: "店舗一覧", note: "住所・営業時間・アクセス", external: false },
+  { href: "/stylists", label: "スタイリスト", note: "スタッフと得意なスタイル", external: false },
+];
+
+const sns = [
+  { href: "https://www.instagram.com/ile.hairsalon/", label: "Instagram" },
+  { href: "https://www.tiktok.com/@ile.hairsalon", label: "TikTok" },
+  { href: "https://www.youtube.com/@ile.hairsalon", label: "YouTube" },
+];
+
+const description =
+  "iLe（イル）のリンク集。原宿・名古屋・長岡の美容室のご予約（HOT PEPPER Beauty）、Irida のオンラインショップ、求人、Instagram・TikTok・YouTube。";
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <BaseHead title="Links — ご予約・ショップ・求人" description={description} />
+  </head>
+  <body class="links-body">
+    <a href="#main" class="skip-link">本文へスキップ</a>
+    <main id="main" class="links" tabindex="-1">
+      <header class="links__head">
+        <img class="links__logo" src="/logo.svg" alt="iLe." width="96" height="91" />
+        <h1 class="links__name">iLe.<span>（イル）</span></h1>
+        <p class="links__lead">原宿・名古屋・長岡の美容室<br />ファッションに似合う髪を、カットとカラーで</p>
+      </header>
+
+      <section class="links__group" aria-labelledby="links-book">
+        <h2 id="links-book" class="links__label">ご予約（HOT PEPPER Beauty）</h2>
+        <ul class="links__list">
+          {book.map((b) => (
+            <li>
+              <a class="links__btn links__btn--primary" href={b.href} target="_blank" rel="noopener">
+                <span class="links__btn-title">{b.label}</span>
+                <span class="links__btn-note">{b.note}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="links__group" aria-labelledby="links-more">
+        <h2 id="links-more" class="links__label">ほかのリンク</h2>
+        <ul class="links__list">
+          {more.map((m) => (
+            <li>
+              <a
+                class="links__btn"
+                href={m.href}
+                target={m.external ? "_blank" : undefined}
+                rel={m.external ? "noopener" : undefined}
+              >
+                <span class="links__btn-title">{m.label}</span>
+                <span class="links__btn-note">{m.note}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="links__group" aria-labelledby="links-sns">
+        <h2 id="links-sns" class="links__label">SNS</h2>
+        <ul class="links__sns">
+          {sns.map((s) => (
+            <li>
+              <a class="links__chip" href={s.href} target="_blank" rel="noopener">{s.label}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <footer class="links__foot">
+        <a href="/">ile-hair-harajuku.com</a>
+      </footer>
+    </main>
+  </body>
+</html>
+
+<style>
+  .links-body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+  .links {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 48px 20px 40px;
+  }
+  .links__head {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  /* ロゴは枠付きの四角いマーク。丸く切ると枠が欠けるのでそのまま出す */
+  .links__logo {
+    width: 88px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  .links__name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 1.2;
+    margin: 16px 0 8px;
+  }
+  .links__name span {
+    font-family: var(--font-jp);
+    font-size: 15px;
+    color: var(--color-fg-muted);
+  }
+  .links__lead {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--color-fg-muted);
+  }
+  .links__group {
+    margin-top: 28px;
+  }
+  .links__label {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: var(--color-fg-muted);
+    margin: 0 0 10px;
+    text-align: center;
+  }
+  .links__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  .links__btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 14px 16px;
+    background: var(--color-white);
+    color: var(--color-fg);
+    border: 1px solid var(--color-border-strong);
+    border-radius: 999px;
+    text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+  .links__btn--primary {
+    background: var(--color-fg);
+    color: var(--color-fg-on-dark);
+    border-color: var(--color-fg);
+  }
+  .links__btn:hover,
+  .links__btn:focus-visible {
+    opacity: 0.85;
+  }
+  .links__btn:active {
+    transform: scale(0.98);
+  }
+  .links__btn-title {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .links__btn-note {
+    font-size: 12px;
+    opacity: 0.7;
+  }
+  .links__sns {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .links__chip {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 999px;
+    color: var(--color-fg);
+    text-decoration: none;
+    font-size: 14px;
+    background: var(--color-white);
+  }
+  .links__chip:hover,
+  .links__chip:focus-visible {
+    opacity: 0.85;
+  }
+  .links__foot {
+    margin-top: 40px;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+  .links__foot a {
+    color: var(--color-fg-muted);
+    text-decoration: none;
+  }
+</style>
