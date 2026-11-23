@@ -509,6 +509,12 @@ The user has asked that this file be kept up to date whenever things change.
 
 ### Changelog
 
+- **2026-11-23** — **`/links`（SNS 用のリンク集・lit.link のような1枚ページ）を新設**。インスタ @ile.hairsalon（旧 @ile_plus・全店の統合アカウント）の
+  リンク欄の1本目に貼る（2〜5本目は各店の HOT PEPPER Beauty）。中身: 4店の予約（`salons.ts` の `hotPepperUrl` を参照・二重に持たない）／
+  Irida のオンラインショップ（ileing.stores.jp）／求人 `/recruit`／店舗一覧／スタイリスト／Instagram・TikTok・YouTube（いずれも @ile.hairsalon）。
+  スマホで押しやすいことを優先し、**サイト共通のヘッダー・フッター・浮きボタンは付けない**（`BaseLayout` を使わず `BaseHead` だけ）。
+  オーナー依頼「最初のまとめサイトに関してはホームページの中に SNS 用のものを作っちゃってもいいかなって思ってます。お願いします。できたらリットリンクみたいな感じで。」。インスタリポ担当が代行。
+
 - **2026-11-22** — `public/favicon.ico` を **iLe の枠付きマーク**に差し替え（`favicon.svg` から 32×32 で書き出し）。
   5/29 の雛形のまま **Astro の初期アイコン**が残っていた。`favicon.svg` に対応しないところ（YouTube のリンク欄・一部の検索結果・古いブラウザ）では
   これが出ていた（YouTube チャンネルのリンク欄で発見）。インスタリポ担当が代行。
