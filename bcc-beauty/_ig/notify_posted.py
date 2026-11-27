@@ -8,6 +8,9 @@
 - その日（JST）に予定されていた BCC の投稿がすべて出終わったら（または最後の 21:30 になったら）1通だけ送る。
 - 同じ日に2回は送らない（~/.local/state/bcc-post-notify/<日付>.sent）。
 - その日に BCC の予定が無ければ何もしない。
+- その日のオープンチャット用の素材（openchat/<日付>.json の text と image）があれば、同じ1回の送信に
+  「文」と「画像」を続けて入れる（オーナーがそのままコピー・保存してオープンチャットに貼る）。
+  画像は公開サイトの /oc/<日付>.jpg（一覧からはリンクしていない）。依頼: オーナー 2026-11-27「それでお願いしたいですね！」
 
 手で試す:  python3 notify_posted.py --date 2026-11-23 --dry   （送らずに本文だけ表示）
 """
@@ -66,13 +69,21 @@ def main():
             lines.append(head + "　⚠️ まだ出ていません")
         else:
             lines.append(head + f"　⚠️ 失敗（{err or status}）")
+    oc = os.path.join(os.path.dirname(os.path.abspath(__file__)), "openchat", f"{day}.json")
+    msgs = None
+    if os.path.exists(oc):
+        o = json.load(open(oc, encoding="utf-8"))
+        lines += ["", "👇 オープンチャット用（文と画像）"]
+        msgs = [{"type": "text", "text": "\n".join(lines)}, {"type": "text", "text": o["text"]}]
+        if o.get("image"):
+            msgs.append({"type": "image", "originalContentUrl": o["image"], "previewImageUrl": o["image"]})
     text = "\n".join(lines)
     if dry:
-        print(text)
+        print(json.dumps(msgs, ensure_ascii=False, indent=1) if msgs else text)
         return
     sys.path.insert(0, os.path.expanduser("~/claude-config-runner"))
     from lib.line_notify import notify
-    if notify(text):
+    if (notify(messages=msgs) if msgs else notify(text)):
         os.makedirs(STATE, exist_ok=True)
         open(sent, "w").write(now.isoformat())
 
